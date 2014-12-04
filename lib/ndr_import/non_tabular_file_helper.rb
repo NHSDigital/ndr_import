@@ -9,7 +9,12 @@ module UnifiedSources
     # The YAML mapping must define the start_line_pattern which identifies the start
     # of a multiline record (or "row") and can optionally define an end_line_pattern.
     module NonTabularFileHelper
-      require 'regexp_range'
+      require 'i18n'
+      require 'ndr_support/regexp_range'
+      require 'ndr_import/non_tabular/column_mapping'
+      require 'ndr_import/non_tabular/record'
+      require 'ndr_import/non_tabular/line'
+      require 'ndr_import/non_tabular/mapping'
 
       attr_reader :non_tabular_lines
 

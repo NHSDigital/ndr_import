@@ -4,7 +4,7 @@ require 'test_helper'
 
 # Test non tabular mapper class that expose private method(s) for testing
 class NonTabularTestMapper
-  include UnifiedSources::Import::Mapper
+  # include UnifiedSources::Import::Mapper
   include UnifiedSources::Import::NonTabularFileHelper
 
   attr_accessor :mappings
@@ -153,8 +153,8 @@ STR
     assert_nothing_raised do
       results = mapper.read_non_tabular_string(simple_divider_example)
       assert_equal 2, results.count
-      assert results.first[0].begins_with?('222')
-      assert results.last[0].begins_with?('333')
+      assert results.first[0].start_with?('222')
+      assert results.last[0].start_with?('333')
     end
   end
 
@@ -176,8 +176,8 @@ STR
     assert_nothing_raised do
       results = mapper.read_non_tabular_string(simple_divider_example)
       assert_equal 3, results.count
-      assert results.first[0].begins_with?('111')
-      assert results.last[0].begins_with?('333')
+      assert results.first[0].start_with?('111')
+      assert results.last[0].start_with?('333')
     end
   end
 
@@ -199,8 +199,8 @@ STR
     assert_nothing_raised do
       results = mapper.read_non_tabular_string(simple_divider_example)
       assert_equal 3, results.count
-      assert results.first[0].begins_with?('222')
-      assert results.last[0].begins_with?('444')
+      assert results.first[0].start_with?('222')
+      assert results.last[0].start_with?('444')
     end
   end
 
@@ -223,8 +223,8 @@ STR
     assert_nothing_raised do
       results = mapper.read_non_tabular_string(simple_divider_example)
       assert_equal 4, results.count
-      assert results.first[0].begins_with?('111')
-      assert results.last[0].begins_with?('444')
+      assert results.first[0].start_with?('111')
+      assert results.last[0].start_with?('444')
     end
   end
 
@@ -252,7 +252,7 @@ STR
     assert_nothing_raised do
       results = mapper.read_non_tabular_string(no_divider_example)
       assert_equal 1, results.count
-      assert results.first[0].begins_with?('111')
+      assert results.first[0].start_with?('111')
     end
   end
 
@@ -297,8 +297,8 @@ STR
     assert_nothing_raised do
       results = mapper.read_non_tabular_string(simple_start_and_end_divider_example)
       assert_equal 4, results.count
-      assert results.first[0].begins_with?('111')
-      assert results.last[0].begins_with?('444')
+      assert results.first[0].start_with?('111')
+      assert results.last[0].start_with?('444')
 
       assert results.flatten.any? { |result| result =~ /This is captured/ }
       deny results.flatten.any? { |result| result =~ /This is never captured/ }
