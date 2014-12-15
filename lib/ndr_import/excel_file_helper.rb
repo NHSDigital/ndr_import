@@ -1,8 +1,12 @@
+require 'ole/storage'
+
 # This mixin adds excel spreadsheet functionality to unified importers.
 # It provides a file reader method and methods to cast raw values
 # appropriately. These methods can be overridden or aliased as required.
 # 
-module UnifiedSources::Import::ExcelFileHelper
+module UnifiedSources
+  module Import
+    module ExcelFileHelper
   require 'roo'
   # Ruby 1.9 does not auto-require iconv
   require 'iconv'
@@ -63,9 +67,9 @@ module UnifiedSources::Import::ExcelFileHelper
     begin
       case SafeFile.extname(path).downcase
         when '.xls'
-          Excel.new(SafeFile.safepath_to_string(path))
+          Roo::Excel.new(SafeFile.safepath_to_string(path))
         when '.xlsx'
-          Excelx.new(SafeFile.safepath_to_string(path))
+          Roo::Excelx.new(SafeFile.safepath_to_string(path))
         else
           raise "Received file path with unexpected extension #{SafeFile.extname(path)}"
       end
@@ -86,6 +90,8 @@ module UnifiedSources::Import::ExcelFileHelper
       end
     rescue => e
       raise ["Unable to read the file '#{path}'", e.message].join('; ')
+    end
+  end
     end
   end
 end
