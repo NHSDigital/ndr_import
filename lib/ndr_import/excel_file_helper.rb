@@ -1,5 +1,3 @@
-require 'ole/storage'
-
 # This mixin adds excel spreadsheet functionality to unified importers.
 # It provides a file reader method and methods to cast raw values
 # appropriately. These methods can be overridden or aliased as required.
@@ -8,6 +6,7 @@ module UnifiedSources
   module Import
     module ExcelFileHelper
   require 'roo'
+  require 'ole/storage'
   # Ruby 1.9 does not auto-require iconv
   require 'iconv'
   
