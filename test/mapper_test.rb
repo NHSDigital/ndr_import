@@ -128,26 +128,6 @@ class MapperTest < ActiveSupport::TestCase
         priority: 5
   YML
 
-  no_insig_mapping = <<-YML
-    - column: one
-      mappings:
-      - field: a
-      - field: two
-    - column: four
-      rawtext_name: two
-  YML
-
-  insig_mapping = <<-YML
-    - column: one
-      insignificant_for_deduplication: true
-      mappings:
-      - field: a
-      - field: two
-    - column: four
-      insignificant_for_deduplication: true
-      rawtext_name: two
-  YML
-
   standard_mapping_without = YAML.load <<-YML
     - column: surname
       rawtext_name: surname
@@ -451,16 +431,6 @@ class MapperTest < ActiveSupport::TestCase
 
     assert_equal 'Exists', line_hash['columnone']
     assert_equal 'Exists', line_hash['columntwo']
-  end
-
-  test 'should have no insignificant columns' do
-    insignificant = Esourcemapping.new(:mapping => join_mapping.to_s).insignificant_columns
-    assert_equal [], insignificant
-  end
-
-  test 'should have insignificant columns' do
-    insignificant = Esourcemapping.new(:mapping => insig_mapping).insignificant_columns
-    assert_equal %w(one two), insignificant
   end
 
   test 'should create equal hashes with standard mapping' do
