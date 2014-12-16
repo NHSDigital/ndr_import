@@ -1,6 +1,3 @@
-# Raised if there is a problem with an import mapping.
-class UnifiedSources::Import::MappingError < StandardError; end
-
 # This module provides helper logic for mapping unified sources for import into the system
 module UnifiedSources::Import::Mapper
   
