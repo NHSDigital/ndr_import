@@ -1,0 +1,39 @@
+---
+surname:
+  column: surname
+  rawtext_name: surname
+  mappings:
+  - field: surname
+    clean: :name
+previoussurname:
+  column: previoussurname
+  rawtext_name: previoussurname
+  mappings:
+  - field: previoussurname
+    clean: :name
+forenames:
+  column: forenames
+  rawtext_name: forenames
+  mappings:
+  - field: forenames
+    clean: :name
+sex:
+  column: sex
+  rawtext_name: sex
+  mappings:
+  - field: sex
+    clean: :sex
+nhsnumber:
+  column: nhsnumber
+  rawtext_name: nhsnumber
+  mappings:
+  - field: nhsnumber
+    clean: :nhsnumber
+postcode:
+  column: postcode
+  rawtext_name: postcode
+  mappings:
+  - field: postcode
+    clean: :postcode
+test:
+  column: standard_mapping_column_name
