@@ -23,7 +23,7 @@ class PdfTest < ActiveSupport::TestCase
   end
 
   test 'read_pdf_file helper should raise exception on invalid pdf file' do
-    assert_raised RuntimeError do
+    assert_raise RuntimeError do
       @importer.read_pdf_file_content(@permanent_test_files.join('not_a_pdf.pdf'))
     end
   end
