@@ -1,0 +1,9 @@
+# This allows us different filesystem paths for different platforms
+--- 
+? !ruby/regexp /.*/
+: 
+  permanent_test_files:
+    root: <%= NdrImport.root + '/test/resources' %>
+    prms:
+      - r
+      - w

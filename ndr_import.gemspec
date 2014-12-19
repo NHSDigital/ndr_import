@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'nokogiri', '>= 1.5.11', '< 1.6' # Enable roo 1.9.x to run on Ruby 1.8.7
   spec.add_dependency 'rubyzip', '>= 0.9.1', '< 1.0.0' # rubyzip (1.0.0) requires Ruby version >= 1.9.2.
   spec.add_dependency 'spreadsheet', '0.7.3'           # Aligning with encore
+  spec.add_dependency 'pdf-reader', '1.2.0' # Later versions require Ruby 1.9
 
   spec.add_development_dependency 'bundler', '~> 1.7'
   spec.add_development_dependency 'rake', '~> 10.0'
