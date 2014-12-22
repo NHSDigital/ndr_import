@@ -1,4 +1,5 @@
 require 'ndr_support/safe_file'
+require 'ndr_import/csv_library'
 
 module NdrImport
   module Helpers
