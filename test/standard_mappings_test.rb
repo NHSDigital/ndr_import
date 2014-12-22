@@ -5,7 +5,9 @@ require 'test_helper'
 class StandardMappingsTest < ActiveSupport::TestCase
   test 'should raise exception on reconfiguring StandardMappings' do
     assert_nothing_raised do
-      StandardMappings.configure! File.dirname(__FILE__) + '/resources/standard_mappings.yml'
+      StandardMappings.configure!(
+        File.expand_path(File.dirname(__FILE__) + '/resources/standard_mappings.yml')
+      )
     end
   end
 
