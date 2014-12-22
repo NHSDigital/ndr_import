@@ -1,3 +1,5 @@
+require 'ndr_support/safe_file'
+
 module UnifiedSources
   module Import
     # This mixin adds excel spreadsheet functionality to unified importers.
@@ -88,6 +90,13 @@ module UnifiedSources
         end
       rescue => e
         raise ["Unable to read the file '#{path}'", e.message].join('; ')
+      end
+
+      # Note that this method can produce insecure calls. All callers must protect
+      # their arguments.
+      def copy_file(source, dest)
+        FileUtils.mkdir_p(File.dirname(dest))
+        FileUtils.cp(source, dest)
       end
     end
   end
