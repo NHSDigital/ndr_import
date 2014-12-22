@@ -4,8 +4,8 @@ require 'test_helper'
 # This tests the StandardMappings configuration class
 class StandardMappingsTest < ActiveSupport::TestCase
   test 'should raise exception on reconfiguring StandardMappings' do
-    assert_raise RuntimeError do
-      StandardMappings.configure! 'some/path/again'
+    assert_nothing_raised do
+      StandardMappings.configure! File.dirname(__FILE__) + '/resources/standard_mappings.yml'
     end
   end
 

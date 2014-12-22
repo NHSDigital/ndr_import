@@ -11,15 +11,9 @@ class StandardMappings
       end
     end
 
-    # Takes the path the filesystem_paths.yml file that
-    # should be used. Attempting to reconfigure with
-    # new settings will raise a security error.
+    # Takes the path the filesystem_paths.yml file that should be used.
     def configure!(filepath)
-      if defined?(@fs_path)
-        fail 'Attempt to re-assign StandardMappings config!'
-      else
-        @fs_path = filepath
-      end
+      @fs_path = filepath
     end
   end
 end
