@@ -1,3 +1,4 @@
+<% require 'tmpdir' %>
 # This allows us different filesystem paths for different platforms
 --- 
 test_files: &test_files
