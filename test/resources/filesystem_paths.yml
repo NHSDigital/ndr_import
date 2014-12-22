@@ -1,7 +1,23 @@
 # This allows us different filesystem paths for different platforms
 --- 
+test_files: &test_files
+  root: <%= Dir.mktmpdir %>
+
 ? !ruby/regexp /.*/
 : 
+  # test_space_r:
+  #   <<: *test_files
+  #   prms:
+  #     - r
+  # test_space_w:
+  #   <<: *test_files
+  #   prms:
+  #     - w
+  test_space_rw:
+    <<: *test_files
+    prms:
+      - r
+      - w
   permanent_test_files:
     root: <%= NdrImport.root + '/test/resources' %>
     prms:
