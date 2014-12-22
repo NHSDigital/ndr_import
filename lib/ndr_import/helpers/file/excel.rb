@@ -1,12 +1,13 @@
 require 'ndr_support/safe_file'
 
-module UnifiedSources
-  module Import
+module NdrImport
+  module Helpers
+    module File
     # This mixin adds excel spreadsheet functionality to unified importers.
     # It provides a file reader method and methods to cast raw values
     # appropriately. These methods can be overridden or aliased as required.
     #
-    module ExcelFileHelper
+    module Excel
       require 'roo'
       require 'ole/storage'
       # Ruby 1.9 does not auto-require iconv
@@ -105,6 +106,7 @@ module UnifiedSources
         FileUtils.mkdir_p(SafeFile.safepath_to_string(SafeFile.dirname(dest)))
         FileUtils.cp(SafeFile.safepath_to_string(source), SafeFile.safepath_to_string(dest))
       end
+    end
     end
   end
 end

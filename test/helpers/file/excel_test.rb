@@ -1,10 +1,11 @@
 require 'test_helper'
+require 'ndr_import/helpers/file/excel'
 
 # Excel file helper tests
-class ExcelFileHelperTest < ActiveSupport::TestCase
+class ExcelTest < ActiveSupport::TestCase
   # This is a test importer class to test the excel file helper mixin
   class TestImporter
-    include ::UnifiedSources::Import::ExcelFileHelper
+    include NdrImport::Helpers::File::Excel
   end
 
   def setup
