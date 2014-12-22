@@ -94,9 +94,16 @@ module UnifiedSources
 
       # Note that this method can produce insecure calls. All callers must protect
       # their arguments.
+      # Arguments:
+      #   * source - SafeFile
+      #   * dest - SafeFile
+      #
       def copy_file(source, dest)
-        FileUtils.mkdir_p(File.dirname(dest))
-        FileUtils.cp(source, dest)
+        # SECURE: TVB Mon Aug 13 13:53:02 BST 2012 : Secure SafePath will do the security checks
+        # before it is converted to string.
+        # SafeFile will make sure that the arguments are actually SafePath
+        FileUtils.mkdir_p(SafeFile.safepath_to_string(SafeFile.dirname(dest)))
+        FileUtils.cp(SafeFile.safepath_to_string(source), SafeFile.safepath_to_string(dest))
       end
     end
   end
