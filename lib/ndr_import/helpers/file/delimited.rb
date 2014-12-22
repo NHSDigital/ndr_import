@@ -7,12 +7,13 @@ module NdrImport
       module Delimited
         # Read a plain text CSV file, return an array of the content
         def read_csv_file(path)
-          # Read the page below when encountering "CSV::IllegalFormatError" error caused by CSV file generated at MAC OS
+          # Read the page below when encountering "CSV::IllegalFormatError" error caused by CSV
+          # file generated at MAC OS
           # http://stackoverflow.com/questions/1549139/ruby-cannot-parse-excel-file-exported-as-csv-in-os-x
-    
+
           read_delimited_file(path)
         end
-  
+
         def read_delimited_file(path, field_separator = nil)
           return read_delimited_file_faster(path, field_separator) if CSVLibrary.fastercsv?
 
@@ -62,7 +63,7 @@ module NdrImport
           end
 
           unless successful_encoding
-            raise "None of the encodings #{supported_encodings.inspect} were successful!"
+            fail "None of the encodings #{supported_encodings.inspect} were successful!"
           end
 
           # Trim any BOM manually on Ruby 1.8.x, as the 'bom|...'
