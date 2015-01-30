@@ -14,12 +14,12 @@ module NdrImport
           begin
             reader = PDF::Reader.new(SafeFile.safepath_to_string(path))
 
-            reader.pages.each_with_index do |page|
+            reader.pages.each do |page|
               lines.concat page.text.split("\n")
               pagenum += 1
             end
           rescue => e
-            raise("Invalid format on page #{pagenum + 1} of #{SafeFile.basename(path)}")
+            raise("Invalid format on page #{pagenum + 1} of #{SafeFile.basename(path)} [#{e.class}: #{e.message}]")
           end
           lines
         end
