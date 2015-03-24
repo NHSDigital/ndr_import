@@ -15,6 +15,46 @@ class XmlTest < ActiveSupport::TestCase
     @importer  = TestImporter.new
   end
 
+  test 'import_xml_file should handle incoming UTF-8' do
+    doc   = @importer.send(:read_xml_file, @permanent_test_files.join('utf-8_xml.xml'))
+    greek = doc.xpath('//letter').map(&:text).join
+
+    assert greek.valid_encoding?
+    assert_equal Encoding.find('UTF-8'), greek.encoding
+    assert_equal 2, greek.chars.to_a.length
+    assert_equal [206, 177, 206, 178], greek.bytes.to_a # 2-bytes each for alpha and beta
+  end
+
+  test 'import_xml_file should handle incoming UTF-16 (big endian)' do
+    doc   = @importer.send(:read_xml_file, @permanent_test_files.join('utf-16be_xml.xml'))
+    greek = doc.xpath('//letter').map(&:text).join
+
+    assert greek.valid_encoding?
+    assert_equal Encoding.find('UTF-8'), greek.encoding
+    assert_equal 2, greek.chars.to_a.length
+    assert_equal [206, 177, 206, 178], greek.bytes.to_a # 2-bytes each for alpha and beta
+  end
+
+  test 'import_xml_file should handle incoming UTF-16 (little endian)' do
+    doc   = @importer.send(:read_xml_file, @permanent_test_files.join('utf-16le_xml.xml'))
+    greek = doc.xpath('//letter').map(&:text).join
+
+    assert greek.valid_encoding?
+    assert_equal Encoding.find('UTF-8'), greek.encoding
+    assert_equal 2, greek.chars.to_a.length
+    assert_equal [206, 177, 206, 178], greek.bytes.to_a # 2 bytes each for alpha and beta
+  end
+
+  test 'import_xml_file should handle incoming Windows-1252' do
+    doc   = @importer.send(:read_xml_file, @permanent_test_files.join('windows-1252_xml.xml'))
+    punct = doc.xpath('//letter').map(&:text).join
+
+    assert punct.valid_encoding?
+    assert_equal Encoding.find('UTF-8'), punct.encoding
+    assert_equal 2, punct.chars.to_a.length
+    assert_equal [226, 128, 153, 226, 128, 147], punct.bytes.to_a # 3 bytes each for apostrophe and dash
+  end
+
   test '.import_xml_file should reject non safe path arguments' do
     assert_raises ArgumentError do
       @importer.send(:read_xml_file, @home.join('simple.xml').to_s)

@@ -1,15 +1,30 @@
 require 'ndr_support/safe_file'
+require 'ndr_support/utf8_encoding'
 
 module NdrImport
   module Helpers
     module File
       # This mixin adds XML functionality to unified importers.
       module Xml
+        include UTF8Encoding
+
         private
 
         def read_xml_file(path)
-          require 'nokogiri'
           file_data = SafeFile.new(path).read
+
+          if RUBY_VERSION >= '1.9'
+            ensure_utf8! file_data
+          else
+            file_data = manually_fix_encoding(file_data)
+          end
+
+          require 'nokogiri'
+          Nokogiri::XML(file_data)
+        end
+
+        # On Ruby 1.8.7, we don't have encoding support within the language:
+        def manually_fix_encoding(file_data)
           bad_ctrl_codes = (0..31).to_a - [9, 10, 13] # not allowed in XML data
           bad_re = Regexp.new("[#{bad_ctrl_codes.collect(&:chr).join}]")
           if file_data[0..1] == "\377\376" || file_data[0..1] == "\376\377"
@@ -39,7 +54,6 @@ module NdrImport
             Rails.logger.warn(msg)
             puts msg
           end
-          Nokogiri::XML(file_data)
         end
       end
     end

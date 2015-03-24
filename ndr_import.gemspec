@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'activesupport', '~> 3.2.18'
-  spec.add_dependency 'ndr_support', '~> 1.0'
+  spec.add_dependency 'ndr_support', '~> 1.2'
 
   spec.add_dependency 'rubyzip', '>= 0.9.1', '< 1.0.0', '0.9.9' # rubyzip (1.0.0) requires Ruby version >= 1.9.2.
   # roo (1.11.0) requires Ruby version >= 1.9.0

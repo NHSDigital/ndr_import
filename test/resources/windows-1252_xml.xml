@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<root>
+  <note id="apostrophe">
+    <letter>’</letter>
+  </note>
+  <note id="dash">
+    <letter>–</letter>
+  </note>
+</root>
