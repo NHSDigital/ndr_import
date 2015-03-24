@@ -19,6 +19,8 @@ class XmlTest < ActiveSupport::TestCase
     doc   = @importer.send(:read_xml_file, @permanent_test_files.join('utf-8_xml.xml'))
     greek = doc.xpath('//letter').map(&:text).join
 
+    assert_equal 'UTF-8', doc.encoding
+
     assert greek.valid_encoding?
     assert_equal Encoding.find('UTF-8'), greek.encoding
     assert_equal 2, greek.chars.to_a.length
@@ -28,6 +30,8 @@ class XmlTest < ActiveSupport::TestCase
   test 'import_xml_file should handle incoming UTF-16 (big endian)' do
     doc   = @importer.send(:read_xml_file, @permanent_test_files.join('utf-16be_xml.xml'))
     greek = doc.xpath('//letter').map(&:text).join
+
+    assert_equal 'UTF-8', doc.encoding
 
     assert greek.valid_encoding?
     assert_equal Encoding.find('UTF-8'), greek.encoding
@@ -39,15 +43,34 @@ class XmlTest < ActiveSupport::TestCase
     doc   = @importer.send(:read_xml_file, @permanent_test_files.join('utf-16le_xml.xml'))
     greek = doc.xpath('//letter').map(&:text).join
 
+    assert_equal 'UTF-8', doc.encoding
+
     assert greek.valid_encoding?
     assert_equal Encoding.find('UTF-8'), greek.encoding
     assert_equal 2, greek.chars.to_a.length
     assert_equal [206, 177, 206, 178], greek.bytes.to_a # 2 bytes each for alpha and beta
   end
 
+  test 'import_xml_file should handle incoming UTF-16 with declaration' do
+    doc   = @importer.send(:read_xml_file, @permanent_test_files.join('utf-16be_xml_with_declaration.xml'))
+    greek = doc.xpath('//letter').map(&:text).join
+
+    assert greek.valid_encoding?
+    assert_equal Encoding.find('UTF-8'), greek.encoding
+    assert_equal 2, greek.chars.to_a.length
+    assert_equal [206, 177, 206, 178], greek.bytes.to_a # 2 bytes each for alpha and beta
+
+    # The document should be UTF-8, and we shouldn't
+    # get encoding mismatches when interrogating it:
+    assert_equal 'UTF-8', doc.encoding
+    assert_equal 1, doc.css('note[id=alpha]').length
+  end
+
   test 'import_xml_file should handle incoming Windows-1252' do
     doc   = @importer.send(:read_xml_file, @permanent_test_files.join('windows-1252_xml.xml'))
     punct = doc.xpath('//letter').map(&:text).join
+
+    assert_equal 'UTF-8', doc.encoding
 
     assert punct.valid_encoding?
     assert_equal Encoding.find('UTF-8'), punct.encoding
