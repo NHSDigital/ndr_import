@@ -33,9 +33,6 @@ module NdrImport
 
         # TODO: Post-FasterCSV, make this the only csv-reading method.
         def read_delimited_file_faster(path, col_sep = nil)
-          path    = SafeFile.safepath_to_string(path)
-          col_sep = col_sep || ','
-
           records, row_num = nil, nil
 
           supported_encodings = %w( bom|utf-8 windows-1252:utf-8 )
@@ -44,7 +41,9 @@ module NdrImport
               # Reset if a previous encoding failed part way through:
               records, row_num = [], 0
 
-              CSVLibrary.foreach(path, { :col_sep => col_sep, :encoding => encoding }) do |line|
+              options = { :col_sep => col_sep || ',', :encoding => encoding }
+
+              CSVLibrary.foreach(SafeFile.safepath_to_string(path), options) do |line|
                 records << line.map(&:to_s) unless line.length <= 5
                 row_num += 1
               end
