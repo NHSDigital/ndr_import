@@ -10,11 +10,14 @@ module UnifiedSources
     # of a multiline record (or "row") and can optionally define an end_line_pattern.
     module NonTabularFileHelper
       require 'i18n'
-      require 'ndr_support/regexp_range'
+      require 'ndr_support/regexp_range' # TODO: unneeded?
+      require 'ndr_support/utf8_encoding'
       require 'ndr_import/non_tabular/column_mapping'
       require 'ndr_import/non_tabular/record'
       require 'ndr_import/non_tabular/line'
       require 'ndr_import/non_tabular/mapping'
+
+      include UTF8Encoding
 
       attr_reader :non_tabular_lines
 
@@ -23,14 +26,14 @@ module UnifiedSources
       # Reads a non-tabular text file and returns an array of tabulated rows of data,
       # where each row is an array of cells.
       def read_non_tabular_file
-        self.non_tabular_lines = SafeFile.readlines(filename)
+        self.non_tabular_lines = ensure_utf8_object! SafeFile.readlines(filename)
         remove_unwanted_lines
         read_non_tabular_array
       end
 
       # Reads a string and returns an array of tabulated data. Use only for prototyping.
       def read_non_tabular_string(text)
-        self.non_tabular_lines = text.split("\n")
+        self.non_tabular_lines = ensure_utf8_object!(text).split("\n")
         remove_unwanted_lines
         read_non_tabular_array
       end

@@ -422,4 +422,79 @@ STR
       # flunk ''
     # end
   end
+
+  test 'handles non utf8 characters' do
+    mixed_encoding_example = <<-STR
+111
+Lorem ipsum dolor sit amet.
+------
+111
+Lorem ipsum dolor\xBE sit amet.
+------
+111
+Lorem ipsum dolor sit amet.
+------
+STR
+
+    mapper = NonTabularTestMapper.new
+    mapper.mappings = YAML.load <<-YML
+      non_tabular_row:
+        start_line_pattern: !ruby/regexp /^111$/
+        end_in_a_record: true
+      columns:
+      - column: one
+        non_tabular_cell:
+          lines: !ruby/range
+            begin: 0
+            end: -1
+            excl: true
+          capture: !ruby/regexp /^(.*)$/i
+    YML
+
+    results = mapper.read_non_tabular_string(mixed_encoding_example)
+
+    assert_equal 3, results.count, 'records were lost'
+
+    assert_equal [27, 28, 27], results.map { |row| row.first.chars.to_a.length }
+    assert_equal [27, 29, 27], results.map { |row| row.first.bytes.to_a.length }
+
+    results.each do |row|
+      assert row.first.valid_encoding?
+      assert_equal Encoding.find('UTF-8'), row.first.encoding
+    end
+  end
+
+  test 'should not allow junk bytes' do
+    junk = <<-STR
+111
+Lorem ipsum dolor sit amet.
+------
+111
+Lorem ipsum dolor\x8D sit amet.
+------
+111
+Lorem ipsum dolor sit amet.
+------
+STR
+
+    mapper = NonTabularTestMapper.new
+    mapper.mappings = YAML.load <<-YML
+      non_tabular_row:
+        start_line_pattern: !ruby/regexp /^111$/
+        end_in_a_record: true
+      columns:
+      - column: one
+        non_tabular_cell:
+          lines: !ruby/range
+            begin: 0
+            end: -1
+            excl: true
+          capture: !ruby/regexp /^(.*)$/i
+    YML
+
+    assert_raises(UTF8Encoding::UTF8CoercionError) do
+      mapper.read_non_tabular_string(junk)
+    end
+  end
+
 end
