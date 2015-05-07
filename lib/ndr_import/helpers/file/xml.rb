@@ -18,12 +18,12 @@ module NdrImport
           if RUBY_VERSION >= '1.9'
             Nokogiri::XML(ensure_utf8! file_data).tap { |doc| doc.encoding = 'UTF-8' }
           else
-            Nokogiri::XML(manually_fix_encoding file_data)
+            Nokogiri::XML(manually_fix_encoding(file_data, path))
           end
         end
 
         # On Ruby 1.8.7, we don't have encoding support within the language:
-        def manually_fix_encoding(file_data)
+        def manually_fix_encoding(file_data, path)
           bad_ctrl_codes = (0..31).to_a - [9, 10, 13] # not allowed in XML data
           bad_re = Regexp.new("[#{bad_ctrl_codes.collect(&:chr).join}]")
 
