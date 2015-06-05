@@ -306,9 +306,13 @@ class MapperTest < ActiveSupport::TestCase
 
   test 'should return correct date format for date fields with daysafter' do
     assert_equal Date.new(2012, 5, 18), TestMapper.new.mapped_value(2, daysafter_mapping)
+    assert_equal Date.new(2012, 5, 18), TestMapper.new.mapped_value('2', daysafter_mapping)
     assert_equal Date.new(2012, 5, 14), TestMapper.new.mapped_value(-2, daysafter_mapping)
+    assert_equal Date.new(2012, 5, 14), TestMapper.new.mapped_value('-2', daysafter_mapping)
     assert_equal Date.new(2012, 5, 16), TestMapper.new.mapped_value(0, daysafter_mapping)
-    assert_equal Date.new(2012, 5, 16), TestMapper.new.mapped_value('String', daysafter_mapping)
+    assert_equal 'String', TestMapper.new.mapped_value('String', daysafter_mapping)
+    assert_equal '', TestMapper.new.mapped_value('', daysafter_mapping)
+    assert_nil TestMapper.new.mapped_value(nil, daysafter_mapping)
     assert_equal Date.new(2057, 8, 23), TestMapper.new.mapped_value(16535, daysafter_mapping)
     # Answer independently checked http://www.wolframalpha.com/input/?i=2012-05-16+%2B+9379+days
     assert_equal Date.new(2038, 1, 19), TestMapper.new.mapped_value(9379, daysafter_mapping)

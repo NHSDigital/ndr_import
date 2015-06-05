@@ -155,6 +155,7 @@ module UnifiedSources::Import::Mapper
       matches = Regexp.new(field_mapping['match']).match(original_value)
       value = matches[1].strip if matches && matches.size > 0
     elsif field_mapping.include?('daysafter')
+      return original_value unless original_value.to_i.to_s == original_value.to_s
       value = original_value.to_i.days.since(field_mapping['daysafter'].to_time).to_date
     else
       value = original_value.blank? ? nil :
