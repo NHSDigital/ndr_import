@@ -136,29 +136,30 @@ module UnifiedSources::Import::Mapper
     attributes[:rawtext] = rawtext
     attributes
   end
-  
+
   def mapped_value(original_value, field_mapping)
     if field_mapping.include?('format')
       begin
-        value = original_value.blank? ? nil : original_value.to_date(field_mapping['format'])
+        return original_value.blank? ? nil : original_value.to_date(field_mapping['format'])
       rescue ArgumentError => e
-        e2 = ArgumentError.new("#{e.to_s} value #{original_value.inspect}")
+        e2 = ArgumentError.new("#{e} value #{original_value.inspect}")
         e2.set_backtrace(e.backtrace)
         raise e2
       end
     elsif field_mapping.include?('clean')
-      value = original_value.blank? ? nil : original_value.clean(field_mapping['clean'])
+      return original_value.blank? ? nil : original_value.clean(field_mapping['clean'])
     elsif field_mapping.include?('map')
-      value = field_mapping['map'] ? field_mapping['map'][original_value] : nil
+      return field_mapping['map'] ? field_mapping['map'][original_value] : nil
     elsif field_mapping.include?('match')
-      # WARNING:TVB Thu Aug  9 17:09:25 BST 2012 field_mapping['match'] regexp may need to be escaped
+      # WARNING:TVB Thu Aug  9 17:09:25 BST 2012 field_mapping['match'] regexp
+      # may need to be escaped
       matches = Regexp.new(field_mapping['match']).match(original_value)
-      value = matches[1].strip if matches && matches.size > 0
+      return matches[1].strip if matches && matches.size > 0
     elsif field_mapping.include?('daysafter')
       return original_value unless original_value.to_i.to_s == original_value.to_s
-      value = original_value.to_i.days.since(field_mapping['daysafter'].to_time).to_date
+      return original_value.to_i.days.since(field_mapping['daysafter'].to_time).to_date
     else
-      value = original_value.blank? ? nil :
+      return original_value.blank? ? nil :
         original_value.is_a?(String) ? original_value.strip : original_value
     end
   end
