@@ -29,3 +29,19 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+
+## Updating gem version and repackaging
+### In the gem
+1. fix gem (and test) - commit
+2. bump version and package (bundle exec rake build) - commit
+3. test
+4. dcommit gem
+5. gem install pkg/ndr_import-0.5.6.gem
+
+### In era (or wherever you're using the gem)
+1. bump version in gemfile
+2. bundle install --local
+3. add all unstaged files - commit
+4. test
+5. dcommit
