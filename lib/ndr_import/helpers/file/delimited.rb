@@ -73,13 +73,6 @@ module NdrImport
             fail "None of the encodings #{supported_encodings.values.inspect} were successful!"
           end
 
-          # Trim any BOM manually on Ruby 1.8.x, as the 'bom|...'
-          # encoding option is Ruby 1.9+ only.
-          if RUBY_VERSION =~ /^1\.8/
-            first_cell = records.first.try(:first)
-            first_cell && first_cell.gsub!("\xEF\xBB\xBF", '')
-          end
-
           records
         end
       end
