@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start
+
 require 'active_support/test_case'
 require 'ndr_support/safe_path'
 require 'ndr_import'
