@@ -1,6 +1,6 @@
 require 'test_helper'
 require 'ndr_import/helpers/file/zip'
-require 'zip/zipfilesystem'
+require 'zip'
 
 # Zip file helper tests
 class ZipTest < ActiveSupport::TestCase
@@ -44,7 +44,7 @@ class ZipTest < ActiveSupport::TestCase
       File.open(fname, 'w') { |f| f.write "test #{fname}" }
     end
 
-    ::Zip::ZipFile.open(zip_name, Zip::ZipFile::CREATE) do |zipfile|
+    ::Zip::File.open(zip_name, Zip::File::CREATE) do |zipfile|
       files.each do |fname|
         zipfile.add(File.basename(fname.to_s), fname.to_s)
       end

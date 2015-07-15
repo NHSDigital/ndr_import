@@ -9,9 +9,8 @@ module NdrImport
       #
       module Excel
         require 'roo'
+        require 'roo-xls'
         require 'ole/storage'
-        # Ruby 1.9 does not auto-require iconv
-        require 'iconv'
 
         protected
 

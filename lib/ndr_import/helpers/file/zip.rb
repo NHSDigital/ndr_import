@@ -17,11 +17,11 @@ module NdrImport
           # SECURE: BNS 2010-09-21 (for external access)
           fail 'Not allowed in external environment' if defined?(::Rails) && ::Rails.env.external?
 
-          require 'zip/zipfilesystem'
+          require 'zip'
           # TODO: Abort if destination directory already exists...
           FileUtils.mkdir_p(SafeFile.safepath_to_string(destination))
 
-          ::Zip::ZipFile.open(SafeFile.safepath_to_string(source)) do |zipfile|
+          ::Zip::File.open(SafeFile.safepath_to_string(source)) do |zipfile|
             zipfile.entries.each do |entry|
               # SECURE: TPG 2010-11-1: The path is stripped from the zipfile entry when extracted
               basename = ::File.basename(entry.name)
