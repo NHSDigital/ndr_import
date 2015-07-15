@@ -15,24 +15,7 @@ module NdrImport
           read_delimited_file(path)
         end
 
-        def read_delimited_file(path, field_separator = nil)
-          return read_delimited_file_faster(path, field_separator) if CSVLibrary.fastercsv?
-
-          recs = []
-          rownum = 0
-          begin
-            CSVLibrary.open(SafeFile.safepath_to_string(path), 'r', field_separator) { |line|
-              recs << line.map(&:to_s) unless line.nitems <= 5
-              rownum += 1
-            }
-          rescue CSVLibrary::IllegalFormatError => e
-            raise(CSVLibrary::IllegalFormatError, "Invalid #{field_separator ? (field_separator.inspect + ' delimited') : 'CSV'} format on row #{rownum + 1} of #{SafeFile.basename(path)}")
-          end
-          recs
-        end
-
-        # TODO: Post-FasterCSV, make this the only csv-reading method.
-        def read_delimited_file_faster(path, col_sep)
+        def read_delimited_file(path, col_sep = nil)
           records, row_num = nil, nil
 
           supported_encodings = {
