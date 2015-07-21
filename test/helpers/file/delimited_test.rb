@@ -37,7 +37,6 @@ class DelimitedTest < ActiveSupport::TestCase
   test 'should read acsii-delimited csv' do
     assert_nothing_raised do
       rows = @importer.send(:read_delimited_file, @permanent_test_files.join('high_ascii_delimited.txt'), "\xfe")
-      puts rows.inspect
       assert_equal 2, rows.length
     end
   end
