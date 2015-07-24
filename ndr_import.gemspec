@@ -11,6 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary       = 'NDR Import'
   spec.description   = 'NDR ETL Importer'
   spec.homepage      = ''
+  spec.license       = 'MIT'
 
   # Exclude older versions of this gem from the package.
   spec.files         = `git ls-files -z`.split("\x0").reject{|s| s=~ /^pkg\//}
