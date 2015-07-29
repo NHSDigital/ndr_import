@@ -4,8 +4,8 @@ require 'test_helper'
 
 # Test non tabular mapper class that expose private method(s) for testing
 class NonTabularTestMapper
-  # include UnifiedSources::Import::Mapper
-  include UnifiedSources::Import::NonTabularFileHelper
+  # include NdrImport::Mapper
+  include NdrImport::NonTabularFileHelper
 
   attr_accessor :mappings
 
@@ -33,7 +33,7 @@ STR
       columns:
       - column: one
     YML
-    assert_raise UnifiedSources::Import::MappingError do
+    assert_raise NdrImport::MappingError do
       mapper.read_non_tabular_string(simple_divider_example)
     end
   end
@@ -45,7 +45,7 @@ STR
       columns:
       - column: one
     YML
-    assert_raise UnifiedSources::Import::MappingError do
+    assert_raise NdrImport::MappingError do
       mapper.read_non_tabular_string(simple_divider_example)
     end
 
@@ -56,7 +56,7 @@ STR
       columns:
       - column: one
     YML
-    assert_raise UnifiedSources::Import::MappingError do
+    assert_raise NdrImport::MappingError do
       mapper.read_non_tabular_string(simple_divider_example)
     end
   end
@@ -69,7 +69,7 @@ STR
       columns:
       - column: one
     YML
-    assert_raise UnifiedSources::Import::MappingError do
+    assert_raise NdrImport::MappingError do
       mapper.read_non_tabular_string(simple_divider_example)
     end
   end
@@ -83,7 +83,7 @@ STR
       - column: one
         non_tabular_cell:
     YML
-    assert_raise UnifiedSources::Import::MappingError do
+    assert_raise NdrImport::MappingError do
       mapper.read_non_tabular_string(simple_divider_example)
     end
 
@@ -96,7 +96,7 @@ STR
         non_tabular_cell:
           lines:
     YML
-    assert_raise UnifiedSources::Import::MappingError do
+    assert_raise NdrImport::MappingError do
       mapper.read_non_tabular_string(simple_divider_example)
     end
   end
@@ -114,7 +114,7 @@ STR
             end: -1
             excl: false
     YML
-    assert_raise UnifiedSources::Import::MappingError do
+    assert_raise NdrImport::MappingError do
       mapper.read_non_tabular_string(simple_divider_example)
     end
 
@@ -131,7 +131,7 @@ STR
             excl: false
           capture:
     YML
-    assert_raise UnifiedSources::Import::MappingError do
+    assert_raise NdrImport::MappingError do
       mapper.read_non_tabular_string(simple_divider_example)
     end
   end

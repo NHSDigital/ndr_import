@@ -7,7 +7,7 @@ require 'ndr_import'
 require 'yaml'
 
 SafePath.configure! File.dirname(__FILE__) + '/resources/filesystem_paths.yml'
-StandardMappings.configure!(
+NdrImport::StandardMappings.configure!(
   File.expand_path(File.dirname(__FILE__) + '/resources/standard_mappings.yml')
 )
 

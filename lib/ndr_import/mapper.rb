@@ -3,7 +3,7 @@ require 'ndr_support/string/conversions'
 require 'ndr_import/standard_mappings'
 
 # This module provides helper logic for mapping unified sources for import into the system
-module UnifiedSources::Import::Mapper
+module NdrImport::Mapper
   
   private
   
@@ -31,7 +31,7 @@ module UnifiedSources::Import::Mapper
     # SECURE: TVB Thu Aug  9 16:57:17 BST 2012 : RAILS_ROOT is constant and the relative path is hardcoded.
     # Therefore always the same file will be loaded.
     # Recommendation is to use SafeFile and SafePath - the idea is never to use File in the project, but only a proxy class SafeFile.
-    @standard_mappings ||= YAML.load(File.open(StandardMappings.fs_path))
+    @standard_mappings ||= YAML.load(File.open(NdrImport::StandardMappings.fs_path))
     mapping = @standard_mappings[mapping_name]
     return nil if mapping.nil?
     if column_mapping['mappings']

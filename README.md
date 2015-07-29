@@ -32,15 +32,12 @@ require 'ndr_import/non_tabular_file_helper'
 
 class MyImporter
   include NdrImport::Helpers::File::Pdf
-  include UnifiedSources::Import::Mapper
-  include UnifiedSources::Import::NonTabularFileHelper
+  include NdrImport::Mapper
+  include NdrImport::NonTabularFileHelper
 
 	# Your code goes here
 end
 ```
-
-NOTE: The UnifiedSources::Import namespace is carried over from the code as it existed prior to being a converted into this gem.
-It will be corrected in a later major revision.
 
 More information on the workings of the mapper will be available in the wiki once we have transferred it from our private task management system.
 

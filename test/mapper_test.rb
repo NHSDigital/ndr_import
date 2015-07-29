@@ -2,7 +2,7 @@ require 'test_helper'
 
 # expose private methods
 class TestMapper
-  include UnifiedSources::Import::Mapper
+  include NdrImport::Mapper
 
   public :fixed_width_columns, :mapped_line, :mapped_value, :replace_before_mapping
 
