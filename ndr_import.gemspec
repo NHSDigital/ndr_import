@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'nokogiri', '~> 1.6'
   spec.add_dependency 'roo-xls'
   spec.add_dependency 'spreadsheet', '1.0.3'           # Aligning with encore
-  spec.add_dependency 'pdf-reader', '~> 1.3'
+  spec.add_dependency 'pdf-reader', '1.2.0'
   spec.add_dependency 'msworddoc-extractor', '0.1.0'
 
   spec.required_ruby_version = '>= 1.9.3'
