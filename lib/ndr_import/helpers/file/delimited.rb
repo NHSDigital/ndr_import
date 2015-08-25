@@ -63,7 +63,7 @@ module NdrImport
               description = (col_sep ? col_sep.inspect + ' delimited' : 'CSV')
 
               raise(CSVLibrary::MalformedCSVError, "Invalid #{description} format " \
-                "on row #{row_num + 1} of #{SafeFile.basename(path)}. Original: #{e.message}")
+                "on row #{row_num + 1} of #{::File.basename(safe_path)}. Original: #{e.message}")
             end
 
             # We got this far => encoding choice worked:

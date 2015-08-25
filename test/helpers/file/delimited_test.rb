@@ -52,4 +52,27 @@ class DelimitedTest < ActiveSupport::TestCase
     @importer.each_delimited_row(file, "\xfe") { |row| count += 1 }
     assert_equal 2, count
   end
+
+  test 'should report addition details upon failure to slurp csv' do
+    exception = assert_raises(CSVLibrary::MalformedCSVError) do
+      @importer.read_delimited_file(@permanent_test_files.join('broken.csv'), nil)
+    end
+
+    msg = "Invalid CSV format on row 2 of broken.csv. Original: Missing or stray quote in line 2"
+    assert_equal msg, exception.message
+  end
+
+  test 'should report addition details upon failure to read csv line-by-line' do
+    rows_yielded = []
+    exception    = assert_raises(CSVLibrary::MalformedCSVError) do
+      @importer.each_delimited_row(@permanent_test_files.join('broken.csv')) do |row|
+        rows_yielded << row
+      end
+    end
+
+    assert rows_yielded.empty?, 'no rows should have been yielded'
+
+    msg = "Invalid CSV format on row 2 of broken.csv. Original: Missing or stray quote in line 2"
+    assert_equal msg, exception.message
+  end
 end
