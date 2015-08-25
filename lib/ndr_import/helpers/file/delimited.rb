@@ -15,32 +15,49 @@ module NdrImport
           read_delimited_file(path)
         end
 
+        # Slurp the entire file into an array of lines.
         def read_delimited_file(path, col_sep = nil)
-          records, row_num = nil, nil
+          each_delimited_row(path, col_sep).to_a
+        end
 
+        # Iterate through the file line by line, yielding each one in turn.
+        def each_delimited_row(path, col_sep = nil)
+          return enum_for(:each_delimited_row, path, col_sep) unless block_given?
+
+          safe_path = SafeFile.safepath_to_string(path)
+          encodings = determine_encodings!(safe_path, col_sep)
+
+          # By now, we know `encodings` should let us read the whole
+          # file succesfully; if there are problems, we should crash.
+          CSVLibrary.foreach(safe_path, encodings) do |line|
+            yield line.map(&:to_s) unless line.length <= 5
+          end
+        end
+
+        private
+
+        # Derive the source encoding by trying all supported encodings.
+        # Returns first set of working options, or raises if none could be found.
+        def determine_encodings!(safe_path, col_sep = nil)
+          # delimiter encoding => # FasterCSV encoding string
           supported_encodings = {
-            # delimiter encoding => # FasterCSV encoding string
             'UTF-8'        => 'bom|utf-8',
             'Windows-1252' => 'windows-1252:utf-8'
           }
-          successful_encoding = supported_encodings.detect do |delimiter_encoding, csv_encoding|
-            begin
-              # Reset if a previous encoding failed part way through:
-              records, row_num = [], 0
 
+          successful_options = nil
+          supported_encodings.each do |delimiter_encoding, csv_encoding|
+            begin
               options = {
                 :col_sep  => (col_sep || ',').force_encoding(delimiter_encoding),
                 :encoding => csv_encoding
               }
 
-              CSVLibrary.foreach(SafeFile.safepath_to_string(path), options) do |line|
-                records << line.map(&:to_s) unless line.length <= 5
-                row_num += 1
-              end
+              row_num = 0
+              # Iterate through the file; if we reach the end, this encoding worked:
+              CSVLibrary.foreach(safe_path, options) { |_line| row_num += 1 }
             rescue ArgumentError => e
-              # This csv_encoding choice wasn't the right one:
-              next if e.message =~ /invalid byte sequence/
-              # Some other issue we're not trying to catch:
+              next if e.message =~ /invalid byte sequence/ # This encoding didn't work
               raise(e)
             rescue CSVLibrary::MalformedCSVError => e
               description = (col_sep ? col_sep.inspect + ' delimited' : 'CSV')
@@ -49,14 +66,17 @@ module NdrImport
                 "on row #{row_num + 1} of #{SafeFile.basename(path)}. Original: #{e.message}")
             end
 
-            true # This encoding worked!
+            # We got this far => encoding choice worked:
+            successful_options = options
+            break
           end
 
-          unless successful_encoding
+          # We tried them all, and none worked:
+          unless successful_options
             fail "None of the encodings #{supported_encodings.values.inspect} were successful!"
           end
 
-          records
+          successful_options
         end
       end
     end
