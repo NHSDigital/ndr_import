@@ -15,14 +15,14 @@ class DelimitedTest < ActiveSupport::TestCase
 
   test 'should read csv correctly' do
     rows = @importer.read_delimited_file(@permanent_test_files.join('normal.csv'), nil)
-    assert_equal ('A'..'Z').to_a, rows[0]
+    assert_equal(('A'..'Z').to_a, rows[0])
     assert_equal ['1'] * 26, rows[1]
     assert_equal ['2'] * 26, rows[2]
   end
 
   test 'should read csv with a BOM' do
     rows = @importer.read_delimited_file(@permanent_test_files.join('bomd.csv'), nil)
-    assert_equal ('A'..'Z').to_a, rows[0]
+    assert_equal(('A'..'Z').to_a, rows[0])
     assert_equal ['1'] * 26, rows[1]
     assert_equal ['2'] * 26, rows[2]
   end
@@ -40,7 +40,7 @@ class DelimitedTest < ActiveSupport::TestCase
   test 'should read line-by-line' do
     rows = []
     @importer.each_delimited_row(@permanent_test_files.join('normal.csv')) { |row| rows << row }
-    assert_equal ('A'..'Z').to_a, rows[0]
+    assert_equal(('A'..'Z').to_a, rows[0])
     assert_equal ['1'] * 26, rows[1]
     assert_equal ['2'] * 26, rows[2]
   end
@@ -58,7 +58,7 @@ class DelimitedTest < ActiveSupport::TestCase
       @importer.read_delimited_file(@permanent_test_files.join('broken.csv'), nil)
     end
 
-    msg = "Invalid CSV format on row 2 of broken.csv. Original: Missing or stray quote in line 2"
+    msg = 'Invalid CSV format on row 2 of broken.csv. Original: Missing or stray quote in line 2'
     assert_equal msg, exception.message
   end
 
@@ -72,7 +72,7 @@ class DelimitedTest < ActiveSupport::TestCase
 
     assert rows_yielded.empty?, 'no rows should have been yielded'
 
-    msg = "Invalid CSV format on row 2 of broken.csv. Original: Missing or stray quote in line 2"
+    msg = 'Invalid CSV format on row 2 of broken.csv. Original: Missing or stray quote in line 2'
     assert_equal msg, exception.message
   end
 end

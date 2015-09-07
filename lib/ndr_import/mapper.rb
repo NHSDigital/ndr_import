@@ -4,16 +4,15 @@ require 'ndr_import/standard_mappings'
 
 # This module provides helper logic for mapping unified sources for import into the system
 module NdrImport::Mapper
-  
   private
-  
+
   # uses the mappings for this line to unpack the fixed width string
   # returning an array of the resulting columns
   def fixed_width_columns(line, line_mappings)
-    unpack_patterns = line_mappings.map{ |c| c['unpack_pattern'] }.join
+    unpack_patterns = line_mappings.map { |c| c['unpack_pattern'] }.join
     line.unpack(unpack_patterns)
   end
-  
+
   # the replace option can be used before any other mapping option
   def replace_before_mapping(original_value, field_mapping)
     if field_mapping.include?('replace') && original_value
@@ -22,12 +21,12 @@ module NdrImport::Mapper
           original_value.gsub!(pattern, replacement)
         end
       end
-    end  
+    end
   end
-  
+
   # Returns the standard_mapping hash specified
   # Assumes mappping exists
-  def standard_mapping(mapping_name,column_mapping)
+  def standard_mapping(mapping_name, column_mapping)
     # SECURE: TVB Thu Aug  9 16:57:17 BST 2012 : RAILS_ROOT is constant and the relative path is hardcoded.
     # Therefore always the same file will be loaded.
     # Recommendation is to use SafeFile and SafePath - the idea is never to use File in the project, but only a proxy class SafeFile.
@@ -46,24 +45,24 @@ module NdrImport::Mapper
   def mapped_line(line, line_mappings)
     attributes = {}
     rawtext = {}
-    validate_line_mappings(line_mappings) 
+    validate_line_mappings(line_mappings)
+
     line.each_with_index do |raw_value, col|
-      
       column_mapping = line_mappings[col]
       if column_mapping.nil?
-        raise ArgumentError, "Line has too many columns (expected #{line_mappings.size} but got #{line.size})"
+        fail ArgumentError, "Line has too many columns (expected #{line_mappings.size} but got #{line.size})"
       end
-      
+
       next if column_mapping['do_not_capture']
-      
+
       if column_mapping['standard_mapping']
-        column_mapping = standard_mapping(column_mapping['standard_mapping'],column_mapping)
+        column_mapping = standard_mapping(column_mapping['standard_mapping'], column_mapping)
       end
       field_mappings = column_mapping['mappings'] || []
-      
+
       # Establish the rawtext column name we are to use for this column
       rawtext_column_name = (column_mapping['rawtext_name'] || column_mapping['column']).downcase
-      
+
       # raw value casting can vary between sources, so we allow the caller to apply it here
       if respond_to?(:cast_raw_value)
         raw_value = cast_raw_value(rawtext_column_name, raw_value, column_mapping)
@@ -71,7 +70,7 @@ module NdrImport::Mapper
 
       # Store the raw column value
       rawtext[rawtext_column_name] = raw_value
-      
+
       field_mappings.each do |field_mapping|
         # create a duplicate of the raw value we can manipulate
         original_value = raw_value ? raw_value.dup : nil
@@ -106,7 +105,7 @@ module NdrImport::Mapper
         end
       end
     end
-    
+
     # tidy up many to one field mappings
     # and one to many, for cross-populating
     attributes.each do |field, value|
@@ -122,17 +121,17 @@ module NdrImport::Mapper
         t = value.sort.map { |part_order, part_value|
           part_value.blank? ? nil : part_value
         }
-        if compact        
+        if compact
           attributes[field] = t.compact.join(join_string)
         else
           attributes[field] = t.join(join_string)
         end
       else
-        attributes[field][:priority].reject!{ |k,v| v.blank? }
+        attributes[field][:priority].reject! { |k, v| v.blank? }
         attributes[field] = attributes[field][:priority].sort.first[1]
       end
     end
-    
+
     attributes[:rawtext] = rawtext
     attributes
   end
@@ -169,15 +168,15 @@ module NdrImport::Mapper
     priority = {}
     line_mappings.each do |column_mapping|
       if column_mapping['standard_mapping']
-        if standard_mapping(column_mapping['standard_mapping'],column_mapping).nil?
-          raise "Standard mapping \"#{column_mapping['standard_mapping']}\" does not exist"
+        if standard_mapping(column_mapping['standard_mapping'], column_mapping).nil?
+          fail "Standard mapping \"#{column_mapping['standard_mapping']}\" does not exist"
         end
       end
       field_mappings = column_mapping['mappings'] || []
       field_mappings.each do |field_mapping|
         field = field_mapping['field']
         if field_mapping['priority']
-          raise RuntimeError, "Cannot have duplicate priorities" if priority[field] == field_mapping['priority']
+          fail 'Cannot have duplicate priorities' if priority[field] == field_mapping['priority']
           priority[field] = field_mapping['priority']
         else
           priority[field] = 1

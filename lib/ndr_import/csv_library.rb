@@ -12,13 +12,13 @@ class << CSVLibrary
 
   def write_csv_to_string(data)
     self.generate do |csv|
-      data.each {|line| csv << line }
+      data.each { |line| csv << line }
     end
   end
 
-  def write_csv_to_file(data, filepath, mode="w")
+  def write_csv_to_file(data, filepath, mode = 'w')
     self.open(filepath, mode) do |csv|
-      data.each {|line| csv << line }
+      data.each { |line| csv << line }
     end
   end
 
@@ -30,8 +30,8 @@ end
 # Forward port CSV::Cell, as it is sometimes
 # serialised in YAML. :-(
 class CSV::Cell < String
-  def initialize(data = "", is_null = false)
-    super(is_null ? "" : data)
+  def initialize(data = '', is_null = false)
+    super(is_null ? '' : data)
   end
 
   def data

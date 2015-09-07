@@ -407,20 +407,18 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 ------
 This is never captured
 STR
-    # assert_nothing_raised do
-      results = mapper.read_non_tabular_string(capture_example)
-      assert_equal 1, results.count
-      result = results.first
-      assert_equal '1111111111', result[0]
-      assert_equal 'Unit C, Magog Court, Shelford Bottom, Hinton Way, Cambridge', result[1]
-      assert_equal 'CB22 3AD', result[2]
-      assert_equal "CAPTURE INCLUSIVE\nLorem ipsum dolor sit amet,\nconsectetur adipisicing elit,\nCapture me.",
-                   result[3]
-      assert_equal "CAPTURE EXCLUSIVE\nUt enim ad minim veniam, quis nostrud exercitation.",
-                   result[4]
-      # puts result.inspect
-      # flunk ''
-    # end
+    results = mapper.read_non_tabular_string(capture_example)
+    assert_equal 1, results.count
+    result = results.first
+    assert_equal '1111111111', result[0]
+    assert_equal 'Unit C, Magog Court, Shelford Bottom, Hinton Way, Cambridge', result[1]
+    assert_equal 'CB22 3AD', result[2]
+    assert_equal "CAPTURE INCLUSIVE\nLorem ipsum dolor sit amet,\nconsectetur adipisicing elit,\nCapture me.",
+                 result[3]
+    assert_equal "CAPTURE EXCLUSIVE\nUt enim ad minim veniam, quis nostrud exercitation.",
+                 result[4]
+    # puts result.inspect
+    # flunk ''
   end
 
   test 'handles non utf8 characters' do
@@ -496,5 +494,4 @@ STR
       mapper.read_non_tabular_string(junk)
     end
   end
-
 end

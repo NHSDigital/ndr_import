@@ -316,9 +316,12 @@ class MapperTest < ActiveSupport::TestCase
     assert_equal Date.new(2057, 8, 23), TestMapper.new.mapped_value(16535, daysafter_mapping)
     # Answer independently checked http://www.wolframalpha.com/input/?i=2012-05-16+%2B+9379+days
     assert_equal Date.new(2038, 1, 19), TestMapper.new.mapped_value(9379, daysafter_mapping)
-    assert_equal Date.new(1946, 5, 11), TestMapper.new.mapped_value(16900, { 'daysafter' => '1900-02-01' })
-    assert_equal Date.new(2014, 4, 8), TestMapper.new.mapped_value(16900, { 'daysafter' => '1967-12-31' })
-    assert_equal Date.new(2046, 4, 9), TestMapper.new.mapped_value(16900, { 'daysafter' => '2000-01-01' })
+    assert_equal Date.new(1946, 5, 11),
+                 TestMapper.new.mapped_value(16900, { 'daysafter' => '1900-02-01' })
+    assert_equal Date.new(2014, 4, 8),
+                 TestMapper.new.mapped_value(16900, { 'daysafter' => '1967-12-31' })
+    assert_equal Date.new(2046, 4, 9),
+                 TestMapper.new.mapped_value(16900, { 'daysafter' => '2000-01-01' })
   end
 
   test 'line mapping should create valid hash' do
@@ -335,7 +338,7 @@ class MapperTest < ActiveSupport::TestCase
   end
 
   test 'line mapping should create valid hash with join' do
-    line_hash = TestMapper.new.mapped_line(['Catherine', 'Elizabeth'], join_mapping)
+    line_hash = TestMapper.new.mapped_line(%w(Catherine Elizabeth), join_mapping)
     assert_equal 'Catherine Elizabeth', line_hash['forenames']
     assert_equal 'Catherine', line_hash[:rawtext]['forename1']
     assert_equal 'Elizabeth', line_hash[:rawtext]['forename2']
@@ -429,7 +432,7 @@ class MapperTest < ActiveSupport::TestCase
   end
 
   test 'should create valid hash with used cross populate without priority' do
-    line_hash = TestMapper.new.mapped_line(['Exists', 'Not'], cross_populate_no_priority)
+    line_hash = TestMapper.new.mapped_line(%w(Exists Not), cross_populate_no_priority)
     assert_equal 'Exists', line_hash[:rawtext]['columnoneraw']
     assert_equal 'Not', line_hash[:rawtext]['columntworaw']
 
@@ -457,7 +460,7 @@ class MapperTest < ActiveSupport::TestCase
 
   test 'should raise duplicate priority exception' do
     assert_raise (RuntimeError) {
-      line_hash = TestMapper.new.mapped_line(['A', 'B'], invalid_priorities)
+      line_hash = TestMapper.new.mapped_line(%w(A B), invalid_priorities)
     }
   end
 
