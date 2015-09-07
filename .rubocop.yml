@@ -19,3 +19,9 @@ Lambda:
 # ...
 LineLength:
   Max: 99
+
+# Relax some of the cops for tests
+Metrics/ClassLength: &exclude_tests
+  Exclude:
+    - test/**/*.rb
+Metrics/MethodLength: *exclude_tests
