@@ -452,7 +452,7 @@ class MapperTest < ActiveSupport::TestCase
   test 'should merge standard mapping in correct order' do
     line_hash = TestMapper.new.mapped_line(['Smith'], standard_mapping_column)
     assert_equal 'Smith', line_hash[:rawtext]['overriding_column_name']
-    deny line_hash[:rawtext].include?('standard_mapping_column_name')
+    refute line_hash[:rawtext].include?('standard_mapping_column_name')
   end
 
   test 'should raise duplicate priority exception' do
@@ -490,6 +490,6 @@ class MapperTest < ActiveSupport::TestCase
 
   test 'should ignore columns marked do not capture' do
     line_hash = TestMapper.new.mapped_line(['rubbish'], do_not_capture_column)
-    deny line_hash[:rawtext].include?('ignore_me')
+    refute line_hash[:rawtext].include?('ignore_me')
   end
 end

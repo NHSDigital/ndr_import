@@ -301,7 +301,7 @@ STR
       assert results.last[0].start_with?('444')
 
       assert results.flatten.any? { |result| result =~ /This is captured/ }
-      deny results.flatten.any? { |result| result =~ /This is never captured/ }
+      refute results.flatten.any? { |result| result =~ /This is never captured/ }
     end
   end
 
