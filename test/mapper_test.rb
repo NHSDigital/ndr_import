@@ -10,6 +10,10 @@ class TestMapper
 end
 
 class MapperTest < ActiveSupport::TestCase
+  def setup
+    @permanent_test_files = SafePath.new('permanent_test_files')
+  end
+
   format_mapping = { 'format' => 'dd/mm/yyyy' }
   format_mapping_yyyymmdd = { 'format' => 'yyyymmdd' }
   clean_name_mapping = { 'clean' => :name }
@@ -245,6 +249,19 @@ class MapperTest < ActiveSupport::TestCase
   do_not_capture_column = YAML.load <<-YML
     - column: ignore_me
       do_not_capture: true
+  YML
+
+  base64_mapping = YAML.load <<-YML
+    - column: base64
+      decode:
+      - :base64
+      - :word_doc
+  YML
+
+  invalid_decode_mapping = YAML.load <<-YML
+    - column: column_name
+      decode:
+      - :invalid_encoding
   YML
 
   test 'map should return a number' do
@@ -494,5 +511,31 @@ class MapperTest < ActiveSupport::TestCase
   test 'should ignore columns marked do not capture' do
     line_hash = TestMapper.new.mapped_line(['rubbish'], do_not_capture_column)
     refute line_hash[:rawtext].include?('ignore_me')
+  end
+
+  test 'should decode base64 encoded word document' do
+    test_file = @permanent_test_files.join('hello_world.doc')
+    encoded_content = Base64.encode64(File.binread(test_file))
+    line_hash = TestMapper.new.mapped_line([encoded_content], base64_mapping)
+    assert_equal 'Hello world, this is a word document', line_hash[:rawtext]['base64']
+  end
+
+  test 'should decode word.doc' do
+    test_file = @permanent_test_files.join('hello_world.doc')
+    file_content = File.binread(test_file)
+    text_content = TestMapper.new.send(:decode_raw_value, file_content, :word_doc)
+    assert_equal 'Hello world, this is a word document', text_content
+  end
+
+  test 'should read word.doc stream' do
+    test_file = @permanent_test_files.join('hello_world.doc')
+    file_content = TestMapper.new.send(:read_word_stream, File.open(test_file, 'r'))
+    assert_equal 'Hello world, this is a word document', file_content
+  end
+
+  test 'should raise unknown encoding exception' do
+    assert_raise(RuntimeError) do
+      TestMapper.new.mapped_line(['A'], invalid_decode_mapping)
+    end
   end
 end

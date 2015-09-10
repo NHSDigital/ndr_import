@@ -1,6 +1,8 @@
 require 'ndr_support/string/cleaning'
 require 'ndr_support/string/conversions'
 require 'ndr_import/standard_mappings'
+require 'base64'
+require 'msworddoc-extractor'
 
 # This module provides helper logic for mapping unified sources for import into the system
 module NdrImport::Mapper
@@ -62,6 +64,11 @@ module NdrImport::Mapper
 
       # Establish the rawtext column name we are to use for this column
       rawtext_column_name = (column_mapping['rawtext_name'] || column_mapping['column']).downcase
+
+      # Replace raw_value with decoded raw_value
+      Array(column_mapping['decode']).each do |encoding|
+        raw_value = decode_raw_value(raw_value, encoding)
+      end
 
       # raw value casting can vary between sources, so we allow the caller to apply it here
       if respond_to?(:cast_raw_value)
@@ -184,5 +191,33 @@ module NdrImport::Mapper
       end
     end
     true
+  end
+
+  # Decode raw_value using specified encoding
+  # E.g. adding decode to a column:
+  #
+  # - column: base64
+  #   decode:
+  #   - :base64
+  #   - :word_doc
+  #
+  # would base64 decode a word document and then 'decode' the word document into plain text
+  def decode_raw_value(raw_value, encoding)
+    case encoding
+    when :base64
+      Base64.decode64(raw_value)
+    when :word_doc
+      read_word_stream(StringIO.new(raw_value, 'r'))
+    else
+      fail "Cannot decode: #{encoding}"
+    end
+  end
+
+  # Given an IO stream representing a .doc word document,
+  # this method will extract the text for the document in the same way
+  # as NdrImport::Helpers::File::Word#read_word_file
+  def read_word_stream(stream)
+    # whole_contents adds "\n" to end of stream, we remove it
+    MSWordDoc::Extractor.load(stream).whole_contents.sub(/\n\z/, '')
   end
 end
