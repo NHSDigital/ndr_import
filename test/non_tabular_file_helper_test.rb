@@ -150,12 +150,10 @@ STR
             excl: false
           capture: !ruby/regexp /^(.*)$/i
     YML
-    assert_nothing_raised do
-      results = mapper.read_non_tabular_string(simple_divider_example)
-      assert_equal 2, results.count
-      assert results.first[0].start_with?('222')
-      assert results.last[0].start_with?('333')
-    end
+    results = mapper.read_non_tabular_string(simple_divider_example)
+    assert_equal 2, results.count
+    assert results.first[0].start_with?('222')
+    assert results.last[0].start_with?('333')
   end
 
   test 'should return three results with start_in_a_record' do
@@ -173,12 +171,10 @@ STR
             excl: false
           capture: !ruby/regexp /^(.*)$/i
     YML
-    assert_nothing_raised do
-      results = mapper.read_non_tabular_string(simple_divider_example)
-      assert_equal 3, results.count
-      assert results.first[0].start_with?('111')
-      assert results.last[0].start_with?('333')
-    end
+    results = mapper.read_non_tabular_string(simple_divider_example)
+    assert_equal 3, results.count
+    assert results.first[0].start_with?('111')
+    assert results.last[0].start_with?('333')
   end
 
   test 'should return three results with end_in_a_record' do
@@ -196,12 +192,10 @@ STR
             excl: false
           capture: !ruby/regexp /^(.*)$/i
     YML
-    assert_nothing_raised do
-      results = mapper.read_non_tabular_string(simple_divider_example)
-      assert_equal 3, results.count
-      assert results.first[0].start_with?('222')
-      assert results.last[0].start_with?('444')
-    end
+    results = mapper.read_non_tabular_string(simple_divider_example)
+    assert_equal 3, results.count
+    assert results.first[0].start_with?('222')
+    assert results.last[0].start_with?('444')
   end
 
   test 'should return four results with start_in_a_record and end_in_a_record' do
@@ -220,12 +214,10 @@ STR
             excl: false
           capture: !ruby/regexp /^(.*)$/i
     YML
-    assert_nothing_raised do
-      results = mapper.read_non_tabular_string(simple_divider_example)
-      assert_equal 4, results.count
-      assert results.first[0].start_with?('111')
-      assert results.last[0].start_with?('444')
-    end
+    results = mapper.read_non_tabular_string(simple_divider_example)
+    assert_equal 4, results.count
+    assert results.first[0].start_with?('111')
+    assert results.last[0].start_with?('444')
   end
 
   no_divider_example = <<-STR
@@ -249,11 +241,9 @@ STR
             excl: false
           capture: !ruby/regexp /^(.*)$/i
     YML
-    assert_nothing_raised do
-      results = mapper.read_non_tabular_string(no_divider_example)
-      assert_equal 1, results.count
-      assert results.first[0].start_with?('111')
-    end
+    results = mapper.read_non_tabular_string(no_divider_example)
+    assert_equal 1, results.count
+    assert results.first[0].start_with?('111')
   end
 
   simple_start_and_end_divider_example = <<-STR
@@ -294,15 +284,13 @@ STR
             excl: false
           capture: !ruby/regexp /^(.*)$/i
     YML
-    assert_nothing_raised do
-      results = mapper.read_non_tabular_string(simple_start_and_end_divider_example)
-      assert_equal 4, results.count
-      assert results.first[0].start_with?('111')
-      assert results.last[0].start_with?('444')
+    results = mapper.read_non_tabular_string(simple_start_and_end_divider_example)
+    assert_equal 4, results.count
+    assert results.first[0].start_with?('111')
+    assert results.last[0].start_with?('444')
 
-      assert results.flatten.any? { |result| result =~ /This is captured/ }
-      refute results.flatten.any? { |result| result =~ /This is never captured/ }
-    end
+    assert results.flatten.any? { |result| result =~ /This is captured/ }
+    refute results.flatten.any? { |result| result =~ /This is never captured/ }
   end
 
   test 'documentation example' do
