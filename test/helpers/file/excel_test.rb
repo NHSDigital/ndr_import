@@ -56,4 +56,20 @@ class ExcelTest < ActiveSupport::TestCase
     SafeFile.delete @permanenttestfiles.join('temp.xlsx')
     SafeFile.delete @permanenttestfiles.join('temp_amend.xlsx')
   end
+
+  test 'each_excel_table helper should read table correctly' do
+    table = @importer.send(:each_excel_table, @permanenttestfiles.join('sample_xls.xls'))
+    table.each do |tablename, sheet|
+      assert_equal 'Sheet1', tablename
+      assert_equal %w(1A 1B), sheet.first
+    end
+  end
+
+  test 'each_excel_table helper should read table correctly' do
+    table = @importer.send(:each_excel_table, @permanenttestfiles.join('sample_xlsx.xlsx'))
+    table.each do |tablename, sheet|
+      assert_equal 'Sheet1', tablename
+      assert_equal %w(1A 1B), sheet.first
+    end
+  end
 end

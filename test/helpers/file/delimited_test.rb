@@ -75,4 +75,15 @@ class DelimitedTest < ActiveSupport::TestCase
     msg = 'Invalid CSV format on row 2 of broken.csv. Original: Missing or stray quote in line 2'
     assert_equal msg, exception.message
   end
+
+  test 'each_delimited_table should read table correctly' do
+    table = @importer.send(:each_delimited_table, @permanent_test_files.join('normal.csv'))
+    table.each do |tablename, sheet|
+      assert_nil tablename
+      sheet = sheet.to_a
+      assert_equal(('A'..'Z').to_a, sheet[0])
+      assert_equal ['1'] * 26, sheet[1]
+      assert_equal ['2'] * 26, sheet[2]
+    end
+  end
 end

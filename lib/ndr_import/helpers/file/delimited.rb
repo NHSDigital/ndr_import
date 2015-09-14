@@ -20,6 +20,13 @@ module NdrImport
           each_delimited_row(path, col_sep).to_a
         end
 
+        # Iterate through the file table by table, yielding each one in turn.
+        def each_delimited_table(path, col_sep = nil)
+          return enum_for(:each_delimited_table, path, col_sep) unless block_given?
+
+          yield nil, each_delimited_row(path, col_sep)
+        end
+
         # Iterate through the file line by line, yielding each one in turn.
         def each_delimited_row(path, col_sep = nil)
           return enum_for(:each_delimited_row, path, col_sep) unless block_given?

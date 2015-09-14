@@ -35,6 +35,15 @@ module NdrImport
           raw_value.to_s(:db)
         end
 
+        def each_excel_table(path)
+          return enum_for(:each_excel_table, path) unless block_given?
+
+          workbook = load_workbook(path)
+          workbook.each_with_pagename do |tablename, sheet|
+            yield tablename, each_excel_row(workbook, sheet)
+          end
+        end
+
         private
 
         def read_excel_file(path, selected_sheet = nil)
@@ -53,15 +62,42 @@ module NdrImport
             end
 
           # Read the cells from working worksheet into a nested array
-          array = []
-          workbook.first_row.upto(workbook.last_row) do |row|
-            line = []
-            workbook.first_column.upto(workbook.last_column) do |col|
-              line << cast_excel_value(workbook.cell(row, col))
-            end
-            array << line
+          each_excel_row(workbook, workbook).to_a
+        end
+
+        # Iterate through the sheet line by line, yielding each one in turn.
+        def each_excel_row(workbook, sheet, &block)
+          return enum_for(:each_excel_row, workbook, sheet) unless block
+
+          if workbook.is_a?(Roo::Excelx)
+            # FIXME: each_xlsx_row(sheet, &block) should produce the same output as each_xls_row
+            each_xls_row(sheet, &block)
+          else
+            each_xls_row(sheet, &block)
           end
-          array
+        end
+
+        # Iterate through an xls sheet line by line, yielding each one in turn.
+        def each_xls_row(sheet)
+          return enum_for(:each_xls_row, sheet) unless block_given?
+
+          sheet.first_row.upto(sheet.last_row) do |row|
+            line = []
+            sheet.first_column.upto(sheet.last_column) do |col|
+              line << cast_excel_value(sheet.cell(row, col))
+            end
+            yield line
+          end
+        end
+
+        # Iterate through an xlsx sheet line by line, yielding each one in turn.
+        # This method uses streaming https://github.com/roo-rb/roo#excel-xlsx-and-xlsm-support
+        def each_xlsx_row(sheet)
+          return enum_for(:each_xlsx_row, sheet) unless block_given?
+
+          sheet.each_row_streaming(:pad_cells => true) do |row|
+            yield row.map { |cell| cast_excel_value(cell.value) }
+          end
         end
 
         def get_excel_sheets_name(path)
