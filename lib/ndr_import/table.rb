@@ -40,6 +40,7 @@ module NdrImport
       return enum_for(:transform, lines) unless block
 
       @row_index = 0
+      @header_valid = false
       @notifier.try(:started)
 
       skip_footer_lines(lines, @footer_lines).each do |line|
@@ -55,9 +56,9 @@ module NdrImport
       return enum_for(:process_line, line) unless block
 
       if @row_index < @header_lines
-        # validate_header
+        validate_header(line, @columns)
       else
-        # fail unless @header_valid
+        fail 'Header is not valid' if @header_lines > 0 && !header_valid?
         transform_line(line, @row_index, &block)
       end
 
@@ -75,6 +76,10 @@ module NdrImport
         next if fields[:skip].to_s == 'true'
         yield(klass, fields, index)
       end
+    end
+
+    def header_valid?
+      @header_valid == true
     end
 
     private
@@ -150,6 +155,20 @@ module NdrImport
       unrecognised_options = hash.keys - ALL_VALID_OPTIONS
       return if unrecognised_options.empty?
       fail ArgumentError, "Unrecognised options: #{unrecognised_options.inspect}"
+    end
+
+    # if there is a header, then check the column headings are as expected in the correct order
+    def validate_header(line, column_mappings)
+      columns = column_names(column_mappings)
+      fail 'Number of columns does not match' if line.length != columns.length
+
+      return unless line.map(&:downcase) == columns
+      @header_valid = true
+    end
+
+    # returns the column names as we expect to receive them
+    def column_names(column_mappings)
+      column_mappings.map { |c| (c['column'] || c['standard_mapping']).downcase }
     end
   end # class Table
 end

@@ -60,7 +60,7 @@ class TableTest < ActiveSupport::TestCase
   end
 
   def test_transform
-    lines = [%w(HEADING1 HEADING2), %w(CARROT POTATO), %w(BACON SAUSAGE)].each
+    lines = [%w(ONE TWO), %w(CARROT POTATO), %w(BACON SAUSAGE)].each
     table = NdrImport::Table.new(:header_lines => 1, :footer_lines => 0,
                                  :klass => 'SomeTestKlass',
                                  :columns => [{ 'column' => 'one' }, { 'column' => 'two' }])
@@ -190,6 +190,56 @@ class TableTest < ActiveSupport::TestCase
     ]
     assert_equal some_other_klass_mapping,
                  table.send(:mask_mappings_by_klass, 'SomeOtherKlass')
+  end
+
+  def test_valid_single_line_header
+    lines = [
+      %w(ONE TWO),
+      %w(CARROT POTATO),
+      %w(BACON SAUSAGE)
+    ].each
+
+    table = NdrImport::Table.new(:header_lines => 1, :footer_lines => 0,
+                                 :klass => 'SomeTestKlass',
+                                 :columns => [{ 'column' => 'one' }, { 'column' => 'two' }])
+
+    output = []
+    table.transform(lines).each do |klass, fields, index|
+      output << [klass, fields, index]
+    end
+
+    expected_output = [
+      ['SomeTestKlass', { :rawtext => { 'one' => 'CARROT', 'two' => 'POTATO' } }, 1],
+      ['SomeTestKlass', { :rawtext => { 'one' => 'BACON', 'two' => 'SAUSAGE' } }, 2]
+    ]
+    assert table.header_valid?
+    assert_equal expected_output, output
+  end
+
+  def test_valid_multi_line_header
+    lines = [
+      %w(NOTHEADING1 NOTHEADING2),
+      %w(ONE TWO),
+      %w(DEFINITELYNOTHEADING1 DEFINITELYNOTHEADING2),
+      %w(CARROT POTATO),
+      %w(BACON SAUSAGE)
+    ].each
+
+    table = NdrImport::Table.new(:header_lines => 3, :footer_lines => 0,
+                                 :klass => 'SomeTestKlass',
+                                 :columns => [{ 'column' => 'one' }, { 'column' => 'two' }])
+
+    output = []
+    table.transform(lines).each do |klass, fields, index|
+      output << [klass, fields, index]
+    end
+
+    expected_output = [
+      ['SomeTestKlass', { :rawtext => { 'one' => 'CARROT', 'two' => 'POTATO' } }, 3],
+      ['SomeTestKlass', { :rawtext => { 'one' => 'BACON', 'two' => 'SAUSAGE' } }, 4]
+    ]
+    assert table.header_valid?
+    assert_equal expected_output, output
   end
 
   private
