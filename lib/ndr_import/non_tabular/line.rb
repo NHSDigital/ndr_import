@@ -13,8 +13,9 @@ module NdrImport
                     :record_line_number,
                     :removed
 
-      def initialize(line)
+      def initialize(line, absolute_line_number)
         @line = line.rstrip
+        @absolute_line_number = absolute_line_number
         @in_a_record = false
         @removed = false
         @captured_fields = []

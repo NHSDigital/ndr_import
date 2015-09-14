@@ -405,8 +405,7 @@ STR
                  result[3]
     assert_equal "CAPTURE EXCLUSIVE\nUt enim ad minim veniam, quis nostrud exercitation.",
                  result[4]
-    # puts result.inspect
-    # flunk ''
+    assert_equal 25, mapper.non_tabular_lines.last.absolute_line_number
   end
 
   test 'handles non utf8 characters' do
