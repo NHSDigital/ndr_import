@@ -125,12 +125,9 @@ module NdrImport
 
     # Store the source lines as instances of NdrImport::NonTabular::Line
     def non_tabular_lines=(lines)
-      # TODO: replace with map with_index pattern in Ruby 2
-      i = 0
-      @non_tabular_lines = lines.map do |line|
+      @non_tabular_lines = lines.map.with_index do |line, i|
         non_tabular_line = NdrImport::NonTabular::Line.new(line)
         non_tabular_line.absolute_line_number = i
-        i += 1
         non_tabular_line
       end
     end
