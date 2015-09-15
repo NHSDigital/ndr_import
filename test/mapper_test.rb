@@ -9,6 +9,7 @@ class TestMapper
   # TODO: test fixed_width_columns
 end
 
+# This tests the NdrImport::Mapper class
 class MapperTest < ActiveSupport::TestCase
   def setup
     @permanent_test_files = SafePath.new('permanent_test_files')
@@ -274,11 +275,13 @@ class MapperTest < ActiveSupport::TestCase
 
   test 'map should return correct date format' do
     assert_equal Date.new(2011, 1, 25), TestMapper.new.mapped_value('25/01/2011', format_mapping)
-    assert_equal Date.new(2011, 1, 25), TestMapper.new.mapped_value('20110125', format_mapping_yyyymmdd)
+    assert_equal Date.new(2011, 1, 25),
+                 TestMapper.new.mapped_value('20110125', format_mapping_yyyymmdd)
   end
 
   test 'map should return incorrect date format' do
-    assert_not_equal Date.new(2011, 3, 4), TestMapper.new.mapped_value('03/04/2011', format_mapping)
+    assert_not_equal Date.new(2011, 3, 4),
+                     TestMapper.new.mapped_value('03/04/2011', format_mapping)
   end
 
   test 'map should return nil date format' do
@@ -298,7 +301,8 @@ class MapperTest < ActiveSupport::TestCase
   end
 
   test 'map should clean name' do
-    assert_equal 'ANNABELLE SMITH', TestMapper.new.mapped_value('anna.belle,smith', clean_name_mapping)
+    assert_equal 'ANNABELLE SMITH',
+                 TestMapper.new.mapped_value('anna.belle,smith', clean_name_mapping)
   end
 
   test 'map should clean ethenic category' do
@@ -309,7 +313,8 @@ class MapperTest < ActiveSupport::TestCase
   end
 
   test 'map should clean icd code' do
-    assert_equal 'C34.3 R93.2 Z51.5', TestMapper.new.mapped_value('C34.3,R93.2,Z51.5', clean_icd_mapping)
+    assert_equal 'C34.3 R93.2 Z51.5',
+                 TestMapper.new.mapped_value('C34.3,R93.2,Z51.5', clean_icd_mapping)
   end
 
   test 'map should clean opcs code' do
@@ -330,15 +335,15 @@ class MapperTest < ActiveSupport::TestCase
     assert_equal 'String', TestMapper.new.mapped_value('String', daysafter_mapping)
     assert_equal '', TestMapper.new.mapped_value('', daysafter_mapping)
     assert_nil TestMapper.new.mapped_value(nil, daysafter_mapping)
-    assert_equal Date.new(2057, 8, 23), TestMapper.new.mapped_value(16535, daysafter_mapping)
+    assert_equal Date.new(2057, 8, 23), TestMapper.new.mapped_value(16_535, daysafter_mapping)
     # Answer independently checked http://www.wolframalpha.com/input/?i=2012-05-16+%2B+9379+days
     assert_equal Date.new(2038, 1, 19), TestMapper.new.mapped_value(9379, daysafter_mapping)
     assert_equal Date.new(1946, 5, 11),
-                 TestMapper.new.mapped_value(16900, { 'daysafter' => '1900-02-01' })
+                 TestMapper.new.mapped_value(16_900, 'daysafter' => '1900-02-01')
     assert_equal Date.new(2014, 4, 8),
-                 TestMapper.new.mapped_value(16900, { 'daysafter' => '1967-12-31' })
+                 TestMapper.new.mapped_value(16_900, 'daysafter' => '1967-12-31')
     assert_equal Date.new(2046, 4, 9),
-                 TestMapper.new.mapped_value(16900, { 'daysafter' => '2000-01-01' })
+                 TestMapper.new.mapped_value(16_900, 'daysafter' => '2000-01-01')
   end
 
   test 'line mapping should create valid hash' do
@@ -440,7 +445,8 @@ class MapperTest < ActiveSupport::TestCase
   end
 
   test 'should create valid hash with used cross populate without map and priorities' do
-    line_hash = TestMapper.new.mapped_line(['Pass', '', 'Fail', 'Large Fail'], cross_populate_order_mapping)
+    line_hash = TestMapper.new.mapped_line(['Pass', '', 'Fail', 'Large Fail'],
+                                           cross_populate_order_mapping)
     assert_equal 'Pass', line_hash[:rawtext]['referringclinicianname']
     assert_equal '', line_hash[:rawtext]['referringcliniciancode']
 
@@ -458,8 +464,12 @@ class MapperTest < ActiveSupport::TestCase
   end
 
   test 'should create equal hashes with standard mapping' do
-    line_hash_without = TestMapper.new.mapped_line(['Smith', 'John F', 'male', '01234567'], standard_mapping_without)
-    line_hash_with = TestMapper.new.mapped_line(['Smith', 'John F', 'male', '01234567'], standard_mapping_with)
+    line_hash_without = TestMapper.new.mapped_line(
+      ['Smith', 'John F', 'male', '01234567'], standard_mapping_without
+    )
+    line_hash_with = TestMapper.new.mapped_line(
+      ['Smith', 'John F', 'male', '01234567'], standard_mapping_with
+    )
     assert_equal line_hash_without, line_hash_with
   end
 
@@ -476,15 +486,15 @@ class MapperTest < ActiveSupport::TestCase
   end
 
   test 'should raise duplicate priority exception' do
-    assert_raise (RuntimeError) {
-      line_hash = TestMapper.new.mapped_line(%w(A B), invalid_priorities)
-    }
+    assert_raise(RuntimeError) do
+      TestMapper.new.mapped_line(%w(A B), invalid_priorities)
+    end
   end
 
   test 'should raise nonexistent standard mapping exception' do
-    assert_raise (RuntimeError) {
-      line_hash = TestMapper.new.mapped_line(['A'], invalid_standard_mapping)
-    }
+    assert_raise(RuntimeError) do
+      TestMapper.new.mapped_line(['A'], invalid_standard_mapping)
+    end
   end
 
   test 'should join blank first field with compacting' do
