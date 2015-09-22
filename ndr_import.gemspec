@@ -14,9 +14,9 @@ Gem::Specification.new do |spec|
   spec.license       = 'MIT'
 
   # Exclude older versions of this gem from the package.
-  spec.files         = `git ls-files -z`.split("\x0").reject { |s| s =~ /^pkg\// }
-  spec.executables   = spec.files.grep(/^bin\//) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(/^(test|spec|features)\//)
+  spec.files         = `git ls-files -z`.split("\x0").reject { |s| s =~ %r{^pkg/} }
+  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
   spec.add_dependency 'activesupport', '~> 3.2.18'

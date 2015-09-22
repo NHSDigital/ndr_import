@@ -33,7 +33,8 @@ class DelimitedTest < ActiveSupport::TestCase
   end
 
   test 'should read acsii-delimited csv' do
-    rows = @importer.read_delimited_file(@permanent_test_files.join('high_ascii_delimited.txt'), "\xfe")
+    rows = @importer.read_delimited_file(@permanent_test_files.join('high_ascii_delimited.txt'),
+                                         "\xfe")
     assert_equal 2, rows.length
   end
 
@@ -49,7 +50,7 @@ class DelimitedTest < ActiveSupport::TestCase
     count = 0
     file  = @permanent_test_files.join('high_ascii_delimited.txt')
 
-    @importer.each_delimited_row(file, "\xfe") { |row| count += 1 }
+    @importer.each_delimited_row(file, "\xfe") { count += 1 }
     assert_equal 2, count
   end
 

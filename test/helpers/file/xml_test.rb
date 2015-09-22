@@ -52,7 +52,8 @@ class XmlTest < ActiveSupport::TestCase
   end
 
   test 'import_xml_file should handle incoming UTF-16 with declaration' do
-    doc   = @importer.send(:read_xml_file, @permanent_test_files.join('utf-16be_xml_with_declaration.xml'))
+    doc   = @importer.send(:read_xml_file,
+                           @permanent_test_files.join('utf-16be_xml_with_declaration.xml'))
     greek = doc.xpath('//letter').map(&:text).join
 
     assert greek.valid_encoding?

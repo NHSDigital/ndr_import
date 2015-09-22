@@ -17,11 +17,11 @@ module NdrImport::Mapper
 
   # the replace option can be used before any other mapping option
   def replace_before_mapping(original_value, field_mapping)
-    if field_mapping.include?('replace') && original_value
-      [field_mapping['replace']].flatten.each do |field_replacement|
-        field_replacement.each do |pattern, replacement|
-          original_value.gsub!(pattern, replacement)
-        end
+    return unless field_mapping.include?('replace') && original_value
+
+    [field_mapping['replace']].flatten.each do |field_replacement|
+      field_replacement.each do |pattern, replacement|
+        original_value.gsub!(pattern, replacement)
       end
     end
   end
@@ -31,7 +31,8 @@ module NdrImport::Mapper
   def standard_mapping(mapping_name, column_mapping)
     # SECURE: TVB Thu Aug  9 16:57:17 BST 2012 : RAILS_ROOT is constant and the relative path is hardcoded.
     # Therefore always the same file will be loaded.
-    # Recommendation is to use SafeFile and SafePath - the idea is never to use File in the project, but only a proxy class SafeFile.
+    # Recommendation is to use SafeFile and SafePath -
+    # the idea is never to use File in the project, but only a proxy class SafeFile.
     @standard_mappings ||= YAML.load(File.open(NdrImport::StandardMappings.fs_path))
     mapping = @standard_mappings[mapping_name]
     return nil if mapping.nil?
@@ -52,7 +53,8 @@ module NdrImport::Mapper
     line.each_with_index do |raw_value, col|
       column_mapping = line_mappings[col]
       if column_mapping.nil?
-        fail ArgumentError, "Line has too many columns (expected #{line_mappings.size} but got #{line.size})"
+        fail ArgumentError,
+             "Line has too many columns (expected #{line_mappings.size} but got #{line.size})"
       end
 
       next if column_mapping['do_not_capture']
@@ -125,16 +127,16 @@ module NdrImport::Mapper
         else
           compact = true
         end
-        t = value.sort.map { |part_order, part_value|
+        t = value.sort.map do |_part_order, part_value|
           part_value.blank? ? nil : part_value
-        }
+        end
         if compact
           attributes[field] = t.compact.join(join_string)
         else
           attributes[field] = t.join(join_string)
         end
       else
-        attributes[field][:priority].reject! { |k, v| v.blank? }
+        attributes[field][:priority].reject! { |_k, v| v.blank? }
         attributes[field] = attributes[field][:priority].sort.first[1]
       end
     end
@@ -165,8 +167,8 @@ module NdrImport::Mapper
       return original_value unless original_value.to_i.to_s == original_value.to_s
       return original_value.to_i.days.since(field_mapping['daysafter'].to_time).to_date
     else
-      return original_value.blank? ? nil :
-        original_value.is_a?(String) ? original_value.strip : original_value
+      return nil if original_value.blank?
+      return original_value.is_a?(String) ? original_value.strip : original_value
     end
   end
 

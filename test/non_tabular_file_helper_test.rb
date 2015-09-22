@@ -401,7 +401,8 @@ STR
     assert_equal '1111111111', result[0]
     assert_equal 'Unit C, Magog Court, Shelford Bottom, Hinton Way, Cambridge', result[1]
     assert_equal 'CB22 3AD', result[2]
-    assert_equal "CAPTURE INCLUSIVE\nLorem ipsum dolor sit amet,\nconsectetur adipisicing elit,\nCapture me.",
+    assert_equal "CAPTURE INCLUSIVE\nLorem ipsum dolor sit amet,\n" \
+                 "consectetur adipisicing elit,\nCapture me.",
                  result[3]
     assert_equal "CAPTURE EXCLUSIVE\nUt enim ad minim veniam, quis nostrud exercitation.",
                  result[4]
