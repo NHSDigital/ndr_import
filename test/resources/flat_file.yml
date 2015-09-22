@@ -1,0 +1,22 @@
+--- !ruby/object:NdrImport::NonTabular::Table
+# canonical_name: somename
+# filename_pattern:
+header_lines: 1
+footer_lines: 1
+# format: pipe
+klass: SomeTestKlass
+start_line_pattern: !ruby/regexp /\A------\z/
+# end_line_pattern:
+# start_in_a_record: false # DECOMMISSIONED (use header_lines: 1)
+# end_in_a_record: DECOMMISSIONED (use footer_lines: 1)
+remove_lines:
+  footer:
+  - !ruby/regexp /\A== Page \d+ of \d+ ==\z/i
+columns:
+- column: one
+  non_tabular_cell:
+    lines: !ruby/range
+      begin: 0
+      end: -1
+      excl: true
+    capture: !ruby/regexp /^(.*)$/i

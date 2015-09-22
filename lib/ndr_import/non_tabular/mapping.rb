@@ -1,40 +1,45 @@
 # encoding: UTF-8
+require 'ndr_import/non_tabular/table'
 
 module NdrImport
   module NonTabular
     # This class stores the mapping used to break an incoming file into multiple rows/records
-    class Mapping
-      attr_accessor :capture_start_line, :start_line_pattern, :end_line_pattern,
-                    :start_in_a_record, :end_in_a_record, :remove_lines
-
-      def initialize(mappings)
-        @non_tabular_mappings = mappings['non_tabular_row']
-
-        validate_row_mapping
-
-        @capture_start_line = @non_tabular_mappings['capture_start_line']
-        @start_line_pattern = @non_tabular_mappings['start_line_pattern']
-        @end_line_pattern   = @non_tabular_mappings['end_line_pattern']
-        @start_in_a_record  = @non_tabular_mappings['start_in_a_record'] || false
-        @end_in_a_record    = @non_tabular_mappings['end_in_a_record']
-        @remove_lines       = @non_tabular_mappings['remove_lines']
+    class Mapping < Table
+      def self.all_valid_options
+        super - %w(header_lines footer_lines) + %w(non_tabular_row)
       end
 
-      def validate_row_mapping
-        validate_presence_of_non_tabular_row
-        validate_presence_of_non_tabular_row_start_line_pattern
+      def initialize(options)
+        non_tabular_mappings = options['non_tabular_row']
+        if non_tabular_mappings
+          initialize_non_tabular_mappings(non_tabular_mappings)
+        else
+          # validate presence of non_tabular_row
+          fail NdrImport::MappingError,
+               I18n.t('mapping.errors.missing_non_tabular_row')
+        end
+
+        super(options)
       end
 
-      def validate_presence_of_non_tabular_row
-        return if @non_tabular_mappings
-        fail NdrImport::MappingError,
-             I18n.t('mapping.errors.missing_non_tabular_row')
+      def start_in_a_record
+        @header_lines == 0
       end
 
-      def validate_presence_of_non_tabular_row_start_line_pattern
-        return if @non_tabular_mappings['start_line_pattern']
-        fail NdrImport::MappingError,
-             I18n.t('mapping.errors.missing_start_line_pattern')
+      def end_in_a_record
+        @footer_lines == 0
+      end
+
+      private
+
+      def initialize_non_tabular_mappings(non_tabular_mappings)
+        NON_TABULAR_OPTIONS.each do |key|
+          next unless non_tabular_mappings[key]
+          instance_variable_set("@#{key}", non_tabular_mappings[key])
+        end
+
+        @header_lines = non_tabular_mappings['start_in_a_record'] ? 0 : 1
+        @footer_lines = non_tabular_mappings['end_in_a_record'] ? 0 : 1
       end
     end
   end

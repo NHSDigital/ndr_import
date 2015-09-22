@@ -1,0 +1,27 @@
+0
+This is never captured
+------
+1
+== Page 1 of 5 ==
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+== Page 2 of 5 ==
+in culpa qui officia deserunt mollit anim id est laborum.
+------
+2
+This is captured
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+== Page 3 of 5 ==
+------
+3
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+------
+== Page 4 of 5 ==
+4
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+------
+-1
+== Page 5 of 5 ==
+This is never captured

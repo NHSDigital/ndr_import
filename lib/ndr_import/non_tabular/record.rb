@@ -86,7 +86,7 @@ module NdrImport
       def get_matches(column_mapping)
         matching_lines = column_mapping.matching_lines(@lines)
         # loop through the specified line (or lines)
-        matches = [@lines[matching_lines]].flatten.map do |line|
+        matches = Array(@lines[matching_lines]).map do |line|
           line.captured_for(column_mapping.name)
           value = column_mapping.capture_value(line)
           line.matches_for(column_mapping.name, value)

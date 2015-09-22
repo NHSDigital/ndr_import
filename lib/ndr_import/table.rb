@@ -1,4 +1,5 @@
 require 'ndr_import/mapper'
+require 'active_support/core_ext/hash'
 
 module NdrImport
   # This class maintains the state of a table mapping and encapsulates the logic
@@ -8,18 +9,22 @@ module NdrImport
   class Table
     include NdrImport::Mapper
 
-    ALL_VALID_OPTIONS = [
-      :filename_pattern, :tablename_pattern, :header_lines, :footer_lines,
-      :format, :klass, :columns
-    ]
+    def self.all_valid_options
+      %w(filename_pattern tablename_pattern header_lines footer_lines format klass columns)
+    end
 
-    attr_reader(*ALL_VALID_OPTIONS)
+    def all_valid_options
+      self.class.all_valid_options
+    end
+
+    attr_reader(*all_valid_options)
     attr_writer :notifier
 
     def initialize(options = {})
+      options.stringify_keys! if options.is_a?(Hash)
       validate_options(options)
 
-      ALL_VALID_OPTIONS.each do |key|
+      all_valid_options.each do |key|
         # This pattern is used to only set attributes if option specified,
         # which makes for more concise YAML serialization.
         options[key] && instance_variable_set("@#{key}", options[key])
@@ -152,7 +157,7 @@ module NdrImport
     def validate_options(hash)
       fail ArgumentError unless hash.is_a?(Hash)
 
-      unrecognised_options = hash.keys - ALL_VALID_OPTIONS
+      unrecognised_options = hash.keys - all_valid_options
       return if unrecognised_options.empty?
       fail ArgumentError, "Unrecognised options: #{unrecognised_options.inspect}"
     end
