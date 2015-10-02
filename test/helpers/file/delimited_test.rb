@@ -40,7 +40,7 @@ class DelimitedTest < ActiveSupport::TestCase
 
   test 'should read line-by-line' do
     rows = []
-    @importer.each_delimited_row(@permanent_test_files.join('normal.csv')) { |row| rows << row }
+    @importer.delimited_rows(@permanent_test_files.join('normal.csv')) { |row| rows << row }
     assert_equal(('A'..'Z').to_a, rows[0])
     assert_equal ['1'] * 26, rows[1]
     assert_equal ['2'] * 26, rows[2]
@@ -50,7 +50,7 @@ class DelimitedTest < ActiveSupport::TestCase
     count = 0
     file  = @permanent_test_files.join('high_ascii_delimited.txt')
 
-    @importer.each_delimited_row(file, "\xfe") { count += 1 }
+    @importer.delimited_rows(file, "\xfe") { count += 1 }
     assert_equal 2, count
   end
 
@@ -66,7 +66,7 @@ class DelimitedTest < ActiveSupport::TestCase
   test 'should report addition details upon failure to read csv line-by-line' do
     rows_yielded = []
     exception    = assert_raises(CSVLibrary::MalformedCSVError) do
-      @importer.each_delimited_row(@permanent_test_files.join('broken.csv')) do |row|
+      @importer.delimited_rows(@permanent_test_files.join('broken.csv')) do |row|
         rows_yielded << row
       end
     end
@@ -77,8 +77,8 @@ class DelimitedTest < ActiveSupport::TestCase
     assert_equal msg, exception.message
   end
 
-  test 'each_delimited_table should read table correctly' do
-    table = @importer.send(:each_delimited_table, @permanent_test_files.join('normal.csv'))
+  test 'delimited_tables should read table correctly' do
+    table = @importer.send(:delimited_tables, @permanent_test_files.join('normal.csv'))
     table.each do |tablename, sheet|
       assert_nil tablename
       sheet = sheet.to_a

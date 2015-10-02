@@ -35,12 +35,13 @@ module NdrImport
           raw_value.to_s(:db)
         end
 
-        def each_excel_table(path)
-          return enum_for(:each_excel_table, path) unless block_given?
+        # Iterate through the file table by table, yielding each one in turn.
+        def excel_tables(path)
+          return enum_for(:excel_tables, path) unless block_given?
 
           workbook = load_workbook(path)
           workbook.each_with_pagename do |tablename, sheet|
-            yield tablename, each_excel_row(workbook, sheet)
+            yield tablename, excel_rows(workbook, sheet)
           end
         end
 
@@ -62,24 +63,24 @@ module NdrImport
             end
 
           # Read the cells from working worksheet into a nested array
-          each_excel_row(workbook, workbook).to_a
+          excel_rows(workbook, workbook).to_a
         end
 
         # Iterate through the sheet line by line, yielding each one in turn.
-        def each_excel_row(workbook, sheet, &block)
-          return enum_for(:each_excel_row, workbook, sheet) unless block
+        def excel_rows(workbook, sheet, &block)
+          return enum_for(:excel_rows, workbook, sheet) unless block
 
           if workbook.is_a?(Roo::Excelx)
-            # FIXME: each_xlsx_row(sheet, &block) should produce the same output as each_xls_row
-            each_xls_row(sheet, &block)
+            # FIXME: xlsx_rows(sheet, &block) should produce the same output as xls_rows
+            xls_rows(sheet, &block)
           else
-            each_xls_row(sheet, &block)
+            xls_rows(sheet, &block)
           end
         end
 
         # Iterate through an xls sheet line by line, yielding each one in turn.
-        def each_xls_row(sheet)
-          return enum_for(:each_xls_row, sheet) unless block_given?
+        def xls_rows(sheet)
+          return enum_for(:xls_rows, sheet) unless block_given?
 
           sheet.first_row.upto(sheet.last_row) do |row|
             line = []
@@ -92,8 +93,8 @@ module NdrImport
 
         # Iterate through an xlsx sheet line by line, yielding each one in turn.
         # This method uses streaming https://github.com/roo-rb/roo#excel-xlsx-and-xlsm-support
-        def each_xlsx_row(sheet)
-          return enum_for(:each_xlsx_row, sheet) unless block_given?
+        def xlsx_rows(sheet)
+          return enum_for(:xlsx_rows, sheet) unless block_given?
 
           sheet.each_row_streaming(:pad_cells => true) do |row|
             yield row.map { |cell| cast_excel_value(cell.value) }

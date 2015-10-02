@@ -17,19 +17,19 @@ module NdrImport
 
         # Slurp the entire file into an array of lines.
         def read_delimited_file(path, col_sep = nil)
-          each_delimited_row(path, col_sep).to_a
+          delimited_rows(path, col_sep).to_a
         end
 
         # Iterate through the file table by table, yielding each one in turn.
-        def each_delimited_table(path, col_sep = nil)
-          return enum_for(:each_delimited_table, path, col_sep) unless block_given?
+        def delimited_tables(path, col_sep = nil)
+          return enum_for(:delimited_tables, path, col_sep) unless block_given?
 
-          yield nil, each_delimited_row(path, col_sep)
+          yield nil, delimited_rows(path, col_sep)
         end
 
         # Iterate through the file line by line, yielding each one in turn.
-        def each_delimited_row(path, col_sep = nil)
-          return enum_for(:each_delimited_row, path, col_sep) unless block_given?
+        def delimited_rows(path, col_sep = nil)
+          return enum_for(:delimited_rows, path, col_sep) unless block_given?
 
           safe_path = SafeFile.safepath_to_string(path)
           encodings = determine_encodings!(safe_path, col_sep)
