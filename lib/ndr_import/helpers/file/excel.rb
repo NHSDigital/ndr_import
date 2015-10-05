@@ -45,6 +45,13 @@ module NdrImport
           end
         end
 
+        # Deprecated method
+        def each_excel_table(path, &block)
+          Kernel.warn '[warning] each_excel_table will be deprecated,' \
+                      ' please use excel_tables instead.'
+          excel_tables(path, &block)
+        end
+
         private
 
         def read_excel_file(path, selected_sheet = nil)
@@ -78,6 +85,13 @@ module NdrImport
           end
         end
 
+        # Deprecated method
+        def each_excel_row(workbook, sheet, &block)
+          Kernel.warn '[warning] each_excel_row will be deprecated,' \
+                      ' please use excel_rows instead.'
+          excel_rows(workbook, sheet, &block)
+        end
+
         # Iterate through an xls sheet line by line, yielding each one in turn.
         def xls_rows(sheet)
           return enum_for(:xls_rows, sheet) unless block_given?
@@ -91,6 +105,13 @@ module NdrImport
           end
         end
 
+        # Deprecated method
+        def each_xls_row(sheet, &block)
+          Kernel.warn '[warning] each_xls_row will be deprecated,' \
+                      ' please use xls_rows instead.'
+          xls_rows(sheet, &block)
+        end
+
         # Iterate through an xlsx sheet line by line, yielding each one in turn.
         # This method uses streaming https://github.com/roo-rb/roo#excel-xlsx-and-xlsm-support
         def xlsx_rows(sheet)
@@ -99,6 +120,13 @@ module NdrImport
           sheet.each_row_streaming(:pad_cells => true) do |row|
             yield row.map { |cell| cast_excel_value(cell.value) }
           end
+        end
+
+        # Deprecated method
+        def each_xlsx_row(sheet, &block)
+          Kernel.warn '[warning] each_xlsx_row will be deprecated,' \
+                      ' please use xlsx_rows instead.'
+          xlsx_rows(sheet, &block)
         end
 
         def get_excel_sheets_name(path)

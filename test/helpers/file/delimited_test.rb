@@ -87,4 +87,27 @@ class DelimitedTest < ActiveSupport::TestCase
       assert_equal ['2'] * 26, sheet[2]
     end
   end
+
+  def test_each_delimited_table_should_be_deprecated
+    original_stderr = $stderr
+    $stderr = StringIO.new
+
+    table = @importer.send(:each_delimited_table, @permanent_test_files.join('normal.csv'))
+    table.each do |tablename, sheet|
+      assert_nil tablename
+      sheet = sheet.to_a
+      assert_equal(('A'..'Z').to_a, sheet[0])
+      assert_equal ['1'] * 26, sheet[1]
+      assert_equal ['2'] * 26, sheet[2]
+    end
+
+    assert_match(/\A\[warning\] each_delimited_table will be deprecated/, $stderr.string)
+  ensure
+    $stderr = original_stderr
+  end if Gem::Requirement.new('< 3.0.0').satisfied_by?(Gem::Version.new(NdrImport::VERSION))
+
+  def test_deprecated_methods_removed_in_v3
+    refute @importer.public_methods.include?(:each_delimited_table), 'should be removed in v3.0.0'
+    refute @importer.public_methods.include?(:each_delimited_row), 'should be removed in v3.0.0'
+  end if Gem::Requirement.new('>= 3.0.0').satisfied_by?(Gem::Version.new(NdrImport::VERSION))
 end
