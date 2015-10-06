@@ -1,8 +1,8 @@
 # encoding: UTF-8
 require 'test_helper'
 
-# This tests the NdrImport::StandardMappings configuration class
-class NdrImport::StandardMappingsTest < ActiveSupport::TestCase
+# This tests the StandardMappings configuration class
+class StandardMappingsTest < ActiveSupport::TestCase
   test 'should raise exception on reconfiguring NdrImport::StandardMappings' do
     assert_nothing_raised do
       NdrImport::StandardMappings.configure!(
