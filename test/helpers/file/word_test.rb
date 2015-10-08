@@ -10,7 +10,7 @@ class WordTest < ActiveSupport::TestCase
 
   def setup
     @permanent_test_files = SafePath.new('permanent_test_files')
-    @importer  = TestImporter.new
+    @importer = TestImporter.new
   end
 
   test 'read_word_file helper should read word file' do

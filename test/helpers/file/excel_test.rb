@@ -10,7 +10,7 @@ class ExcelTest < ActiveSupport::TestCase
 
   def setup
     @permanenttestfiles = SafePath.new('permanent_test_files')
-    @importer  = TestImporter.new
+    @importer = TestImporter.new
   end
 
   test 'read_excel_file helper should read xls file' do

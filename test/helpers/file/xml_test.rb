@@ -12,7 +12,7 @@ class XmlTest < ActiveSupport::TestCase
   def setup
     @home = SafePath.new('test_space_rw')
     @permanent_test_files = SafePath.new('permanent_test_files')
-    @importer  = TestImporter.new
+    @importer = TestImporter.new
   end
 
   test 'import_xml_file should handle incoming UTF-8' do

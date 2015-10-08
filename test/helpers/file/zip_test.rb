@@ -12,7 +12,7 @@ class ZipTest < ActiveSupport::TestCase
   def setup
     @home = SafePath.new('test_space_rw')
     @permanent_test_files = SafePath.new('permanent_test_files')
-    @importer  = TestImporter.new
+    @importer = TestImporter.new
   end
 
   test '.unzip should reject non SafePath arguments' do
