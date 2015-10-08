@@ -34,7 +34,7 @@ module NdrImport
     end
 
     def match(filename, tablename)
-      File.basename(filename) =~ (filename_pattern || /\A.*\z/) &&
+      ::File.basename(filename) =~ (filename_pattern || /\A.*\z/) &&
         (tablename.nil? || tablename =~ (tablename_pattern || /\A.*\z/))
     end
 
