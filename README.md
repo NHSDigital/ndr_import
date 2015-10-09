@@ -1,4 +1,4 @@
-# NdrImport
+# NdrImport [![Build Status](https://travis-ci.org/PublicHealthEngland/ndr_import.svg?branch=master)](https://travis-ci.org/PublicHealthEngland/ndr_import)
 
 This is the Public Health England (PHE) National Disease Registers (NDR) Import ETL ruby gem, providing:
 
