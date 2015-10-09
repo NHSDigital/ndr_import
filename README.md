@@ -3,7 +3,7 @@
 This is the Public Health England (PHE) National Disease Registers (NDR) Import ETL ruby gem, providing:
 
 1. file import handlers for *extracting* data from delimited files (csv, pipe, tab, thorn), .xls(x) spreadsheets, .doc word documents, PDF, XML and Zip files.
-2. table_mappers for *transforming* tabular and non-tabular data into key value pairs grouped by a common "klass".
+2. table mappers for *transforming* tabular and non-tabular data into key value pairs grouped by a common "klass".
 
 ## Installation
 
