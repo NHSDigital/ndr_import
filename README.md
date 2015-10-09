@@ -2,8 +2,8 @@
 
 This is the Public Health England (PHE) National Disease Registers (NDR) Import ETL ruby gem, providing:
 
-1. file import helper modules for *extracting* data from delimited files (csv, pipe, tab, thorn), .xls(x) spreadsheets, .doc word documents, PDF, XML and Zip files.
-2. mapper modules for *transforming* tabular and non-tabular data.
+1. file import handlers for *extracting* data from delimited files (csv, pipe, tab, thorn), .xls(x) spreadsheets, .doc word documents, PDF, XML and Zip files.
+2. table_mappers for *transforming* tabular and non-tabular data into key value pairs grouped by a common "klass".
 
 ## Installation
 
@@ -23,23 +23,34 @@ Or install it yourself by cloning the project, then executing:
 
 ## Usage
 
-To add the ability to extract data from PDFs and transform the data they contain to a hash of key value pairs, for example, add the following lines to your code to your importer class:
+Below is an example that extracts data from a PDF and transforms it into to a collection of records defined by their "klasses" and "fields":
 
 ```ruby
-require 'ndr_import/helpers/file/pdf'
-require 'ndr_import/mapper'
-require 'ndr_import/non_tabular_file_helper'
+require 'ndr_import/non_tabular/table'
+require 'ndr_import/file/registry'
 
-class MyImporter
-  include NdrImport::Helpers::File::Pdf
-  include NdrImport::Mapper
-  include NdrImport::NonTabularFileHelper
+unzip_path = SafePath.new(...)
+source_file = SafePath.new(...).join(...)
+options = { 'unzip_path' => unzip_path }
 
-  # Your code goes here
+table = NdrImport::NonTabular::Table.new(...)
+
+# Use the Registry to enumerate over the files and their tables
+files = NdrImport::File::Registry.files(source_file, options)
+files.each do |filename|
+  tables = NdrImport::File::Registry.tables(filename, nil, options)
+  tables.each do |_tablename, table_content|
+    # Use the NonTabular::Table to tabulate the table_content
+    table.transform(table_content).each do |_klass, _fields, _index|
+      # Your code goes here
+    end
+  end
 end
 ```
 
-More information on the workings of the mapper will be available in the wiki once we have transferred it from our private task management system.
+See test/readme_test.rb for a more complete working example.
+
+More information on the workings of the mapper are available in the [wiki](https://github.com/PublicHealthEngland/ndr_import/wiki).
 
 ## Contributing
 
