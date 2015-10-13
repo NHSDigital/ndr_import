@@ -39,7 +39,7 @@ file safety:
   Rakefile:
     comments: 
     reviewed_by: timgentry
-    safe_revision: a146ca7db90b5e074f7e723b2a6fd1674c5b47ad
+    safe_revision: 40e2fe79b4b01bc21dc7e44012194cd054be99d4
   lib/ndr_import.rb:
     comments: 
     reviewed_by: timgentry
@@ -66,48 +66,48 @@ file safety:
     safe_revision: 
   lib/ndr_import/file/pdf.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
   lib/ndr_import/file/registry.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
   lib/ndr_import/file/text.rb:
     comments: 
     reviewed_by: 
     safe_revision: 
   lib/ndr_import/file/word.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
   lib/ndr_import/file/zip.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
   lib/ndr_import/helpers/file/delimited.rb:
     comments: 
     reviewed_by: 
     safe_revision: 
   lib/ndr_import/helpers/file/excel.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 277e5d8159542b539fe7548fb30b449d9273c8f9
   lib/ndr_import/helpers/file/pdf.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 3757fece40192a335c2d7d9290f2e4e9eed43619
   lib/ndr_import/helpers/file/word.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 45da71ebd3acbc0fe53755bcd75483ba17cb6924
   lib/ndr_import/helpers/file/xml.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 1e3be072adc4246a48413d1532dc180fa1a43288
   lib/ndr_import/helpers/file/zip.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 6c6f204fab2f4232d81cb76aa523c26b0c490ae7
   lib/ndr_import/mapper.rb:
     comments: 
     reviewed_by: 
@@ -122,16 +122,16 @@ file safety:
     safe_revision: 
   lib/ndr_import/non_tabular/line.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: ac30f66578ab380649be800a4426d917ddbcb329
   lib/ndr_import/non_tabular/mapping.rb:
     comments: 
     reviewed_by: 
     safe_revision: 
   lib/ndr_import/non_tabular/record.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 63b1e8c275bd63377309d9b124176f39f75576a9
   lib/ndr_import/non_tabular/table.rb:
     comments: 
     reviewed_by: 
