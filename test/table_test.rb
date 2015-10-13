@@ -9,6 +9,7 @@ class TableTest < ActiveSupport::TestCase
     assert_equal 1, table.footer_lines
     assert_equal 'pipe', table.format
     assert_equal 'SomeTestKlass', table.klass
+    assert_equal 'somename', table.canonical_name
     assert_equal [{ 'column' => 'one' }, { 'column' => 'two' }, { 'column' => 'three' }],
                  table.columns
   end
@@ -247,7 +248,7 @@ class TableTest < ActiveSupport::TestCase
   def simple_deserialized_table
     Psych.load <<YML
 --- !ruby/object:NdrImport::Table
-# canonical_name: somename
+canonical_name: somename
 # pattern: !ruby/regexp //
 header_lines: 2
 footer_lines: 1

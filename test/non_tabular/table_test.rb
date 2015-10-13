@@ -4,8 +4,8 @@ require 'test_helper'
 class TableTest < ActiveSupport::TestCase
   def test_all_valid_options
     valid_options = %w(
-      capture_start_line columns end_line_pattern filename_pattern footer_lines format
-      header_lines klass remove_lines start_line_pattern
+      canonical_name capture_start_line columns end_line_pattern filename_pattern footer_lines
+      format header_lines klass remove_lines start_line_pattern
     )
     assert_equal valid_options.sort,
                  NdrImport::NonTabular::Table.all_valid_options.sort
