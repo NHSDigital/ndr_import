@@ -10,9 +10,12 @@ module NdrImport
       private
 
       def rows(&block)
+        
         return enum_for(:rows) unless block
 
-        ::File.new(@filename, 'rt').each do |line|
+        # SECURE: TG 13 Oct 2015 SafeFile.safepath_to_string ensures that the path is SafePath.
+        # TODO: SafeFile.new does not support the 'rt' switches
+        ::File.new(SafeFile.safepath_to_string(@filename), 'rt').each do |line|
           block.call(line.sub(/\n\z/, ''))
         end
 
