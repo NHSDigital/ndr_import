@@ -46,8 +46,8 @@ file safety:
     safe_revision: 63b1e8c275bd63377309d9b124176f39f75576a9
   lib/ndr_import/csv_library.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: josh.pencheon
+    safe_revision: 20939133f61ed102feb2a841b6c43b86f385b972
   lib/ndr_import/file/all.rb:
     comments: 
     reviewed_by: timgentry
@@ -58,12 +58,12 @@ file safety:
     safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
   lib/ndr_import/file/delimited.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: josh.pencheon
+    safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
   lib/ndr_import/file/excel.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: josh.pencheon
+    safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
   lib/ndr_import/file/pdf.rb:
     comments: 
     reviewed_by: timgentry
@@ -74,8 +74,8 @@ file safety:
     safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
   lib/ndr_import/file/text.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: josh.pencheon
+    safe_revision: 889149c44e8bf299b0fb969d545e1a83b146f179
   lib/ndr_import/file/word.rb:
     comments: 
     reviewed_by: timgentry
@@ -86,8 +86,8 @@ file safety:
     safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
   lib/ndr_import/helpers/file/delimited.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: josh.pencheon
+    safe_revision: 277e5d8159542b539fe7548fb30b449d9273c8f9
   lib/ndr_import/helpers/file/excel.rb:
     comments: 
     reviewed_by: timgentry
@@ -118,28 +118,28 @@ file safety:
     safe_revision: 96ccc535bb9f933081dfc73bf0442b32b6bdce1d
   lib/ndr_import/non_tabular/column_mapping.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: josh.pencheon
+    safe_revision: 96ccc535bb9f933081dfc73bf0442b32b6bdce1d
   lib/ndr_import/non_tabular/line.rb:
     comments: 
     reviewed_by: timgentry
     safe_revision: ac30f66578ab380649be800a4426d917ddbcb329
   lib/ndr_import/non_tabular/mapping.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: josh.pencheon
+    safe_revision: 63b1e8c275bd63377309d9b124176f39f75576a9
   lib/ndr_import/non_tabular/record.rb:
     comments: 
     reviewed_by: timgentry
     safe_revision: 63b1e8c275bd63377309d9b124176f39f75576a9
   lib/ndr_import/non_tabular/table.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: josh.pencheon
+    safe_revision: 63b1e8c275bd63377309d9b124176f39f75576a9
   lib/ndr_import/non_tabular_file_helper.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: josh.pencheon
+    safe_revision: ac30f66578ab380649be800a4426d917ddbcb329
   lib/ndr_import/standard_mappings.rb:
     comments: 
     reviewed_by: timgentry
@@ -150,12 +150,12 @@ file safety:
     safe_revision: 2dc6d533dd8be4b81b6a5d5a2baf3759afc0dcff
   lib/ndr_import/version.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 88c35f1d65278c913989ec6f5635e2c655700dd7
+    reviewed_by: josh.pencheon
+    safe_revision: 330e074b882528bcf99e368ec249231601099902
   ndr_import.gemspec:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: josh.pencheon
+    safe_revision: 6f91ad9730129661d7d24428119e6aefa8ac86fc
   test/file/base_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -194,8 +194,8 @@ file safety:
     safe_revision: 9abdd6ced1d0c90ce8dd88abee4eb6472c7ff0d6
   test/helpers/file/excel_test.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: josh.pencheon
+    safe_revision: 9abdd6ced1d0c90ce8dd88abee4eb6472c7ff0d6
   test/helpers/file/pdf_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -210,8 +210,8 @@ file safety:
     safe_revision: 9abdd6ced1d0c90ce8dd88abee4eb6472c7ff0d6
   test/helpers/file/zip_test.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: josh.pencheon
+    safe_revision: 9abdd6ced1d0c90ce8dd88abee4eb6472c7ff0d6
   test/mapper_test.rb:
     comments: exposes Mapper internals to test them
     reviewed_by: timgentry
@@ -242,8 +242,8 @@ file safety:
     safe_revision: dab4b8a3e4b29d85eccd971e79936982d888cffd
   test/resources/filesystem_paths.yml:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: josh.pencheon
+    safe_revision: 763400f7503df6411c29b84a2cda9508718d1367
   test/resources/flat_file.pdf:
     comments: 
     reviewed_by: timgentry

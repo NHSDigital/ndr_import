@@ -29,10 +29,10 @@ module NdrImport::Mapper
   # Returns the standard_mapping hash specified
   # Assumes mappping exists
   def standard_mapping(mapping_name, column_mapping)
-    # SECURE: TVB Thu Aug  9 16:57:17 BST 2012 : RAILS_ROOT is constant and the relative path is hardcoded.
-    # Therefore always the same file will be loaded.
-    # Recommendation is to use SafeFile and SafePath -
-    # the idea is never to use File in the project, but only a proxy class SafeFile.
+    # TODO: the standard mappings should probably be set directly, rather than
+    #       configuring a path to a YAML file. (which may or may not be at a SafePath).
+    #       This would also avoid reading the file for every object into which the
+    #       Mapper modlue is included.
     @standard_mappings ||= YAML.load(File.open(NdrImport::StandardMappings.fs_path))
     mapping = @standard_mappings[mapping_name]
     return nil if mapping.nil?
