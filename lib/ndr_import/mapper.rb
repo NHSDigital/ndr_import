@@ -29,12 +29,7 @@ module NdrImport::Mapper
   # Returns the standard_mapping hash specified
   # Assumes mappping exists
   def standard_mapping(mapping_name, column_mapping)
-    # TODO: the standard mappings should probably be set directly, rather than
-    #       configuring a path to a YAML file. (which may or may not be at a SafePath).
-    #       This would also avoid reading the file for every object into which the
-    #       Mapper modlue is included.
-    @standard_mappings ||= YAML.load(File.open(NdrImport::StandardMappings.fs_path))
-    mapping = @standard_mappings[mapping_name]
+    mapping = NdrImport::StandardMappings.mappings[mapping_name]
     return nil if mapping.nil?
     if column_mapping['mappings']
       mapping['mappings'] = mapping['mappings'] + column_mapping.delete('mappings')

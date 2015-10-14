@@ -1,20 +1,22 @@
 module NdrImport
-  # NdrImport::StandardMappings stores the filesystem path to the standard mappings YAML file
+  # NdrImport::StandardMappings stores the standard mappings hash
   class StandardMappings
-    # filesystem path is stored as a class level instance variable
+    # mappings are stored as a class level instance variable
     class << self
-      # Returns the standard mappings filesystem path
-      def fs_path
-        if defined?(@fs_path)
-          @fs_path
+      # Gets the standard mappings
+      def mappings
+        if defined?(@standard_mappings)
+          @standard_mappings
         else
           fail 'NdrImport::StandardMappings not configured!'
         end
       end
 
-      # Takes the path the filesystem_paths.yml file that should be used.
-      def configure!(filepath)
-        @fs_path = filepath
+      # Sets the standard mappings
+      def mappings=(hash)
+        fail ArgumentError unless hash.is_a?(Hash)
+
+        @standard_mappings = hash
       end
     end
   end
