@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'test_helper'
 require 'ndr_import/file/text'
 
@@ -16,6 +17,34 @@ module NdrImport
           assert_nil tablename
           assert_instance_of Enumerator, sheet
           assert_equal ['Hello world,', 'this is a text document'], sheet.to_a
+        end
+      end
+
+      test 'should read text file with UTF-8 encoding' do
+        file_path = @permanent_test_files.join('hello_utf8.txt')
+        handler = NdrImport::File::Text.new(file_path, nil)
+        handler.tables.each do |tablename, sheet|
+          assert_nil tablename
+          assert_instance_of Enumerator, sheet
+
+          lines = sheet.to_a
+
+          assert_equal ['Hello world', 'This is a thorny þ issue!'], lines
+          assert lines.all? { |line| line.encoding.name == 'UTF-8' && line.valid_encoding? }
+        end
+      end
+
+      test 'should read text file with Windows-1252 encoding' do
+        file_path = @permanent_test_files.join('hello_windows.txt')
+        handler = NdrImport::File::Text.new(file_path, nil)
+        handler.tables.each do |tablename, sheet|
+          assert_nil tablename
+          assert_instance_of Enumerator, sheet
+
+          lines = sheet.to_a
+
+          assert_equal ['Hello windows world', 'This is a thorny þ issue!'], lines
+          assert lines.all? { |line| line.encoding.name == 'UTF-8' && line.valid_encoding? }
         end
       end
 

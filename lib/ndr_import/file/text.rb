@@ -1,4 +1,5 @@
 require 'ndr_support/safe_file'
+require 'ndr_support/utf8_encoding'
 require_relative 'registry'
 
 module NdrImport
@@ -7,18 +8,18 @@ module NdrImport
   module File
     # This class is a text file handler that returns a single table.
     class Text < Base
+      include UTF8Encoding
+
       private
 
       def rows(&block)
-        
         return enum_for(:rows) unless block
 
         # SECURE: TG 13 Oct 2015 SafeFile.safepath_to_string ensures that the path is SafePath.
         # TODO: SafeFile.new does not support the 'rt' switches
         ::File.new(SafeFile.safepath_to_string(@filename), 'rt').each do |line|
-          block.call(line.sub(/\n\z/, ''))
+          block.call(ensure_utf8! line.chomp)
         end
-
       rescue => e
         raise "Failed to read #{SafeFile.basename(@filename)} as text " \
               "[#{e.class}: #{e.message}]"
