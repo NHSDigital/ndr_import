@@ -35,6 +35,20 @@ module NdrImport
           Registry.unregister('lazy_dev')
         end
       end
+
+      test 'should not fail when set up with an readable safepath' do
+        assert Base.new(SafePath.new('test_space_r'), nil)
+        assert Base.new(SafePath.new('test_space_rw'), nil)
+      end
+
+      test 'should fail when set up with an unreadable safepath' do
+        assert_raises(SecurityError) { Base.new(SafePath.new('test_space_w'), nil) }
+      end
+
+      test 'should fail when set up with a non-safepath' do
+        exception = assert_raises(ArgumentError) { Base.new(NdrImport.root, nil) }
+        assert exception.message =~ /file_name should be of type SafePath, but it is String/
+      end
     end
   end
 end

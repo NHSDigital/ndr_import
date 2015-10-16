@@ -8,6 +8,6 @@ require 'ndr_import/non_tabular/table'
 
 module NdrImport
   def self.root
-    File.expand_path('../..', __FILE__)
+    ::File.expand_path('../..', __FILE__)
   end
 end

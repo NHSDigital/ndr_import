@@ -15,9 +15,6 @@ module NdrImport
       def rows(&block)
         return enum_for(:rows) unless block
 
-        # Ensure that we're allowed to read from the safe path:
-        SafeFile.verify_mode(@filename, 'r')
-
         # Encoding:
         #   As we're going to be yielding the lines of the file as it is streamed
         #   (rather than slurped in advance), we need to know which encoding / mode

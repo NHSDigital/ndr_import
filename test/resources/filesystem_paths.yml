@@ -6,14 +6,14 @@ test_files: &test_files
 
 ? !ruby/regexp /.*/
 : 
-  # test_space_r:
-  #   <<: *test_files
-  #   prms:
-  #     - r
-  # test_space_w:
-  #   <<: *test_files
-  #   prms:
-  #     - w
+  test_space_r:
+    <<: *test_files
+    prms:
+      - r
+  test_space_w:
+    <<: *test_files
+    prms:
+      - w
   test_space_rw:
     <<: *test_files
     prms:

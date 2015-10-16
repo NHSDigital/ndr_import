@@ -13,7 +13,7 @@ module NdrImport
         @format = format
         @options = options
 
-        validate_filename_is_safe!
+        validate_filename_is_safe_and_readable!
       end
 
       # This method iterates over the files in the given file and yields the filenames.
@@ -64,8 +64,12 @@ module NdrImport
         fail "Implement #{self.class}#rows"
       end
 
-      def validate_filename_is_safe!
+      def validate_filename_is_safe_and_readable!
         SafeFile.safepath_to_string(@filename)
+
+        # Ensure that we're allowed to read from the safe path:
+        # (they can be configured to be write-only, for example)
+        SafeFile.verify_mode(@filename, 'r')
       end
     end
   end
