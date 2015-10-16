@@ -43,7 +43,7 @@ file safety:
   lib/ndr_import.rb:
     comments: 
     reviewed_by: timgentry
-    safe_revision: 63b1e8c275bd63377309d9b124176f39f75576a9
+    safe_revision: a8451809db86e0e023b0d93826114a33ff896c4f
   lib/ndr_import/csv_library.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -55,7 +55,7 @@ file safety:
   lib/ndr_import/file/base.rb:
     comments: 
     reviewed_by: timgentry
-    safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
+    safe_revision: a8451809db86e0e023b0d93826114a33ff896c4f
   lib/ndr_import/file/delimited.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -159,7 +159,7 @@ file safety:
   test/file/base_test.rb:
     comments: 
     reviewed_by: timgentry
-    safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
+    safe_revision: a8451809db86e0e023b0d93826114a33ff896c4f
   test/file/delimited_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -179,7 +179,7 @@ file safety:
   test/file/text_test.rb:
     comments: 
     reviewed_by: timgentry
-    safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
+    safe_revision: 3107f711805b6d3b89d32ec923178425aa600dac
   test/file/word_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -242,8 +242,8 @@ file safety:
     safe_revision: dab4b8a3e4b29d85eccd971e79936982d888cffd
   test/resources/filesystem_paths.yml:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 763400f7503df6411c29b84a2cda9508718d1367
+    reviewed_by: timgentry
+    safe_revision: a8451809db86e0e023b0d93826114a33ff896c4f
   test/resources/flat_file.pdf:
     comments: 
     reviewed_by: timgentry
@@ -256,6 +256,22 @@ file safety:
     comments: 
     reviewed_by: timgentry
     safe_revision: 63b1e8c275bd63377309d9b124176f39f75576a9
+  test/resources/hello_utf16be.txt:
+    comments: 
+    reviewed_by: 
+    safe_revision: 
+  test/resources/hello_utf16le.txt:
+    comments: 
+    reviewed_by: 
+    safe_revision: 
+  test/resources/hello_utf8.txt:
+    comments: 
+    reviewed_by: timgentry
+    safe_revision: 3961826eb16a30598381c424b95897a2f1e8c40a
+  test/resources/hello_windows.txt:
+    comments: 
+    reviewed_by: timgentry
+    safe_revision: 3961826eb16a30598381c424b95897a2f1e8c40a
   test/resources/hello_world.doc:
     comments: 
     reviewed_by: timgentry
@@ -347,7 +363,7 @@ file safety:
   test/standard_mappings_test.rb:
     comments: 
     reviewed_by: timgentry
-    safe_revision: 602921f8195c95395dc98493345de6a097dcf05b
+    safe_revision: 3c7f827d17aacbf7b811eea67e27553f3b039070
   test/table_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -355,4 +371,4 @@ file safety:
   test/test_helper.rb:
     comments: 
     reviewed_by: timgentry
-    safe_revision: 15576c5809af37eb39289e4bec260713349ca2e4
+    safe_revision: 3c7f827d17aacbf7b811eea67e27553f3b039070
