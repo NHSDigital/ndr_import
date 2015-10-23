@@ -16,14 +16,23 @@ module NdrImport
 
       include UTF8Encoding
 
-      NON_TABULAR_OPTIONS = %w(capture_start_line start_line_pattern end_line_pattern remove_lines)
+      NON_TABULAR_OPTIONS = %w(capture_start_line start_line_pattern end_line_pattern remove_lines
+                               start_in_a_record end_in_a_record)
 
       def self.all_valid_options
-        super - ['tablename_pattern'] + NON_TABULAR_OPTIONS
+        super - %w(tablename_pattern header_lines footer_lines) + NON_TABULAR_OPTIONS
       end
 
       attr_reader(*NON_TABULAR_OPTIONS)
       attr_reader :non_tabular_lines
+
+      def header_lines
+        0
+      end
+
+      def footer_lines
+        0
+      end
 
       def initialize(options = {})
         super(options)
@@ -86,7 +95,7 @@ module NdrImport
 
       def read_non_tabular_array
         @tabular_array = []
-        @in_a_record = true
+        @in_a_record = @start_in_a_record
         @non_tabular_record = NdrImport::NonTabular::Record.new
 
         partition_and_process_non_tabular_lines
@@ -144,7 +153,11 @@ module NdrImport
       # of a record
       def process_end_of_record
         return if @non_tabular_record.empty?
-        @tabular_array << @non_tabular_record.tabulate(column_mappings) if @in_a_record
+        if @end_in_a_record
+          @tabular_array << @non_tabular_record.tabulate(column_mappings) if @in_a_record
+        else
+          @non_tabular_record.not_a_record!
+        end
       end
 
       # Store the source lines as instances of NdrImport::NonTabular::Line

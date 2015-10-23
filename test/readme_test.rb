@@ -12,8 +12,8 @@ class ReadmeTest < ActiveSupport::TestCase
     options = { 'unzip_path' => unzip_path }
 
     table = NdrImport::NonTabular::Table.new(
-      'header_lines' => 1,
-      'footer_lines' => 1,
+      'start_in_a_record' => false,
+      'end_in_a_record' => false,
       'klass' => 'SomeTestKlass',
       'start_line_pattern' => /\A------\z/,
       'remove_lines' => { 'footer' => [/\A== Page \d+ of \d+ ==\z/i] },

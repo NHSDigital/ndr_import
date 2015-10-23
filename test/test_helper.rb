@@ -2,6 +2,7 @@ require 'simplecov'
 SimpleCov.start
 
 require 'active_support/test_case'
+require 'active_support/core_ext/string'
 require 'ndr_support/safe_path'
 require 'ndr_import'
 require 'yaml'

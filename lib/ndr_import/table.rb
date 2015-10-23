@@ -48,7 +48,7 @@ module NdrImport
       @header_valid = false
       @notifier.try(:started)
 
-      skip_footer_lines(lines, @footer_lines).each do |line|
+      skip_footer_lines(lines, footer_lines).each do |line|
         process_line(line, &block)
       end
 
@@ -60,10 +60,10 @@ module NdrImport
     def process_line(line, &block)
       return enum_for(:process_line, line) unless block
 
-      if @row_index < @header_lines
+      if @row_index < header_lines
         validate_header(line, @columns)
       else
-        fail 'Header is not valid' if @header_lines > 0 && !header_valid?
+        fail 'Header is not valid' if header_lines > 0 && !header_valid?
         transform_line(line, @row_index, &block)
       end
 

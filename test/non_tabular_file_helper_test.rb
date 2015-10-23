@@ -367,6 +367,14 @@ STR
             excl: true
           capture: !ruby/regexp /^(.*)$/i
           join: "\\n"
+      - column: capture_to_end
+        non_tabular_cell:
+          lines: !ruby/object:RegexpRange
+            begin: !ruby/regexp /^CAPTURE TO END$/
+            end: -1
+            excl: false
+          capture: !ruby/regexp /^(.*)$/i
+          join: "\\n"
     YML
     capture_example = <<-STR
 This is never captured
@@ -389,10 +397,10 @@ Ut enim ad minim veniam, quis nostrud exercitation.
 Do NOT capture me.
 
 CAPTURE TO END
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla.
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+Duis aute irure dolor in reprehenderit in voluptate velit.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa.
 ------
 This is never captured
 STR
@@ -407,6 +415,13 @@ STR
                  result[3]
     assert_equal "CAPTURE EXCLUSIVE\nUt enim ad minim veniam, quis nostrud exercitation.",
                  result[4]
+    assert_equal "CAPTURE TO END\n" \
+                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit.\n" \
+                 "Ut enim ad minim veniam, quis nostrud exercitation ullamco.\n" \
+                 "Duis aute irure dolor in reprehenderit in voluptate velit.\n" \
+                 'Excepteur sint occaecat cupidatat non proident, sunt in culpa.',
+                 result[5]
+
     assert_equal 25, mapper.non_tabular_lines.last.absolute_line_number
   end
 

@@ -1,14 +1,12 @@
 --- !ruby/object:NdrImport::NonTabular::Table
 # canonical_name: somename
 # filename_pattern:
-header_lines: 1
-footer_lines: 1
 # format: pipe
 klass: SomeTestKlass
 start_line_pattern: !ruby/regexp /\A------\z/
 # end_line_pattern:
-# start_in_a_record: false # DECOMMISSIONED (use header_lines: 1)
-# end_in_a_record: DECOMMISSIONED (use footer_lines: 1)
+start_in_a_record: false
+end_in_a_record: false
 remove_lines:
   footer:
   - !ruby/regexp /\A== Page \d+ of \d+ ==\z/i
