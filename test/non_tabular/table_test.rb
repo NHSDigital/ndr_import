@@ -433,7 +433,7 @@ STR
   end
 
   def test_handles_non_utf8_characters
-    mixed_encoding_example = <<-STR.split(/\n/).map
+    mixed_encoding_example = <<-STR.each_line
 111
 Lorem ipsum dolor sit amet.
 ------
@@ -476,7 +476,7 @@ STR
   end
 
   def test_should_not_allow_junk_bytes
-    junk = <<-STR.split(/\n/).map
+    junk = <<-STR.each_line
 111
 Lorem ipsum dolor sit amet.
 ------
