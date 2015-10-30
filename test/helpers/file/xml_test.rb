@@ -79,6 +79,12 @@ class XmlTest < ActiveSupport::TestCase
     assert_equal [226, 128, 153, 226, 128, 147], punct.bytes.to_a # 3 bytes each for apostrophe and dash
   end
 
+  test 'import_xml_file with malformed XML file' do
+    assert_raises Nokogiri::XML::SyntaxError do
+      @importer.send(:read_xml_file, @permanent_test_files.join('malformed.xml'))
+    end
+  end
+
   test '.import_xml_file should reject non safe path arguments' do
     assert_raises ArgumentError do
       @importer.send(:read_xml_file, @home.join('simple.xml').to_s)

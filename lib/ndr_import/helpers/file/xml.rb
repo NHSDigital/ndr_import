@@ -15,7 +15,29 @@ module NdrImport
 
           require 'nokogiri'
 
-          Nokogiri::XML(ensure_utf8! file_data).tap { |doc| doc.encoding = 'UTF-8' }
+          Nokogiri::XML(ensure_utf8! file_data).tap do |doc|
+            doc.encoding = 'UTF-8'
+            emulate_strict_mode_fatal_check!(doc)
+          end
+        end
+
+        # Nokogiri can use give a `STRICT` parse option to libxml, but our friendly
+        # handling of muddled encodings causes XML explicitly declared as something
+        # other than UTF-8 to fail (because it has been recoded to UTF-8 by the
+        # time it is given to Nokogiri / libxml).
+        # This raises a SyntaxError if strict mode would have found any other
+        # (fatal) issues with the document.
+        def emulate_strict_mode_fatal_check!(document)
+          # We let slide any warnings about xml declared as one of our
+          # auto encodings, but parsed as UTF-8:
+          encoding_pattern = AUTO_ENCODINGS.map { |name| Regexp.escape(name) }.join('|')
+          encoding_warning = /\ADocument labelled (#{encoding_pattern}) but has UTF-8 content\z/
+          fatal_errors     = document.errors.select do |error|
+            error.fatal? && (encoding_warning !~ error.message)
+          end
+
+          return unless fatal_errors.any?
+          fail Nokogiri::XML::SyntaxError, "The file had #{fatal_errors.length} fatal error(s)!"
         end
       end
     end
