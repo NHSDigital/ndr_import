@@ -249,7 +249,7 @@ class TableTest < ActiveSupport::TestCase
     Psych.load <<YML
 --- !ruby/object:NdrImport::Table
 canonical_name: somename
-# pattern: !ruby/regexp //
+# filename_pattern: !ruby/regexp //
 header_lines: 2
 footer_lines: 1
 format: pipe
