@@ -104,10 +104,10 @@ class DelimitedTest < ActiveSupport::TestCase
     assert_match(/\A\[warning\] each_delimited_table will be deprecated/, $stderr.string)
   ensure
     $stderr = original_stderr
-  end if Gem::Requirement.new('< 3.0.0').satisfied_by?(Gem::Version.new(NdrImport::VERSION))
+  end if Gem::Requirement.new('< 4.0.0').satisfied_by?(Gem::Version.new(NdrImport::VERSION))
 
   def test_deprecated_methods_removed_in_v3
-    refute @importer.public_methods.include?(:each_delimited_table), 'should be removed in v3.0.0'
-    refute @importer.public_methods.include?(:each_delimited_row), 'should be removed in v3.0.0'
-  end if Gem::Requirement.new('>= 3.0.0').satisfied_by?(Gem::Version.new(NdrImport::VERSION))
+    refute @importer.public_methods.include?(:each_delimited_table), 'should be removed in v4.0.0'
+    refute @importer.public_methods.include?(:each_delimited_row), 'should be removed in v4.0.0'
+  end if Gem::Requirement.new('>= 4.0.0').satisfied_by?(Gem::Version.new(NdrImport::VERSION))
 end
