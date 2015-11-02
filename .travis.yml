@@ -6,9 +6,16 @@ rvm:
   - 2.1
   - 2.2
 
+gemfile:
+  - gemfiles/Gemfile.rails32
+  - gemfiles/Gemfile.rails41
+  - gemfiles/Gemfile.rails42
+
 sudo: false
 
 cache: bundler
+
+before_install: "rm ${BUNDLE_GEMFILE}.lock"
 
 before_script: "bundle update"
 
