@@ -29,12 +29,18 @@ module NdrImport::Mapper
   # Returns the standard_mapping hash specified
   # Assumes mappping exists
   def standard_mapping(mapping_name, column_mapping)
-    mapping = NdrImport::StandardMappings.mappings[mapping_name]
-    return nil if mapping.nil?
-    if column_mapping['mappings']
-      mapping['mappings'] = mapping['mappings'] + column_mapping.delete('mappings')
-    end
-    mapping.merge(column_mapping)
+    standard_mapping = NdrImport::StandardMappings.mappings[mapping_name]
+    return nil if standard_mapping.nil?
+
+    # Work on deep copies of reference standard mapping,
+    # as well as the given column_mapping:
+    reference = YAML.load(standard_mapping.to_yaml)
+    incoming  = YAML.load(column_mapping.to_yaml)
+
+    # Merge the 'mappings' key into the reference value,
+    # but replace any other keys using `incoming`:
+    reference['mappings'].concat(incoming.delete('mappings')) if incoming['mappings']
+    reference.merge!(incoming)
   end
 
   # This takes an array of raw values and their associated mappings and returns an attribute hash
