@@ -2,8 +2,8 @@
 file safety:
   ".gitignore":
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 561b183d3935205b9200e794f62618f6bddb353c
+    reviewed_by: josh.pencheon
+    safe_revision: 3108fd6980919bc5f44be785e043e1215874e08d
   ".rubocop.yml":
     comments: 
     reviewed_by: timgentry
@@ -44,26 +44,14 @@ file safety:
     comments: 
     reviewed_by: timgentry
     safe_revision: 0c5967732100f43e7b60a97a7f0aae60d3641791
-  gemfiles/Gemfile.rails32.lock:
-    comments: 
-    reviewed_by: timgentry
-    safe_revision: cadfc16803ce145ed3317db82ceb0b43c277ee1d
   gemfiles/Gemfile.rails41:
     comments: 
     reviewed_by: timgentry
     safe_revision: 0c5967732100f43e7b60a97a7f0aae60d3641791
-  gemfiles/Gemfile.rails41.lock:
-    comments: 
-    reviewed_by: timgentry
-    safe_revision: cadfc16803ce145ed3317db82ceb0b43c277ee1d
   gemfiles/Gemfile.rails42:
     comments: 
     reviewed_by: timgentry
     safe_revision: 0c5967732100f43e7b60a97a7f0aae60d3641791
-  gemfiles/Gemfile.rails42.lock:
-    comments: 
-    reviewed_by: timgentry
-    safe_revision: cadfc16803ce145ed3317db82ceb0b43c277ee1d
   lib/ndr_import.rb:
     comments: 
     reviewed_by: timgentry
