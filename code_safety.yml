@@ -1,18 +1,18 @@
 ---
 file safety:
-  .gitignore:
+  ".gitignore":
     comments: 
     reviewed_by: timgentry
     safe_revision: 561b183d3935205b9200e794f62618f6bddb353c
-  .rubocop.yml:
+  ".rubocop.yml":
     comments: 
     reviewed_by: timgentry
     safe_revision: 0cf75d467319de27ef1ff8395346f2f888843302
-  .ruby-version:
+  ".ruby-version":
     comments: 
     reviewed_by: timgentry
     safe_revision: 002969562baf46931e8192cd6ca1344952b00a41
-  .travis.yml:
+  ".travis.yml":
     comments: 
     reviewed_by: timgentry
     safe_revision: 0c5967732100f43e7b60a97a7f0aae60d3641791
@@ -134,8 +134,8 @@ file safety:
     safe_revision: 6c6f204fab2f4232d81cb76aa523c26b0c490ae7
   lib/ndr_import/mapper.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: josh.pencheon
+    safe_revision: 753723d2ce48a4836cf259d07a040924404106f4
   lib/ndr_import/mapping_error.rb:
     comments: 
     reviewed_by: timgentry
@@ -166,8 +166,8 @@ file safety:
     safe_revision: ac30f66578ab380649be800a4426d917ddbcb329
   lib/ndr_import/standard_mappings.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 96ccc535bb9f933081dfc73bf0442b32b6bdce1d
+    reviewed_by: josh.pencheon
+    safe_revision: 3c7f827d17aacbf7b811eea67e27553f3b039070
   lib/ndr_import/table.rb:
     comments: uses File.basename
     reviewed_by: timgentry
