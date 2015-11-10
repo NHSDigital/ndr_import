@@ -497,6 +497,20 @@ class MapperTest < ActiveSupport::TestCase
     end
   end
 
+  test 'should not modify the standard mapping when using it' do
+    # Take a deep copy of the original, using YAML serialization:
+    standard_mappings = YAML.load(NdrImport::StandardMappings.mappings.to_yaml)
+
+    TestMapper.new.mapped_line(['Smith'], YAML.load(<<-YML.strip_heredoc))
+      - column: surname
+        standard_mapping: surname
+        mappings:
+        - field: overwrite_surname
+    YML
+
+    assert_equal standard_mappings, NdrImport::StandardMappings.mappings
+  end
+
   test 'should join blank first field with compacting' do
     line_hash = TestMapper.new.mapped_line(['', 'CB3 0DS'], joined_mapping_blank_start)
     assert_equal 'CB3 0DS', line_hash['address']
