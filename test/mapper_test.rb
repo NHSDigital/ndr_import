@@ -265,6 +265,20 @@ class MapperTest < ActiveSupport::TestCase
       - :invalid_encoding
   YML
 
+  replace_array_mapping = YAML.load <<-YML
+    - column: consultantcode
+      rawtext_name: sitecode_ofmultidisciplinaryteammeeting
+      mappings:
+      - field: consultantcode
+    - column: TeamMeetingSiteCode
+      rawtext_name: sitecode_ofmultidisciplinaryteammeeting
+      mappings:
+      - field: hospital
+        replace:
+        - ? !ruby/regexp /Addenbrookes/
+          : "RGT01"
+  YML
+
   test 'map should return a number' do
     assert_equal '1', TestMapper.new.mapped_value('A', map_mapping)
   end
@@ -324,6 +338,12 @@ class MapperTest < ActiveSupport::TestCase
     assert_equal nil, TestMapper.new.mapped_value('', clean_opcs_mapping)
     assert_equal 'ABCD', TestMapper.new.mapped_value('AbcD', clean_opcs_mapping)
     assert_equal '1234', TestMapper.new.mapped_value('1234', clean_opcs_mapping)
+  end
+
+  test 'map should handle array original value' do
+    original_value = ['C9999998', %w(Addenbrookes RGT01)]
+    mapped_value = TestMapper.new.mapped_line(original_value, replace_array_mapping)
+    assert_equal %w(RGT01 RGT01), mapped_value['hospital']
   end
 
   test 'should return correct date format for date fields with daysafter' do

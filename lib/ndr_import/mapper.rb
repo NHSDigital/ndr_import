@@ -21,7 +21,11 @@ module NdrImport::Mapper
 
     [field_mapping['replace']].flatten.each do |field_replacement|
       field_replacement.each do |pattern, replacement|
-        original_value.gsub!(pattern, replacement)
+        if original_value.is_a?(Array)
+          original_value.map { |val| val.gsub!(pattern, replacement) }
+        else
+          original_value.gsub!(pattern, replacement)
+        end
       end
     end
   end
