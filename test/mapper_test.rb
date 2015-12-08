@@ -267,16 +267,14 @@ class MapperTest < ActiveSupport::TestCase
 
   replace_array_mapping = YAML.load <<-YML
     - column: consultantcode
-      rawtext_name: sitecode_ofmultidisciplinaryteammeeting
       mappings:
       - field: consultantcode
-    - column: TeamMeetingSiteCode
-      rawtext_name: sitecode_ofmultidisciplinaryteammeeting
+    - column: hospital
       mappings:
       - field: hospital
         replace:
         - ? !ruby/regexp /Addenbrookes/
-          : "RGT01"
+          : 'RGT01'
   YML
 
   test 'map should return a number' do
