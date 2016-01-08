@@ -1,21 +1,17 @@
 ---
 file safety:
   ".gitignore":
-    comments: 
+    comments: whole file re-reviewed
     reviewed_by: josh.pencheon
-    safe_revision: 3108fd6980919bc5f44be785e043e1215874e08d
+    safe_revision: d22b012a99fb1f8d94acbe445b6170f251a7b4a2
   ".rubocop.yml":
     comments: 
     reviewed_by: timgentry
     safe_revision: 0cf75d467319de27ef1ff8395346f2f888843302
-  ".ruby-version":
-    comments: 
-    reviewed_by: timgentry
-    safe_revision: 002969562baf46931e8192cd6ca1344952b00a41
   ".travis.yml":
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 0c5967732100f43e7b60a97a7f0aae60d3641791
+    reviewed_by: josh.pencheon
+    safe_revision: 0e553a5088e832258526f10976935a917c6eedec
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -123,7 +119,7 @@ file safety:
   lib/ndr_import/mapper.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 753723d2ce48a4836cf259d07a040924404106f4
+    safe_revision: 74ea81bd4c4119912012ff9f3b7c031e592438f9
   lib/ndr_import/mapping_error.rb:
     comments: 
     reviewed_by: timgentry
@@ -226,8 +222,8 @@ file safety:
     safe_revision: 9abdd6ced1d0c90ce8dd88abee4eb6472c7ff0d6
   test/mapper_test.rb:
     comments: exposes Mapper internals to test them
-    reviewed_by: timgentry
-    safe_revision: 753723d2ce48a4836cf259d07a040924404106f4
+    reviewed_by: josh.pencheon
+    safe_revision: e1cc1153509ac371438aa68708a6c316dbf09eee
   test/non_tabular/mapping_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -386,5 +382,5 @@ file safety:
     safe_revision: 6bb588c17d33a604c96c648c6eebfe2d063dfbc0
   test/test_helper.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: cf382902508a21a95b80ac4582fbbd117164e80e
+    reviewed_by: josh.pencheon
+    safe_revision: c244390ab15a9745d4e8c4cbfbaff67d7ef80cb4
