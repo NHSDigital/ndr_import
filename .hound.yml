@@ -1,0 +1,10 @@
+fail_on_violations: true
+
+coffeescript:
+  enabled: false
+javascript:
+  enabled: false
+ruby:
+  config_file: .rubocop.yml
+scss:
+  enabled: false
