@@ -32,7 +32,7 @@ module NdrImport
         # By now, we know `encodings` should let us read the whole
         # file succesfully; if there are problems, we should crash.
         CSVLibrary.foreach(safe_path, encodings) do |line|
-          yield line.map(&:to_s) unless line.length <= 5
+          yield line.map(&:to_s)
         end
       end
 
