@@ -4,6 +4,10 @@ file safety:
     comments: whole file re-reviewed
     reviewed_by: josh.pencheon
     safe_revision: d22b012a99fb1f8d94acbe445b6170f251a7b4a2
+  ".hound.yml":
+    comments: 
+    reviewed_by: timgentry
+    safe_revision: df3c0be0e655f4fc95c86d4a57bda6eef1fb8955
   ".rubocop.yml":
     comments: 
     reviewed_by: timgentry
@@ -158,12 +162,12 @@ file safety:
     safe_revision: cf382902508a21a95b80ac4582fbbd117164e80e
   lib/ndr_import/version.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: b980e1c079c1517ab171e915164d725f57e90708
+    reviewed_by: timgentry
+    safe_revision: a97cbbacf013261b639c2239831102ba6781156c
   ndr_import.gemspec:
     comments: 
     reviewed_by: timgentry
-    safe_revision: 0c5967732100f43e7b60a97a7f0aae60d3641791
+    safe_revision: 23e3b37d3be6995f4c9c24390c80847daa59e838
   test/file/base_test.rb:
     comments: 
     reviewed_by: timgentry
