@@ -1,6 +1,6 @@
 require 'bundler/gem_tasks'
 require 'rake/testtask'
-require 'ndr_support/tasks'
+require 'ndr_dev_support/tasks'
 
 Rake::TestTask.new do |t|
   t.libs << 'lib'

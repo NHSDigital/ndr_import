@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'activesupport', '>= 3.2.18', '< 5.0.0'
-  spec.add_dependency 'ndr_support', '~> 3.3.0'
+  spec.add_dependency 'ndr_support', '~> 4.0'
 
   spec.add_dependency 'rubyzip', '~> 1.1'
   spec.add_dependency 'roo', '~> 2.0'
@@ -36,6 +36,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 1.7'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'minitest'
+  spec.add_development_dependency 'ndr_dev_support', '~> 1.1', '>= 1.1.1'
   spec.add_development_dependency 'guard'
   spec.add_development_dependency 'guard-rubocop'
   spec.add_development_dependency 'guard-test'
