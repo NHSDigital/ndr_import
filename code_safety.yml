@@ -10,12 +10,12 @@ file safety:
     safe_revision: df3c0be0e655f4fc95c86d4a57bda6eef1fb8955
   ".rubocop.yml":
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 0cf75d467319de27ef1ff8395346f2f888843302
+    reviewed_by: josh.pencheon
+    safe_revision: 899c079b3a8aaa60cddebc062f072f8d7074cdc8
   ".travis.yml":
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 0e553a5088e832258526f10976935a917c6eedec
+    safe_revision: c87afff2ef0c63a1b648037e532b94523f84c0ab
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -38,8 +38,8 @@ file safety:
     safe_revision: a628e8fc9a2cf23453e9060e5a850d0b66f9720f
   Rakefile:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 40e2fe79b4b01bc21dc7e44012194cd054be99d4
+    reviewed_by: josh.pencheon
+    safe_revision: a4d925f8c4076fadedbc6a3f5b672dfeca041572
   gemfiles/Gemfile.rails32:
     comments: 
     reviewed_by: timgentry
@@ -162,12 +162,12 @@ file safety:
     safe_revision: cf382902508a21a95b80ac4582fbbd117164e80e
   lib/ndr_import/version.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: a97cbbacf013261b639c2239831102ba6781156c
+    reviewed_by: josh.pencheon
+    safe_revision: 52be242e4b9fcc659c0f6237f3577ba0160f6f56
   ndr_import.gemspec:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 23e3b37d3be6995f4c9c24390c80847daa59e838
+    reviewed_by: josh.pencheon
+    safe_revision: 01704fd0507e6067bf8a555182e7cb03433b98e6
   test/file/base_test.rb:
     comments: 
     reviewed_by: timgentry
