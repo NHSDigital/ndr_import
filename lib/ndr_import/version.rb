@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 # This stores the current version of the NdrImport gem
 module NdrImport
-  VERSION = '3.1.2'.freeze
+  VERSION = '3.1.3'.freeze
 end
