@@ -1,3 +1,5 @@
+require 'ndr_support/safe_file'
+
 module NdrImport
   module File
     # This mixin adds table enumeration functionality to importers.
