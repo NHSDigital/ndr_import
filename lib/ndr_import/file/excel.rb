@@ -63,6 +63,7 @@ module NdrImport
       # Iterate through an xls sheet line by line, yielding each one in turn.
       def xls_rows(sheet)
         return enum_for(:xls_rows, sheet) unless block_given?
+        return unless sheet.first_row # NULL Sheet (TODO: perhaps XLSX only, use xlsx_rows...)
 
         sheet.first_row.upto(sheet.last_row) do |row|
           line = []

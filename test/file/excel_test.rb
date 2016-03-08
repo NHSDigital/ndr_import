@@ -29,6 +29,16 @@ module NdrImport
         end
       end
 
+      test 'should read xlsx file with null sheet' do
+        file_path = @permanent_test_files.join('blank_tab_test.xlsx')
+        handler   = NdrImport::File::Excel.new(file_path, nil)
+
+        handler.tables.each do |_tablename, sheet|
+          assert_instance_of Enumerator, sheet
+          assert sheet.to_a.is_a?(Array)
+        end
+      end
+
       test 'should read xlsx file with the incorrect xls extension' do
         file_path = @permanent_test_files.join('xlsx_file_xls_extension.xls')
         handler = NdrImport::File::Excel.new(file_path, nil)

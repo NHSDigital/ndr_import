@@ -25,6 +25,13 @@ class ExcelTest < ActiveSupport::TestCase
     assert_equal file_content.first, %w(1A 1B)
   end
 
+  test 'should read xlsx file with null sheet' do
+    file    = @permanenttestfiles.join('blank_tab_test.xlsx')
+    content = @importer.send(:read_excel_file, file, 'Sheet3')
+
+    assert content.is_a?(Array)
+  end
+
   test 'read_excel_file helper should read xlsx file with the incorrect xls extension' do
     file_path = @permanenttestfiles.join('xlsx_file_xls_extension.xls')
     file_content = @importer.send(:read_excel_file, file_path)
