@@ -74,16 +74,16 @@ file safety:
     safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
   lib/ndr_import/file/excel.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
+    reviewed_by: joshpencheon
+    safe_revision: 80ce15cc5ca15019400d4cd24c3353191bec00cc
   lib/ndr_import/file/pdf.rb:
     comments: 
     reviewed_by: timgentry
     safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
   lib/ndr_import/file/registry.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
+    reviewed_by: joshpencheon
+    safe_revision: 629a368e6a6a2aac3bec4616edbfc4c38184a923
   lib/ndr_import/file/text.rb:
     comments: 
     reviewed_by: timgentry
@@ -102,8 +102,8 @@ file safety:
     safe_revision: 277e5d8159542b539fe7548fb30b449d9273c8f9
   lib/ndr_import/helpers/file/excel.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 277e5d8159542b539fe7548fb30b449d9273c8f9
+    reviewed_by: joshpencheon
+    safe_revision: 80ce15cc5ca15019400d4cd24c3353191bec00cc
   lib/ndr_import/helpers/file/pdf.rb:
     comments: 
     reviewed_by: timgentry
@@ -162,8 +162,8 @@ file safety:
     safe_revision: cf382902508a21a95b80ac4582fbbd117164e80e
   lib/ndr_import/version.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 7b720b0e7086b763991dbf6753f2c2f33f873236
+    reviewed_by: joshpencheon
+    safe_revision: cb7faae3042024b73337351ef89cdcfeea9d4873
   ndr_import.gemspec:
     comments: 
     reviewed_by: josh.pencheon
@@ -178,8 +178,8 @@ file safety:
     safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
   test/file/excel_test.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
+    reviewed_by: joshpencheon
+    safe_revision: 80ce15cc5ca15019400d4cd24c3353191bec00cc
   test/file/pdf_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -206,8 +206,8 @@ file safety:
     safe_revision: fd2904c1c8166b5284bd6213965401c40f292246
   test/helpers/file/excel_test.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: fd2904c1c8166b5284bd6213965401c40f292246
+    reviewed_by: joshpencheon
+    safe_revision: 80ce15cc5ca15019400d4cd24c3353191bec00cc
   test/helpers/file/pdf_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -244,6 +244,10 @@ file safety:
     comments: 
     reviewed_by: timgentry
     safe_revision: cf382902508a21a95b80ac4582fbbd117164e80e
+  test/resources/blank_tab_test.xlsx:
+    comments: reviewed contents
+    reviewed_by: joshpencheon
+    safe_revision: 80ce15cc5ca15019400d4cd24c3353191bec00cc
   test/resources/bomd.csv:
     comments: 
     reviewed_by: timgentry
