@@ -33,9 +33,28 @@ module NdrImport
         file_path = @permanent_test_files.join('blank_tab_test.xlsx')
         handler   = NdrImport::File::Excel.new(file_path, nil)
 
-        handler.tables.each do |_tablename, sheet|
-          assert_instance_of Enumerator, sheet
-          assert sheet.to_a.is_a?(Array)
+        sheets = handler.tables.map { |_tablename, sheet| sheet }
+
+        assert_equal %w(column_a column_b column_c column_d), sheets[0].next
+        assert_equal %w(11111 ABC123 8888888888 2), sheets[0].next
+        assert_equal %w(column_a column_b column_c column_d), sheets[1].next
+        assert_equal %w(11111 ABC123 8888888888 3), sheets[1].next
+        assert_raises(StopIteration) { sheets[2].next }
+      end
+
+      %w(sheet_streaming.xlsx sheet_streaming.xls).each do |filename|
+        test "should be able to stream from multiple sheets at once from #{filename}" do
+          file_path = @permanent_test_files.join(filename)
+          handler   = NdrImport::File::Excel.new(file_path, nil)
+
+          sheets = handler.tables.map { |_tablename, sheet| sheet }
+
+          assert_equal %w(1A1 1B1), sheets[0].next
+          assert_raises(StopIteration) { sheets[2].next }
+          assert_equal %w(2A1 2B1), sheets[1].next
+          assert_equal %w(2A2 2B2), sheets[1].next
+          assert_equal %w(1A2 1B2), sheets[0].next
+          assert_raises(StopIteration) { sheets[2].next }
         end
       end
 
