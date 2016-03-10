@@ -75,7 +75,7 @@ file safety:
   lib/ndr_import/file/excel.rb:
     comments: 
     reviewed_by: joshpencheon
-    safe_revision: 80ce15cc5ca15019400d4cd24c3353191bec00cc
+    safe_revision: 334d53bb9e8698bba3d92b4dbd71b36faacae629
   lib/ndr_import/file/pdf.rb:
     comments: 
     reviewed_by: timgentry
@@ -179,7 +179,7 @@ file safety:
   test/file/excel_test.rb:
     comments: 
     reviewed_by: joshpencheon
-    safe_revision: 80ce15cc5ca15019400d4cd24c3353191bec00cc
+    safe_revision: 334d53bb9e8698bba3d92b4dbd71b36faacae629
   test/file/pdf_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -340,6 +340,14 @@ file safety:
     comments: 
     reviewed_by: timgentry
     safe_revision: 8c30f89f0562ab120769c166d4e93ff839c055f7
+  test/resources/sheet_streaming.xls:
+    comments: 
+    reviewed_by: joshpencheon
+    safe_revision: 334d53bb9e8698bba3d92b4dbd71b36faacae629
+  test/resources/sheet_streaming.xlsx:
+    comments: 
+    reviewed_by: joshpencheon
+    safe_revision: 334d53bb9e8698bba3d92b4dbd71b36faacae629
   test/resources/standard_mappings.yml:
     comments: 
     reviewed_by: timgentry
