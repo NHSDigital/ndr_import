@@ -14,6 +14,8 @@ rescue LoadError
   # Rails 4+ only
 end
 
+ActiveSupport.test_order = :random if ActiveSupport.respond_to?(:test_order=)
+
 # The default changes to UTC in Rails 4.
 # TODO: ndr_support should cope...
 ActiveRecord::Base.default_timezone = :local
