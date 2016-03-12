@@ -21,11 +21,7 @@ module NdrImport::Mapper
 
     [field_mapping['replace']].flatten.each do |field_replacement|
       field_replacement.each do |pattern, replacement|
-        if original_value.is_a?(Array)
-          original_value.map { |val| val.gsub!(pattern, replacement) }
-        else
-          original_value.gsub!(pattern, replacement)
-        end
+        Array(original_value).each { |val| val.gsub!(pattern, replacement) }
       end
     end
   end
@@ -51,9 +47,10 @@ module NdrImport::Mapper
   # It accepts a block to alter the raw value that is stored in the raw text (if necessary),
   # enabling it to work for different sources
   def mapped_line(line, line_mappings)
-    attributes = {}
-    rawtext = {}
     validate_line_mappings(line_mappings)
+
+    rawtext = {}
+    data    = {}
 
     line.each_with_index do |raw_value, col|
       column_mapping = line_mappings[col]
@@ -67,7 +64,6 @@ module NdrImport::Mapper
       if column_mapping['standard_mapping']
         column_mapping = standard_mapping(column_mapping['standard_mapping'], column_mapping)
       end
-      field_mappings = column_mapping['mappings'] || []
 
       # Establish the rawtext column name we are to use for this column
       rawtext_column_name = (column_mapping['rawtext_name'] || column_mapping['column']).downcase
@@ -85,68 +81,56 @@ module NdrImport::Mapper
       # Store the raw column value
       rawtext[rawtext_column_name] = raw_value
 
-      field_mappings.each do |field_mapping|
+      next unless column_mapping.key?('mappings')
+      column_mapping['mappings'].each do |field_mapping|
         # create a duplicate of the raw value we can manipulate
         original_value = raw_value ? raw_value.dup : nil
 
         replace_before_mapping(original_value, field_mapping)
         value = mapped_value(original_value, field_mapping)
 
+        # We don't care about blank values, unless we're mapping a :join
+        # field (in which case, :compact may or may not be being used).
+        next if value.blank? && !field_mapping['join']
+
         field = field_mapping['field']
 
-        # Assumes join is specified in first joined field
-        joined = field_mapping['join'] ? true : false
+        data[field] ||= {}
+        data[field][:values] ||= [] # "better" values come earlier
+        data[field][:compact]  = true unless data[field].key?(:compact)
 
-        # Currently assuming already validated YAML, s.t. no fields have the
-        # same priorities
-        #
-        # This has become really messy...
-        unless value.blank? && !joined
-          attributes[field] = {} unless attributes[field]
-          attributes[field][:priority] = {} unless attributes[field][:priority]
-          if field_mapping['order']
-            attributes[field][field_mapping['order']] = value
-            attributes[field][:join] = field_mapping['join'] if field_mapping['join']
-            attributes[field][:compact] = field_mapping['compact'] if field_mapping.include?('compact')
-          elsif field_mapping['priority']
-            attributes[field][:priority][field_mapping['priority']] = value
-          else
-            # Check if already a mapped-to field, and assign default low
-            # priority
-            attributes[field][:priority][1] = value
-            attributes[field][:value] = value
-          end
+        if field_mapping['order']
+          data[field][:join] ||= field_mapping['join']
+          data[field][:compact] = field_mapping['compact'] if field_mapping.key?('compact')
+
+          data[field][:values][field_mapping['order'] - 1] = value
+        elsif field_mapping['priority']
+          data[field][:values][field_mapping['priority']] = value
+        else
+          data[field][:values].unshift(value) # new "best" value
         end
       end
     end
+
+    attributes = {}
 
     # tidy up many to one field mappings
     # and one to many, for cross-populating
-    attributes.each do |field, value|
-      if value.include?(:join)
-        join_string = value.delete(:join) || ','
-        value.delete(:value)
-        value.delete(:priority)
-        if value.include?(:compact)
-          compact = value.delete(:compact)
+    data.each do |field, field_data|
+      values = field_data[:values]
+
+      attributes[field] =
+        if field_data.key?(:join)
+          # Map "blank" values to nil:
+          values = values.map { |value| value if value.present? }
+          values.compact! if field_data[:compact]
+          values.join(field_data[:join])
         else
-          compact = true
+          values.detect(&:present?)
         end
-        t = value.sort.map do |_part_order, part_value|
-          part_value.blank? ? nil : part_value
-        end
-        if compact
-          attributes[field] = t.compact.join(join_string)
-        else
-          attributes[field] = t.join(join_string)
-        end
-      else
-        attributes[field][:priority].reject! { |_k, v| v.blank? }
-        attributes[field] = attributes[field][:priority].sort.first[1]
-      end
     end
 
-    attributes[:rawtext] = rawtext
+    attributes[:rawtext] = rawtext # Assign last
     attributes
   end
 
@@ -186,8 +170,9 @@ module NdrImport::Mapper
           fail "Standard mapping \"#{column_mapping['standard_mapping']}\" does not exist"
         end
       end
-      field_mappings = column_mapping['mappings'] || []
-      field_mappings.each do |field_mapping|
+
+      next unless column_mapping.key?('mappings')
+      column_mapping['mappings'].each do |field_mapping|
         field = field_mapping['field']
         if field_mapping['priority']
           fail 'Cannot have duplicate priorities' if priority[field] == field_mapping['priority']
