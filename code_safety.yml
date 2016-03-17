@@ -70,12 +70,12 @@ file safety:
     safe_revision: a8451809db86e0e023b0d93826114a33ff896c4f
   lib/ndr_import/file/delimited.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
+    reviewed_by: joshpencheon
+    safe_revision: 4f7588ef0246bfced14f42b247436507568422a2
   lib/ndr_import/file/excel.rb:
     comments: 
     reviewed_by: joshpencheon
-    safe_revision: 334d53bb9e8698bba3d92b4dbd71b36faacae629
+    safe_revision: e108b1635e41e89e4cba816d47514dcd9d0d6433
   lib/ndr_import/file/pdf.rb:
     comments: 
     reviewed_by: timgentry
@@ -98,8 +98,8 @@ file safety:
     safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
   lib/ndr_import/helpers/file/delimited.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 277e5d8159542b539fe7548fb30b449d9273c8f9
+    reviewed_by: joshpencheon
+    safe_revision: 4f7588ef0246bfced14f42b247436507568422a2
   lib/ndr_import/helpers/file/excel.rb:
     comments: 
     reviewed_by: joshpencheon
@@ -122,8 +122,8 @@ file safety:
     safe_revision: 6c6f204fab2f4232d81cb76aa523c26b0c490ae7
   lib/ndr_import/mapper.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 74ea81bd4c4119912012ff9f3b7c031e592438f9
+    reviewed_by: joshpencheon
+    safe_revision: 582ce42b27ce3813efa7f93e09928e8f228ba6df
   lib/ndr_import/mapping_error.rb:
     comments: 
     reviewed_by: timgentry
@@ -163,7 +163,7 @@ file safety:
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: joshpencheon
-    safe_revision: 749aa9bb66f6e07b52acab1096f6f866034fc676
+    safe_revision: 04a29ed03b6772091d7208403f0acc5032117149
   ndr_import.gemspec:
     comments: 
     reviewed_by: josh.pencheon
@@ -398,5 +398,5 @@ file safety:
     safe_revision: 6bb588c17d33a604c96c648c6eebfe2d063dfbc0
   test/test_helper.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: c244390ab15a9745d4e8c4cbfbaff67d7ef80cb4
+    reviewed_by: joshpencheon
+    safe_revision: 646c08329cba0ba8ea2c37226cf26434da29c747
