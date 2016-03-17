@@ -79,11 +79,4 @@ class ExcelTest < ActiveSupport::TestCase
       assert_equal %w(1A 1B), sheet.first
     end
   end
-
-  def test_deprecated_methods_removed_in_v3
-    refute @importer.protected_methods.include?(:each_excel_table), 'should be removed in v4.0.0'
-    refute @importer.private_methods.include?(:each_excel_row), 'should be removed in v4.0.0'
-    refute @importer.private_methods.include?(:each_xls_row), 'should be removed in v4.0.0'
-    refute @importer.private_methods.include?(:each_xlsx_row), 'should be removed in v4.0.0'
-  end if Gem::Requirement.new('>= 4.0.0').satisfied_by?(Gem::Version.new(NdrImport::VERSION))
 end

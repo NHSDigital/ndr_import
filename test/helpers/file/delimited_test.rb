@@ -87,9 +87,4 @@ class DelimitedTest < ActiveSupport::TestCase
       assert_equal ['2'] * 26, sheet[2]
     end
   end
-
-  def test_deprecated_methods_removed_in_v3
-    refute @importer.public_methods.include?(:each_delimited_table), 'should be removed in v4.0.0'
-    refute @importer.public_methods.include?(:each_delimited_row), 'should be removed in v4.0.0'
-  end if Gem::Requirement.new('>= 4.0.0').satisfied_by?(Gem::Version.new(NdrImport::VERSION))
 end
