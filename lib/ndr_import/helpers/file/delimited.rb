@@ -27,13 +27,6 @@ module NdrImport
           yield nil, delimited_rows(path, col_sep)
         end
 
-        # Deprecated method
-        def each_delimited_table(path, col_sep = nil, &block)
-          Kernel.warn '[warning] each_delimited_table will be deprecated,' \
-                      ' please use delimited_tables instead.'
-          delimited_tables(path, col_sep, &block)
-        end
-
         # Iterate through the file line by line, yielding each one in turn.
         def delimited_rows(path, col_sep = nil)
           return enum_for(:delimited_rows, path, col_sep) unless block_given?
@@ -46,13 +39,6 @@ module NdrImport
           CSVLibrary.foreach(safe_path, encodings) do |line|
             yield line.map(&:to_s)
           end
-        end
-
-        # Deprecated method
-        def each_delimited_row(path, col_sep = nil, &block)
-          Kernel.warn '[warning] each_delimited_row will be deprecated,' \
-                      ' please use delimited_rows instead.'
-          delimited_rows(path, col_sep, &block)
         end
 
         private
