@@ -99,11 +99,11 @@ file safety:
   lib/ndr_import/helpers/file/delimited.rb:
     comments: 
     reviewed_by: joshpencheon
-    safe_revision: 4f7588ef0246bfced14f42b247436507568422a2
+    safe_revision: 06fd16643d02957ce856728e4911143c8e0178dc
   lib/ndr_import/helpers/file/excel.rb:
     comments: 
     reviewed_by: joshpencheon
-    safe_revision: 80ce15cc5ca15019400d4cd24c3353191bec00cc
+    safe_revision: 06fd16643d02957ce856728e4911143c8e0178dc
   lib/ndr_import/helpers/file/pdf.rb:
     comments: 
     reviewed_by: timgentry
@@ -202,12 +202,12 @@ file safety:
     safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
   test/helpers/file/delimited_test.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: fd2904c1c8166b5284bd6213965401c40f292246
+    reviewed_by: joshpencheon
+    safe_revision: 377c060bd1e012d6e162a4ab8923a3609aacdf57
   test/helpers/file/excel_test.rb:
     comments: 
     reviewed_by: joshpencheon
-    safe_revision: 80ce15cc5ca15019400d4cd24c3353191bec00cc
+    safe_revision: 377c060bd1e012d6e162a4ab8923a3609aacdf57
   test/helpers/file/pdf_test.rb:
     comments: 
     reviewed_by: timgentry
