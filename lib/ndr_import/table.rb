@@ -46,6 +46,7 @@ module NdrImport
 
       @row_index = 0
       @header_valid = false
+      @header_best_guess = nil
       @notifier.try(:started)
 
       skip_footer_lines(lines, footer_lines).each do |line|
@@ -63,7 +64,7 @@ module NdrImport
       if @row_index < header_lines
         validate_header(line, @columns)
       else
-        fail 'Header is not valid' if header_lines > 0 && !header_valid?
+        fail_unless_header_complete(@columns)
         transform_line(line, @row_index, &block)
       end
 
@@ -165,10 +166,37 @@ module NdrImport
     # if there is a header, then check the column headings are as expected in the correct order
     def validate_header(line, column_mappings)
       columns = column_names(column_mappings)
-      fail 'Number of columns does not match' if line.length != columns.length
 
-      return unless line.map(&:downcase) == columns
-      @header_valid = true
+      unless line.length == columns.length
+        fail "Number of columns does not match; expected #{columns.length}, got #{line.length}!"
+      end
+
+      header_guess = line.map(&:downcase)
+
+      @header_best_guess = header_guess if header_guess.any?(&:present?)
+      @header_valid      = true         if header_guess == columns
+    end
+
+    def fail_unless_header_complete(column_mappings)
+      return unless header_lines > 0 && !header_valid?
+
+      expected_names = column_names(column_mappings)
+      received_names = @header_best_guess || []
+
+      unexpected = received_names - expected_names
+      missing    = expected_names - received_names
+
+      fail header_message_for(missing, unexpected)
+    end
+
+    def header_message_for(missing, unexpected)
+      message = ['Header is not valid!']
+
+      message << "missing: #{missing.inspect}"       if missing.any?
+      message << "unexpected: #{unexpected.inspect}" if unexpected.any?
+      message << '(out of order)' if missing.none? && unexpected.none?
+
+      message.join(' ')
     end
 
     # returns the column names as we expect to receive them
