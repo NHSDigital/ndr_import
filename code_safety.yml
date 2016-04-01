@@ -10,8 +10,8 @@ file safety:
     safe_revision: df3c0be0e655f4fc95c86d4a57bda6eef1fb8955
   ".rubocop.yml":
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 899c079b3a8aaa60cddebc062f072f8d7074cdc8
+    reviewed_by: joshpencheon
+    safe_revision: ac40ad6e6a9d79d139ba063681f3fe6093c73b14
   ".travis.yml":
     comments: 
     reviewed_by: josh.pencheon
@@ -158,12 +158,12 @@ file safety:
     safe_revision: 3c7f827d17aacbf7b811eea67e27553f3b039070
   lib/ndr_import/table.rb:
     comments: uses File.basename
-    reviewed_by: timgentry
-    safe_revision: cf382902508a21a95b80ac4582fbbd117164e80e
+    reviewed_by: joshpencheon
+    safe_revision: e70ece909c44b26208eaff3cf27ada7145e03f11
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: joshpencheon
-    safe_revision: 04a29ed03b6772091d7208403f0acc5032117149
+    safe_revision: 00e02b83f5ae640becdb98d378eddfb67f8ae5c5
   ndr_import.gemspec:
     comments: 
     reviewed_by: josh.pencheon
@@ -394,8 +394,8 @@ file safety:
     safe_revision: 3c7f827d17aacbf7b811eea67e27553f3b039070
   test/table_test.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 6bb588c17d33a604c96c648c6eebfe2d063dfbc0
+    reviewed_by: joshpencheon
+    safe_revision: e70ece909c44b26208eaff3cf27ada7145e03f11
   test/test_helper.rb:
     comments: 
     reviewed_by: joshpencheon
