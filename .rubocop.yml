@@ -11,6 +11,10 @@ HashSyntax:
     - ruby19
     - hash_rockets
 
+# Override HoundCI's preference for double quotes:
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
 # Would enforce "-> { }", which we cannot use yet.
 Lambda:
   Enabled: false
