@@ -243,6 +243,66 @@ class TableTest < ActiveSupport::TestCase
     assert_equal expected_output, output
   end
 
+  def test_invalid_header_length
+    lines = [
+      %w(NOTHEADING1 NOTHEADING2 UHOH3 UHOH4),
+      %w(ONE TWO),
+      %w(DEFINITELYNOTHEADING1 DEFINITELYNOTHEADING2)
+    ].each
+
+    table = NdrImport::Table.new(:header_lines => 3, :footer_lines => 0,
+                                 :klass => 'SomeTestKlass',
+                                 :columns => [{ 'column' => 'one' }, { 'column' => 'two' }])
+
+    exception = assert_raises(RuntimeError) { table.transform(lines).to_a }
+    assert_match(/expected 2, got 4/, exception.message)
+  end
+
+  def test_jumbled_header
+    lines = [
+      %w(NOTHEADING1 NOTHEADING2 NOTHEADING3),
+      %w(ONE THREE TWO),
+      %w(DATA ROW HERE)
+    ].each
+
+    table = NdrImport::Table.new(
+      :header_lines => 2,
+      :footer_lines => 0,
+      :klass => 'SomeTestKlass',
+      :columns => [
+        { 'column' => 'one' },
+        { 'column' => 'two' },
+        { 'column' => 'three' }
+      ]
+    )
+
+    exception = assert_raises(RuntimeError) { table.transform(lines).to_a }
+    assert_equal('Header is not valid! (out of order)', exception.message)
+  end
+
+  def test_wrong_header_names
+    lines = [
+      %w(NOTHEADING1 NOTHEADING2 NOTHEADING3),
+      %w(FUN TWO TREE),
+      %w(DATA ROW HERE)
+    ].each
+
+    table = NdrImport::Table.new(
+      :header_lines => 2,
+      :footer_lines => 0,
+      :klass => 'SomeTestKlass',
+      :columns => [
+        { 'column' => 'one' },
+        { 'column' => 'two' },
+        { 'column' => 'three' }
+      ]
+    )
+
+    exception = assert_raises(RuntimeError) { table.transform(lines).to_a }
+    assert_equal('Header is not valid! missing: ' \
+                 '["one", "three"] unexpected: ["fun", "tree"]', exception.message)
+  end
+
   private
 
   def simple_deserialized_table
