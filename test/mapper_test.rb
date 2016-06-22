@@ -19,7 +19,7 @@ class MapperTest < ActiveSupport::TestCase
   format_mapping_yyyymmdd = { 'format' => 'yyyymmdd' }
   clean_name_mapping = { 'clean' => :name }
   clean_ethniccategory_mapping = { 'clean' => :ethniccategory }
-  clean_icd_mapping = { 'clean' => :code_icd }
+  clean_icd_mapping = { 'clean' => :icd }
   clean_opcs_mapping = { 'clean' => :code_opcs }
   map_mapping = { 'map' => { 'A' => '1' } }
   replace_mapping = { 'replace' => { '.0' => '' } }
@@ -325,7 +325,7 @@ class MapperTest < ActiveSupport::TestCase
   end
 
   test 'map should clean icd code' do
-    assert_equal 'C34.3 R93.2 Z51.5',
+    assert_equal 'C343 R932 Z515',
                  TestMapper.new.mapped_value('C34.3,R93.2,Z51.5', clean_icd_mapping)
   end
 
