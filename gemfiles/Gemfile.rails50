@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gemspec path: '..'
 
-gem 'activesupport', '5.0.0rc1'
+gem 'activesupport', '5.0.0rc2'
 
 gem 'ndr_support', git: 'https://github.com/PublicHealthEngland/ndr_support.git', branch: 'rails5'
-gem 'activerecord', '5.0.0rc1' # TODO: this is temporary, to prevent resolve issues
+gem 'activerecord', '5.0.0rc2' # TODO: this is temporary, to prevent resolve issues
