@@ -15,7 +15,7 @@ file safety:
   ".travis.yml":
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: c87afff2ef0c63a1b648037e532b94523f84c0ab
+    safe_revision: f9de73c5988557e29ea73c279f2fdae19ffa8bb4
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -39,7 +39,7 @@ file safety:
   Rakefile:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: a4d925f8c4076fadedbc6a3f5b672dfeca041572
+    safe_revision: 5a7f26cecaabab20f4e666776f9166dcc3fa6bfe
   gemfiles/Gemfile.rails32:
     comments: 
     reviewed_by: timgentry
@@ -52,6 +52,10 @@ file safety:
     comments: 
     reviewed_by: timgentry
     safe_revision: 0c5967732100f43e7b60a97a7f0aae60d3641791
+  gemfiles/Gemfile.rails50:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 738577adf8eeacc7a000d08289bd7ae7bf3b5849
   lib/ndr_import.rb:
     comments: 
     reviewed_by: timgentry
@@ -160,6 +164,10 @@ file safety:
     comments: uses File.basename
     reviewed_by: joshpencheon
     safe_revision: e70ece909c44b26208eaff3cf27ada7145e03f11
+  lib/ndr_import/universal_importer_helper.rb:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 36143ff4f48e0433a7b04b63143ef6d6d2481fec
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: joshpencheon
@@ -167,7 +175,7 @@ file safety:
   ndr_import.gemspec:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 52e4bf7ab1f897a5184a291f64d0926f44272a6a
+    safe_revision: 0a8fccbac2a264adcdae7e46df54da25dc9cfdcd
   test/file/base_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -227,7 +235,7 @@ file safety:
   test/mapper_test.rb:
     comments: exposes Mapper internals to test them
     reviewed_by: josh.pencheon
-    safe_revision: e1cc1153509ac371438aa68708a6c316dbf09eee
+    safe_revision: f707f42686cabe21d80e2547e9a24fe094b6c7d1
   test/non_tabular/mapping_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -400,3 +408,7 @@ file safety:
     comments: 
     reviewed_by: joshpencheon
     safe_revision: 646c08329cba0ba8ea2c37226cf26434da29c747
+  test/universal_importer_helper_test.rb:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 36143ff4f48e0433a7b04b63143ef6d6d2481fec
