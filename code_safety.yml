@@ -170,8 +170,8 @@ file safety:
     safe_revision: 36143ff4f48e0433a7b04b63143ef6d6d2481fec
   lib/ndr_import/version.rb:
     comments: another check?
-    reviewed_by: joshpencheon
-    safe_revision: 00e02b83f5ae640becdb98d378eddfb67f8ae5c5
+    reviewed_by: josh.pencheon
+    safe_revision: 42f08fa7fdb0ff325b0f830af66d1829efa9b273
   ndr_import.gemspec:
     comments: 
     reviewed_by: josh.pencheon
