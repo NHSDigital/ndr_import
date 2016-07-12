@@ -3,4 +3,3 @@ source 'https://rubygems.org'
 gemspec path: '..'
 
 gem 'activesupport', '~> 5.0.0'
-gem 'ndr_support', git: 'https://github.com/PublicHealthEngland/ndr_support.git', branch: 'rails5'
