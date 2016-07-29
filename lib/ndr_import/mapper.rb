@@ -17,12 +17,22 @@ module NdrImport::Mapper
 
   # the replace option can be used before any other mapping option
   def replace_before_mapping(original_value, field_mapping)
-    return unless field_mapping.include?('replace') && original_value
+    return unless original_value && field_mapping.include?('replace')
 
-    [field_mapping['replace']].flatten.each do |field_replacement|
-      field_replacement.each do |pattern, replacement|
-        Array(original_value).each { |val| val.gsub!(pattern, replacement) }
-      end
+    replaces = field_mapping['replace']
+
+    if replaces.is_a?(Array)
+      replaces.each { |repls| apply_replaces(original_value, repls) }
+    else
+      apply_replaces(original_value, replaces)
+    end
+  end
+
+  def apply_replaces(value, replaces)
+    if value.is_a?(Array)
+      value.each { |val| apply_replaces(val, replaces) }
+    else
+      replaces.each { |pattern, replacement| value.gsub!(pattern, replacement) }
     end
   end
 
