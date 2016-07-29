@@ -34,8 +34,8 @@ file safety:
     safe_revision: 5d185a0aeba6a9cd2ff5e59efadcaeec9be45d8b
   README.md:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: a628e8fc9a2cf23453e9060e5a850d0b66f9720f
+    reviewed_by: josh.pencheon
+    safe_revision: 290022d7fc1334c79a4558deeac7da7e5027efe4
   Rakefile:
     comments: 
     reviewed_by: josh.pencheon
@@ -162,8 +162,8 @@ file safety:
     safe_revision: 3c7f827d17aacbf7b811eea67e27553f3b039070
   lib/ndr_import/table.rb:
     comments: uses File.basename
-    reviewed_by: joshpencheon
-    safe_revision: e70ece909c44b26208eaff3cf27ada7145e03f11
+    reviewed_by: josh.pencheon
+    safe_revision: 356e59fda23aed9b314863dbd4bbbadfada6b93a
   lib/ndr_import/universal_importer_helper.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -171,7 +171,7 @@ file safety:
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: josh.pencheon
-    safe_revision: 42f08fa7fdb0ff325b0f830af66d1829efa9b273
+    safe_revision: db6baab3610d561026a405c4a6bef683dbba3ca0
   ndr_import.gemspec:
     comments: 
     reviewed_by: josh.pencheon
