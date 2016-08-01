@@ -138,6 +138,23 @@ module NdrImport
               'Original: Missing or stray quote in line 2'
         assert_equal msg, exception.message
       end
+
+      test 'should only determine encodings once' do
+        file_path = @permanent_test_files.join('normal.csv')
+        handler = NdrImport::File::Delimited.new(file_path, 'csv', 'col_sep' => nil)
+
+        handler.expects(determine_encodings!: { encoding: 'bom|utf-8', col_sep: ',' }).once
+
+        2.times do
+          handler.tables.each do |tablename, sheet|
+            assert_nil tablename
+            sheet = sheet.to_a
+            assert_equal(('A'..'Z').to_a, sheet[0])
+            assert_equal ['1'] * 26, sheet[1]
+            assert_equal ['2'] * 26, sheet[2]
+          end
+        end
+      end
     end
   end
 end

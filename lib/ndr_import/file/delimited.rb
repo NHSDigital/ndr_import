@@ -27,13 +27,18 @@ module NdrImport
         return enum_for(:rows) unless block_given?
 
         safe_path = SafeFile.safepath_to_string(@filename)
-        encodings = determine_encodings!(safe_path)
 
         # By now, we know `encodings` should let us read the whole
         # file succesfully; if there are problems, we should crash.
-        CSVLibrary.foreach(safe_path, encodings) do |line|
+        CSVLibrary.foreach(safe_path, encodings(safe_path)) do |line|
           yield line.map(&:to_s)
         end
+      end
+
+      # Cache the determined encodings, so rewinding the enumerator doesn't
+      # have to redo this, but equally it is still done lazily:
+      def encodings(safe_path)
+        @encodings ||= determine_encodings!(safe_path)
       end
 
       # Derive the source encoding by trying all supported encodings.
