@@ -36,6 +36,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 1.7'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'minitest'
+  spec.add_development_dependency 'mocha'
   spec.add_development_dependency 'ndr_dev_support', '~> 1.1', '>= 1.1.3'
   spec.add_development_dependency 'guard'
   spec.add_development_dependency 'guard-rubocop'
