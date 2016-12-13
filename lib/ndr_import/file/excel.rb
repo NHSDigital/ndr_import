@@ -65,7 +65,11 @@ module NdrImport
         return enum_for(:xls_rows, workbook, sheet_name) unless block_given?
 
         return unless workbook.first_row(sheet_name)
-        rows    = workbook.first_row(sheet_name)..workbook.last_row(sheet_name)
+
+        # The `roo' gem deliberately skips blank lines before numbering the first
+        # non-blank line as 1, although this is undocumented.
+        # Since every spreadsheet has a first line numbered 1, use this as a hard-coded default.
+        rows    = 1..workbook.last_row(sheet_name)
         columns = workbook.first_column(sheet_name)..workbook.last_column(sheet_name)
 
         rows.each do |row|

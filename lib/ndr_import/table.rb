@@ -57,7 +57,7 @@ module NdrImport
     end
 
     # This method process a line of data, If it is a header line it validates it, otherwise
-    # transforms it. It also increments and row index and notifies the amount of lines processed.
+    # transforms it. It also increments the row index and notifies the amount of lines processed.
     def process_line(line, &block)
       return enum_for(:process_line, line) unless block
 
@@ -167,14 +167,15 @@ module NdrImport
     def validate_header(line, column_mappings)
       columns = column_names(column_mappings)
 
-      unless line.length == columns.length
-        fail "Number of columns does not match; expected #{columns.length}, got #{line.length}!"
+      if line.length == columns.length
+        # don't try to match lines in a header with an incorrect number of columns
+
+        # convert potential column names to lower-case, leaving nil as nil
+        header_guess = line.map {|c| c && c.downcase}
+  
+        @header_best_guess = header_guess if header_guess.any?(&:present?)
+        @header_valid      = true         if header_guess == columns
       end
-
-      header_guess = line.map(&:downcase)
-
-      @header_best_guess = header_guess if header_guess.any?(&:present?)
-      @header_valid      = true         if header_guess == columns
     end
 
     def fail_unless_header_complete(column_mappings)
