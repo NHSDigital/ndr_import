@@ -171,8 +171,8 @@ module NdrImport
         # don't try to match lines in a header with an incorrect number of columns
 
         # convert potential column names to lower-case, leaving nil as nil
-        header_guess = line.map {|c| c && c.downcase}
-  
+        header_guess = line.map { |c| c && c.downcase }
+
         @header_best_guess = header_guess if header_guess.any?(&:present?)
         @header_valid      = true         if header_guess == columns
       end
