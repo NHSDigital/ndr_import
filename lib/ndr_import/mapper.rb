@@ -156,7 +156,7 @@ module NdrImport::Mapper
     elsif field_mapping.include?('clean')
       return original_value.blank? ? nil : original_value.clean(field_mapping['clean'])
     elsif field_mapping.include?('map')
-      return field_mapping['map'] ? field_mapping['map'][original_value] : nil
+      return field_mapping['map'].fetch(original_value, original_value)
     elsif field_mapping.include?('match')
       # WARNING:TVB Thu Aug  9 17:09:25 BST 2012 field_mapping['match'] regexp
       # may need to be escaped

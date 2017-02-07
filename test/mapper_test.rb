@@ -102,6 +102,21 @@ class MapperTest < ActiveSupport::TestCase
         priority: 1
   YML
 
+  cross_populate_map_reverse_priority_mapping = YAML.load <<-YML
+    - column: referringclinicianname
+      mappings:
+      - field: consultantname
+      - field: consultantcode
+        priority: 1
+        map:
+          "Bob Fossil": "C5678"
+          "Bolo": ""
+    - column: referringcliniciancode
+      mappings:
+      - field: consultantcode
+        priority: 2
+  YML
+
   cross_populate_order_mapping = YAML.load <<-YML
     - column: referringclinicianname
       mappings:
@@ -282,7 +297,7 @@ class MapperTest < ActiveSupport::TestCase
   end
 
   test 'map should return nil' do
-    assert_nil TestMapper.new.mapped_value('B', map_mapping)
+    assert_equal 'B', TestMapper.new.mapped_value('B', map_mapping)
   end
 
   test 'map should return correct date format' do
@@ -453,13 +468,52 @@ class MapperTest < ActiveSupport::TestCase
     assert_equal 'C5678', line_hash['consultantcode']
   end
 
+  test 'should create valid hash with used cross populate with map with no p2 map' do
+    line_hash = TestMapper.new.mapped_line(['something', ''], cross_populate_map_mapping)
+    assert_equal 'something', line_hash[:rawtext]['referringclinicianname']
+    assert_equal '', line_hash[:rawtext]['referringcliniciancode']
+
+    assert_equal 'something', line_hash['consultantname']
+    assert_equal 'something', line_hash['consultantcode']
+  end
+
+  test 'should create valid hash with used cross populate with map with p1 mapped' do
+    line_hash = TestMapper.new.mapped_line(['Bob Fossil', 'P2'],
+                                           cross_populate_map_reverse_priority_mapping)
+    assert_equal 'Bob Fossil', line_hash[:rawtext]['referringclinicianname']
+    assert_equal 'P2', line_hash[:rawtext]['referringcliniciancode']
+
+    assert_equal 'Bob Fossil', line_hash['consultantname']
+    assert_equal 'C5678', line_hash['consultantcode']
+  end
+
+  test 'should create valid hash with used cross populate with map with p1 mapped out' do
+    line_hash = TestMapper.new.mapped_line(['Bolo', 'P2'],
+                                           cross_populate_map_reverse_priority_mapping)
+    assert_equal 'Bolo', line_hash[:rawtext]['referringclinicianname']
+    assert_equal 'P2', line_hash[:rawtext]['referringcliniciancode']
+
+    assert_equal 'Bolo', line_hash['consultantname']
+    assert_equal 'P2', line_hash['consultantcode']
+  end
+
+  test 'should create valid hash with used cross populate with map with p1 no map' do
+    line_hash = TestMapper.new.mapped_line(['something', 'P2'],
+                                           cross_populate_map_reverse_priority_mapping)
+    assert_equal 'something', line_hash[:rawtext]['referringclinicianname']
+    assert_equal 'P2', line_hash[:rawtext]['referringcliniciancode']
+
+    assert_equal 'something', line_hash['consultantname']
+    assert_equal 'something', line_hash['consultantcode']
+  end
+
   test 'should create valid hash with used cross populate without map' do
     line_hash = TestMapper.new.mapped_line(['Bob Smith', ''], cross_populate_map_mapping)
     assert_equal 'Bob Smith', line_hash[:rawtext]['referringclinicianname']
     assert_equal '', line_hash[:rawtext]['referringcliniciancode']
 
     assert_equal 'Bob Smith', line_hash['consultantname']
-    assert_nil line_hash['consultantcode']
+    assert_equal 'Bob Smith', line_hash['consultantcode']
   end
 
   test 'should create valid hash with used cross populate without map and priorities' do
