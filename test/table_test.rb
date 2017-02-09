@@ -254,7 +254,7 @@ class TableTest < ActiveSupport::TestCase
     assert_equal expected_output, output
   end
 
-  def test_varying_header_length_with_valid_header_row
+  def test_varying_header_line_lengths_with_valid_header_row
     lines = [
       %w(NOTHEADING1 NOTHEADING2 UHOH3 UHOH4),
       %w(ONE TWO),
@@ -277,7 +277,7 @@ class TableTest < ActiveSupport::TestCase
     assert_equal expected_output, output
   end
 
-  def test_varying_header_length_with_invalid_header_row
+  def test_varying_header_line_lengths_without_valid_header_row
     lines = [
       %w(NOTHEADING1 NOTHEADING2 UHOH3 UHOH4),
       %w(ONE TWO NOPE),
