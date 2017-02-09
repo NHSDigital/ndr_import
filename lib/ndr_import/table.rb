@@ -57,7 +57,7 @@ module NdrImport
     end
 
     # This method process a line of data, If it is a header line it validates it, otherwise
-    # transforms it. It also increments and row index and notifies the amount of lines processed.
+    # transforms it. It also increments the row index and notifies the amount of lines processed.
     def process_line(line, &block)
       return enum_for(:process_line, line) unless block
 
