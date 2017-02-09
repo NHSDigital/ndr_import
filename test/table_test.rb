@@ -100,11 +100,22 @@ class TableTest < ActiveSupport::TestCase
                                  :columns => [{ 'column' => 'one' }, { 'column' => 'two' }])
 
     output = []
-    table.process_line(%w(CARROT POTATO)).each do |klass, fields, index|
-      output << [klass, fields, index]
-    end
+    table.process_line(%w(ONE TWO)).each { |*stuff| output << stuff }
+    table.process_line(%w(CARROT POTATO)).each { |*stuff| output << stuff }
 
-    assert_equal [], output
+    expected_output = [
+      ['SomeTestKlass', { :rawtext => { 'one' => 'CARROT', 'two' => 'POTATO' } }, 1]
+    ]
+    assert_equal expected_output, output
+  end
+
+  def test_process_line_with_unsatisifed_header
+    table = NdrImport::Table.new(:header_lines => 1, :footer_lines => 0,
+                                 :klass => 'SomeTestKlass',
+                                 :columns => [{ 'column' => 'one' }, { 'column' => 'two' }])
+
+    exception = assert_raises(RuntimeError) { table.process_line(%w(ONE THREE)).to_a }
+    assert_equal 'Header is not valid! missing: ["two"] unexpected: ["three"]', exception.message
   end
 
   def test_transform_line
@@ -243,11 +254,35 @@ class TableTest < ActiveSupport::TestCase
     assert_equal expected_output, output
   end
 
-  def test_invalid_header_length
+  def test_varying_header_length_with_valid_header_row
     lines = [
       %w(NOTHEADING1 NOTHEADING2 UHOH3 UHOH4),
       %w(ONE TWO),
-      %w(DEFINITELYNOTHEADING1 DEFINITELYNOTHEADING2)
+      %w(DEFINITELYNOTHEADING1 DEFINITELYNOTHEADING2),
+      %w(UNO DOS)
+    ].each
+
+    table = NdrImport::Table.new(:header_lines => 3, :footer_lines => 0,
+                                 :klass => 'SomeTestKlass',
+                                 :columns => [{ 'column' => 'one' }, { 'column' => 'two' }])
+
+    output = []
+    table.transform(lines).each do |klass, fields, index|
+      output << [klass, fields, index]
+    end
+
+    assert table.header_valid?
+
+    expected_output = [['SomeTestKlass', { :rawtext => { 'one' => 'UNO', 'two' => 'DOS' } }, 3]]
+    assert_equal expected_output, output
+  end
+
+  def test_varying_header_length_with_invalid_header_row
+    lines = [
+      %w(NOTHEADING1 NOTHEADING2 UHOH3 UHOH4),
+      %w(ONE TWO NOPE),
+      %w(NOT_HERE OR_HERE),
+      %w(UNO DOS)
     ].each
 
     table = NdrImport::Table.new(:header_lines => 3, :footer_lines => 0,
@@ -255,7 +290,10 @@ class TableTest < ActiveSupport::TestCase
                                  :columns => [{ 'column' => 'one' }, { 'column' => 'two' }])
 
     exception = assert_raises(RuntimeError) { table.transform(lines).to_a }
-    assert_match(/expected 2, got 4/, exception.message)
+
+    assert_match(/Header is not valid!/, exception.message)
+    assert_match(/missing: \["one", "two"\]/, exception.message)
+    assert_match(/unexpected: \["not_here", "or_here"\]/, exception.message)
   end
 
   def test_jumbled_header
