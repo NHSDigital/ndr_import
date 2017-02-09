@@ -166,7 +166,8 @@ module NdrImport
       fail ArgumentError, "Unrecognised options: #{unrecognised_options.inspect}"
     end
 
-    # if there is a header, then check the column headings are as expected in the correct order
+    # Process `line` as a candidate header row. Header validation is done
+    # lazily, once all expected header lines have been consumed.
     def consume_header_line(line, column_mappings)
       columns = column_names(column_mappings)
 
@@ -176,6 +177,8 @@ module NdrImport
       @header_valid      = true         if header_guess == columns
     end
 
+    # Once all header lines have been consumed, blow up in a
+    # helpful fashion if no valid row was found:
     def fail_unless_header_complete(column_mappings)
       return unless header_lines > 0 && !header_valid?
 
