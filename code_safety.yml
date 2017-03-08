@@ -126,8 +126,8 @@ file safety:
     safe_revision: 6c6f204fab2f4232d81cb76aa523c26b0c490ae7
   lib/ndr_import/mapper.rb:
     comments: 
-    reviewed_by: joshpencheon
-    safe_revision: 582ce42b27ce3813efa7f93e09928e8f228ba6df
+    reviewed_by: josh.pencheon
+    safe_revision: 7a38b590806c97bd4cbcd80fba4c72d980f14f4f
   lib/ndr_import/mapping_error.rb:
     comments: 
     reviewed_by: timgentry
@@ -175,7 +175,7 @@ file safety:
   ndr_import.gemspec:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 9ce125b717abc3cc9b8f360ccf1651eef14212d4
+    safe_revision: 85585cddf403337163bf7e5e848d68a4e7ddf75c
   test/file/base_test.rb:
     comments: 
     reviewed_by: timgentry
