@@ -74,8 +74,8 @@ file safety:
     safe_revision: a8451809db86e0e023b0d93826114a33ff896c4f
   lib/ndr_import/file/delimited.rb:
     comments: 
-    reviewed_by: joshpencheon
-    safe_revision: 4f7588ef0246bfced14f42b247436507568422a2
+    reviewed_by: josh.pencheon
+    safe_revision: 62702f103dd41c188684cfda73a94401b130cd01
   lib/ndr_import/file/excel.rb:
     comments: 
     reviewed_by: joshpencheon
@@ -163,7 +163,7 @@ file safety:
   lib/ndr_import/table.rb:
     comments: uses File.basename
     reviewed_by: josh.pencheon
-    safe_revision: 356e59fda23aed9b314863dbd4bbbadfada6b93a
+    safe_revision: eb73897a29cfa30000d9873e602253bc97b8c8d8
   lib/ndr_import/universal_importer_helper.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -175,15 +175,15 @@ file safety:
   ndr_import.gemspec:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 0a8fccbac2a264adcdae7e46df54da25dc9cfdcd
+    safe_revision: 53cc0af4321b64746367231b65821fda0f8d8a0a
   test/file/base_test.rb:
     comments: 
     reviewed_by: timgentry
     safe_revision: a8451809db86e0e023b0d93826114a33ff896c4f
   test/file/delimited_test.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
+    reviewed_by: josh.pencheon
+    safe_revision: 62702f103dd41c188684cfda73a94401b130cd01
   test/file/excel_test.rb:
     comments: 
     reviewed_by: joshpencheon
@@ -235,7 +235,7 @@ file safety:
   test/mapper_test.rb:
     comments: exposes Mapper internals to test them
     reviewed_by: josh.pencheon
-    safe_revision: f707f42686cabe21d80e2547e9a24fe094b6c7d1
+    safe_revision: 7a38b590806c97bd4cbcd80fba4c72d980f14f4f
   test/non_tabular/mapping_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -406,8 +406,8 @@ file safety:
     safe_revision: e70ece909c44b26208eaff3cf27ada7145e03f11
   test/test_helper.rb:
     comments: 
-    reviewed_by: joshpencheon
-    safe_revision: 646c08329cba0ba8ea2c37226cf26434da29c747
+    reviewed_by: josh.pencheon
+    safe_revision: 53cc0af4321b64746367231b65821fda0f8d8a0a
   test/universal_importer_helper_test.rb:
     comments: 
     reviewed_by: josh.pencheon
