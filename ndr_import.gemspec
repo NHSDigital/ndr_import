@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'activesupport', '>= 3.2.18', '< 5.1'
   spec.add_dependency 'ndr_support', '>= 4.1.2', '< 6'
 
-  spec.add_dependency 'rubyzip', '~> 1.1'
+  spec.add_dependency 'rubyzip', '~> 1.2', '>= 1.2.1'
   spec.add_dependency 'roo', '~> 2.0'
 
   spec.add_dependency 'nokogiri', '~> 1.6'

@@ -175,7 +175,7 @@ file safety:
   ndr_import.gemspec:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 53cc0af4321b64746367231b65821fda0f8d8a0a
+    safe_revision: 9ce125b717abc3cc9b8f360ccf1651eef14212d4
   test/file/base_test.rb:
     comments: 
     reviewed_by: timgentry
