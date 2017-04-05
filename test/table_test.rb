@@ -243,19 +243,34 @@ class TableTest < ActiveSupport::TestCase
     assert_equal expected_output, output
   end
 
-  def test_invalid_header_length
+  def test_skip_invalid_header_length
+    # This test is designed to show that header lines
+    # with a different column count to the mapping are ignored,
+    # since they clearly won't match the mapping.
+
     lines = [
-      %w(NOTHEADING1 NOTHEADING2 UHOH3 UHOH4),
+      %w(NOTHEADING1 NOTHEADING2 NOTHEADING3 NOTHEADING4),
       %w(ONE TWO),
-      %w(DEFINITELYNOTHEADING1 DEFINITELYNOTHEADING2)
+      %w(DEFINITELYNOTHEADING1 DEFINITELYNOTHEADING2 DEFINITELYNOTHEADING3),
+      %w(CARROT POTATO),
+      %w(BACON SAUSAGE)
     ].each
 
     table = NdrImport::Table.new(:header_lines => 3, :footer_lines => 0,
                                  :klass => 'SomeTestKlass',
                                  :columns => [{ 'column' => 'one' }, { 'column' => 'two' }])
 
-    exception = assert_raises(RuntimeError) { table.transform(lines).to_a }
-    assert_match(/expected 2, got 4/, exception.message)
+    output = []
+    table.transform(lines).each do |klass, fields, index|
+      output << [klass, fields, index]
+    end
+
+    expected_output = [
+      ['SomeTestKlass', { :rawtext => { 'one' => 'CARROT', 'two' => 'POTATO' } }, 3],
+      ['SomeTestKlass', { :rawtext => { 'one' => 'BACON', 'two' => 'SAUSAGE' } }, 4]
+    ]
+    assert table.header_valid?
+    assert_equal expected_output, output
   end
 
   def test_jumbled_header
