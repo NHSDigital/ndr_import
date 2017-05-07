@@ -6,20 +6,43 @@ require 'msworddoc-extractor'
 
 # This module provides helper logic for mapping unified sources for import into the system
 module NdrImport::Mapper
+  # The mapper runs nested loops that can result in the allocation of millions
+  # of short-lived objects. By pre-allocating these known keys, we can reduce GC pressure.
+  module Strings
+    CLEAN            = 'clean'.freeze
+    COLUMN           = 'column'.freeze
+    COMPACT          = 'compact'.freeze
+    DAYSAFTER        = 'daysafter'.freeze
+    DECODE           = 'decode'.freeze
+    DO_NOT_CAPTURE   = 'do_not_capture'.freeze
+    FIELD            = 'field'.freeze
+    FORMAT           = 'format'.freeze
+    JOIN             = 'join'.freeze
+    MAP              = 'map'.freeze
+    MAPPINGS         = 'mappings'.freeze
+    MATCH            = 'match'.freeze
+    ORDER            = 'order'.freeze
+    PRIORITY         = 'priority'.freeze
+    RAWTEXT_NAME     = 'rawtext_name'.freeze
+    REPLACE          = 'replace'.freeze
+    STANDARD_MAPPING = 'standard_mapping'.freeze
+    UNPACK_PATTERN   = 'unpack_pattern'.freeze
+  end
+
   private
 
   # uses the mappings for this line to unpack the fixed width string
   # returning an array of the resulting columns
   def fixed_width_columns(line, line_mappings)
-    unpack_patterns = line_mappings.map { |c| c['unpack_pattern'] }.join
+    unpack_patterns = line_mappings.map { |c| c[Strings::UNPACK_PATTERN] }.join
     line.unpack(unpack_patterns)
   end
 
   # the replace option can be used before any other mapping option
   def replace_before_mapping(original_value, field_mapping)
-    return unless original_value && field_mapping.include?('replace')
+    return unless original_value && field_mapping.include?(Strings::REPLACE)
 
-    replaces = field_mapping['replace']
+    replaces = field_mapping[Strings::REPLACE]
 
     if replaces.is_a?(Array)
       replaces.each { |repls| apply_replaces(original_value, repls) }
@@ -43,7 +66,7 @@ module NdrImport::Mapper
     return unless standard_mapping
 
     column_mapping.each_with_object(standard_mapping.dup) do |(key, value), result|
-      if 'mappings' == key
+      if Strings::MAPPINGS == key
         # Column mapping appends mappings to the standard mapping...
         result[key] += value
       else
@@ -69,17 +92,17 @@ module NdrImport::Mapper
              "Line has too many columns (expected #{line_mappings.size} but got #{line.size})"
       end
 
-      next if column_mapping['do_not_capture']
+      next if column_mapping[Strings::DO_NOT_CAPTURE]
 
-      if column_mapping['standard_mapping']
-        column_mapping = standard_mapping(column_mapping['standard_mapping'], column_mapping)
+      if column_mapping[Strings::STANDARD_MAPPING]
+        column_mapping = standard_mapping(column_mapping[Strings::STANDARD_MAPPING], column_mapping)
       end
 
       # Establish the rawtext column name we are to use for this column
-      rawtext_column_name = (column_mapping['rawtext_name'] || column_mapping['column']).downcase
+      rawtext_column_name = (column_mapping[Strings::RAWTEXT_NAME] || column_mapping[Strings::COLUMN]).downcase
 
       # Replace raw_value with decoded raw_value
-      Array(column_mapping['decode']).each do |encoding|
+      Array(column_mapping[Strings::DECODE]).each do |encoding|
         raw_value = decode_raw_value(raw_value, encoding)
       end
 
@@ -91,8 +114,8 @@ module NdrImport::Mapper
       # Store the raw column value
       rawtext[rawtext_column_name] = raw_value
 
-      next unless column_mapping.key?('mappings')
-      column_mapping['mappings'].each do |field_mapping|
+      next unless column_mapping.key?(Strings::MAPPINGS)
+      column_mapping[Strings::MAPPINGS].each do |field_mapping|
         # create a duplicate of the raw value we can manipulate
         original_value = raw_value ? raw_value.dup : nil
 
@@ -101,21 +124,21 @@ module NdrImport::Mapper
 
         # We don't care about blank values, unless we're mapping a :join
         # field (in which case, :compact may or may not be being used).
-        next if value.blank? && !field_mapping['join']
+        next if value.blank? && !field_mapping[Strings::JOIN]
 
-        field = field_mapping['field']
+        field = field_mapping[Strings::FIELD]
 
         data[field] ||= {}
         data[field][:values] ||= [] # "better" values come earlier
         data[field][:compact]  = true unless data[field].key?(:compact)
 
-        if field_mapping['order']
-          data[field][:join] ||= field_mapping['join']
-          data[field][:compact] = field_mapping['compact'] if field_mapping.key?('compact')
+        if field_mapping[Strings::ORDER]
+          data[field][:join] ||= field_mapping[Strings::JOIN]
+          data[field][:compact] = field_mapping[Strings::COMPACT] if field_mapping.key?(Strings::COMPACT)
 
-          data[field][:values][field_mapping['order'] - 1] = value
-        elsif field_mapping['priority']
-          data[field][:values][field_mapping['priority']] = value
+          data[field][:values][field_mapping[Strings::ORDER] - 1] = value
+        elsif field_mapping[Strings::PRIORITY]
+          data[field][:values][field_mapping[Strings::PRIORITY]] = value
         else
           data[field][:values].unshift(value) # new "best" value
         end
@@ -145,26 +168,26 @@ module NdrImport::Mapper
   end
 
   def mapped_value(original_value, field_mapping)
-    if field_mapping.include?('format')
+    if field_mapping.include?(Strings::FORMAT)
       begin
-        return original_value.blank? ? nil : original_value.to_date(field_mapping['format'])
+        return original_value.blank? ? nil : original_value.to_date(field_mapping[Strings::FORMAT])
       rescue ArgumentError => e
         e2 = ArgumentError.new("#{e} value #{original_value.inspect}")
         e2.set_backtrace(e.backtrace)
         raise e2
       end
-    elsif field_mapping.include?('clean')
-      return original_value.blank? ? nil : original_value.clean(field_mapping['clean'])
-    elsif field_mapping.include?('map')
-      return field_mapping['map'].fetch(original_value, original_value)
-    elsif field_mapping.include?('match')
-      # WARNING:TVB Thu Aug  9 17:09:25 BST 2012 field_mapping['match'] regexp
+    elsif field_mapping.include?(Strings::CLEAN)
+      return original_value.blank? ? nil : original_value.clean(field_mapping[Strings::CLEAN])
+    elsif field_mapping.include?(Strings::MAP)
+      return field_mapping[Strings::MAP].fetch(original_value, original_value)
+    elsif field_mapping.include?(Strings::MATCH)
+      # WARNING:TVB Thu Aug  9 17:09:25 BST 2012 field_mapping[Strings::MATCH] regexp
       # may need to be escaped
-      matches = Regexp.new(field_mapping['match']).match(original_value)
+      matches = Regexp.new(field_mapping[Strings::MATCH]).match(original_value)
       return matches[1].strip if matches && matches.size > 0
-    elsif field_mapping.include?('daysafter')
+    elsif field_mapping.include?(Strings::DAYSAFTER)
       return original_value unless original_value.to_i.to_s == original_value.to_s
-      return original_value.to_i.days.since(field_mapping['daysafter'].to_time).to_date
+      return original_value.to_i.days.since(field_mapping[Strings::DAYSAFTER].to_time).to_date
     else
       return nil if original_value.blank?
       return original_value.is_a?(String) ? original_value.strip : original_value
@@ -175,18 +198,18 @@ module NdrImport::Mapper
   def validate_line_mappings(line_mappings)
     priority = {}
     line_mappings.each do |column_mapping|
-      if column_mapping['standard_mapping']
-        if standard_mapping(column_mapping['standard_mapping'], column_mapping).nil?
-          fail "Standard mapping \"#{column_mapping['standard_mapping']}\" does not exist"
+      if column_mapping[Strings::STANDARD_MAPPING]
+        if standard_mapping(column_mapping[Strings::STANDARD_MAPPING], column_mapping).nil?
+          fail "Standard mapping \"#{column_mapping[Strings::STANDARD_MAPPING]}\" does not exist"
         end
       end
 
-      next unless column_mapping.key?('mappings')
-      column_mapping['mappings'].each do |field_mapping|
-        field = field_mapping['field']
-        if field_mapping['priority']
-          fail 'Cannot have duplicate priorities' if priority[field] == field_mapping['priority']
-          priority[field] = field_mapping['priority']
+      next unless column_mapping.key?(Strings::MAPPINGS)
+      column_mapping[Strings::MAPPINGS].each do |field_mapping|
+        field = field_mapping[Strings::FIELD]
+        if field_mapping[Strings::PRIORITY]
+          fail 'Cannot have duplicate priorities' if priority[field] == field_mapping[Strings::PRIORITY]
+          priority[field] = field_mapping[Strings::PRIORITY]
         else
           priority[field] = 1
         end
