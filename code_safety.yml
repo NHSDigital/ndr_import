@@ -126,8 +126,8 @@ file safety:
     safe_revision: 6c6f204fab2f4232d81cb76aa523c26b0c490ae7
   lib/ndr_import/mapper.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 7a38b590806c97bd4cbcd80fba4c72d980f14f4f
+    reviewed_by: brian.shand
+    safe_revision: c9a37e6b076c4699d6d17fb0e2a4fb56698583a5
   lib/ndr_import/mapping_error.rb:
     comments: 
     reviewed_by: timgentry
