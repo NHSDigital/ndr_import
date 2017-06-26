@@ -177,7 +177,10 @@ module NdrImport::Mapper
         raise e2
       end
     elsif field_mapping.include?(Strings::CLEAN)
-      return original_value.blank? ? nil : original_value.clean(field_mapping[Strings::CLEAN])
+      return nil if original_value.blank?
+
+      cleaners = Array(field_mapping[Strings::CLEAN])
+      return cleaners.inject(original_value) { |a, e| a.clean(e) }
     elsif field_mapping.include?(Strings::MAP)
       return field_mapping[Strings::MAP].fetch(original_value, original_value)
     elsif field_mapping.include?(Strings::MATCH)

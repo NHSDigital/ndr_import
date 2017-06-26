@@ -21,6 +21,7 @@ class MapperTest < ActiveSupport::TestCase
   clean_ethniccategory_mapping = { 'clean' => :ethniccategory }
   clean_icd_mapping = { 'clean' => :icd }
   clean_opcs_mapping = { 'clean' => :code_opcs }
+  clean_code_and_upcase_mapping = { 'clean' => [:code, :upcase] }
   map_mapping = { 'map' => { 'A' => '1' } }
   replace_mapping = { 'replace' => { '.0' => '' } }
   daysafter_mapping = { 'daysafter' => '2012-05-16' }
@@ -351,6 +352,11 @@ class MapperTest < ActiveSupport::TestCase
     assert_equal nil, TestMapper.new.mapped_value('', clean_opcs_mapping)
     assert_equal 'ABCD', TestMapper.new.mapped_value('AbcD', clean_opcs_mapping)
     assert_equal '1234', TestMapper.new.mapped_value('1234', clean_opcs_mapping)
+  end
+
+  test 'map should use multiple cleans' do
+    assert_equal 'U3 Y2 X1',
+                 TestMapper.new.mapped_value('u3,y2,x1', clean_code_and_upcase_mapping)
   end
 
   test 'map should handle array original value' do
