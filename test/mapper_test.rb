@@ -349,7 +349,7 @@ class MapperTest < ActiveSupport::TestCase
     assert_equal 'U212 Y973', TestMapper.new.mapped_value('U212,Y973,X1', clean_opcs_mapping)
     assert_equal '', TestMapper.new.mapped_value('98', clean_opcs_mapping)
     assert_equal '', TestMapper.new.mapped_value('TooLong', clean_opcs_mapping)
-    assert_equal nil, TestMapper.new.mapped_value('', clean_opcs_mapping)
+    assert_nil TestMapper.new.mapped_value('', clean_opcs_mapping)
     assert_equal 'ABCD', TestMapper.new.mapped_value('AbcD', clean_opcs_mapping)
     assert_equal '1234', TestMapper.new.mapped_value('1234', clean_opcs_mapping)
   end
@@ -394,7 +394,7 @@ class MapperTest < ActiveSupport::TestCase
   test 'line mapping should create valid hash with blank cleaned value' do
     assert_equal '', TestMapper.new.mapped_value('98', clean_opcs_mapping)
     line_hash = TestMapper.new.mapped_line(['98'], simple_mapping_with_clean_opcs)
-    assert_equal nil, line_hash['primaryprocedures']
+    assert_nil line_hash['primaryprocedures']
     assert_equal '98', line_hash[:rawtext]['primaryprocedures']
   end
 
