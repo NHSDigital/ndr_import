@@ -1,0 +1,8 @@
+source 'https://rubygems.org'
+
+gemspec path: '..'
+
+# Minitest 5.10.2 doesn't work with Rails version
+gem 'minitest', '< 5.10.2'
+
+gem 'activesupport', '~> 5.1.0'
