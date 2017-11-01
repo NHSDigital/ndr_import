@@ -171,8 +171,10 @@ module NdrImport
     def consume_header_line(line, column_mappings)
       columns = column_names(column_mappings)
 
-      header_guess = line.map(&:downcase)
+      header_guess = line.map { |column| column.to_s.downcase }
 
+      # The "best guess" is only if/when the header eventually deemed to be
+      # invalid - in which case, it builds the informative error message.
       @header_best_guess = header_guess if header_guess.any?(&:present?)
       @header_valid      = true         if header_guess == columns
     end
