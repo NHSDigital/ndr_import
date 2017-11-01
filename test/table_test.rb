@@ -254,6 +254,30 @@ class TableTest < ActiveSupport::TestCase
     assert_equal expected_output, output
   end
 
+  def test_varying_header_line_lengths_with_valid_header_row_including_nils
+    lines = [
+      [nil] << 'RIGHTALIGN1' << 'RIGHTALIGN2',
+      %w(ONE TWO),
+      %w(LEFTALIGN) << nil,
+      %w(CENTRE1) << nil << 'CENTRE2',
+      %w(UNO DOS)
+    ].each
+
+    table = NdrImport::Table.new(:header_lines => 4, :footer_lines => 0,
+                                 :klass => 'SomeTestKlass',
+                                 :columns => [{ 'column' => 'one' }, { 'column' => 'two' }])
+
+    output = []
+    table.transform(lines).each do |klass, fields, index|
+      output << [klass, fields, index]
+    end
+
+    assert table.header_valid?
+
+    expected_output = [['SomeTestKlass', { :rawtext => { 'one' => 'UNO', 'two' => 'DOS' } }, 4]]
+    assert_equal expected_output, output
+  end
+
   def test_varying_header_line_lengths_with_valid_header_row
     lines = [
       %w(NOTHEADING1 NOTHEADING2 UHOH3 UHOH4),
