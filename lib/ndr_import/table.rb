@@ -62,13 +62,16 @@ module NdrImport
       return enum_for(:process_line, line) unless block
 
       if @row_index < header_lines
-        validate_header(line, @columns)
+        consume_header_line(line, @columns)
       else
-        fail_unless_header_complete(@columns)
         transform_line(line, @row_index, &block)
       end
 
       @row_index += 1
+
+      # We've now seen enough lines to have consumed a valid header; is this the case?
+      fail_unless_header_complete(@columns) if @row_index == header_lines
+
       @notifier.try(:processed, @row_index)
     end
 
@@ -163,20 +166,21 @@ module NdrImport
       fail ArgumentError, "Unrecognised options: #{unrecognised_options.inspect}"
     end
 
-    # if there is a header, then check the column headings are as expected in the correct order
-    def validate_header(line, column_mappings)
+    # Process `line` as a candidate header row. Header validation is done
+    # lazily, once all expected header lines have been consumed.
+    def consume_header_line(line, column_mappings)
       columns = column_names(column_mappings)
 
-      unless line.length == columns.length
-        fail "Number of columns does not match; expected #{columns.length}, got #{line.length}!"
-      end
+      header_guess = line.map { |column| column.to_s.downcase }
 
-      header_guess = line.map(&:downcase)
-
+      # The "best guess" is only if/when the header eventually deemed to be
+      # invalid - in which case, it builds the informative error message.
       @header_best_guess = header_guess if header_guess.any?(&:present?)
       @header_valid      = true         if header_guess == columns
     end
 
+    # Once all header lines have been consumed, blow up in a
+    # helpful fashion if no valid row was found:
     def fail_unless_header_complete(column_mappings)
       return unless header_lines > 0 && !header_valid?
 
