@@ -16,8 +16,8 @@ module NdrImport
 
       include UTF8Encoding
 
-      NON_TABULAR_OPTIONS = %w(capture_start_line start_line_pattern end_line_pattern remove_lines
-                               start_in_a_record end_in_a_record)
+      NON_TABULAR_OPTIONS = %w(capture_end_line capture_start_line start_line_pattern
+                               end_line_pattern remove_lines start_in_a_record end_in_a_record)
 
       def self.all_valid_options
         super - %w(tablename_pattern header_lines footer_lines) + NON_TABULAR_OPTIONS
@@ -117,6 +117,8 @@ module NdrImport
             # This is a start line
             start_record(line)
           elsif line =~ @end_line_pattern
+            # Add the end line to the @non_tabular_record (if required) before ending the record
+            @non_tabular_record << line if @capture_end_line
             # This is an end line
             end_record
           else
