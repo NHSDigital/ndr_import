@@ -4,5 +4,3 @@ gemspec path: '..'
 
 # Minitest 5.10.2 doesn't work with Rails version
 gem 'minitest', '< 5.10.2'
-
-gem 'ndr_support', git: 'https://github.com/PublicHealthEngland/ndr_support', branch: 'rails5'
