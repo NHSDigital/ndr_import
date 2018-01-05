@@ -46,17 +46,17 @@ module NdrImport
       def determine_encodings!(safe_path)
         # delimiter encoding => # FasterCSV encoding string
         supported_encodings = {
-          'UTF-8'        => 'bom|utf-8',
-          'Windows-1252' => 'windows-1252:utf-8'
+          'UTF-8'        => 'r:bom|utf-8',
+          'Windows-1252' => 'r:windows-1252:utf-8'
         }
 
         successful_options = nil
-        supported_encodings.each do |delimiter_encoding, csv_encoding|
+        supported_encodings.each do |delimiter_encoding, access_mode|
           begin
             col_sep = @options['col_sep']
             options = {
               :col_sep  => (col_sep || ',').force_encoding(delimiter_encoding),
-              :encoding => csv_encoding
+              :mode     => access_mode
             }
 
             row_num = 0
