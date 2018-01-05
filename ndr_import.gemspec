@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rubyzip', '~> 1.2', '>= 1.2.1'
   spec.add_dependency 'roo', '~> 2.0'
 
-  spec.add_dependency 'nokogiri', '~> 1.6', '< 1.8.0'
+  spec.add_dependency 'nokogiri', '~> 1.8'
   spec.add_dependency 'roo-xls'
   spec.add_dependency 'spreadsheet', '1.0.3'
   spec.add_dependency 'pdf-reader', '1.2.0' # Raises warnings on Ruby 2.4+
