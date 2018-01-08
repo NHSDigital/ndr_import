@@ -17,7 +17,8 @@ module NdrImport
       include UTF8Encoding
 
       NON_TABULAR_OPTIONS = %w(capture_end_line capture_start_line start_line_pattern
-                               end_line_pattern remove_lines start_in_a_record end_in_a_record)
+                               end_line_pattern remove_lines start_in_a_record
+                               end_in_a_record).freeze
 
       def self.all_valid_options
         super - %w(tablename_pattern header_lines footer_lines) + NON_TABULAR_OPTIONS

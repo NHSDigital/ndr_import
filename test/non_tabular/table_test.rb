@@ -323,7 +323,7 @@ STR
   end
 
   def test_should_capture_end_line
-    data = <<-STR.each_line
+    data = <<~STR.each_line
 111
 Lorem ipsum dolor sit amet.
 CAPTURE THIS CODE ABC
