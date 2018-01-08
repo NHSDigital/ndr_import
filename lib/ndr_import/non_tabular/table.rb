@@ -117,10 +117,8 @@ module NdrImport
             # This is a start line
             start_record(line)
           elsif line =~ @end_line_pattern
-            # Add the end line to the @non_tabular_record (if required) before ending the record
-            @non_tabular_record << line if @capture_end_line
             # This is an end line
-            end_record
+            end_record(line)
           else
             @non_tabular_record << line if @in_a_record
           end
@@ -144,7 +142,9 @@ module NdrImport
 
       # Tabulate the record (if in one), flagged it as no longer being in a record
       # and set the record to be a new one.
-      def end_record
+      def end_record(line)
+        # Add the end line to the @non_tabular_record (if required) before ending the record
+        @non_tabular_record << line if @capture_end_line
         @tabular_array << @non_tabular_record.tabulate(column_mappings) if @in_a_record
         @in_a_record = false
         @non_tabular_record = NdrImport::NonTabular::Record.new
