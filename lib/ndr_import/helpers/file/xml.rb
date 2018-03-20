@@ -31,7 +31,7 @@ module NdrImport
           # We let slide any warnings about xml declared as one of our
           # auto encodings, but parsed as UTF-8:
           encoding_pattern = AUTO_ENCODINGS.map { |name| Regexp.escape(name) }.join('|')
-          encoding_warning = /\ADocument labelled (#{encoding_pattern}) but has UTF-8 content\z/
+          encoding_warning = /\A(\d+:\d+: FATAL: )?Document labelled (#{encoding_pattern}) but has UTF-8 content\z/
           fatal_errors     = document.errors.select do |error|
             error.fatal? && (encoding_warning !~ error.message)
           end
