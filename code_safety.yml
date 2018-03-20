@@ -118,16 +118,16 @@ file safety:
     safe_revision: 45da71ebd3acbc0fe53755bcd75483ba17cb6924
   lib/ndr_import/helpers/file/xml.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 137170d443ea6bcc0afb18f62202c285ae6501eb
+    reviewed_by: josh.pencheon
+    safe_revision: 4d20f3483a073b8de681b06355e7c532dc68f674
   lib/ndr_import/helpers/file/zip.rb:
     comments: 
     reviewed_by: timgentry
     safe_revision: 6c6f204fab2f4232d81cb76aa523c26b0c490ae7
   lib/ndr_import/mapper.rb:
-    comments: 
+    comments: digests changed on branch
     reviewed_by: josh.pencheon
-    safe_revision: 7a38b590806c97bd4cbcd80fba4c72d980f14f4f
+    safe_revision: 0627a1e730c4a3ede183ddac90fb8eef7e8da5dd
   lib/ndr_import/mapping_error.rb:
     comments: 
     reviewed_by: timgentry
@@ -161,9 +161,10 @@ file safety:
     reviewed_by: josh.pencheon
     safe_revision: 3c7f827d17aacbf7b811eea67e27553f3b039070
   lib/ndr_import/table.rb:
-    comments: uses File.basename
+    comments: 'uses File.basename. Revision 5c8b12ca9b88a3bba972aaa2e38cdae25403e033:
+      digests changed on branch'
     reviewed_by: josh.pencheon
-    safe_revision: eb73897a29cfa30000d9873e602253bc97b8c8d8
+    safe_revision: 5c8b12ca9b88a3bba972aaa2e38cdae25403e033
   lib/ndr_import/universal_importer_helper.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -171,11 +172,11 @@ file safety:
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: josh.pencheon
-    safe_revision: db6baab3610d561026a405c4a6bef683dbba3ca0
+    safe_revision: a79bdb7e804a73db647ac1dbf0ea96e4d22b7ba3
   ndr_import.gemspec:
-    comments: 
+    comments: digests changed on branch
     reviewed_by: josh.pencheon
-    safe_revision: 85585cddf403337163bf7e5e848d68a4e7ddf75c
+    safe_revision: bd53fc8ae3ad5fb9caab9e79fe05fe578202849e
   test/file/base_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -233,9 +234,10 @@ file safety:
     reviewed_by: josh.pencheon
     safe_revision: 9abdd6ced1d0c90ce8dd88abee4eb6472c7ff0d6
   test/mapper_test.rb:
-    comments: exposes Mapper internals to test them
+    comments: 'exposes Mapper internals to test them. Revision f707f42686cabe21d80e2547e9a24fe094b6c7d1:
+      digests changed on branch'
     reviewed_by: josh.pencheon
-    safe_revision: 7a38b590806c97bd4cbcd80fba4c72d980f14f4f
+    safe_revision: f707f42686cabe21d80e2547e9a24fe094b6c7d1
   test/non_tabular/mapping_test.rb:
     comments: 
     reviewed_by: timgentry
