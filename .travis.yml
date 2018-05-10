@@ -9,6 +9,7 @@ gemfile:
   - gemfiles/Gemfile.rails42
   - gemfiles/Gemfile.rails50
   - gemfiles/Gemfile.rails51
+  - gemfiles/Gemfile.rails52
 
 sudo: false
 

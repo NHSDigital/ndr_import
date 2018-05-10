@@ -1,0 +1,7 @@
+source 'https://rubygems.org'
+
+gemspec path: '..'
+
+gem 'activesupport', '~> 5.2.0'
+
+gem 'ndr_support', tag: 'v5.4.0', git: 'https://github.com/PublicHealthEngland/ndr_support'
