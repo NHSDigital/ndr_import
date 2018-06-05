@@ -15,7 +15,7 @@ file safety:
   ".travis.yml":
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: c158dc783b84cab31380708e76e3812544cc1c2f
+    safe_revision: 661b5b8e71572bba28aa92fb95aa218e3f8444f4
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -407,7 +407,7 @@ file safety:
   test/test_helper.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 53cc0af4321b64746367231b65821fda0f8d8a0a
+    safe_revision: 72750275da2193cc9ed362da85b88e9b5054f2d7
   test/universal_importer_helper_test.rb:
     comments: 
     reviewed_by: josh.pencheon
