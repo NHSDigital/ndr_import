@@ -37,7 +37,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'minitest'
   spec.add_development_dependency 'mocha'
-  spec.add_development_dependency 'ndr_dev_support', '~> 2.1', '>= 2.1.1'
+  spec.add_development_dependency 'ndr_dev_support', '~> 3.0'
   spec.add_development_dependency 'guard'
   spec.add_development_dependency 'guard-rubocop'
   spec.add_development_dependency 'guard-test'
