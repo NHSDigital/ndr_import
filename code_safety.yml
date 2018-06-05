@@ -3,19 +3,19 @@ file safety:
   ".gitignore":
     comments: whole file re-reviewed
     reviewed_by: josh.pencheon
-    safe_revision: d22b012a99fb1f8d94acbe445b6170f251a7b4a2
+    safe_revision: 3ef51291c413fd5772d61a8394359146a02ae628
   ".hound.yml":
     comments: 
     reviewed_by: timgentry
     safe_revision: df3c0be0e655f4fc95c86d4a57bda6eef1fb8955
   ".rubocop.yml":
     comments: 
-    reviewed_by: joshpencheon
-    safe_revision: ac40ad6e6a9d79d139ba063681f3fe6093c73b14
+    reviewed_by: josh.pencheon
+    safe_revision: b09e268ff9c8349b914aa1b7ba888e1d39f97e4a
   ".travis.yml":
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: f9de73c5988557e29ea73c279f2fdae19ffa8bb4
+    safe_revision: c158dc783b84cab31380708e76e3812544cc1c2f
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -40,14 +40,6 @@ file safety:
     comments: 
     reviewed_by: josh.pencheon
     safe_revision: 5a7f26cecaabab20f4e666776f9166dcc3fa6bfe
-  gemfiles/Gemfile.rails32:
-    comments: 
-    reviewed_by: timgentry
-    safe_revision: 0c5967732100f43e7b60a97a7f0aae60d3641791
-  gemfiles/Gemfile.rails41:
-    comments: 
-    reviewed_by: timgentry
-    safe_revision: 0c5967732100f43e7b60a97a7f0aae60d3641791
   gemfiles/Gemfile.rails42:
     comments: 
     reviewed_by: timgentry
@@ -56,6 +48,14 @@ file safety:
     comments: 
     reviewed_by: josh.pencheon
     safe_revision: 738577adf8eeacc7a000d08289bd7ae7bf3b5849
+  gemfiles/Gemfile.rails51:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: eedd8f5588edd2a9463250fcddc5602f62ab26f1
+  gemfiles/Gemfile.rails52:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: c158dc783b84cab31380708e76e3812544cc1c2f
   lib/ndr_import.rb:
     comments: 
     reviewed_by: timgentry
@@ -63,7 +63,7 @@ file safety:
   lib/ndr_import/csv_library.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 20939133f61ed102feb2a841b6c43b86f385b972
+    safe_revision: be12e57519d3737e8d3901d7b01485c6995708dd
   lib/ndr_import/file/all.rb:
     comments: 
     reviewed_by: timgentry
@@ -75,7 +75,7 @@ file safety:
   lib/ndr_import/file/delimited.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 62702f103dd41c188684cfda73a94401b130cd01
+    safe_revision: be12e57519d3737e8d3901d7b01485c6995708dd
   lib/ndr_import/file/excel.rb:
     comments: 
     reviewed_by: joshpencheon
@@ -102,8 +102,8 @@ file safety:
     safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
   lib/ndr_import/helpers/file/delimited.rb:
     comments: 
-    reviewed_by: joshpencheon
-    safe_revision: 06fd16643d02957ce856728e4911143c8e0178dc
+    reviewed_by: josh.pencheon
+    safe_revision: be12e57519d3737e8d3901d7b01485c6995708dd
   lib/ndr_import/helpers/file/excel.rb:
     comments: 
     reviewed_by: joshpencheon
@@ -118,16 +118,16 @@ file safety:
     safe_revision: 45da71ebd3acbc0fe53755bcd75483ba17cb6924
   lib/ndr_import/helpers/file/xml.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 137170d443ea6bcc0afb18f62202c285ae6501eb
+    reviewed_by: josh.pencheon
+    safe_revision: d2245268ec6a0e4f60c521d171a820f299632c4f
   lib/ndr_import/helpers/file/zip.rb:
     comments: 
     reviewed_by: timgentry
     safe_revision: 6c6f204fab2f4232d81cb76aa523c26b0c490ae7
   lib/ndr_import/mapper.rb:
     comments: 
-    reviewed_by: brian.shand
-    safe_revision: c9a37e6b076c4699d6d17fb0e2a4fb56698583a5
+    reviewed_by: josh.pencheon
+    safe_revision: fbd4e1bfda8acd9ae026601dc4ecdabca5be4bc7
   lib/ndr_import/mapping_error.rb:
     comments: 
     reviewed_by: timgentry
@@ -163,7 +163,7 @@ file safety:
   lib/ndr_import/table.rb:
     comments: uses File.basename
     reviewed_by: josh.pencheon
-    safe_revision: eb73897a29cfa30000d9873e602253bc97b8c8d8
+    safe_revision: 14775e7262dbec3b6d0f69930ff526f856a94214
   lib/ndr_import/universal_importer_helper.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -171,11 +171,11 @@ file safety:
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: josh.pencheon
-    safe_revision: db6baab3610d561026a405c4a6bef683dbba3ca0
+    safe_revision: 1df87077495c1f595023bdbbd1e0bfb220dc5da5
   ndr_import.gemspec:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 85585cddf403337163bf7e5e848d68a4e7ddf75c
+    safe_revision: b3f39d7243c41a44594336c3feed3b29c2386a0e
   test/file/base_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -183,19 +183,19 @@ file safety:
   test/file/delimited_test.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 62702f103dd41c188684cfda73a94401b130cd01
+    safe_revision: be12e57519d3737e8d3901d7b01485c6995708dd
   test/file/excel_test.rb:
     comments: 
     reviewed_by: joshpencheon
     safe_revision: 334d53bb9e8698bba3d92b4dbd71b36faacae629
   test/file/pdf_test.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
+    reviewed_by: josh.pencheon
+    safe_revision: f82e6839f7e3f9932a6f92242c03d94234fc1d82
   test/file/registry_test.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
+    reviewed_by: josh.pencheon
+    safe_revision: f82e6839f7e3f9932a6f92242c03d94234fc1d82
   test/file/text_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -218,8 +218,8 @@ file safety:
     safe_revision: 377c060bd1e012d6e162a4ab8923a3609aacdf57
   test/helpers/file/pdf_test.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 9abdd6ced1d0c90ce8dd88abee4eb6472c7ff0d6
+    reviewed_by: josh.pencheon
+    safe_revision: f82e6839f7e3f9932a6f92242c03d94234fc1d82
   test/helpers/file/word_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -235,7 +235,7 @@ file safety:
   test/mapper_test.rb:
     comments: exposes Mapper internals to test them
     reviewed_by: josh.pencheon
-    safe_revision: 7a38b590806c97bd4cbcd80fba4c72d980f14f4f
+    safe_revision: 3cea78767a73fd0d0ae64a4af3f07389e45349e9
   test/non_tabular/mapping_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -302,8 +302,8 @@ file safety:
     safe_revision: 45da71ebd3acbc0fe53755bcd75483ba17cb6924
   test/resources/hello_world.pdf:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: ed2360bd226dd6babb7683f2f888ba9547ff7e53
+    reviewed_by: josh.pencheon
+    safe_revision: f82e6839f7e3f9932a6f92242c03d94234fc1d82
   test/resources/hello_world.txt:
     comments: 
     reviewed_by: timgentry
@@ -402,8 +402,8 @@ file safety:
     safe_revision: 3c7f827d17aacbf7b811eea67e27553f3b039070
   test/table_test.rb:
     comments: 
-    reviewed_by: joshpencheon
-    safe_revision: e70ece909c44b26208eaff3cf27ada7145e03f11
+    reviewed_by: josh.pencheon
+    safe_revision: 14775e7262dbec3b6d0f69930ff526f856a94214
   test/test_helper.rb:
     comments: 
     reviewed_by: josh.pencheon
