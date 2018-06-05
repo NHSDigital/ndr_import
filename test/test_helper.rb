@@ -25,4 +25,4 @@ NdrImport::StandardMappings.mappings = YAML.load_file(
   File.expand_path(File.dirname(__FILE__) + '/resources/standard_mappings.yml')
 )
 
-require 'mocha/mini_test'
+require 'mocha/minitest'
