@@ -15,6 +15,8 @@ Gem::Specification.new do |spec|
 
   # Exclude older versions of this gem from the package.
   spec.files         = `git ls-files -z`.split("\x0").reject { |s| s =~ %r{^pkg/} }
+  # SECURE BNS 2018-08-06: Minimise sharing of (public-key encrypted) slack secrets in .travis.yml
+  spec.files         -= %w[.travis.yml] # Not needed in the gem
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
