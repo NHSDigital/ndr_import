@@ -10,7 +10,8 @@ module NdrImport
     include NdrImport::Mapper
 
     def self.all_valid_options
-      %w(canonical_name filename_pattern tablename_pattern header_lines footer_lines format klass columns)
+      %w[canonical_name delimiter filename_pattern tablename_pattern header_lines footer_lines
+         format klass columns]
     end
 
     def all_valid_options

@@ -23,7 +23,7 @@ module NdrImport
 
       test 'should read pipe correctly' do
         file_path = @permanent_test_files.join('normal_pipe.csv')
-        handler = NdrImport::File::Delimited.new(file_path, 'pipe', 'col_sep' => nil)
+        handler = NdrImport::File::Delimited.new(file_path, 'delimited', 'col_sep' => '|')
         handler.tables.each do |tablename, sheet|
           assert_nil tablename
           sheet = sheet.to_a
@@ -35,7 +35,7 @@ module NdrImport
 
       test 'should read thorn correctly' do
         file_path = @permanent_test_files.join('normal_thorn.csv')
-        handler = NdrImport::File::Delimited.new(file_path, 'thorn', 'col_sep' => nil)
+        handler = NdrImport::File::Delimited.new(file_path, 'delimited', 'col_sep' => "\xfe")
         handler.tables.each do |tablename, sheet|
           assert_nil tablename
           sheet = sheet.to_a
@@ -71,7 +71,7 @@ module NdrImport
 
       test 'should read acsii-delimited csv' do
         file_path = @permanent_test_files.join('high_ascii_delimited.txt')
-        handler = NdrImport::File::Delimited.new(file_path, 'csv', 'col_sep' => "\xfe")
+        handler = NdrImport::File::Delimited.new(file_path, 'delimited', 'col_sep' => "\xfe")
         handler.tables.each do |tablename, sheet|
           assert_nil tablename
           assert_instance_of Enumerator, sheet
@@ -80,6 +80,23 @@ module NdrImport
           assert_equal '1234567890', sheet[0][1]
           assert_equal '1234567890', sheet[1][1]
         end
+      end
+
+      test 'should read acsii-delimited txt' do
+        rows = []
+        file_path = @permanent_test_files.join('high_ascii_delimited_example_two.txt')
+        handler = NdrImport::File::Delimited.new(file_path, 'delimited', 'col_sep' => "\xfd")
+        handler.tables.each do |tablename, sheet|
+          assert_nil tablename
+          assert_instance_of Enumerator, sheet
+          sheet.each do |row|
+            rows << row
+          end
+        end
+
+        assert_equal(('A'..'Z').to_a, rows[0])
+        assert_equal ['1'] * 26, rows[1]
+        assert_equal ['2'] * 26, rows[2]
       end
 
       test 'should read line-by-line' do

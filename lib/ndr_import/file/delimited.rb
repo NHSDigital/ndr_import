@@ -9,11 +9,8 @@ module NdrImport
     # This class is a delimited file handler that returns a single table.
     class Delimited < Base
       DELIMITED_COL_SEP = {
-        'csv' => nil,
-        'pipe' => '|',
-        'thorn' => "\xfe" # high-ascii (lower case thorn) delimited files
+        'csv' => nil
       }
-
       def initialize(filename, format, options = {})
         super
 
@@ -86,6 +83,6 @@ module NdrImport
       end
     end
 
-    Registry.register(Delimited, 'csv', 'pipe', 'thorn')
+    Registry.register(Delimited, 'csv', 'delimited')
   end
 end
