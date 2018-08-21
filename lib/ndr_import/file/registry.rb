@@ -24,22 +24,25 @@ module NdrImport
         def files(filename, options = {}, &block)
           return enum_for(:files, filename, options) unless block
 
-          klass_factory(filename, nil, nil, options).files(&block)
+          klass_factory(filename, nil, options).files(&block)
         end
 
-        def tables(filename, format = nil, delimiter = nil, options = {}, &block)
-          return enum_for(:tables, filename, format, delimiter, options) unless block
+        def tables(filename, format = nil, options = {}, &block)
+          return enum_for(:tables, filename, format, options) unless block
 
-          klass_factory(filename, format, delimiter, options).tables(&block)
+          klass_factory(filename, format, options).tables(&block)
         end
 
         private
 
-        def klass_factory(filename, format, delimiter, options)
+        def klass_factory(filename, format, options)
           format ||= SafeFile.extname(filename).delete('.').downcase
           klass = Registry.handlers[format]
-          return klass.new(filename, format, delimiter, options) if klass
-          raise "Error: Unknown file format #{format.inspect}"
+          if klass
+            klass.new(filename, format, options)
+          else
+            fail "Error: Unknown file format #{format.inspect}"
+          end
         end
       end
     end

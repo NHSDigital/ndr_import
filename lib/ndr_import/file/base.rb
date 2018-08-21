@@ -8,11 +8,10 @@ module NdrImport
   module File
     # All common base file handler logic is defined here.
     class Base
-      def initialize(filename, format, delimiter, options = {})
-        @filename  = filename
-        @format    = format
-        @delimiter = delimiter
-        @options   = options
+      def initialize(filename, format, options = {})
+        @filename = filename
+        @format = format
+        @options = options
 
         validate_filename_is_safe_and_readable!
       end
