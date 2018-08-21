@@ -11,7 +11,7 @@ module NdrImport
 
       test 'should read word file' do
         file_path = @permanent_test_files.join('hello_world.doc')
-        handler = NdrImport::File::Word.new(file_path, nil)
+        handler = NdrImport::File::Word.new(file_path, nil, nil)
         handler.tables.each do |tablename, sheet|
           assert_nil tablename
           assert_instance_of Enumerator, sheet
@@ -22,7 +22,7 @@ module NdrImport
       test 'should raise exception on invalid word file' do
         assert_raises RuntimeError do
           file_path = @permanent_test_files.join('not_a_word_file.doc')
-          handler = NdrImport::File::Word.new(file_path, nil)
+          handler = NdrImport::File::Word.new(file_path, nil, nil)
           handler.tables.each do |tablename, sheet|
             assert_nil tablename
             assert_instance_of Enumerator, sheet

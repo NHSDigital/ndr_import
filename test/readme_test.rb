@@ -28,7 +28,7 @@ class ReadmeTest < ActiveSupport::TestCase
     # Use the Registry to enumerate over the files and their tables
     files = NdrImport::File::Registry.files(source_file, options)
     files.each do |filename|
-      tables = NdrImport::File::Registry.tables(filename, nil, options)
+      tables = NdrImport::File::Registry.tables(filename, nil, nil, options)
       tables.each do |_tablename, table_content|
         # Use the NonTabular::Table to tabulate the "table" contents
         table.transform(table_content).each do |_klass, _fields, _index|

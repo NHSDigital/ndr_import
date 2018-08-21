@@ -8,7 +8,7 @@ module NdrImport
   module File
     # This class is a zip file handler that returns tables from the extracted files.
     class Zip < Base
-      def initialize(filename, format, options = {})
+      def initialize(filename, format, delimiter, options = {})
         super
         @pattern = options['pattern'] || //
         @unzip_path = options['unzip_path']

@@ -20,7 +20,7 @@ module NdrImport
 
           exception = assert_raises(RuntimeError) do
             file_path = @permanent_test_files.join('normal.csv')
-            handler = SingleTableLazyDeveloper.new(file_path, 'lazy_dev')
+            handler = SingleTableLazyDeveloper.new(file_path, 'lazy_dev', nil)
 
             handler.tables.each do |tablename, sheet|
               assert_nil tablename
@@ -37,16 +37,16 @@ module NdrImport
       end
 
       test 'should not fail when set up with an readable safepath' do
-        assert Base.new(SafePath.new('test_space_r'), nil)
-        assert Base.new(SafePath.new('test_space_rw'), nil)
+        assert Base.new(SafePath.new('test_space_r'), nil, nil)
+        assert Base.new(SafePath.new('test_space_rw'), nil, nil)
       end
 
       test 'should fail when set up with an unreadable safepath' do
-        assert_raises(SecurityError) { Base.new(SafePath.new('test_space_w'), nil) }
+        assert_raises(SecurityError) { Base.new(SafePath.new('test_space_w'), nil, nil) }
       end
 
       test 'should fail when set up with a non-safepath' do
-        exception = assert_raises(ArgumentError) { Base.new(NdrImport.root, nil) }
+        exception = assert_raises(ArgumentError) { Base.new(NdrImport.root, nil, nil) }
         assert exception.message =~ /file_name should be of type SafePath, but it is String/
       end
     end

@@ -11,7 +11,7 @@ module NdrImport
 
       test 'should read pdf correctly' do
         file_path = @permanent_test_files.join('hello_world.pdf')
-        handler = NdrImport::File::Pdf.new(file_path, nil)
+        handler = NdrImport::File::Pdf.new(file_path, nil, nil)
         handler.tables.each do |tablename, sheet|
           assert_nil tablename
           assert_instance_of Enumerator, sheet
@@ -22,7 +22,7 @@ module NdrImport
       test 'should raise exception on invalid pdf file' do
         assert_raises RuntimeError do
           file_path = @permanent_test_files.join('not_a_pdf.pdf')
-          handler = NdrImport::File::Pdf.new(file_path, nil)
+          handler = NdrImport::File::Pdf.new(file_path, nil, nil)
           handler.tables.each do |tablename, sheet|
             assert_nil tablename
             assert_instance_of Enumerator, sheet

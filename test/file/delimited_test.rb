@@ -11,7 +11,7 @@ module NdrImport
 
       test 'should read csv correctly' do
         file_path = @permanent_test_files.join('normal.csv')
-        handler = NdrImport::File::Delimited.new(file_path, 'csv', 'col_sep' => nil)
+        handler = NdrImport::File::Delimited.new(file_path, 'csv', nil)
         handler.tables.each do |tablename, sheet|
           assert_nil tablename
           sheet = sheet.to_a
@@ -23,7 +23,7 @@ module NdrImport
 
       test 'should read pipe correctly' do
         file_path = @permanent_test_files.join('normal_pipe.csv')
-        handler = NdrImport::File::Delimited.new(file_path, 'pipe', 'col_sep' => nil)
+        handler = NdrImport::File::Delimited.new(file_path, 'delimited', '|')
         handler.tables.each do |tablename, sheet|
           assert_nil tablename
           sheet = sheet.to_a
@@ -35,7 +35,7 @@ module NdrImport
 
       test 'should read thorn correctly' do
         file_path = @permanent_test_files.join('normal_thorn.csv')
-        handler = NdrImport::File::Delimited.new(file_path, 'thorn', 'col_sep' => nil)
+        handler = NdrImport::File::Delimited.new(file_path, 'delimited', "\xfe")
         handler.tables.each do |tablename, sheet|
           assert_nil tablename
           sheet = sheet.to_a
@@ -47,7 +47,7 @@ module NdrImport
 
       test 'should read csv with a BOM' do
         file_path = @permanent_test_files.join('bomd.csv')
-        handler = NdrImport::File::Delimited.new(file_path, 'csv', 'col_sep' => nil)
+        handler = NdrImport::File::Delimited.new(file_path, 'csv', nil)
         handler.tables.each do |tablename, sheet|
           assert_nil tablename
           assert_instance_of Enumerator, sheet
@@ -60,7 +60,7 @@ module NdrImport
 
       test 'should read windows-1252 csv' do
         file_path = @permanent_test_files.join('windows.csv')
-        handler = NdrImport::File::Delimited.new(file_path, 'csv', 'col_sep' => nil)
+        handler = NdrImport::File::Delimited.new(file_path, 'csv', nil)
         handler.tables.each do |tablename, sheet|
           assert_nil tablename
           assert_instance_of Enumerator, sheet
@@ -71,7 +71,7 @@ module NdrImport
 
       test 'should read acsii-delimited csv' do
         file_path = @permanent_test_files.join('high_ascii_delimited.txt')
-        handler = NdrImport::File::Delimited.new(file_path, 'csv', 'col_sep' => "\xfe")
+        handler = NdrImport::File::Delimited.new(file_path, 'delimited', "\xfe")
         handler.tables.each do |tablename, sheet|
           assert_nil tablename
           assert_instance_of Enumerator, sheet
@@ -82,10 +82,27 @@ module NdrImport
         end
       end
 
+      test 'should read acsii-delimited txt' do
+        rows = []
+        file_path = @permanent_test_files.join('high_ascii_delimited_example_two.txt')
+        handler = NdrImport::File::Delimited.new(file_path, 'delimited', "\xfd")
+        handler.tables.each do |tablename, sheet|
+          assert_nil tablename
+          assert_instance_of Enumerator, sheet
+          sheet.each do |row|
+            rows << row
+          end
+        end
+
+        assert_equal(('A'..'Z').to_a, rows[0])
+        assert_equal ['1'] * 26, rows[1]
+        assert_equal ['2'] * 26, rows[2]
+      end
+
       test 'should read line-by-line' do
         rows = []
         file_path = @permanent_test_files.join('normal.csv')
-        handler = NdrImport::File::Delimited.new(file_path, 'csv')
+        handler = NdrImport::File::Delimited.new(file_path, 'csv', nil)
 
         handler.tables.each do |tablename, sheet|
           assert_nil tablename
@@ -103,7 +120,7 @@ module NdrImport
       test 'should report addition details upon failure to slurp csv' do
         exception = assert_raises(CSVLibrary::MalformedCSVError) do
           file_path = @permanent_test_files.join('broken.csv')
-          handler = NdrImport::File::Delimited.new(file_path, 'csv', 'col_sep' => nil)
+          handler = NdrImport::File::Delimited.new(file_path, 'csv', nil)
 
           handler.tables.each do |tablename, sheet|
             assert_nil tablename
@@ -121,7 +138,7 @@ module NdrImport
         rows_yielded = []
         exception    = assert_raises(CSVLibrary::MalformedCSVError) do
           file_path = @permanent_test_files.join('broken.csv')
-          handler = NdrImport::File::Delimited.new(file_path, 'csv')
+          handler = NdrImport::File::Delimited.new(file_path, 'csv', nil)
 
           handler.tables.each do |tablename, sheet|
             assert_nil tablename
@@ -141,7 +158,7 @@ module NdrImport
 
       test 'should only determine encodings once' do
         file_path = @permanent_test_files.join('normal.csv')
-        handler = NdrImport::File::Delimited.new(file_path, 'csv', 'col_sep' => nil)
+        handler = NdrImport::File::Delimited.new(file_path, 'csv', nil)
 
         handler.expects(determine_encodings!: { mode: 'r:bom|utf-8', col_sep: ',' }).once
 

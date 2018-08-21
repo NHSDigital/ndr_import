@@ -12,14 +12,14 @@ module NdrImport
 
       test 'Registry.handlers' do
         assert_instance_of Hash, NdrImport::File::Registry.handlers
-        assert_equal %w(csv doc pdf pipe thorn txt xls xlsx zip),
+        assert_equal %w[csv delimited doc pdf txt xls xlsx zip],
                      NdrImport::File::Registry.handlers.keys.sort
       end
 
       test 'should fail to enumerate unknown format' do
         exception = assert_raises(RuntimeError) do
           file_path = @permanent_test_files.join('normal.csv')
-          tables = NdrImport::File::Registry.tables(file_path, 'mp3')
+          tables = NdrImport::File::Registry.tables(file_path, 'mp3', nil)
           tables.each do |tablename, sheet|
             assert_nil tablename
             sheet.to_a
@@ -31,7 +31,7 @@ module NdrImport
 
       test 'should enumerate pdf file table' do
         file_path = @permanent_test_files.join('hello_world.pdf')
-        tables = NdrImport::File::Registry.tables(file_path, nil)
+        tables = NdrImport::File::Registry.tables(file_path, nil, nil)
         tables.each do |tablename, sheet|
           assert_nil tablename
           assert_instance_of Enumerator, sheet
@@ -44,7 +44,7 @@ module NdrImport
         file_path = @permanent_test_files.join('normal.csv.zip')
         files = NdrImport::File::Registry.files(file_path, options)
         files.each do |filename|
-          tables = NdrImport::File::Registry.tables(filename, nil, options)
+          tables = NdrImport::File::Registry.tables(filename, nil, nil, options)
 
           tables.each do |tablename, sheet|
             assert_nil tablename

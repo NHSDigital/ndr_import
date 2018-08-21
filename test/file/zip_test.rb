@@ -15,15 +15,15 @@ module NdrImport
         file_path = @home.join('imaginary.zip')
 
         assert_raises ArgumentError do
-          NdrImport::File::Zip.new(file_path.to_s, nil, 'unzip_path' => @home.to_s)
+          NdrImport::File::Zip.new(file_path.to_s, nil, nil, 'unzip_path' => @home.to_s)
         end
 
         assert_raises ArgumentError do
-          NdrImport::File::Zip.new(file_path.to_s, nil, 'unzip_path' => @home)
+          NdrImport::File::Zip.new(file_path.to_s, nil, nil, 'unzip_path' => @home)
         end
 
         assert_raises ArgumentError do
-          NdrImport::File::Zip.new(file_path, nil, 'unzip_path' => @home.to_s)
+          NdrImport::File::Zip.new(file_path, nil, nil, 'unzip_path' => @home.to_s)
         end
       end
 
@@ -31,7 +31,7 @@ module NdrImport
         options = { 'unzip_path' => @home }
         file_path = @permanent_test_files.join('normal.csv.zip')
 
-        handler = NdrImport::File::Zip.new(file_path, nil, options)
+        handler = NdrImport::File::Zip.new(file_path, nil, nil, options)
         handler.files.each do |filename|
           assert_instance_of SafePath, filename
           assert_equal 'normal.csv', ::File.basename(filename)
