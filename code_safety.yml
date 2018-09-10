@@ -75,7 +75,7 @@ file safety:
   lib/ndr_import/file/delimited.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: be12e57519d3737e8d3901d7b01485c6995708dd
+    safe_revision: 902f5326d85372d9632de9869d6f56fc02b83a10
   lib/ndr_import/file/excel.rb:
     comments: 
     reviewed_by: joshpencheon
@@ -167,19 +167,19 @@ file safety:
   lib/ndr_import/table.rb:
     comments: uses File.basename
     reviewed_by: josh.pencheon
-    safe_revision: 14775e7262dbec3b6d0f69930ff526f856a94214
+    safe_revision: 902f5326d85372d9632de9869d6f56fc02b83a10
   lib/ndr_import/universal_importer_helper.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 36143ff4f48e0433a7b04b63143ef6d6d2481fec
+    safe_revision: 902f5326d85372d9632de9869d6f56fc02b83a10
   lib/ndr_import/version.rb:
     comments: another check?
-    reviewed_by: ollie.tulloch
-    safe_revision: fa21aae027f436337eb0de481e390cdbab348123
+    reviewed_by: josh.pencheon
+    safe_revision: 5adc16ab99f43a20c1bedcea8724258188ab64bd
   ndr_import.gemspec:
     comments: 
-    reviewed_by: ollie.tulloch
-    safe_revision: a76d7fd03894158417411d0c9620ea4c1d5a03d6
+    reviewed_by: josh.pencheon
+    safe_revision: ea0a8c2eca882e5fe43d6dde203490033086a197
   test/file/base_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -187,7 +187,7 @@ file safety:
   test/file/delimited_test.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: be12e57519d3737e8d3901d7b01485c6995708dd
+    safe_revision: 902f5326d85372d9632de9869d6f56fc02b83a10
   test/file/excel_test.rb:
     comments: 
     reviewed_by: joshpencheon
@@ -199,7 +199,7 @@ file safety:
   test/file/registry_test.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: f82e6839f7e3f9932a6f92242c03d94234fc1d82
+    safe_revision: 902f5326d85372d9632de9869d6f56fc02b83a10
   test/file/text_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -250,8 +250,8 @@ file safety:
     safe_revision: 63b1e8c275bd63377309d9b124176f39f75576a9
   test/non_tabular/table_test.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: c9136301653bd7e6c4d16a8cfb8f40ad9ef6e836
+    reviewed_by: josh.pencheon
+    safe_revision: 902f5326d85372d9632de9869d6f56fc02b83a10
   test/non_tabular_file_helper_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -320,6 +320,10 @@ file safety:
     comments: 
     reviewed_by: timgentry
     safe_revision: e13005efa08f7168c1c65c60ce97057287ace534
+  test/resources/high_ascii_delimited_example_two.txt:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 902f5326d85372d9632de9869d6f56fc02b83a10
   test/resources/malformed.xml:
     comments: 
     reviewed_by: timgentry
@@ -348,6 +352,10 @@ file safety:
     comments: 
     reviewed_by: timgentry
     safe_revision: 45da71ebd3acbc0fe53755bcd75483ba17cb6924
+  test/resources/not_sign_delimited.txt:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 902f5326d85372d9632de9869d6f56fc02b83a10
   test/resources/sample_xls.xls:
     comments: 
     reviewed_by: timgentry
@@ -419,4 +427,4 @@ file safety:
   test/universal_importer_helper_test.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 36143ff4f48e0433a7b04b63143ef6d6d2481fec
+    safe_revision: 902f5326d85372d9632de9869d6f56fc02b83a10
