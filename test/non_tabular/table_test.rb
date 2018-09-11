@@ -48,7 +48,7 @@ STR
 
   def test_all_valid_options
     valid_options = %w[
-      canonical_name capture_start_line columns delimiter end_in_a_record end_line_pattern
+      canonical_name capture_start_line columns end_in_a_record end_line_pattern
       filename_pattern format klass remove_lines start_in_a_record start_line_pattern
     ]
     assert_equal valid_options.sort,
