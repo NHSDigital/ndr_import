@@ -41,7 +41,7 @@ module NdrImport
           if klass
             klass.new(filename, format, options)
           else
-            fail "Error: Unknown file format #{format.inspect}"
+            UnregisteredFiletype.new(filename, format, options)
           end
         end
       end
