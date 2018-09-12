@@ -66,8 +66,8 @@ file safety:
     safe_revision: be12e57519d3737e8d3901d7b01485c6995708dd
   lib/ndr_import/file/all.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
+    reviewed_by: josh.pencheon
+    safe_revision: 2104514689a1a1286195fff18144a8cecb93048b
   lib/ndr_import/file/base.rb:
     comments: 
     reviewed_by: timgentry
@@ -86,12 +86,16 @@ file safety:
     safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
   lib/ndr_import/file/registry.rb:
     comments: 
-    reviewed_by: joshpencheon
-    safe_revision: 629a368e6a6a2aac3bec4616edbfc4c38184a923
+    reviewed_by: josh.pencheon
+    safe_revision: 2104514689a1a1286195fff18144a8cecb93048b
   lib/ndr_import/file/text.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: a8451809db86e0e023b0d93826114a33ff896c4f
+    reviewed_by: josh.pencheon
+    safe_revision: dfe367e64c6e0ff80495cd7989fc50311d5b258f
+  lib/ndr_import/file/unregistered_filetype.rb:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 2104514689a1a1286195fff18144a8cecb93048b
   lib/ndr_import/file/word.rb:
     comments: 
     reviewed_by: timgentry
@@ -154,8 +158,8 @@ file safety:
     safe_revision: 63b1e8c275bd63377309d9b124176f39f75576a9
   lib/ndr_import/non_tabular/table.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: cf382902508a21a95b80ac4582fbbd117164e80e
+    reviewed_by: josh.pencheon
+    safe_revision: f7670cf27e137064c19490abc7df020fb6e95801
   lib/ndr_import/non_tabular_file_helper.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -175,7 +179,7 @@ file safety:
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: josh.pencheon
-    safe_revision: 5adc16ab99f43a20c1bedcea8724258188ab64bd
+    safe_revision: f55e0ff1dfcbb51b0f1284f50b7f0537f65e0c65
   ndr_import.gemspec:
     comments: 
     reviewed_by: josh.pencheon
@@ -199,7 +203,7 @@ file safety:
   test/file/registry_test.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 902f5326d85372d9632de9869d6f56fc02b83a10
+    safe_revision: dfe367e64c6e0ff80495cd7989fc50311d5b258f
   test/file/text_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -251,7 +255,7 @@ file safety:
   test/non_tabular/table_test.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 902f5326d85372d9632de9869d6f56fc02b83a10
+    safe_revision: f7670cf27e137064c19490abc7df020fb6e95801
   test/non_tabular_file_helper_test.rb:
     comments: 
     reviewed_by: timgentry
