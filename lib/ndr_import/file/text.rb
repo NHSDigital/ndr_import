@@ -47,6 +47,6 @@ module NdrImport
       end
     end
 
-    Registry.register(Text, 'txt') # TODO: Add 'nontabular'?
+    Registry.register(Text, 'txt', 'text', 'nontabular')
   end
 end
