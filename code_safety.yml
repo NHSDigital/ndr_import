@@ -35,7 +35,7 @@ file safety:
   README.md:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 290022d7fc1334c79a4558deeac7da7e5027efe4
+    safe_revision: ea7acbd1bbe99eb57f65c1dd381c309299ae3e08
   Rakefile:
     comments: 
     reviewed_by: josh.pencheon
@@ -179,11 +179,11 @@ file safety:
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: josh.pencheon
-    safe_revision: 294341bbe19609d109bae40df356fd6b37b9f0aa
+    safe_revision: e350bd3f45bac82e5a05bd75eb87e9ae82486cf2
   ndr_import.gemspec:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: a2e368975af4835e1c6a55e30a525c2ba620888b
+    safe_revision: a1bd9cb14dd5a660119a339795fb6a9bf0c1819e
   test/file/base_test.rb:
     comments: 
     reviewed_by: timgentry
