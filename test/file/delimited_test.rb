@@ -33,6 +33,21 @@ module NdrImport
         end
       end
 
+      test 'should read unconformat pipe correctly' do
+        file_path = @permanent_test_files.join('malformed_pipe.csv')
+        handler = NdrImport::File::Delimited.new(file_path, 'delimited', 'col_sep' => '|',
+                                                                         'liberal_parsing' => 'true')
+        handler.tables.each do |tablename, sheet|
+          assert_nil tablename
+          sheet = sheet.to_a
+          assert_equal(('A'..'Z').to_a, sheet[0])
+          assert_equal ['1'] * 26, sheet[1]
+          expected_row = ['2'] * 25
+          expected_row << '2"malformed"'
+          assert_equal expected_row, sheet[2].sort
+        end
+      end
+
       test 'should read thorn correctly' do
         file_path = @permanent_test_files.join('normal_thorn.csv')
         handler = NdrImport::File::Delimited.new(file_path, 'delimited', 'col_sep' => "\xfe")
@@ -97,6 +112,47 @@ module NdrImport
         assert_equal(('A'..'Z').to_a, rows[0])
         assert_equal ['1'] * 26, rows[1]
         assert_equal ['2'] * 26, rows[2]
+      end
+
+      test 'should read malformed delimited txt' do
+        rows = []
+        file_path = @permanent_test_files.join('malformed.csv')
+        handler = NdrImport::File::Delimited.new(file_path, 'csv', 'col_sep' => nil,
+                                                                   'liberal_parsing' => 'true')
+        handler.tables.each do |tablename, sheet|
+          assert_nil tablename
+          assert_instance_of Enumerator, sheet
+          sheet.each do |row|
+            rows << row
+          end
+        end
+
+        assert_equal(('A'..'Z').to_a, rows[0])
+        assert_equal ['1'] * 26, rows[1]
+        expected_row = ['2'] * 25
+        expected_row << '2"malformed"'
+        assert_equal expected_row, rows[2].sort
+      end
+
+      test 'should fail to read malformed delimited txt without liberal_parsing' do
+        rows_yielded = []
+        exception    = assert_raises(CSVLibrary::MalformedCSVError) do
+          file_path = @permanent_test_files.join('malformed.csv')
+          handler = NdrImport::File::Delimited.new(file_path, 'csv')
+
+          handler.tables.each do |tablename, sheet|
+            assert_nil tablename
+            assert_instance_of Enumerator, sheet
+            sheet.each do |row|
+              rows_yielded << row
+            end
+          end
+        end
+
+        assert rows_yielded.empty?, 'no rows should have been yielded'
+
+        msg = 'Invalid CSV format on row 3 of malformed.csv. Original: Illegal quoting in line 3.'
+        assert_equal msg, exception.message
       end
 
       test 'should read line-by-line' do
