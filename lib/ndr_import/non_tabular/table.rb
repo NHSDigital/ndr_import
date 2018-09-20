@@ -16,8 +16,9 @@ module NdrImport
 
       include UTF8Encoding
 
-      NON_TABULAR_OPTIONS = %w(capture_start_line start_line_pattern end_line_pattern remove_lines
-                               start_in_a_record end_in_a_record)
+      NON_TABULAR_OPTIONS = %w(capture_end_line capture_start_line start_line_pattern
+                               end_line_pattern remove_lines start_in_a_record
+                               end_in_a_record).freeze
 
       def self.all_valid_options
         super - %w(delimiter tablename_pattern header_lines footer_lines) + NON_TABULAR_OPTIONS
@@ -118,7 +119,7 @@ module NdrImport
             start_record(line)
           elsif line =~ @end_line_pattern
             # This is an end line
-            end_record
+            end_record(line)
           else
             @non_tabular_record << line if @in_a_record
           end
@@ -142,7 +143,9 @@ module NdrImport
 
       # Tabulate the record (if in one), flagged it as no longer being in a record
       # and set the record to be a new one.
-      def end_record
+      def end_record(line)
+        # Add the end line to the @non_tabular_record (if required) before ending the record
+        @non_tabular_record << line if @capture_end_line
         @tabular_array << @non_tabular_record.tabulate(column_mappings) if @in_a_record
         @in_a_record = false
         @non_tabular_record = NdrImport::NonTabular::Record.new
