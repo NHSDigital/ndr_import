@@ -21,7 +21,7 @@ module NdrImport
                                end_in_a_record).freeze
 
       def self.all_valid_options
-        super - %w(tablename_pattern header_lines footer_lines) + NON_TABULAR_OPTIONS
+        super - %w(delimiter tablename_pattern header_lines footer_lines) + NON_TABULAR_OPTIONS
       end
 
       attr_reader(*NON_TABULAR_OPTIONS)

@@ -12,7 +12,7 @@ module NdrImport
 
       test 'Registry.handlers' do
         assert_instance_of Hash, NdrImport::File::Registry.handlers
-        assert_equal %w(csv doc pdf pipe thorn txt xls xlsx zip),
+        assert_equal %w[csv delimited doc nontabular pdf text txt xls xlsx zip],
                      NdrImport::File::Registry.handlers.keys.sort
       end
 
@@ -35,7 +35,7 @@ module NdrImport
         tables.each do |tablename, sheet|
           assert_nil tablename
           assert_instance_of Enumerator, sheet
-          assert_equal ['Hello World'], sheet.to_a
+          assert_equal ['Hello World ', 'Goodbye Universe ', ' '], sheet.to_a
         end
       end
 

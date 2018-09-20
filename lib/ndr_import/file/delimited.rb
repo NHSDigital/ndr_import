@@ -9,11 +9,8 @@ module NdrImport
     # This class is a delimited file handler that returns a single table.
     class Delimited < Base
       DELIMITED_COL_SEP = {
-        'csv' => nil,
-        'pipe' => '|',
-        'thorn' => "\xfe" # high-ascii (lower case thorn) delimited files
+        'csv' => nil
       }
-
       def initialize(filename, format, options = {})
         super
 
@@ -46,17 +43,17 @@ module NdrImport
       def determine_encodings!(safe_path)
         # delimiter encoding => # FasterCSV encoding string
         supported_encodings = {
-          'UTF-8'        => 'bom|utf-8',
-          'Windows-1252' => 'windows-1252:utf-8'
+          'UTF-8'        => 'r:bom|utf-8',
+          'Windows-1252' => 'r:windows-1252:utf-8'
         }
 
         successful_options = nil
-        supported_encodings.each do |delimiter_encoding, csv_encoding|
+        supported_encodings.each do |delimiter_encoding, access_mode|
           begin
             col_sep = @options['col_sep']
             options = {
               :col_sep  => (col_sep || ',').force_encoding(delimiter_encoding),
-              :encoding => csv_encoding
+              :mode     => access_mode
             }
 
             row_num = 0
@@ -86,6 +83,6 @@ module NdrImport
       end
     end
 
-    Registry.register(Delimited, 'csv', 'pipe', 'thorn')
+    Registry.register(Delimited, 'csv', 'delimited')
   end
 end
