@@ -1,28 +1,32 @@
 require 'test_helper'
-require 'ndr_import/file/word'
+require 'ndr_import/file/docx'
 
 module NdrImport
   module File
-    # Word document file handler tests
-    class WordTest < ActiveSupport::TestCase
+    # Word .docx document file handler tests
+    class DocxTest < ActiveSupport::TestCase
       def setup
         @permanent_test_files = SafePath.new('permanent_test_files')
       end
 
       test 'should read word file' do
-        file_path = @permanent_test_files.join('hello_world.doc')
-        handler = NdrImport::File::Word.new(file_path, nil)
+        file_path = @permanent_test_files.join('hello_world.docx')
+        handler = NdrImport::File::Docx.new(file_path, nil)
         handler.tables.each do |tablename, sheet|
           assert_nil tablename
           assert_instance_of Enumerator, sheet
-          assert_equal ['Hello world, this is a word document'], sheet.to_a
+          assert_equal [
+            'Hello world, this is a modern word document',
+            'With more than one line of text',
+            'Three in fact'
+          ], sheet.to_a
         end
       end
 
       test 'should raise exception on invalid word file' do
         assert_raises RuntimeError do
-          file_path = @permanent_test_files.join('not_a_word_file.doc')
-          handler = NdrImport::File::Word.new(file_path, nil)
+          file_path = @permanent_test_files.join('not_a_word_file.docx')
+          handler = NdrImport::File::Docx.new(file_path, nil)
           handler.tables.each do |tablename, sheet|
             assert_nil tablename
             assert_instance_of Enumerator, sheet

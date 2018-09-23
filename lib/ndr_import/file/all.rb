@@ -1,5 +1,6 @@
 require_relative 'base'
 require_relative 'delimited'
+require_relative 'docx'
 require_relative 'excel'
 require_relative 'pdf'
 require_relative 'text'
