@@ -35,7 +35,7 @@ file safety:
   README.md:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: ea7acbd1bbe99eb57f65c1dd381c309299ae3e08
+    safe_revision: 1b66cfcbb61dfac93c44889ca0ced5836101c20c
   Rakefile:
     comments: 
     reviewed_by: josh.pencheon
@@ -67,7 +67,7 @@ file safety:
   lib/ndr_import/file/all.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 2104514689a1a1286195fff18144a8cecb93048b
+    safe_revision: 1b66cfcbb61dfac93c44889ca0ced5836101c20c
   lib/ndr_import/file/base.rb:
     comments: 
     reviewed_by: timgentry
@@ -76,6 +76,10 @@ file safety:
     comments: 
     reviewed_by: josh.pencheon
     safe_revision: 902f5326d85372d9632de9869d6f56fc02b83a10
+  lib/ndr_import/file/docx.rb:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 1b66cfcbb61dfac93c44889ca0ced5836101c20c
   lib/ndr_import/file/excel.rb:
     comments: 
     reviewed_by: joshpencheon
@@ -159,7 +163,7 @@ file safety:
   lib/ndr_import/non_tabular/table.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: f7670cf27e137064c19490abc7df020fb6e95801
+    safe_revision: 337bf56e39f0f08cf7593b03867bb2da48630663
   lib/ndr_import/non_tabular_file_helper.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -179,11 +183,11 @@ file safety:
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: josh.pencheon
-    safe_revision: e350bd3f45bac82e5a05bd75eb87e9ae82486cf2
+    safe_revision: b85d90430543f238706d569bacd750ee50cb5493
   ndr_import.gemspec:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: a1bd9cb14dd5a660119a339795fb6a9bf0c1819e
+    safe_revision: 1b66cfcbb61dfac93c44889ca0ced5836101c20c
   test/file/base_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -192,6 +196,10 @@ file safety:
     comments: 
     reviewed_by: josh.pencheon
     safe_revision: 902f5326d85372d9632de9869d6f56fc02b83a10
+  test/file/docx_test.rb:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 1b66cfcbb61dfac93c44889ca0ced5836101c20c
   test/file/excel_test.rb:
     comments: 
     reviewed_by: joshpencheon
@@ -203,15 +211,15 @@ file safety:
   test/file/registry_test.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: dfe367e64c6e0ff80495cd7989fc50311d5b258f
+    safe_revision: 1b66cfcbb61dfac93c44889ca0ced5836101c20c
   test/file/text_test.rb:
     comments: 
     reviewed_by: timgentry
     safe_revision: 3107f711805b6d3b89d32ec923178425aa600dac
   test/file/word_test.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
+    reviewed_by: josh.pencheon
+    safe_revision: 1b66cfcbb61dfac93c44889ca0ced5836101c20c
   test/file/zip_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -255,7 +263,7 @@ file safety:
   test/non_tabular/table_test.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: f7670cf27e137064c19490abc7df020fb6e95801
+    safe_revision: 337bf56e39f0f08cf7593b03867bb2da48630663
   test/non_tabular_file_helper_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -312,6 +320,10 @@ file safety:
     comments: 
     reviewed_by: timgentry
     safe_revision: 45da71ebd3acbc0fe53755bcd75483ba17cb6924
+  test/resources/hello_world.docx:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 1b66cfcbb61dfac93c44889ca0ced5836101c20c
   test/resources/hello_world.pdf:
     comments: 
     reviewed_by: josh.pencheon
@@ -356,6 +368,10 @@ file safety:
     comments: 
     reviewed_by: timgentry
     safe_revision: 45da71ebd3acbc0fe53755bcd75483ba17cb6924
+  test/resources/not_a_word_file.docx:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 1b66cfcbb61dfac93c44889ca0ced5836101c20c
   test/resources/not_sign_delimited.txt:
     comments: 
     reviewed_by: josh.pencheon
