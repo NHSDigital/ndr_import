@@ -35,7 +35,8 @@ module NdrImport
         tables = NdrImport::File::Registry.tables(filename,
                                                   table_mapping.try(:format),
                                                   'unzip_path' => unzip_path,
-                                                  'col_sep' => table_mapping.try(:delimiter))
+                                                  'col_sep'    => table_mapping.try(:delimiter),
+                                                  'root_node'  => table_mapping.try(:root_node))
         yield_tables_and_their_content(filename, tables, &block)
       end
     end

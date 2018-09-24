@@ -1,0 +1,32 @@
+﻿<root>
+  <record>
+    <no_relative_path value="A value"/>
+    <no_path_or_att>Another value</no_path_or_att>
+    <demographics>
+      <demographics_1>AAA</demographics_1>
+      <address>
+        <address_line1>Address</address_line1>
+      </address>
+      <demographics_2 code="03"/>
+    </demographics>
+    <pathology>
+      <pathology_date_1>2018-01-01</pathology_date_1>
+      <pathology_date_2 />
+    </pathology>
+  </record>
+  <record>
+    <demographics>
+      <address>
+        <address_line1>Address</address_line1>
+      </address>
+      <demographics_2 code="03"/>
+      <demographics_1>AAA</demographics_1>
+    </demographics>
+    <no_path_or_att>Another value</no_path_or_att>
+    <pathology>
+      <pathology_date_1>2018-01-01</pathology_date_1>
+      <pathology_date_2 />
+    </pathology>
+    <no_relative_path value="A value"/>
+  </record>
+</root>
