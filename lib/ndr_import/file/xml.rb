@@ -18,9 +18,7 @@ module NdrImport
 
         doc = read_xml_file(@filename)
 
-        doc.xpath(@options['root_node']).each do |xml_element|
-          yield xml_element
-        end
+        doc.xpath(@options['root_node']).each(&block)
       rescue StandardError => e
         raise("#{SafeFile.basename(@filename)} [#{e.class}: #{e.message}]")
       end
