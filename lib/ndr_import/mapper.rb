@@ -231,13 +231,14 @@ module NdrImport::Mapper
   #
   # would base64 decode a word document and then 'decode' the word document into plain text
   def decode_raw_value(raw_value, encoding)
+    return raw_value if raw_value.blank?
     case encoding
     when :base64
       Base64.decode64(raw_value)
     when :word_doc
       read_word_stream(StringIO.new(raw_value, 'r'))
     else
-      fail "Cannot decode: #{encoding}"
+      raise "Cannot decode: #{encoding}"
     end
   end
 
