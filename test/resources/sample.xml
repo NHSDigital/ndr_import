@@ -22,7 +22,7 @@
       <demographics_2 code="03"/>
       <demographics_1>AAA</demographics_1>
     </demographics>
-    <no_path_or_att>Another value</no_path_or_att>
+    <no_path_or_att><![CDATA[Another value]]></no_path_or_att>
     <pathology>
       <pathology_date_1>2018-01-01</pathology_date_1>
       <pathology_date_2 />
