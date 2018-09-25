@@ -12,13 +12,13 @@ module NdrImport
 
       private
 
-      # Iterate through the file, yielding each 'root_node' element in turn.
+      # Iterate through the file, yielding each 'xml_record_xpath' element in turn.
       def rows(&block)
         return enum_for(:rows) unless block
 
         doc = read_xml_file(@filename)
 
-        doc.xpath(@options['root_node']).each(&block)
+        doc.xpath(@options['xml_record_xpath']).each(&block)
       rescue StandardError => e
         raise("#{SafeFile.basename(@filename)} [#{e.class}: #{e.message}]")
       end

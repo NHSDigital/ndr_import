@@ -11,7 +11,7 @@ module NdrImport
 
       test 'should return enum of xml elements' do
         file_path = @permanent_test_files.join('sample.xml')
-        handler   = NdrImport::File::Xml.new(file_path, nil, 'root_node' => 'root/record')
+        handler   = NdrImport::File::Xml.new(file_path, nil, 'xml_record_xpath' => 'root/record')
         rows      = handler.send(:rows)
         assert rows.is_a? Enumerator
         assert(rows.all? { |row| row.is_a? Nokogiri::XML::Element })

@@ -5,7 +5,7 @@ module Xml
   class TableTest < ActiveSupport::TestCase
     def setup
       file_path = SafePath.new('permanent_test_files').join('sample.xml')
-      handler   = NdrImport::File::Xml.new(file_path, nil, 'root_node' => 'root/record')
+      handler   = NdrImport::File::Xml.new(file_path, nil, 'xml_record_xpath' => 'root/record')
 
       @element_lines = handler.send(:rows)
     end
@@ -31,7 +31,7 @@ module Xml
       end
     end
 
-    def test_shoukld_fail_with_unmappped_nodes
+    def test_should_fail_with_unmappped_nodes
       table = NdrImport::Xml::Table.new(klass: 'SomeTestKlass', columns: partial_xml_column_mapping)
 
       exception = assert_raises(RuntimeError) { table.transform(@element_lines).to_a }

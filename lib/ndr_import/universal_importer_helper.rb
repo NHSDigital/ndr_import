@@ -36,7 +36,8 @@ module NdrImport
                                                   table_mapping.try(:format),
                                                   'unzip_path' => unzip_path,
                                                   'col_sep'    => table_mapping.try(:delimiter),
-                                                  'root_node'  => table_mapping.try(:root_node))
+                                                  'xml_record_xpath' =>
+                                                     table_mapping.try(:xml_record_xpath))
         yield_tables_and_their_content(filename, tables, &block)
       end
     end
