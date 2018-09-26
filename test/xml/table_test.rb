@@ -13,14 +13,19 @@ module Xml
     def test_should_transform_xml_element_lines
       table = NdrImport::Xml::Table.new(klass: 'SomeTestKlass', columns: xml_column_mapping)
 
-      expected_data = ['SomeTestKlass', { rawtext: { 'no_relative_path' => 'A value',
-                                                     'no_path_or_att'   => 'Another value',
-                                                     'demographics_1'   => 'AAA',
-                                                     'demographics_2'   => '03',
-                                                     'address_line1'    => 'Address',
-                                                     'pathology_date_1' => '2018-01-01',
-                                                     'pathology_date_2' => '',
-                                                     'should_be_blank'  => '' } }, 1]
+      expected_data = ['SomeTestKlass', { rawtext: {
+        'no_relative_path'            => 'A value',
+        'no_relative_path_inner_text' => '',
+        'no_path_or_att'              => 'Another value',
+        'demographics_1'              => 'AAA',
+        'demographics_2'              => '03',
+        'demographics_2_inner_text'   => 'Inner text',
+        'address1'                    => 'Address',
+        'address2'                    => 'Address 2',
+        'pathology_date_1'            => '2018-01-01',
+        'pathology_date_2'            => '',
+        'should_be_blank'             => ''
+      } }, 1]
 
       transformed_data = table.transform(@element_lines)
       assert_equal 2, transformed_data.count
@@ -44,13 +49,19 @@ module Xml
       [
         { 'column' => 'no_relative_path',
           'xml_cell' => { 'relative_path' => '', 'attribute' => 'value' } },
+        { 'column' => 'no_relative_path', 'rawtext_name' => 'no_relative_path_inner_text',
+          'xml_cell' => { 'relative_path' => '' } },
         { 'column' => 'no_path_or_att',
           'xml_cell' => { 'relative_path' => '', 'attribute' => '' } },
         { 'column' => 'demographics_1',
           'xml_cell' => { 'relative_path' => 'demographics' } },
         { 'column' => 'demographics_2',
           'xml_cell' => { 'relative_path' => 'demographics', 'attribute' => 'code' } },
-        { 'column' => 'address_line1',
+        { 'column' => 'demographics_2', 'rawtext_name' => 'demographics_2_inner_text',
+          'xml_cell' => { 'relative_path' => 'demographics' } },
+        { 'column' => 'address_line1[1]', 'rawtext_name' => 'address1',
+          'xml_cell' => { 'relative_path' => 'demographics/address' } },
+        { 'column' => 'address_line1[2]', 'rawtext_name' => 'address2',
           'xml_cell' => { 'relative_path' => 'demographics/address' } },
         { 'column' => 'pathology_date_1',
           'xml_cell' => { 'relative_path' => 'pathology' } },

@@ -6,8 +6,9 @@
       <demographics_1>AAA</demographics_1>
       <address>
         <address_line1>Address</address_line1>
+        <address_line1>Address 2</address_line1>
       </address>
-      <demographics_2 code="03"/>
+      <demographics_2 code="03">Inner text</demographics_2>
     </demographics>
     <pathology>
       <pathology_date_1>2018-01-01</pathology_date_1>
@@ -18,8 +19,9 @@
     <demographics>
       <address>
         <address_line1>Address</address_line1>
+        <address_line1>Address 2</address_line1>
       </address>
-      <demographics_2 code="03"/>
+      <demographics_2 code="03">Inner text</demographics_2>
       <demographics_1>AAA</demographics_1>
     </demographics>
     <no_path_or_att><![CDATA[Another value]]></no_path_or_att>

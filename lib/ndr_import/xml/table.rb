@@ -42,9 +42,7 @@ module NdrImport
 
       # Ensure every leaf is accounted for in the column mappings
       def validate_column_mappings(line)
-        column_names  = columns.map { |column| column_name_from(column) }
-        data_leaves   = line.xpath('//*[not(child::*)]').map(&:name)
-        missing_nodes = data_leaves - column_names
+        missing_nodes = mappable_xpaths_from(line) - column_xpaths
         raise "Unmapped data! #{missing_nodes}" unless missing_nodes.empty?
       end
 
@@ -54,6 +52,17 @@ module NdrImport
 
       def column_xpaths
         @column_xpaths ||= columns.map { |column| build_xpath_from(column) }
+      end
+
+      def mappable_xpaths_from(line)
+        xpaths = []
+
+        line.xpath('.//*[not(child::*)]').each do |node|
+          xpath = node.path.sub(line.path + '/', '')
+          xpaths << xpath
+          node.attributes.each_key { |key| xpaths << "#{xpath}/@#{key}" }
+        end
+        xpaths
       end
 
       def build_xpath_from(column)
