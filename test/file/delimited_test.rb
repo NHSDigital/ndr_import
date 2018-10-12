@@ -33,7 +33,7 @@ module NdrImport
         end
       end
 
-      test 'should read unconformat pipe correctly' do
+      test 'should read malformed pipe correctly' do
         file_path = @permanent_test_files.join('malformed_pipe.csv')
         handler = NdrImport::File::Delimited.new(file_path, 'delimited', 'col_sep' => '|',
                                                                          'liberal_parsing' => 'true')
