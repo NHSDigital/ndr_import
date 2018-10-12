@@ -12,7 +12,7 @@ module NdrImport
 
       test 'Registry.handlers' do
         assert_instance_of Hash, NdrImport::File::Registry.handlers
-        assert_equal %w[csv delimited doc docx nontabular pdf text txt xls xlsx zip],
+        assert_equal %w[csv delimited doc docx nontabular pdf text txt xls xlsx xml_table zip],
                      NdrImport::File::Registry.handlers.keys.sort
       end
 

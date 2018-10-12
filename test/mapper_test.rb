@@ -635,6 +635,11 @@ class MapperTest < ActiveSupport::TestCase
     assert_equal 'Hello world, this is a word document', file_content
   end
 
+  test 'should handle blank values when attempting to decode_raw_value' do
+    text_content = TestMapper.new.send(:decode_raw_value, '', :word_doc)
+    assert_equal '', text_content
+  end
+
   test 'should raise unknown encoding exception' do
     assert_raise(RuntimeError) do
       TestMapper.new.mapped_line(['A'], invalid_decode_mapping)
