@@ -141,9 +141,9 @@ file safety:
     reviewed_by: timgentry
     safe_revision: 6c6f204fab2f4232d81cb76aa523c26b0c490ae7
   lib/ndr_import/mapper.rb:
-    comments: 
+    comments: Writes to a Tempfile, but cleans up. Ruby will respect TMP_DIR
     reviewed_by: josh.pencheon
-    safe_revision: 4ab72f84201c2d5f0147b7dfd041f488f6ff0422
+    safe_revision: a41595349baf4428e63380c103b524ba2fa8d7df
   lib/ndr_import/mapping_error.rb:
     comments: 
     reviewed_by: timgentry
@@ -187,7 +187,7 @@ file safety:
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: josh.pencheon
-    safe_revision: 0b1ab7c810d0fa46d153238d69627c07f56d1efa
+    safe_revision: 32f813db3eaf29fd24f6bba6e3b2a1ba137d5d1d
   lib/ndr_import/xml/table.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -267,7 +267,7 @@ file safety:
   test/mapper_test.rb:
     comments: exposes Mapper internals to test them
     reviewed_by: josh.pencheon
-    safe_revision: 4ab72f84201c2d5f0147b7dfd041f488f6ff0422
+    safe_revision: a41595349baf4428e63380c103b524ba2fa8d7df
   test/non_tabular/mapping_test.rb:
     comments: 
     reviewed_by: timgentry
