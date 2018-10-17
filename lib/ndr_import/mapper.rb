@@ -245,7 +245,7 @@ module NdrImport::Mapper
 
   # Given an IO stream representing a .doc or .docx word document,
   # this method will extract the text from the document in the same way
-  # as NdrImport::Helpers::File::Word or NdrImport::Helpers::File::Docx respectively
+  # as NdrImport::File::Word or NdrImport::File::Docx respectively
   def read_word_stream(stream)
     # whole_contents adds "\n" to end of stream, we remove it
     MSWordDoc::Extractor.load(stream).whole_contents.sub(/\n\z/, '')
