@@ -626,8 +626,8 @@ class MapperTest < ActiveSupport::TestCase
     test_file = @permanent_test_files.join('hello_world.docx')
     encoded_content = Base64.encode64(File.binread(test_file))
     line_hash = TestMapper.new.mapped_line([encoded_content], base64_mapping)
-    expected_content = 'Hello world, this is a modern word document\\n' \
-                       'With more than one line of text\\nThree in fact'
+    expected_content = "Hello world, this is a modern word document\n" \
+                       "With more than one line of text\nThree in fact"
 
     assert_equal expected_content, line_hash[:rawtext]['base64']
   end

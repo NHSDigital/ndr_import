@@ -259,7 +259,7 @@ module NdrImport::Mapper
       tempfile.write(stream.read)
 
       docx = ::Docx::Document.open(tempfile.path)
-      docx.paragraphs.map(&:to_s).join('\n')
+      docx.paragraphs.map(&:to_s).join("\n")
     end
   end
 end
