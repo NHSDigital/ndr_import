@@ -3,6 +3,7 @@ require 'ndr_support/string/conversions'
 require 'ndr_import/standard_mappings'
 require 'base64'
 require 'msworddoc-extractor'
+require 'docx'
 
 # This module provides helper logic for mapping unified sources for import into the system
 module NdrImport::Mapper
@@ -242,11 +243,23 @@ module NdrImport::Mapper
     end
   end
 
-  # Given an IO stream representing a .doc word document,
-  # this method will extract the text for the document in the same way
-  # as NdrImport::Helpers::File::Word#read_word_file
+  # Given an IO stream representing a .doc or .docx word document,
+  # this method will extract the text from the document in the same way
+  # as NdrImport::File::Word or NdrImport::File::Docx respectively
   def read_word_stream(stream)
     # whole_contents adds "\n" to end of stream, we remove it
     MSWordDoc::Extractor.load(stream).whole_contents.sub(/\n\z/, '')
+  rescue Ole::Storage::FormatError
+    stream.rewind
+    read_docx(stream)
+  end
+
+  def read_docx(stream)
+    Tempfile.create(encoding: 'ascii-8bit') do |tempfile|
+      tempfile.write(stream.read)
+
+      docx = ::Docx::Document.open(tempfile.path)
+      docx.paragraphs.map(&:to_s).join("\n")
+    end
   end
 end
