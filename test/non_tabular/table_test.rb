@@ -542,4 +542,48 @@ STR
       table.transform(junk).to_a
     end
   end
+
+  def test_should_strip_captured_rawtext
+    unwanted_white_space = <<-STR.each_line
+111
+Trailing whitespace        end_of_line
+------
+111
+        Leading whitespaceend_of_line
+------
+111
+        Leading and trailing whitespace        end_of_line
+------
+111
+Should not match this
+------
+STR
+
+    table = YAML.load <<-YML.strip_heredoc
+      --- !ruby/object:NdrImport::NonTabular::Table
+      start_line_pattern: !ruby/regexp /^111$/
+      end_in_a_record: true
+      klass: SomeTestKlass
+      columns:
+      - column: one
+        non_tabular_cell:
+          lines: 0
+          capture: !ruby/regexp /^(.*)end_of_line$/i
+          trim_rawtext: left
+    YML
+
+    enum = table.transform(unwanted_white_space)
+    assert_instance_of Enumerator, enum
+
+    output = []
+    enum.each do |klass, fields, index|
+      output << [klass, fields, index]
+    end
+
+    expected_rawtext_ouput = [{ 'one' => 'Trailing whitespace' },
+                              { 'one' => 'Leading whitespace' },
+                              { 'one' => 'Leading and trailing whitespace' },
+                              { 'one' => '' }]
+    assert_equal expected_rawtext_ouput, (output.map { |row| row[1][:rawtext] })
+  end
 end
