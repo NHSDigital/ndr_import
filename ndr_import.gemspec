@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'docx', '~> 0.3'
   spec.add_dependency 'msworddoc-extractor', '0.2.0'
-  spec.add_dependency 'nokogiri', '~> 1.8', '>= 1.8.2'
+  spec.add_dependency 'nokogiri', '~> 1.8', '>= 1.8.5'
   spec.add_dependency 'pdf-reader', '1.2.0' # Raises warnings on Ruby 2.4+
   spec.add_dependency 'roo-xls'
   spec.add_dependency 'spreadsheet', '1.0.3'
