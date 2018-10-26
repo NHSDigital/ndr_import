@@ -23,11 +23,13 @@ module NdrImport::Mapper
     MAPPINGS         = 'mappings'.freeze
     MATCH            = 'match'.freeze
     ORDER            = 'order'.freeze
+    PRESENCE         = 'presence'.freeze
     PRIORITY         = 'priority'.freeze
     RAWTEXT_NAME     = 'rawtext_name'.freeze
     REPLACE          = 'replace'.freeze
     STANDARD_MAPPING = 'standard_mapping'.freeze
     UNPACK_PATTERN   = 'unpack_pattern'.freeze
+    VALIDATES        = 'validates'.freeze
   end
 
   private
@@ -123,6 +125,9 @@ module NdrImport::Mapper
 
         replace_before_mapping(original_value, field_mapping)
         value = mapped_value(original_value, field_mapping)
+
+        validations = field_mapping[Strings::VALIDATES].presence
+        apply_validations_on(field_mapping[Strings::FIELD], value, validations) if validations
 
         # We don't care about blank values, unless we're mapping a :join
         # field (in which case, :compact may or may not be being used).
@@ -223,6 +228,20 @@ module NdrImport::Mapper
       end
     end
     true
+  end
+
+  # Apply ActiveRecord-like validations specified in field mappings, e.g.
+  # - column: column_one
+  #   mappings:
+  #   - field: field_one
+  #     validates:
+  #       presence: true
+  def apply_validations_on(field, value, validations)
+    presence_validation_on(field, value) if validations[Strings::PRESENCE]
+  end
+
+  def presence_validation_on(field, value)
+    raise "#{field} #{I18n.t('errors.messages.blank')}" if value.blank?
   end
 
   # Decode raw_value using specified encoding
