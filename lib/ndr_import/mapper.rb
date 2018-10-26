@@ -89,8 +89,8 @@ module NdrImport::Mapper
     line.each_with_index do |raw_value, col|
       column_mapping = line_mappings[col]
       if column_mapping.nil?
-        fail ArgumentError,
-             "Line has too many columns (expected #{line_mappings.size} but got #{line.size})"
+        raise ArgumentError,
+              "Line has too many columns (expected #{line_mappings.size} but got #{line.size})"
       end
 
       next if column_mapping[Strings::DO_NOT_CAPTURE]
@@ -100,7 +100,8 @@ module NdrImport::Mapper
       end
 
       # Establish the rawtext column name we are to use for this column
-      rawtext_column_name = (column_mapping[Strings::RAWTEXT_NAME] || column_mapping[Strings::COLUMN]).downcase
+      rawtext_column_name = (column_mapping[Strings::RAWTEXT_NAME] ||
+                              column_mapping[Strings::COLUMN]).downcase
 
       # Replace raw_value with decoded raw_value
       Array(column_mapping[Strings::DECODE]).each do |encoding|
@@ -135,7 +136,9 @@ module NdrImport::Mapper
 
         if field_mapping[Strings::ORDER]
           data[field][:join] ||= field_mapping[Strings::JOIN]
-          data[field][:compact] = field_mapping[Strings::COMPACT] if field_mapping.key?(Strings::COMPACT)
+          if field_mapping.key?(Strings::COMPACT)
+            data[field][:compact] = field_mapping[Strings::COMPACT]
+          end
 
           data[field][:values][field_mapping[Strings::ORDER] - 1] = value
         elsif field_mapping[Strings::PRIORITY]
@@ -156,7 +159,7 @@ module NdrImport::Mapper
       attributes[field] =
         if field_data.key?(:join)
           # Map "blank" values to nil:
-          values = values.map { |value| value if value.present? }
+          values = values.map(&:presence)
           values.compact! if field_data[:compact]
           values.join(field_data[:join])
         else
