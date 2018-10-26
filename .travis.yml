@@ -1,19 +1,20 @@
 language: ruby
-
 rvm:
-  - 2.3.6
-  - 2.4.3
-  - 2.5.0
-
+- 2.4
+- 2.5
 gemfile:
-  - gemfiles/Gemfile.rails42
-  - gemfiles/Gemfile.rails50
-  - gemfiles/Gemfile.rails51
-
+- gemfiles/Gemfile.rails42
+- gemfiles/Gemfile.rails50
+- gemfiles/Gemfile.rails51
+- gemfiles/Gemfile.rails52
 sudo: false
-
 cache: bundler
-
-before_script: "bundle update"
-
-script: "bundle exec rake test"
+before_script: bundle update
+script: bundle exec rake test
+notifications:
+  slack:
+    on_pull_requests: false
+    on_success: always
+    on_failure: always
+    rooms:
+      secure: NMd9N/jNbECT/fCUBxPDKy4IMpUnRdMhobwa+9kDRaWYbRAwIkHLd8sI1l63qx7O03SlDpsHLLckjayMKS35gO/wRmgC7T8k9ppW75Xs5D4jR/j3FdTFawnXF+wVx0ddQrpH0K8oftPX1euPEllIh7+bJUYct/Siv0UX5eP+qyHT0gKtbDlI2CMKOcOHE8Q/zwjx0mLVSj/0U+HRx5+sMEDcwPupzhCYLdIAtenHsZ2Zmo2uSqOzK9Ruf3UsIh3gVSKXWGvXQzG8bIxogIJbEbwIk/gQyMr7UXwgNzhltPz1CqOrrTmSonrd3HbLVajJvDWPMBPGDZrUyipiW/MOUKpXgd8CsL46o4icYIZIAYEWLsn/AJkrA+UQZ8S5poR06jNH8xrI0eUQsu6maWhJ/rPfzwb6x2hCCyk2iQsGtO+SPCUrWnT1T3ir8H0HStD+AZ4/yz4cdWlClchko2ZfqS0q3Yv5jF3K4iVOF4GOUo01Ft+LDU3sPC7Ngq51bejoaLTzexiOfEaF0kKvB8XNXYYjV5ATNJ8XWQR7ISJ+na4FCwt4KaKtC864TWWDTxaz6lfr0B3Wf0lZLH22+BhpzrfPWFo3YGyMsOcgPU0rPHrtAzks55rqCTQEOaKTw4rfEmuMEFJK/y80GYS2jTPu0nCnJo4NdV1fVuSSD8iUFAM=

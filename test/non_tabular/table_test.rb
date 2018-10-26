@@ -47,10 +47,10 @@ STR
   end
 
   def test_all_valid_options
-    valid_options = %w(
-      canonical_name capture_start_line columns end_in_a_record end_line_pattern filename_pattern
-      format klass remove_lines start_in_a_record start_line_pattern
-    )
+    valid_options = %w[
+      canonical_name capture_end_line capture_start_line columns end_in_a_record end_line_pattern
+      filename_pattern format klass remove_lines start_in_a_record start_line_pattern
+    ]
     assert_equal valid_options.sort,
                  NdrImport::NonTabular::Table.all_valid_options.sort
   end
@@ -320,6 +320,41 @@ STR
 
     assert results.any? { |result| result =~ /This is captured/ }
     refute results.any? { |result| result =~ /This is never captured/ }
+  end
+
+  def test_should_capture_end_line
+    data = <<~STR.each_line
+111
+Lorem ipsum dolor sit amet.
+CAPTURE THIS CODE ABC
+111
+Lorem ipsum dolor sit amet.
+CAPTURE THIS CODE XYZ
+111
+Lorem ipsum dolor sit amet.
+CAPTURE THIS CODE 123
+STR
+
+    table = YAML.load <<-YML.strip_heredoc
+      --- !ruby/object:NdrImport::NonTabular::Table
+      start_line_pattern: !ruby/regexp /\\A111\\z/
+      end_line_pattern: !ruby/regexp /\\ACAPTURE THIS CODE/
+      capture_start_line: true
+      capture_end_line: true
+      klass: SomeTestKlass
+      columns:
+      - column: one
+        non_tabular_cell:
+          lines: -1
+          capture: !ruby/regexp /\\A(.*)\\z/i
+    YML
+    enum = table.transform(data)
+    assert_instance_of Enumerator, enum
+
+    results = enum.map { |_klass, fields, _index| fields[:rawtext]['one'] }
+
+    assert_equal 3, results.count
+    assert_equal 'CAPTURE THIS CODE ABC', results.first
   end
 
   def test_should_capture

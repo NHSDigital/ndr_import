@@ -1,8 +1,8 @@
-# NdrImport [![Build Status](https://travis-ci.org/PublicHealthEngland/ndr_import.svg?branch=master)](https://travis-ci.org/PublicHealthEngland/ndr_import)
+# NdrImport [![Build Status](https://travis-ci.org/PublicHealthEngland/ndr_import.svg?branch=master)](https://travis-ci.org/PublicHealthEngland/ndr_import) [![Gem Version](https://badge.fury.io/rb/ndr_import.svg)](https://badge.fury.io/rb/ndr_import)
 
 This is the Public Health England (PHE) National Disease Registers (NDR) Import ETL ruby gem, providing:
 
-1. file import handlers for *extracting* data from delimited files (csv, pipe, tab, thorn), .xls(x) spreadsheets, .doc word documents, PDF, XML and Zip files.
+1. file import handlers for *extracting* data from delimited files (csv, pipe, tab, thorn), .xls(x) spreadsheets, .doc(x) word documents, PDF, XML and Zip files.
 2. table mappers for *transforming* tabular and non-tabular data into key value pairs grouped by a common "klass".
 
 ## Installation
