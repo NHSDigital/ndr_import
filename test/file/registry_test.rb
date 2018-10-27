@@ -35,7 +35,8 @@ module NdrImport
         tables.each do |tablename, sheet|
           assert_nil tablename
           assert_instance_of Enumerator, sheet
-          assert_equal ['Hello World ', 'Goodbye Universe ', ' '], sheet.to_a
+          assert_equal ['Hello                                         World', '',
+                        'Goodbye                                       Universe'], sheet.to_a
         end
       end
 
