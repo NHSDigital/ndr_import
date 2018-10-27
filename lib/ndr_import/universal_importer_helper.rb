@@ -3,6 +3,7 @@ require 'ndr_import/file/registry'
 module NdrImport
   # This mixin provides file importer helper methods that abstract away some of the
   # complexity of enumerating over files and tables (which should be universally useful).
+  # It is assumed that the host module/class defines `unzip_path`.
   module UniversalImporterHelper
     def table_enumerators(filename)
       table_enumerators = {}
@@ -23,8 +24,8 @@ module NdrImport
 
     # Iterate through the file(s) line by line, yielding each one in turn, using
     # get_table_mapping to select the mapping relevant to this file.
-    def extract(source_file, unzip_path, &block)
-      return enum_for(:extract, source_file, unzip_path) unless block
+    def extract(source_file, &block)
+      return enum_for(:extract, source_file) unless block
 
       files = NdrImport::File::Registry.files(source_file,
                                               'unzip_path' => unzip_path)
@@ -47,20 +48,35 @@ module NdrImport
     # This method does the table row yielding for the extract method, setting the notifier
     # so that we can monitor progress
     def yield_tables_and_their_content(filename, tables, &block)
+      return enum_for(:yield_tables_and_their_content, filename, tables) unless block_given?
+
       tables.each do |tablename, table_content|
         mapping = get_table_mapping(filename, tablename)
         next if mapping.nil?
 
-        total_records = table_content.count unless table_content.is_a?(Enumerator)
-        mapping.notifier = get_notifier(total_records)
+        mapping.notifier = get_notifier(record_total(filename, table_content))
 
         yield(mapping, table_content)
       end
     end
 
+    def mapped_tables(filename)
+      @mapped_tables ||= table_enumerators(filename)
+    end
+
     # This method needs to be implemented where this mixin is used.
     def get_notifier(_total_records)
-      fail 'Implement get_notifier'
+      raise NotImplementedError, 'get_notifier must be defined!'
+    end
+
+    def record_total(filename, table_content)
+      if '.csv' == ::File.extname(filename).downcase
+        return `wc -l #{Shellwords.escape(filename)}`.strip.match(/\A(\d+)/)[1].to_i
+      elsif table_content.is_a?(Enumerator)
+        nil # Avoid slurping
+      else
+        table_content.size
+      end
     end
   end
 end
