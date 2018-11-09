@@ -183,11 +183,11 @@ file safety:
   lib/ndr_import/universal_importer_helper.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 71979e0a602ca5a0ce415c194f10add9959f0116
+    safe_revision: 3e3a852b58e8b169535e29029e535a10f6b9cd42
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: josh.pencheon
-    safe_revision: c830ea8f3fa25efe88eb8712573ff6933978bdeb
+    safe_revision: 3f1743adb7a0ae612e480ffb9b39ba14bfb0493f
   lib/ndr_import/xml/table.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -195,7 +195,7 @@ file safety:
   ndr_import.gemspec:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 2cb4ecf1f8d8e86e9f34871782b96590665b5cf0
+    safe_revision: cb24ed3ea8116730d07f74546cd6fed0738b171d
   test/file/base_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -215,11 +215,11 @@ file safety:
   test/file/pdf_test.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: f82e6839f7e3f9932a6f92242c03d94234fc1d82
+    safe_revision: cb24ed3ea8116730d07f74546cd6fed0738b171d
   test/file/registry_test.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 4ab72f84201c2d5f0147b7dfd041f488f6ff0422
+    safe_revision: cb24ed3ea8116730d07f74546cd6fed0738b171d
   test/file/text_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -251,7 +251,7 @@ file safety:
   test/helpers/file/pdf_test.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: f82e6839f7e3f9932a6f92242c03d94234fc1d82
+    safe_revision: cb24ed3ea8116730d07f74546cd6fed0738b171d
   test/helpers/file/word_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -471,7 +471,7 @@ file safety:
   test/universal_importer_helper_test.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 902f5326d85372d9632de9869d6f56fc02b83a10
+    safe_revision: 3e3a852b58e8b169535e29029e535a10f6b9cd42
   test/xml/table_test.rb:
     comments: 
     reviewed_by: josh.pencheon
