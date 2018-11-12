@@ -32,7 +32,8 @@ module NdrImport
 
       # capture the required part of the line by replacing (recusively) the line,
       # with the first captured regular expression group. This is hardcoded in an attempt
-      # to preserve the rawtext as much as possible
+      # to preserve the rawtext as much as possible.
+      # The captured value is `String#strip`ed by default.
       def capture_value(line)
         value = line.dup
         [@cell_mapping['capture']].flatten.each do |pattern|
@@ -42,7 +43,7 @@ module NdrImport
             value = nil
           end
         end
-        value
+        value.nil? ? value : value.strip
       end
 
       def validate_cell_mapping
