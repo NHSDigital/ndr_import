@@ -48,7 +48,7 @@ files.each do |filename|
 end
 ```
 
-See test/readme_test.rb for a more complete working example.
+See `test/readme_test.rb` for a more complete working example.
 
 More information on the workings of the mapper are available in the [wiki](https://github.com/PublicHealthEngland/ndr_import/wiki).
 
