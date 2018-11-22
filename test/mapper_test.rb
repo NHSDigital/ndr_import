@@ -377,7 +377,7 @@ class MapperTest < ActiveSupport::TestCase
   end
 
   test 'should raise an error on blank mandatory field' do
-    exception = assert_raise(RuntimeError, 'should raise an exception on blank mandatory field') do
+    exception = assert_raise(NdrImport::MissingFieldError) do
       TestMapper.new.mapped_line(['', 'RGT01'], validates_presence_mapping)
     end
     assert_equal "field_one can't be blank", exception.message

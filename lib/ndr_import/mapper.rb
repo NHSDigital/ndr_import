@@ -241,7 +241,7 @@ module NdrImport::Mapper
   end
 
   def presence_validation_on(field, value)
-    raise "#{field} #{I18n.t('errors.messages.blank')}" if value.blank?
+    raise NdrImport::MissingFieldError, field if value.blank?
   end
 
   # Decode raw_value using specified encoding
