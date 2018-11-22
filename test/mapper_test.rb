@@ -293,6 +293,17 @@ class MapperTest < ActiveSupport::TestCase
           : 'RGT01'
   YML
 
+  validates_presence_mapping = YAML.safe_load <<-YML
+    - column: column_one
+      mappings:
+      - field: field_one
+        validates:
+          presence: true
+    - column: column_two
+      mappings:
+      - field: field_two
+  YML
+
   test 'map should return a number' do
     assert_equal '1', TestMapper.new.mapped_value('A', map_mapping)
   end
@@ -363,6 +374,13 @@ class MapperTest < ActiveSupport::TestCase
     original_value = ['C9999998', %w(Addenbrookes RGT01)]
     mapped_value = TestMapper.new.mapped_line(original_value, replace_array_mapping)
     assert_equal %w(RGT01 RGT01), mapped_value['hospital']
+  end
+
+  test 'should raise an error on blank mandatory field' do
+    exception = assert_raise(NdrImport::MissingFieldError) do
+      TestMapper.new.mapped_line(['', 'RGT01'], validates_presence_mapping)
+    end
+    assert_equal "field_one can't be blank", exception.message
   end
 
   test 'should return correct date format for date fields with daysafter' do
