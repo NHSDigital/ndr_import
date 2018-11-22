@@ -92,6 +92,16 @@ module NdrImport
       @header_valid == true
     end
 
+    # For readability, we should serialise the columns last
+    def encode_with(coder)
+      options = self.class.all_valid_options - ['columns']
+      options.each do |option|
+        value = instance_variable_get("@#{option}")
+        coder[option] = value if value
+      end
+      coder['columns'] = @columns
+    end
+
     private
 
     # This method uses a buffer to not yield the last <buffer_size> iterations of an enumerable.

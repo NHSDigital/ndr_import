@@ -1,5 +1,9 @@
 require 'test_helper'
 
+class TestNoCoderTable < NdrImport::NonTabular::Table
+  undef_method :encode_with
+end
+
 # This tests the NdrImport::Table mapping class
 class TableTest < ActiveSupport::TestCase
   def test_deserialize_table
@@ -137,7 +141,47 @@ class TableTest < ActiveSupport::TestCase
   end
 
   def test_encode_with
-    # encode_with(coder)
+    table = NdrImport::Table.new
+    assert table.instance_variables.include?(:@row_index)
+    refute table.class.all_valid_options.include?('row_index')
+    assert_nil table.columns
+
+    coder = {}
+    table.encode_with(coder)
+    assert coder.has_key?('columns')
+
+    yaml_output = table.to_yaml
+    assert yaml_output.include?('columns')
+    refute yaml_output.include?('row_index')
+  end
+  
+  def test_encode_with_compare
+    table_options = {
+      columns: ['a', 'b'],
+      klass: 'SomeKlass',
+      start_line_pattern: 'TODO',
+      end_line_pattern: 'TODO'
+    }
+    no_coder_table = TestNoCoderTable.new(table_options)
+    ndr_table = NdrImport::NonTabular::Table.new(table_options)
+
+    assert no_coder_table.is_a?(NdrImport::Table)
+    assert ndr_table.is_a?(NdrImport::Table)
+
+    refute no_coder_table.respond_to?(:encode_with)
+    assert ndr_table.respond_to?(:encode_with)
+
+    no_coder_table_yaml_order = get_yaml_mapping_order(no_coder_table.to_yaml)
+    ndr_table_yaml_order = get_yaml_mapping_order(ndr_table.to_yaml)
+
+    # no_coder_table_yaml_order => ["klass", "columns", "start_line_pattern", "end_line_pattern", "row_index"]
+    # ndr_table_yaml_order => ["klass", "start_line_pattern", "end_line_pattern", "columns"]
+
+    assert no_coder_table_yaml_order.include?('row_index')
+    refute ndr_table_yaml_order.include?('row_index')
+    
+    refute no_coder_table_yaml_order.last == 'columns'
+    assert ndr_table_yaml_order.last == 'columns'
   end
 
   def test_skip_footer_lines
@@ -407,4 +451,11 @@ YML
       ]
     }
   end
+
+  def get_yaml_mapping_order(yaml_mapping)
+    yaml_mapping.split("\n")
+      .delete_if {|line| /-+/.match(line) }
+      .map{|line| /(.*):/.match(line)[1].to_s }
+  end
+
 end
