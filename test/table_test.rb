@@ -153,6 +153,7 @@ class TableTest < ActiveSupport::TestCase
     yaml_output = table.to_yaml
     assert yaml_output.include?('columns')
     refute yaml_output.include?('row_index')
+    assert YAML.load(yaml_output).is_a?(NdrImport::Table)
   end
 
   def test_encode_with_compare
@@ -167,12 +168,17 @@ class TableTest < ActiveSupport::TestCase
 
     assert no_coder_table.is_a?(NdrImport::Table)
     assert ndr_table.is_a?(NdrImport::Table)
+    assert no_coder_table.is_a?(NdrImport::NonTabular::Table)
+    assert ndr_table.is_a?(NdrImport::NonTabular::Table)
 
     refute no_coder_table.respond_to?(:encode_with)
     assert ndr_table.respond_to?(:encode_with)
 
     no_coder_table_yaml_order = get_yaml_mapping_order(no_coder_table.to_yaml)
     ndr_table_yaml_order = get_yaml_mapping_order(ndr_table.to_yaml)
+
+    assert YAML.load(no_coder_table.to_yaml).is_a?(NdrImport::NonTabular::Table)
+    assert YAML.load(ndr_table.to_yaml).is_a?(NdrImport::NonTabular::Table)
 
     # no_coder_table_yaml_order => ["klass", "columns", "start_line_pattern", "end_line_pattern", "row_index"]
     # ndr_table_yaml_order => ["klass", "start_line_pattern", "end_line_pattern", "columns"]
