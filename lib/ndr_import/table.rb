@@ -96,7 +96,7 @@ module NdrImport
     def encode_with(coder)
       options = self.class.all_valid_options - ['columns']
       options.each do |option|
-        value = instance_variable_get("@#{option}")
+        value = send(option)
         coder[option] = value if value
       end
       coder['columns'] = @columns

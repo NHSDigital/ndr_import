@@ -148,16 +148,16 @@ class TableTest < ActiveSupport::TestCase
 
     coder = {}
     table.encode_with(coder)
-    assert coder.has_key?('columns')
+    assert coder.key?('columns')
 
     yaml_output = table.to_yaml
     assert yaml_output.include?('columns')
     refute yaml_output.include?('row_index')
   end
-  
+
   def test_encode_with_compare
     table_options = {
-      columns: ['a', 'b'],
+      columns: %w[a b],
       klass: 'SomeKlass',
       start_line_pattern: 'TODO',
       end_line_pattern: 'TODO'
@@ -179,7 +179,7 @@ class TableTest < ActiveSupport::TestCase
 
     assert no_coder_table_yaml_order.include?('row_index')
     refute ndr_table_yaml_order.include?('row_index')
-    
+
     refute no_coder_table_yaml_order.last == 'columns'
     assert ndr_table_yaml_order.last == 'columns'
   end
@@ -453,9 +453,8 @@ YML
   end
 
   def get_yaml_mapping_order(yaml_mapping)
-    yaml_mapping.split("\n")
-      .delete_if {|line| /-+/.match(line) }
-      .map{|line| /(.*):/.match(line)[1].to_s }
+    yaml_mapping.split("\n").
+      delete_if { |line| /-+/.match(line) }.
+      map { |line| /(.*):/.match(line)[1].to_s }
   end
-
 end
