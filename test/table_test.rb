@@ -194,9 +194,9 @@ class TableTest < ActiveSupport::TestCase
     assert deserialized_ndr_table_yaml.is_a?(NdrImport::NonTabular::Table)
 
     assert_nil deserialized_no_coder_table_yaml.filename_pattern
-    assert_equal deserialized_no_coder_table_yaml.klass, ndr_table.klass
-    assert_equal deserialized_no_coder_table_yaml.start_line_pattern, ndr_table.start_line_pattern
-    assert_equal deserialized_no_coder_table_yaml.columns, ndr_table.columns
+    assert_equal deserialized_no_coder_table_yaml.klass, no_coder_table.klass
+    assert_equal deserialized_no_coder_table_yaml.start_line_pattern, no_coder_table.start_line_pattern
+    assert_equal deserialized_no_coder_table_yaml.columns, no_coder_table.columns
 
     assert_nil deserialized_ndr_table_yaml.filename_pattern
     assert_equal deserialized_ndr_table_yaml.klass, ndr_table.klass
