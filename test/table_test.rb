@@ -177,9 +177,6 @@ class TableTest < ActiveSupport::TestCase
     no_coder_table_yaml_order = get_yaml_mapping_order(no_coder_table.to_yaml)
     ndr_table_yaml_order = get_yaml_mapping_order(ndr_table.to_yaml)
 
-    assert YAML.load(no_coder_table.to_yaml).is_a?(NdrImport::NonTabular::Table)
-    assert YAML.load(ndr_table.to_yaml).is_a?(NdrImport::NonTabular::Table)
-
     # no_coder_table_yaml_order => ["klass", "columns", "start_line_pattern", "end_line_pattern", "row_index"]
     # ndr_table_yaml_order => ["klass", "start_line_pattern", "end_line_pattern", "columns"]
 
@@ -188,6 +185,23 @@ class TableTest < ActiveSupport::TestCase
 
     refute no_coder_table_yaml_order.last == 'columns'
     assert ndr_table_yaml_order.last == 'columns'
+
+    # test objects deserialized from yaml mappings
+    deserialized_no_coder_table_yaml = YAML.load(no_coder_table.to_yaml)
+    deserialized_ndr_table_yaml = YAML.load(ndr_table.to_yaml)
+
+    assert deserialized_no_coder_table_yaml.is_a?(NdrImport::NonTabular::Table)
+    assert deserialized_ndr_table_yaml.is_a?(NdrImport::NonTabular::Table)
+
+    assert_nil deserialized_no_coder_table_yaml.filename_pattern
+    assert_equal deserialized_no_coder_table_yaml.klass, ndr_table.klass
+    assert_equal deserialized_no_coder_table_yaml.start_line_pattern, ndr_table.start_line_pattern
+    assert_equal deserialized_no_coder_table_yaml.columns, ndr_table.columns
+
+    assert_nil deserialized_ndr_table_yaml.filename_pattern
+    assert_equal deserialized_ndr_table_yaml.klass, ndr_table.klass
+    assert_equal deserialized_ndr_table_yaml.start_line_pattern, ndr_table.start_line_pattern
+    assert_equal deserialized_ndr_table_yaml.columns, ndr_table.columns
   end
 
   def test_skip_footer_lines
