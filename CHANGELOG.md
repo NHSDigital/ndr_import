@@ -1,4 +1,7 @@
 ## [Unreleased]
+*no unreleased changes*
+
+## 8.0.0 / 2018-11-26
 ### Changed
 * Strip non tabular captured values by default (#28)
 
