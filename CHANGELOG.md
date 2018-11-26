@@ -8,6 +8,7 @@
 ### Added
 * Add validations to field mappings (#27)
 * control `ndr_table` serialise order with `encode_with` method (#30)
+* Added a 7-Zip file handler
 
 ## 7.0.0 / 2018-11-09
 ### Changed
