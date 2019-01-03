@@ -216,7 +216,7 @@ module NdrImport
         file_path = @permanent_test_files.join('normal.csv')
         handler = NdrImport::File::Delimited.new(file_path, 'csv', 'col_sep' => nil)
 
-        handler.expects(determine_encodings!: { mode: 'r:bom|utf-8', col_sep: ',' }).once
+        handler.expects(try_each_encoding: { mode: 'r:bom|utf-8', col_sep: ',' }).once
 
         2.times do
           handler.tables.each do |tablename, sheet|

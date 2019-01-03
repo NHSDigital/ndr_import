@@ -63,6 +63,19 @@ class DelimitedTest < ActiveSupport::TestCase
     assert_equal msg, exception.message
   end
 
+  test 'should be able to use liberal parsing to overcome minor CSV errors' do
+    file_path = @permanent_test_files.join('malformed.csv')
+    assert_raises(CSVLibrary::MalformedCSVError) do
+      @importer.read_delimited_file(file_path, nil)
+    end
+
+    rows = @importer.read_delimited_file(file_path, nil, true)
+
+    expected_row = ['2'] * 25
+    expected_row << '2"malformed"'
+    assert_equal expected_row, rows[2].sort
+  end
+
   test 'should report addition details upon failure to read csv line-by-line' do
     rows_yielded = []
     exception    = assert_raises(CSVLibrary::MalformedCSVError) do

@@ -1,5 +1,6 @@
 ## [Unreleased]
-*no unreleased changes*
+### Added
+* Support `liberal_parsing` when using the delimited helper
 
 ## 8.0.0 / 2018-11-26
 ### Changed
