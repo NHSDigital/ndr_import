@@ -2,8 +2,8 @@ language: ruby
 rvm:
 - 2.4
 - 2.5
+- 2.6
 gemfile:
-- gemfiles/Gemfile.rails42
 - gemfiles/Gemfile.rails50
 - gemfiles/Gemfile.rails51
 - gemfiles/Gemfile.rails52

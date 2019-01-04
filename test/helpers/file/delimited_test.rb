@@ -59,8 +59,22 @@ class DelimitedTest < ActiveSupport::TestCase
       @importer.read_delimited_file(@permanent_test_files.join('broken.csv'), nil)
     end
 
-    msg = 'Invalid CSV format on row 2 of broken.csv. Original: Missing or stray quote in line 2'
-    assert_equal msg, exception.message
+    assert_match(/Invalid CSV format on row 2 of broken\.csv\./, exception.message)
+    assert_match(/(Missing or stray quote|col_sep_split)/, exception.message)
+    assert_match(/in line 2/, exception.message)
+  end
+
+  test 'should be able to use liberal parsing to overcome minor CSV errors' do
+    file_path = @permanent_test_files.join('malformed.csv')
+    assert_raises(CSVLibrary::MalformedCSVError) do
+      @importer.read_delimited_file(file_path, nil)
+    end
+
+    rows = @importer.read_delimited_file(file_path, nil, true)
+
+    expected_row = ['2'] * 25
+    expected_row << '2"malformed"'
+    assert_equal expected_row, rows[2].sort
   end
 
   test 'should report addition details upon failure to read csv line-by-line' do
@@ -73,8 +87,9 @@ class DelimitedTest < ActiveSupport::TestCase
 
     assert rows_yielded.empty?, 'no rows should have been yielded'
 
-    msg = 'Invalid CSV format on row 2 of broken.csv. Original: Missing or stray quote in line 2'
-    assert_equal msg, exception.message
+    assert_match(/Invalid CSV format on row 2 of broken\.csv\./, exception.message)
+    assert_match(/(Missing or stray quote|col_sep_split)/, exception.message)
+    assert_match(/in line 2/, exception.message)
   end
 
   test 'delimited_tables should read table correctly' do

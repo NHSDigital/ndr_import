@@ -1,5 +1,6 @@
 require 'ndr_support/safe_file'
 require 'ndr_import/csv_library'
+require 'ndr_import/helpers/file/delimited'
 require_relative 'registry'
 
 module NdrImport
@@ -8,6 +9,8 @@ module NdrImport
   module File
     # This class is a delimited file handler that returns a single table.
     class Delimited < Base
+      include Helpers::File::Delimited
+
       DELIMITED_COL_SEP = {
         'csv' => nil
       }
@@ -23,64 +26,16 @@ module NdrImport
       def rows
         return enum_for(:rows) unless block_given?
 
-        safe_path = SafeFile.safepath_to_string(@filename)
+        col_sep = @options['col_sep']
+        liberal = @options['liberal_parsing'].presence
 
-        # By now, we know `encodings` should let us read the whole
-        # file succesfully; if there are problems, we should crash.
-        CSVLibrary.foreach(safe_path, encodings(safe_path)) do |line|
-          yield line.map(&:to_s)
-        end
+        delimited_rows(@filename, col_sep, liberal) { |row| yield row }
       end
 
-      # Cache the determined encodings, so rewinding the enumerator doesn't
-      # have to redo this, but equally it is still done lazily:
-      def encodings(safe_path)
-        @encodings ||= determine_encodings!(safe_path)
-      end
-
-      # Derive the source encoding by trying all supported encodings.
-      # Returns first set of working options, or raises if none could be found.
-      def determine_encodings!(safe_path)
-        # delimiter encoding => # FasterCSV encoding string
-        supported_encodings = {
-          'UTF-8'        => 'r:bom|utf-8',
-          'Windows-1252' => 'r:windows-1252:utf-8'
-        }
-
-        successful_options = nil
-        supported_encodings.each do |delimiter_encoding, access_mode|
-          begin
-            col_sep = @options['col_sep']
-            options = {
-              col_sep:         (col_sep || ',').force_encoding(delimiter_encoding),
-              mode:            access_mode,
-              liberal_parsing: @options['liberal_parsing'].presence
-            }
-
-            row_num = 0
-            # Iterate through the file; if we reach the end, this encoding worked:
-            CSVLibrary.foreach(safe_path, options) { |_line| row_num += 1 }
-          rescue ArgumentError => e
-            next if e.message =~ /invalid byte sequence/ # This encoding didn't work
-            raise(e)
-          rescue CSVLibrary::MalformedCSVError => e
-            description = (col_sep ? col_sep.inspect + ' delimited' : 'CSV')
-
-            raise(CSVLibrary::MalformedCSVError, "Invalid #{description} format " \
-              "on row #{row_num + 1} of #{::File.basename(safe_path)}. Original: #{e.message}")
-          end
-
-          # We got this far => encoding choice worked:
-          successful_options = options
-          break
-        end
-
-        # We tried them all, and none worked:
-        unless successful_options
-          raise "None of the encodings #{supported_encodings.values.inspect} were successful!"
-        end
-
-        successful_options
+      # Cache working encodings, so that resetting the enumerator
+      # doesn't mean the need to recalculate this:
+      def determine_encodings!(*)
+        @encoding ||= super
       end
     end
 

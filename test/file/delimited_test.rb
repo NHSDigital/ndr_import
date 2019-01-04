@@ -185,9 +185,9 @@ module NdrImport
           end
         end
 
-        msg = 'Invalid CSV format on row 2 of broken.csv. ' \
-              'Original: Missing or stray quote in line 2'
-        assert_equal msg, exception.message
+        assert_match(/Invalid CSV format on row 2 of broken\.csv\./, exception.message)
+        assert_match(/(Missing or stray quote|col_sep_split)/, exception.message)
+        assert_match(/in line 2/, exception.message)
       end
 
       test 'should report addition details upon failure to read csv line-by-line' do
@@ -207,16 +207,16 @@ module NdrImport
 
         assert rows_yielded.empty?, 'no rows should have been yielded'
 
-        msg = 'Invalid CSV format on row 2 of broken.csv. ' \
-              'Original: Missing or stray quote in line 2'
-        assert_equal msg, exception.message
+        assert_match(/Invalid CSV format on row 2 of broken\.csv\./, exception.message)
+        assert_match(/(Missing or stray quote|col_sep_split)/, exception.message)
+        assert_match(/in line 2/, exception.message)
       end
 
       test 'should only determine encodings once' do
         file_path = @permanent_test_files.join('normal.csv')
         handler = NdrImport::File::Delimited.new(file_path, 'csv', 'col_sep' => nil)
 
-        handler.expects(determine_encodings!: { mode: 'r:bom|utf-8', col_sep: ',' }).once
+        handler.expects(try_each_encoding: { mode: 'r:bom|utf-8', col_sep: ',' }).once
 
         2.times do
           handler.tables.each do |tablename, sheet|
