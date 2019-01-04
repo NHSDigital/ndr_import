@@ -79,11 +79,20 @@ module NdrImport
               next if e.message =~ /invalid byte sequence/ # This encoding didn't work
               raise(e)
             rescue CSVLibrary::MalformedCSVError => e
-              description = (col_sep ? col_sep.inspect + ' delimited' : 'CSV')
-
-              raise(CSVLibrary::MalformedCSVError, "Invalid #{description} format " \
-                "on row #{row_num + 1} of #{::File.basename(safe_path)}. Original: #{e.message}")
+              raise malformed_csv_error(e, col_sep, row_num + 1, safe_path)
             end
+          end
+        end
+
+        def malformed_csv_error(exception, col_sep, line, safe_path)
+          type    = (col_sep ? col_sep.inspect + ' delimited' : 'CSV')
+          message = "Invalid #{type} format on row #{line} of #{::File.basename(safe_path)}"
+
+          if exception.respond_to?(:line_number)
+            base_message = exception.message.chomp(" in line #{exception.line_number}.")
+            exception.class.new("#{message}. Original: #{base_message}", exception.line_number)
+          else
+            exception.class.new("#{message}. Original: #{exception.message}")
           end
         end
       end

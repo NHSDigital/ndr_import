@@ -185,9 +185,9 @@ module NdrImport
           end
         end
 
-        msg = 'Invalid CSV format on row 2 of broken.csv. ' \
-              'Original: Missing or stray quote in line 2'
-        assert_equal msg, exception.message
+        assert_match(/Invalid CSV format on row 2 of broken\.csv\./, exception.message)
+        assert_match(/(Missing or stray quote|col_sep_split)/, exception.message)
+        assert_match(/in line 2/, exception.message)
       end
 
       test 'should report addition details upon failure to read csv line-by-line' do
@@ -207,9 +207,9 @@ module NdrImport
 
         assert rows_yielded.empty?, 'no rows should have been yielded'
 
-        msg = 'Invalid CSV format on row 2 of broken.csv. ' \
-              'Original: Missing or stray quote in line 2'
-        assert_equal msg, exception.message
+        assert_match(/Invalid CSV format on row 2 of broken\.csv\./, exception.message)
+        assert_match(/(Missing or stray quote|col_sep_split)/, exception.message)
+        assert_match(/in line 2/, exception.message)
       end
 
       test 'should only determine encodings once' do
