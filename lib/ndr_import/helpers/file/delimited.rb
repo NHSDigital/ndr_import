@@ -78,7 +78,11 @@ module NdrImport
             rescue ArgumentError => e
               next if e.message =~ /invalid byte sequence/ # This encoding didn't work
               raise(e)
+            rescue RegexpError => e
+              next if e.message =~ /invalid multibyte character/ # This encoding didn't work
+              raise(e)
             rescue CSVLibrary::MalformedCSVError => e
+              next if e.message =~ /Invalid byte sequence/ # This encoding didn't work
               raise malformed_csv_error(e, col_sep, row_num + 1, safe_path)
             end
           end
