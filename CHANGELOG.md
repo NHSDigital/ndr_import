@@ -1,4 +1,7 @@
 ## [Unreleased]
+*no unreleased changes*
+
+## 8.1.0 / 2019-01-08
 ### Added
 * Support `liberal_parsing` when using the delimited helper
 * Support for Ruby 2.6. Rails 5.0 / Ruby 2.4 is now the minimum.
