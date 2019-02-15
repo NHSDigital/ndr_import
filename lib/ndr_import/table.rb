@@ -11,7 +11,7 @@ module NdrImport
 
     def self.all_valid_options
       %w[canonical_name delimiter liberal_parsing filename_pattern tablename_pattern header_lines
-         footer_lines format klass columns xml_record_xpath]
+         footer_lines format klass columns xml_record_xpath row_identifier]
     end
 
     def all_valid_options
@@ -81,8 +81,16 @@ module NdrImport
     def transform_line(line, index)
       return enum_for(:transform_line, line, index) unless block_given?
 
+      identifier = case @row_identifier.to_s
+                   when 'index'
+                     index
+                   when 'uuid'
+                     SecureRandom.uuid
+                   end
+
       masked_mappings.each do |klass, klass_mappings|
         fields = mapped_line(line, klass_mappings)
+        fields['row_identifier'] = identifier unless identifier.nil?
         next if fields[:skip].to_s == 'true'
         yield(klass, fields, index)
       end

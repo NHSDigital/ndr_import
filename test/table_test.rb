@@ -140,6 +140,42 @@ class TableTest < ActiveSupport::TestCase
     assert_equal expected_output.sort, output.sort
   end
 
+  def test_transform_line_row_identifier_index
+    table = NdrImport::Table.new(:header_lines => 2, :footer_lines => 1, :row_identifier => :index,
+                                 :columns => column_level_klass_mapping)
+    enum = table.transform_line(%w(CARROT POTATO PEA), 7)
+    assert_instance_of Enumerator, enum
+
+    output = []
+    enum.each do |klass, fields, index|
+      output << [klass, fields, index]
+    end
+
+    expected_output = [
+      ['SomeTestKlass', { :rawtext => { 'one' => 'CARROT', 'two' => 'POTATO' }, 'row_identifier' => 7 }, 7],
+      ['SomeOtherKlass', { :rawtext => { 'two' => 'POTATO', 'three' => 'PEA' }, 'row_identifier' => 7 }, 7]
+    ]
+    assert_equal expected_output.sort, output.sort
+  end
+
+  def test_transform_line_row_identifier_uuid
+    table = NdrImport::Table.new(:header_lines => 2, :footer_lines => 1, :row_identifier => :uuid,
+                                 :columns => column_level_klass_mapping)
+    enum = table.transform_line(%w(CARROT POTATO PEA), 7)
+    assert_instance_of Enumerator, enum
+
+    output = []
+    enum.each do |klass, fields, _index|
+      output << [klass, fields['row_identifier']]
+    end
+    identifiers = output.map(&:last)
+
+    assert_equal 2, identifiers.count
+    assert_equal 2, identifiers.compact.count
+    assert_equal 1, identifiers.uniq.count
+    assert_equal 36, identifiers.first.length
+  end
+
   def test_encode_with
     table = NdrImport::Table.new
     assert table.instance_variables.include?(:@row_index)
