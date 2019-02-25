@@ -19,7 +19,7 @@ file safety:
   CHANGELOG.md:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 5ca2f7e9cb0e79134e5fa54ca2316c584696b34a
+    safe_revision: 640464d804e8eca15db14b8dfeb8c1ffa7d0fa85
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -187,7 +187,7 @@ file safety:
   lib/ndr_import/table.rb:
     comments: uses File.basename
     reviewed_by: josh.pencheon
-    safe_revision: 2baccd482bcd875dc273f6a34a0e28823790e8d5
+    safe_revision: fac9e62618a32fab7a09a4996d27e1e7437b7dfb
   lib/ndr_import/universal_importer_helper.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -195,7 +195,7 @@ file safety:
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: josh.pencheon
-    safe_revision: 5ca2f7e9cb0e79134e5fa54ca2316c584696b34a
+    safe_revision: 640464d804e8eca15db14b8dfeb8c1ffa7d0fa85
   lib/ndr_import/xml/table.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -287,7 +287,7 @@ file safety:
   test/non_tabular/table_test.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: f216687d0bba7f2940f74a3353a32be3c900c194
+    safe_revision: fac9e62618a32fab7a09a4996d27e1e7437b7dfb
   test/non_tabular_file_helper_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -479,7 +479,7 @@ file safety:
   test/table_test.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 2baccd482bcd875dc273f6a34a0e28823790e8d5
+    safe_revision: fac9e62618a32fab7a09a4996d27e1e7437b7dfb
   test/test_helper.rb:
     comments: 
     reviewed_by: josh.pencheon
