@@ -1,5 +1,9 @@
 ## [Unreleased]
-* Support automatically generating a per row identifier with `row_identifier`
+*no unreleased changes*
+
+## 8.2.0 / 2019-02-25
+### Added
+* Support automatically generating a per row identifier with `row_identifier` (#34)
 
 ## 8.1.0 / 2019-01-08
 ### Added
