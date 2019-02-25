@@ -1,5 +1,5 @@
 ## [Unreleased]
-*no unreleased changes*
+* Support automatically generating a per row identifier with `row_identifier`
 
 ## 8.1.0 / 2019-01-08
 ### Added
