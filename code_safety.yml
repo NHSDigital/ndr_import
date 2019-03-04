@@ -19,7 +19,7 @@ file safety:
   CHANGELOG.md:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 640464d804e8eca15db14b8dfeb8c1ffa7d0fa85
+    safe_revision: 6271165699e2d886f94d45277baa955023e3f094
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -187,7 +187,7 @@ file safety:
   lib/ndr_import/table.rb:
     comments: uses File.basename
     reviewed_by: josh.pencheon
-    safe_revision: fac9e62618a32fab7a09a4996d27e1e7437b7dfb
+    safe_revision: 04abeab4948a1e889d259d2a71a619af761ac1c3
   lib/ndr_import/universal_importer_helper.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -195,7 +195,7 @@ file safety:
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: josh.pencheon
-    safe_revision: 640464d804e8eca15db14b8dfeb8c1ffa7d0fa85
+    safe_revision: 6271165699e2d886f94d45277baa955023e3f094
   lib/ndr_import/xml/table.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -479,7 +479,7 @@ file safety:
   test/table_test.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: fac9e62618a32fab7a09a4996d27e1e7437b7dfb
+    safe_revision: 04abeab4948a1e889d259d2a71a619af761ac1c3
   test/test_helper.rb:
     comments: 
     reviewed_by: josh.pencheon
