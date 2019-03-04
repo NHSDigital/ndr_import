@@ -285,15 +285,16 @@ class TableTest < ActiveSupport::TestCase
   end
 
   def test_mask_mappings_by_klass
-    table = NdrImport::Table.new(:header_lines => 2, :footer_lines => 1,
-                                 :columns => column_level_klass_mapping)
+    table1 = NdrImport::Table.new(:header_lines => 2, :footer_lines => 1,
+                                  :columns => column_level_klass_mapping)
+
     some_test_klass_mapping = [
       { 'column' => 'one', 'klass' => 'SomeTestKlass' },
       { 'column' => 'two', 'klass' => %w(SomeTestKlass SomeOtherKlass) },
       { 'do_not_capture' => true }
     ]
     assert_equal some_test_klass_mapping,
-                 table.send(:mask_mappings_by_klass, 'SomeTestKlass')
+                 table1.send(:mask_mappings_by_klass, 'SomeTestKlass')
 
     some_other_klass_mapping = [
       { 'do_not_capture' => true },
@@ -301,7 +302,26 @@ class TableTest < ActiveSupport::TestCase
       { 'column' => 'three', 'klass' => 'SomeOtherKlass' }
     ]
     assert_equal some_other_klass_mapping,
-                 table.send(:mask_mappings_by_klass, 'SomeOtherKlass')
+                 table1.send(:mask_mappings_by_klass, 'SomeOtherKlass')
+
+    table2 = NdrImport::Table.new(:header_lines => 2, :footer_lines => 1,
+                                  :columns => column_level_klass_mapping_embedded_klasses)
+
+    some_test_klass_mapping_embedded_klasses = [
+      { 'column' => 'one', 'klass' => 'SomeTestKlass' },
+      { 'column' => 'two', 'klass' => [['SomeTestKlass'], 'SomeOtherKlass'] },
+      { 'do_not_capture' => true }
+    ]
+    assert_equal some_test_klass_mapping_embedded_klasses,
+                 table2.send(:mask_mappings_by_klass, 'SomeTestKlass')
+
+    some_other_klass_mapping_embedded_klasses = [
+      { 'do_not_capture' => true },
+      { 'column' => 'two', 'klass' => [['SomeTestKlass'], 'SomeOtherKlass'] },
+      { 'column' => 'three', 'klass' => 'SomeOtherKlass' }
+    ]
+    assert_equal some_other_klass_mapping_embedded_klasses,
+                 table2.send(:mask_mappings_by_klass, 'SomeOtherKlass')
   end
 
   def test_valid_single_line_header
@@ -489,6 +509,14 @@ YML
     [
       { 'column' => 'one', 'klass' => 'SomeTestKlass' },
       { 'column' => 'two', 'klass' => %w(SomeTestKlass SomeOtherKlass) },
+      { 'column' => 'three', 'klass' => 'SomeOtherKlass' }
+    ]
+  end
+
+  def column_level_klass_mapping_embedded_klasses
+    [
+      { 'column' => 'one', 'klass' => 'SomeTestKlass' },
+      { 'column' => 'two', 'klass' => [['SomeTestKlass'], 'SomeOtherKlass'] },
       { 'column' => 'three', 'klass' => 'SomeOtherKlass' }
     ]
   end

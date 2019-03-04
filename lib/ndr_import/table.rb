@@ -169,7 +169,7 @@ module NdrImport
     # relate to this klass, returning the masked mappings
     def mask_mappings_by_klass(klass)
       @columns.dup.map do |mapping|
-        if Array(mapping['klass']).include?(klass)
+        if Array(mapping['klass']).flatten.include?(klass)
           mapping
         else
           { 'do_not_capture' => true }
