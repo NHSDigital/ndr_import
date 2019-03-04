@@ -1,5 +1,5 @@
 ## [Unreleased]
-*no unreleased changes*
+* Allow `klass` in the column level mapping to be embedded array.
 
 ## 8.2.0 / 2019-02-25
 ### Added
