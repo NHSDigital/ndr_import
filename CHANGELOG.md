@@ -1,4 +1,8 @@
 ## [Unreleased]
+*no unreleased changes*
+
+## 8.3.0 / 2019-03-04
+### Added
 * Allow `klass` in the column level mapping to be embedded array.
 
 ## 8.2.0 / 2019-02-25
