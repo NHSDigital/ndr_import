@@ -1,7 +1,7 @@
 require 'active_support/core_ext/array/conversions'
 
 module NdrImport
-  # Raised if incoming data has not ben mapped.
+  # Raised if incoming data has not been mapped.
   class UnmappedDataError < StandardError
     attr_reader :keys
 
