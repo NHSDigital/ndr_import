@@ -19,7 +19,7 @@ file safety:
   CHANGELOG.md:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 6271165699e2d886f94d45277baa955023e3f094
+    safe_revision: 9dd7962195b259862a3294aba3de061b391435eb
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -39,7 +39,7 @@ file safety:
   README.md:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: f2feb0c430947839183d7223e60e7c29b2c0f846
+    safe_revision: 5cd2cd0b3a1e254d30d4acc28c6731825a1f84f5
   Rakefile:
     comments: 
     reviewed_by: josh.pencheon
@@ -59,15 +59,19 @@ file safety:
   lib/ndr_import.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: eca44583e9989159b45e90021dd1c65228447180
+    safe_revision: 5cd2cd0b3a1e254d30d4acc28c6731825a1f84f5
   lib/ndr_import/csv_library.rb:
     comments: 
     reviewed_by: josh.pencheon
     safe_revision: be12e57519d3737e8d3901d7b01485c6995708dd
+  lib/ndr_import/file/acro_form.rb:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 8a6ea666616c5b5d7c93cdf5aa019e8fc69d19e1
   lib/ndr_import/file/all.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: f2feb0c430947839183d7223e60e7c29b2c0f846
+    safe_revision: 5cd2cd0b3a1e254d30d4acc28c6731825a1f84f5
   lib/ndr_import/file/base.rb:
     comments: 
     reviewed_by: timgentry
@@ -180,6 +184,14 @@ file safety:
     comments: 
     reviewed_by: josh.pencheon
     safe_revision: ac30f66578ab380649be800a4426d917ddbcb329
+  lib/ndr_import/pdf_form/table.rb:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 5fd247eeb13a3f1356ab2d76ac9fabf9e19d5d36
+  lib/ndr_import/pdf_reader.rb:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: bc9a8e5b4bc87b398057808b00b5602426e022ea
   lib/ndr_import/standard_mappings.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -192,10 +204,14 @@ file safety:
     comments: 
     reviewed_by: josh.pencheon
     safe_revision: 3e3a852b58e8b169535e29029e535a10f6b9cd42
+  lib/ndr_import/unmapped_data_error.rb:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 5cd2cd0b3a1e254d30d4acc28c6731825a1f84f5
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: josh.pencheon
-    safe_revision: 6271165699e2d886f94d45277baa955023e3f094
+    safe_revision: 9dd7962195b259862a3294aba3de061b391435eb
   lib/ndr_import/xml/table.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -204,6 +220,10 @@ file safety:
     comments: 
     reviewed_by: josh.pencheon
     safe_revision: 607c0668f1fffd70d181bc1a31c4f56eed5f6189
+  test/file/acro_form_test.rb:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 5cd2cd0b3a1e254d30d4acc28c6731825a1f84f5
   test/file/base_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -227,7 +247,7 @@ file safety:
   test/file/registry_test.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: f2feb0c430947839183d7223e60e7c29b2c0f846
+    safe_revision: 5cd2cd0b3a1e254d30d4acc28c6731825a1f84f5
   test/file/seven_zip_test.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -292,10 +312,18 @@ file safety:
     comments: 
     reviewed_by: timgentry
     safe_revision: cf382902508a21a95b80ac4582fbbd117164e80e
+  test/pdf_form/table_test.rb:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 5cd2cd0b3a1e254d30d4acc28c6731825a1f84f5
   test/readme_test.rb:
     comments: 
     reviewed_by: timgentry
     safe_revision: cf382902508a21a95b80ac4582fbbd117164e80e
+  test/resources/acro_form.pdf:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 5cd2cd0b3a1e254d30d4acc28c6731825a1f84f5
   test/resources/blank_tab_test.xlsx:
     comments: reviewed contents
     reviewed_by: joshpencheon
