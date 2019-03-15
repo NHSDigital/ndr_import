@@ -29,7 +29,7 @@ module NdrImport
       def transform_line(line, index)
         return enum_for(:transform_line, line, index) unless block_given?
 
-        raise 'NdrImport::PdrForm::Table expects a Hash!' unless line.is_a? Hash
+        raise 'NdrImport::PdfForm::Table expects a Hash!' unless line.is_a? Hash
 
         validate_column_mappings(line)
 

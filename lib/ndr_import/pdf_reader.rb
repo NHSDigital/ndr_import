@@ -10,7 +10,7 @@ module NdrImport
     def fields_from(refs)
       Array(refs).flat_map do |ref|
         value = @objects[ref]
-        # PDF has it's own Hash class
+        # PDF has its own Hash class
         value.is_a?(::Hash) ? value : fields_from(value)
       end
     end
