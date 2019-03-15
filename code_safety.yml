@@ -59,7 +59,11 @@ file safety:
   lib/ndr_import.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 5cd2cd0b3a1e254d30d4acc28c6731825a1f84f5
+    safe_revision: 76f1a73945479b10a1b361a417ec22b7e76eceba
+  lib/ndr_import/acroform_reader.rb:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 76f1a73945479b10a1b361a417ec22b7e76eceba
   lib/ndr_import/csv_library.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -188,10 +192,6 @@ file safety:
     comments: 
     reviewed_by: josh.pencheon
     safe_revision: 5fd247eeb13a3f1356ab2d76ac9fabf9e19d5d36
-  lib/ndr_import/pdf_reader.rb:
-    comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: bc9a8e5b4bc87b398057808b00b5602426e022ea
   lib/ndr_import/standard_mappings.rb:
     comments: 
     reviewed_by: josh.pencheon
