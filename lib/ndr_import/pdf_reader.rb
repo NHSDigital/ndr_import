@@ -3,18 +3,6 @@ require 'pdf-reader'
 module NdrImport
   # PDF AcroForm reader using the pdf-reader gem
   class AcroFormReader < ::PDF::Reader
-    def acroform
-      @objects.deref(root[:AcroForm])
-    end
-
-    def fields_from(refs)
-      Array(refs).flat_map do |ref|
-        value = @objects[ref]
-        # PDF has its own Hash class
-        value.is_a?(::Hash) ? value : fields_from(value)
-      end
-    end
-
     def fields_hash
       fields = {}
       fields_from(acroform[:Fields]).each do |field|
@@ -26,6 +14,20 @@ module NdrImport
         fields[field_name] = field[:V]
       end
       fields
+    end
+
+    private
+
+    def acroform
+      @objects.deref(root[:AcroForm])
+    end
+
+    def fields_from(refs)
+      Array(refs).flat_map do |ref|
+        value = @objects[ref]
+        # PDF has its own Hash class
+        value.is_a?(::Hash) ? value : fields_from(value)
+      end
     end
   end
 end
