@@ -17,6 +17,8 @@ module PdfForm
       table = NdrImport::PdfForm::Table.new(klass: 'SomeTestKlass',
                                             columns: pdf_form_column_mapping)
 
+      assert_equal 'acroform', table.format
+
       transformed_data = table.transform(@form_data)
       assert_equal 1, transformed_data.count
 
