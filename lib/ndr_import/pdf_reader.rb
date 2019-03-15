@@ -1,8 +1,8 @@
 require 'pdf-reader'
 
-module PDF
+module NdrImport
   # PDF AcroForm reader using the pdf-reader gem
-  module AcroForm
+  class AcroFormReader < ::PDF::Reader
     def acroform
       @objects.deref(root[:AcroForm])
     end
@@ -29,4 +29,3 @@ module PDF
     end
   end
 end
-PDF::Reader.include(PDF::AcroForm)

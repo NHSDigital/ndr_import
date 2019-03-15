@@ -19,7 +19,7 @@ module NdrImport
       end
 
       def reader
-        @reader ||= PDF::Reader.new(SafeFile.safepath_to_string(@filename))
+        @reader ||= AcroFormReader.new(SafeFile.safepath_to_string(@filename))
       end
     end
 
