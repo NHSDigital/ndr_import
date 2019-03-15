@@ -1,5 +1,8 @@
 ## [Unreleased]
-* Added ability to extract and transform PDF form data
+*no unreleased changes*
+
+## 8.4.0 / 2019-03-15
+* Added ability to extract and transform PDF form data (#24)
 
 ## 8.3.0 / 2019-03-04
 ### Added
