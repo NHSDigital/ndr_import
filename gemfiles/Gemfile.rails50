@@ -2,4 +2,7 @@ source 'https://rubygems.org'
 
 gemspec path: '..'
 
+# ooxml_decrypt is not published to rubygems.org so we need to specify where it is
+gem 'ooxml_decrypt', git: 'https://github.com/timgentry/ooxml_decrypt'
+
 gem 'activesupport', '~> 5.0.0'
