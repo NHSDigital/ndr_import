@@ -30,6 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'docx', '~> 0.3'
   spec.add_dependency 'msworddoc-extractor', '0.2.0'
   spec.add_dependency 'nokogiri', '~> 1.8', '>= 1.8.5'
+  spec.add_dependency 'ooxml_decrypt'
   spec.add_dependency 'pdf-reader', '~> 2.1'
   spec.add_dependency 'roo-xls'
   spec.add_dependency 'seven_zip_ruby', '~> 1.2'
