@@ -2,6 +2,7 @@ require 'roo'
 require 'roo-xls'
 require 'ole/storage'
 require 'ndr_support/safe_file'
+require_relative 'office_file_helper'
 require_relative 'registry'
 
 module NdrImport
@@ -13,6 +14,8 @@ module NdrImport
     # appropriately. These methods can be overridden or aliased as required.
     #
     class Excel < Base
+      include OfficeFileHelper
+
       # Iterate through the file table by table, yielding each one in turn.
       def tables
         return enum_for(:tables) unless block_given?
@@ -88,7 +91,11 @@ module NdrImport
         when '.xls'
           Roo::Excel.new(SafeFile.safepath_to_string(path))
         when '.xlsx'
-          Roo::Excelx.new(SafeFile.safepath_to_string(path))
+          if @options.key?(:file_password)
+            Roo::Excelx.new(StringIO.new(decrypted_file_string(path, @options[:file_password])))
+          else
+            Roo::Excelx.new(SafeFile.safepath_to_string(path))
+          end
         else
           fail "Received file path with unexpected extension #{SafeFile.extname(path)}"
         end
