@@ -1,8 +1,12 @@
 ## [Unreleased]
+*no unreleased changes*
+
+## 8.5.0 / 2019-05-01
 ### Added
 * Allow encypted docx/xlsx files to be read using `:file_password` option (#37)
 
 ## 8.4.0 / 2019-03-15
+### Added
 * Added ability to extract and transform PDF form data (#24)
 
 ## 8.3.0 / 2019-03-04
