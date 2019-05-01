@@ -25,4 +25,11 @@ NdrImport::StandardMappings.mappings = YAML.load_file(
   File.expand_path(File.dirname(__FILE__) + '/resources/standard_mappings.yml')
 )
 
+# Different Rubies report this differently:
+CORRUPTED_QUOTES_MESSAGE_PATTERN = /(
+  Missing\sor\sstray\squote|
+  col_sep_split|
+  value\safter\squoted\sfield\sisn't\sallowed
+)/x
+
 require 'mocha/minitest'

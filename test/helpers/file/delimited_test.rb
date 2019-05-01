@@ -60,7 +60,7 @@ class DelimitedTest < ActiveSupport::TestCase
     end
 
     assert_match(/Invalid CSV format on row 2 of broken\.csv\./, exception.message)
-    assert_match(/(Missing or stray quote|col_sep_split)/, exception.message)
+    assert_match(CORRUPTED_QUOTES_MESSAGE_PATTERN, exception.message)
     assert_match(/in line 2/, exception.message)
   end
 
@@ -88,7 +88,7 @@ class DelimitedTest < ActiveSupport::TestCase
     assert rows_yielded.empty?, 'no rows should have been yielded'
 
     assert_match(/Invalid CSV format on row 2 of broken\.csv\./, exception.message)
-    assert_match(/(Missing or stray quote|col_sep_split)/, exception.message)
+    assert_match(CORRUPTED_QUOTES_MESSAGE_PATTERN, exception.message)
     assert_match(/in line 2/, exception.message)
   end
 
