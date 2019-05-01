@@ -17,27 +17,32 @@ module NdrImport
       def rows(&block)
         return enum_for(:rows) unless block
 
-        doc = if @options.key?(:file_password)
-                decrypted_docx_document(@filename, @options[:file_password])
-              else
-                ::Docx::Document.open(SafeFile.safepath_to_string(@filename))
-              end
+        send(@options.key?(:file_password) ? :decrypted_path : :unencrypted_path) do |path|
+          doc = ::Docx::Document.open(path)
 
-        doc.paragraphs.each do |p|
-          yield(p.to_s)
+          doc.paragraphs.each do |p|
+            yield(p.to_s)
+          end
+
+          doc.zip.close
         end
       rescue StandardError => e
         raise("#{SafeFile.basename(@filename)} [#{e.class}: #{e.message}]")
       end
 
-      # This method returns the Docx::Document of a password protected docx file
-      def decrypted_docx_document(encrypted_path, password)
+      # This method returns the path to the temporary, decrypted file
+      def decrypted_path
         Tempfile.create(['decrypted', '.docx']) do |file|
-          file.write(decrypted_file_string(encrypted_path, password))
+          file.write(decrypted_file_string(@filename, @options[:file_password]))
           file.close
 
-          return ::Docx::Document.open(file.path)
+          yield file.path
         end
+      end
+
+      # This method returns the safepath to the unencrypted docx file
+      def unencrypted_path
+        yield SafeFile.safepath_to_string(@filename)
       end
     end
 
