@@ -19,14 +19,15 @@ class TableTest < ActiveSupport::TestCase
   end
 
   def test_initialize
-    table = NdrImport::Table.new(:header_lines => 2, :footer_lines => 1,
-                                 :format => 'pipe', :klass => 'SomeTestKlass',
-                                 :columns => [{ 'column' => 'one' }, { 'column' => 'two' }])
+    table = NdrImport::Table.new(header_lines: 2, file_password: 'leek', footer_lines: 1,
+                                 format: 'pipe', klass: 'SomeTestKlass',
+                                 columns: [{ 'column' => 'one' }, { 'column' => 'two' }])
     assert_instance_of NdrImport::Table, table
     assert_equal 2, table.header_lines
     assert_equal 1, table.footer_lines
     assert_equal 'pipe', table.format
     assert_equal 'SomeTestKlass', table.klass
+    assert_equal 'leek', table.file_password
     assert_equal [{ 'column' => 'one' }, { 'column' => 'two' }], table.columns
   end
 

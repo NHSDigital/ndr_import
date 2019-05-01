@@ -30,6 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'docx', '~> 0.3'
   spec.add_dependency 'msworddoc-extractor', '0.2.0'
   spec.add_dependency 'nokogiri', '~> 1.8', '>= 1.8.5'
+  spec.add_dependency 'ooxml_decrypt'
   spec.add_dependency 'pdf-reader', '~> 2.1'
   spec.add_dependency 'roo-xls'
   spec.add_dependency 'seven_zip_ruby', '~> 1.2'
@@ -37,7 +38,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.4'
 
-  spec.add_development_dependency 'bundler', '~> 1.7'
+  spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'minitest'
   spec.add_development_dependency 'mocha'

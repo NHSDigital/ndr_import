@@ -70,6 +70,16 @@ module NdrImport
         SafeFile.delete @permanent_test_files.join('xlsx_file_xls_extension_amend.xlsx')
       end
 
+      test 'should read password protected xlsx file' do
+        file_path = @permanent_test_files.join('password_protected_sample_xlsx.xlsx')
+        handler = NdrImport::File::Excel.new(file_path, nil, file_password: 'carrot')
+        handler.tables.each do |tablename, sheet|
+          assert_equal 'Sheet1', tablename
+          assert_instance_of Enumerator, sheet
+          assert_equal %w(1A 1B), sheet.first
+        end
+      end
+
       test 'read_excel_file helper should handle exceptions' do
         # txt file
         assert_raises RuntimeError do
