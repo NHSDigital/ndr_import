@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+$LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__) + '/../lib'))
+
+require 'ndr_import/acroform_reader'
+require 'optparse'
+require 'yaml'
+
+def program_name
+  File.basename(File.expand_path(__FILE__))
+end
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: #{program_name} [options] file"
+
+  opts.on('-h', '--help', 'Prints this help') do
+    puts opts
+    exit
+  end
+end.parse!
+
+reader = NdrImport::AcroFormReader.new(ARGV[0])
+
+puts reader.fields_hash.to_yaml
