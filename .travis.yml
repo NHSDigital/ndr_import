@@ -1,12 +1,10 @@
 language: ruby
 rvm:
-- 2.4
 - 2.5
 - 2.6
 gemfile:
-- gemfiles/Gemfile.rails50
-- gemfiles/Gemfile.rails51
 - gemfiles/Gemfile.rails52
+- gemfiles/Gemfile.rails60
 sudo: false
 cache: bundler
 before_install:

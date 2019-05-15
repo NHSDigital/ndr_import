@@ -2,6 +2,9 @@
 ### Added
 * Add data loader tools (#39)
 
+### Fixed
+* Update Ruby/Rails supported versions. 2.5/5.2 is now minimum
+
 ## 8.5.0 / 2019-05-01
 ### Added
 * Allow encypted docx/xlsx files to be read using `:file_password` option (#37)
