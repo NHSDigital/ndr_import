@@ -1,4 +1,7 @@
 ## [Unreleased]
+*no unreleased changes*
+
+## 8.5.1 / 2019-05-15
 ### Added
 * Add data loader tools (#39)
 
