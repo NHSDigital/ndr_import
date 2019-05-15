@@ -15,11 +15,11 @@ file safety:
   ".travis.yml":
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: a69d4a57ddcf13cdc13c27bd2eb91a395fa7ea36
+    safe_revision: d3d9a987befeecb122a448d8d06e66d74da13fb5
   CHANGELOG.md:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: da7a850cb2abe53b7c0d4eaf4950634209999b67
+    safe_revision: 730152642d4d08454d8aa2f76abe2eda086c077c
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -27,7 +27,7 @@ file safety:
   Gemfile:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: a69d4a57ddcf13cdc13c27bd2eb91a395fa7ea36
+    safe_revision: 13a1fae896c9d2b3fbe99a71d52045476f25b425
   Guardfile:
     comments: 
     reviewed_by: timgentry
@@ -39,23 +39,39 @@ file safety:
   README.md:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 5cd2cd0b3a1e254d30d4acc28c6731825a1f84f5
+    safe_revision: e1d967c10059e8c635452838c3f3dd2b969d9ae4
   Rakefile:
     comments: 
     reviewed_by: josh.pencheon
     safe_revision: 5a7f26cecaabab20f4e666776f9166dcc3fa6bfe
-  gemfiles/Gemfile.rails50:
+  bin/console:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: a69d4a57ddcf13cdc13c27bd2eb91a395fa7ea36
-  gemfiles/Gemfile.rails51:
+    safe_revision: e1d967c10059e8c635452838c3f3dd2b969d9ae4
+  bin/setup:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: a69d4a57ddcf13cdc13c27bd2eb91a395fa7ea36
+    safe_revision: e1d967c10059e8c635452838c3f3dd2b969d9ae4
+  exe/pdf_acro_form_to_yaml:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: e1d967c10059e8c635452838c3f3dd2b969d9ae4
+  exe/pdf_to_text:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: e1d967c10059e8c635452838c3f3dd2b969d9ae4
+  exe/word_to_text:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: e1d967c10059e8c635452838c3f3dd2b969d9ae4
   gemfiles/Gemfile.rails52:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: a69d4a57ddcf13cdc13c27bd2eb91a395fa7ea36
+    safe_revision: 13a1fae896c9d2b3fbe99a71d52045476f25b425
+  gemfiles/Gemfile.rails60:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: d3d9a987befeecb122a448d8d06e66d74da13fb5
   lib/ndr_import.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -215,7 +231,7 @@ file safety:
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: josh.pencheon
-    safe_revision: da7a850cb2abe53b7c0d4eaf4950634209999b67
+    safe_revision: 730152642d4d08454d8aa2f76abe2eda086c077c
   lib/ndr_import/xml/table.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -223,7 +239,7 @@ file safety:
   ndr_import.gemspec:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: a69d4a57ddcf13cdc13c27bd2eb91a395fa7ea36
+    safe_revision: d3d9a987befeecb122a448d8d06e66d74da13fb5
   test/file/acro_form_test.rb:
     comments: 
     reviewed_by: josh.pencheon
