@@ -1,3 +1,4 @@
+require 'active_support/core_ext/hash'
 require 'ndr_support/safe_file'
 require 'ndr_import/csv_library'
 require_relative 'registry'
@@ -11,7 +12,7 @@ module NdrImport
       def initialize(filename, format, options = {})
         @filename = filename
         @format = format
-        @options = options
+        @options = options.stringify_keys
 
         validate_filename_is_safe_and_readable!
       end
