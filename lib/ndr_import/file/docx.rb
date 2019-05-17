@@ -32,8 +32,9 @@ module NdrImport
 
       # This method returns the path to the temporary, decrypted file
       def decrypted_path
-        Tempfile.create(['decrypted', '.docx']) do |file|
-          file.write(decrypted_file_string(@filename, @options['file_password']))
+        file_string = decrypted_file_string(@filename, @options['file_password'])
+        Tempfile.create(['decrypted', '.docx'], encoding: file_string.encoding) do |file|
+          file.write(file_string)
           file.close
 
           yield file.path

@@ -1,6 +1,7 @@
 ## [Unreleased]
 ### Fixed
 * Fixed issue with file_password option key as a String or Symbol
+* Tempfiles now take their encoding from the incoming string/stream
 
 ## 8.5.1 / 2019-05-15
 ### Added
