@@ -91,8 +91,8 @@ module NdrImport
         when '.xls'
           Roo::Excel.new(SafeFile.safepath_to_string(path))
         when '.xlsx'
-          if @options.key?(:file_password)
-            Roo::Excelx.new(StringIO.new(decrypted_file_string(path, @options[:file_password])))
+          if @options['file_password']
+            Roo::Excelx.new(StringIO.new(decrypted_file_string(path, @options['file_password'])))
           else
             Roo::Excelx.new(SafeFile.safepath_to_string(path))
           end

@@ -277,7 +277,7 @@ module NdrImport::Mapper
   end
 
   def read_docx(stream)
-    Tempfile.create(encoding: 'ascii-8bit') do |tempfile|
+    Tempfile.create(encoding: stream.external_encoding) do |tempfile|
       tempfile.write(stream.read)
 
       docx = ::Docx::Document.open(tempfile.path)

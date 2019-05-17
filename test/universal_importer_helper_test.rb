@@ -1,4 +1,3 @@
-# encoding: UTF-8
 require 'test_helper'
 require 'ndr_import/universal_importer_helper'
 
@@ -10,13 +9,12 @@ class UniversalImporterHelperTest < ActiveSupport::TestCase
 
     def initialize
       @table_mappings = [
-        NdrImport::Table.new(:filename_pattern => /\.xls\z/i,
-                             :tablename_pattern => /\Asheet1\z/i)
+        NdrImport::Table.new(filename_pattern: /\.xls\z/i,
+                             tablename_pattern: /\Asheet1\z/i)
       ]
     end
 
-    def get_notifier(_)
-    end
+    def get_notifier(_); end
 
     def unzip_path
       SafePath.new('test_space_rw')
@@ -69,6 +67,38 @@ class UniversalImporterHelperTest < ActiveSupport::TestCase
       assert_instance_of Enumerator, rows
       expected_mapped_data = [{ rawtext: { 'one' => 'some', 'two' => 'data', 'three' => 'here' } },
                               { rawtext: { 'one' => 'more', 'two' => 'data', 'three' => 'here' } }]
+
+      assert_equal expected_mapped_data, (mapped_rows.to_a.map { |_klass, fields| fields })
+    end
+  end
+
+  test 'extract with file_password' do
+    table_mappings = YAML.safe_load <<-YML.strip_heredoc, [NdrImport::NonTabular::Table, Range, Regexp]
+      ---
+      - !ruby/object:NdrImport::NonTabular::Table
+          file_password: salad
+          start_line_pattern: !ruby/regexp /must not match anything a2f76abe/
+          start_in_a_record: true
+          end_in_a_record: true
+          klass: SomeTestKlass
+          columns:
+          - column: one
+            non_tabular_cell:
+              lines: !ruby/range
+                begin: -1
+                end: -1
+                excl: false
+              capture: !ruby/regexp /^(.*)$/i
+    YML
+
+    source_file = @permanent_test_files.join('password_protected_hello_world.docx')
+    @test_importer.stubs(:get_table_mapping).returns(table_mappings.first)
+    @test_importer.extract(source_file) do |table, rows|
+      mapped_rows = table.transform(rows)
+
+      assert_instance_of NdrImport::NonTabular::Table, table
+      assert_instance_of Enumerator, rows
+      expected_mapped_data = [{ rawtext: { 'one' => 'Three in fact' } }]
 
       assert_equal expected_mapped_data, (mapped_rows.to_a.map { |_klass, fields| fields })
     end
