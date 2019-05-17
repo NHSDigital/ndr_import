@@ -19,7 +19,7 @@ file safety:
   CHANGELOG.md:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 730152642d4d08454d8aa2f76abe2eda086c077c
+    safe_revision: bd60b56117e65f106d7cb02e0c5772b9e5ec470e
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -94,8 +94,8 @@ file safety:
     safe_revision: 5cd2cd0b3a1e254d30d4acc28c6731825a1f84f5
   lib/ndr_import/file/base.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: a8451809db86e0e023b0d93826114a33ff896c4f
+    reviewed_by: josh.pencheon
+    safe_revision: c3183e522bce50008df576ceb47fe4761ab8f966
   lib/ndr_import/file/delimited.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -103,11 +103,11 @@ file safety:
   lib/ndr_import/file/docx.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: a69d4a57ddcf13cdc13c27bd2eb91a395fa7ea36
+    safe_revision: 897f8b648d633368cf2001d17ab89c06a12d445b
   lib/ndr_import/file/excel.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: a69d4a57ddcf13cdc13c27bd2eb91a395fa7ea36
+    safe_revision: c3183e522bce50008df576ceb47fe4761ab8f966
   lib/ndr_import/file/office_file_helper.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -175,7 +175,7 @@ file safety:
   lib/ndr_import/mapper.rb:
     comments: Writes to a Tempfile, but cleans up. Ruby will respect TMP_DIR
     reviewed_by: josh.pencheon
-    safe_revision: eca44583e9989159b45e90021dd1c65228447180
+    safe_revision: 897f8b648d633368cf2001d17ab89c06a12d445b
   lib/ndr_import/mapping_error.rb:
     comments: 
     reviewed_by: timgentry
@@ -231,7 +231,7 @@ file safety:
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: josh.pencheon
-    safe_revision: 730152642d4d08454d8aa2f76abe2eda086c077c
+    safe_revision: bd60b56117e65f106d7cb02e0c5772b9e5ec470e
   lib/ndr_import/xml/table.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -543,7 +543,7 @@ file safety:
   test/universal_importer_helper_test.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 3e3a852b58e8b169535e29029e535a10f6b9cd42
+    safe_revision: c3183e522bce50008df576ceb47fe4761ab8f966
   test/xml/table_test.rb:
     comments: 
     reviewed_by: josh.pencheon
