@@ -74,7 +74,10 @@ module NdrImport
           begin
             matches = get_matches(column_mapping)
             # Join the non-blank lines together and add to the array of cells
-            cells << matches.select { |value| !value.blank? }.join(column_mapping.join || '')
+            lines = matches.select do |value|
+              column_mapping.preserve_blank_lines ? value : value.present?
+            end
+            cells << lines.join(column_mapping.join || '')
           rescue RegexpRange::PatternMatchError
             cells << nil
           end

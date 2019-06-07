@@ -498,4 +498,61 @@ STR
       mapper.read_non_tabular_string(junk)
     end
   end
+
+  test 'should conditionally preserve blank lines when joining non tabular data' do
+    text = <<-STR.strip_heredoc
+      111
+      hello
+
+      world
+      ------
+      111
+      hello
+      world
+      ------
+    STR
+
+    white_listed_classes = [NdrImport::NonTabular::Table, Range, Regexp]
+
+    preserve_blanks_mapper = NonTabularTestMapper.new
+    preserve_blanks_mapper.mappings = YAML.safe_load <<-YML.strip_heredoc, white_listed_classes
+      non_tabular_row:
+        start_line_pattern: !ruby/regexp /\\A111\\z/
+        end_in_a_record: true
+      columns:
+      - column: one
+        non_tabular_cell:
+          lines: !ruby/range
+            begin: 0
+            end: -1
+            excl: true
+          capture: !ruby/regexp /^(.*)$/i
+          join: "\\n"
+          preserve_blank_lines: true
+    YML
+
+    mapped_values = preserve_blanks_mapper.read_non_tabular_string(text)
+    assert_equal ['hello', '', 'world'], mapped_values.first.first.split("\n")
+    assert_equal %w[hello world], mapped_values.last.first.split("\n")
+
+    mapper = NonTabularTestMapper.new
+    mapper.mappings = YAML.safe_load <<-YML.strip_heredoc, white_listed_classes
+      non_tabular_row:
+        start_line_pattern: !ruby/regexp /\\A111\\z/
+        end_in_a_record: true
+      columns:
+      - column: one
+        non_tabular_cell:
+          lines: !ruby/range
+            begin: 0
+            end: -1
+            excl: true
+          capture: !ruby/regexp /^(.*)$/i
+          join: "\\n"
+    YML
+
+    mapped_values = mapper.read_non_tabular_string(text)
+    assert_equal %w[hello world], mapped_values.first.first.split("\n")
+    assert_equal %w[hello world], mapped_values.last.first.split("\n")
+  end
 end
