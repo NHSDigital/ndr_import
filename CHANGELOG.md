@@ -1,4 +1,8 @@
 ## [Unreleased]
+*no unreleased changes*
+
+## 8.6.0 / 2019-06-07
+### Added
 * Allow conditional preservation of blank lines when joining lines in non-tabular data (#41)
 
 ## 8.5.2 / 2019-05-17
