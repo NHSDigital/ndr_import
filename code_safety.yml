@@ -19,7 +19,7 @@ file safety:
   CHANGELOG.md:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: bd60b56117e65f106d7cb02e0c5772b9e5ec470e
+    safe_revision: 53c17f14ee19a9ea83d044508093147daa32ba3d
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -187,7 +187,7 @@ file safety:
   lib/ndr_import/non_tabular/column_mapping.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: f216687d0bba7f2940f74a3353a32be3c900c194
+    safe_revision: bb44ade56a2151706eede2c31142440ccf49e6f6
   lib/ndr_import/non_tabular/line.rb:
     comments: 
     reviewed_by: timgentry
@@ -198,8 +198,8 @@ file safety:
     safe_revision: cf382902508a21a95b80ac4582fbbd117164e80e
   lib/ndr_import/non_tabular/record.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 63b1e8c275bd63377309d9b124176f39f75576a9
+    reviewed_by: josh.pencheon
+    safe_revision: bb44ade56a2151706eede2c31142440ccf49e6f6
   lib/ndr_import/non_tabular/table.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -231,7 +231,7 @@ file safety:
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: josh.pencheon
-    safe_revision: bd60b56117e65f106d7cb02e0c5772b9e5ec470e
+    safe_revision: 53c17f14ee19a9ea83d044508093147daa32ba3d
   lib/ndr_import/xml/table.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -330,8 +330,8 @@ file safety:
     safe_revision: a69d4a57ddcf13cdc13c27bd2eb91a395fa7ea36
   test/non_tabular_file_helper_test.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: cf382902508a21a95b80ac4582fbbd117164e80e
+    reviewed_by: josh.pencheon
+    safe_revision: bb44ade56a2151706eede2c31142440ccf49e6f6
   test/pdf_form/table_test.rb:
     comments: 
     reviewed_by: josh.pencheon
