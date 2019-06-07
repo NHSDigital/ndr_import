@@ -6,7 +6,7 @@ module NdrImport
     # the logic associated with finding matching lines of source data and subsequently
     # capturing arrays of values within them.
     class ColumnMapping
-      attr_accessor :name, :cell_mapping, :lines, :capture, :join
+      attr_accessor :name, :cell_mapping, :lines, :capture, :join, :preserve_blank_lines
 
       def initialize(column_mapping)
         @name         = column_mapping['rawtext_name'] ||
@@ -18,6 +18,7 @@ module NdrImport
 
         @lines = @cell_mapping['lines']
         @join  = @cell_mapping['join']
+        @preserve_blank_lines = @cell_mapping['preserve_blank_lines']
       end
 
       # This method returns the range of matching source data lines. If the range is a
