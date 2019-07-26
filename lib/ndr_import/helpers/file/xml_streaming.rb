@@ -6,6 +6,8 @@ module NdrImport
     module File
       # This mixin adds XML streaming functionality to unified importers.
       module XmlStreaming
+        include UTF8Encoding
+
         private
 
         def add_nodes(xml, nodes)
@@ -32,14 +34,32 @@ module NdrImport
           parent_stack.empty? || !stubs[parent_stack].at_xpath(node_xpath)
         end
 
-        def stream_xml_nodes(file_data, node_xpath, &block)
+        def stream_xml_nodes(safe_path, node_xpath, &block)
+          file_stream = ::File.open(SafeFile.safepath_to_string(safe_path))
+          retried = false
+
+          begin
+            actually_stream_xml_nodes(file_stream, node_xpath, &block)
+          rescue Nokogiri::XML::SyntaxError => e
+            raise e if retried
+            raise e unless e.message =~ /not proper UTF-8, indicate encoding/
+
+            file_stream.rewind
+            file_stream = StringIO.new ensure_utf8!(file_stream.read)
+            retried = true
+            
+            retry
+          end
+        end
+
+        def actually_stream_xml_nodes(io, node_xpath, encoding = nil, &block)
           require 'nokogiri'
 
           # Track nesting as the cursor moves through the document:
           stack       = []
           match_depth = nil
 
-          Nokogiri::XML::Reader(file_data).each do |node|
+          Nokogiri::XML::Reader(io, nil, encoding).each do |node|
             case node.node_type
             when 1 then # "start element"
               stack.push [node.name, node.attributes]
