@@ -8,13 +8,15 @@ class XmlStreamingTest < ActiveSupport::TestCase
   class TestImporter
     include NdrImport::Helpers::File::XmlStreaming
 
+    attr_reader :safe_path
+
     def initialize(safe_path)
       @safe_path = safe_path
     end
 
     def nodes(xpath, xml)
       file_name = 'streaming_test.xml'
-      file_path = @safe_path.join(file_name)
+      file_path = safe_path.join(file_name)
       SafeFile.open(file_path, 'w') { |f| f.write xml }
 
       nodes_from_file(xpath, file_name)
@@ -23,9 +25,9 @@ class XmlStreamingTest < ActiveSupport::TestCase
     end
 
     def nodes_from_file(xpath, file_name)
-      file_path = @safe_path.join(file_name)
+      file_path = safe_path.join(file_name)
       [].tap do |nodes|
-        stream_xml_nodes(file_path, xpath) { |node| nodes << node }
+        each_node(file_path, xpath) { |node| nodes << node }
       end
     end
   end
@@ -83,7 +85,7 @@ class XmlStreamingTest < ActiveSupport::TestCase
     assert_equal 'bar', node.text
   end
 
-  test 'stream_xml_nodes should handle incoming UTF-8' do
+  test 'each_node should handle incoming UTF-8' do
     nodes = @importer.nodes_from_file('//letter', 'utf-8_xml.xml')
     greek = nodes.map(&:text).join
 
@@ -93,7 +95,7 @@ class XmlStreamingTest < ActiveSupport::TestCase
     assert_equal [206, 177, 206, 178], greek.bytes.to_a # 2-bytes each for alpha and beta
   end
 
-  test 'stream_xml_nodes should handle incoming UTF-16 (big endian)' do
+  test 'each_node should handle incoming UTF-16 (big endian)' do
     nodes = @importer.nodes_from_file('//letter', 'utf-16be_xml.xml')
     greek = nodes.map(&:text).join
 
@@ -103,7 +105,7 @@ class XmlStreamingTest < ActiveSupport::TestCase
     assert_equal [206, 177, 206, 178], greek.bytes.to_a # 2-bytes each for alpha and beta
   end
 
-  test 'stream_xml_nodes should handle incoming UTF-16 (little endian)' do
+  test 'each_node should handle incoming UTF-16 (little endian)' do
     nodes = @importer.nodes_from_file('//letter', 'utf-16le_xml.xml')
     greek = nodes.map(&:text).join
 
@@ -113,7 +115,7 @@ class XmlStreamingTest < ActiveSupport::TestCase
     assert_equal [206, 177, 206, 178], greek.bytes.to_a # 2-bytes each for alpha and beta
   end
 
-  test 'stream_xml_nodes should handle incoming UTF-16 with declaration' do
+  test 'each_node should handle incoming UTF-16 with declaration' do
     nodes = @importer.nodes_from_file('//note', 'utf-16be_xml_with_declaration.xml')
     greek = nodes.map(&:text).join.gsub(/\s/, '')
 
@@ -126,7 +128,7 @@ class XmlStreamingTest < ActiveSupport::TestCase
     assert_equal 1, alpha_nodes.length
   end
 
-  test 'stream_xml_nodes should handle incoming declarated as UTF-16 which is not' do
+  test 'each_node should handle incoming declarated as UTF-16 which is not' do
     nodes = @importer.nodes_from_file('//letter', 'claims_utf16be_but_isnt.xml')
     punct = nodes.map(&:text).join
 
@@ -136,7 +138,7 @@ class XmlStreamingTest < ActiveSupport::TestCase
     assert_equal [226, 128, 153, 226, 128, 147], punct.bytes.to_a # 3 bytes each for apostrophe and dash
   end
 
-  test 'stream_xml_nodes should handle incoming Windows-1252' do
+  test 'each_node should handle incoming Windows-1252' do
     nodes = @importer.nodes_from_file('//letter', 'windows-1252_xml.xml')
     punct = nodes.map(&:text).join
 
@@ -146,17 +148,26 @@ class XmlStreamingTest < ActiveSupport::TestCase
     assert_equal [226, 128, 153, 226, 128, 147], punct.bytes.to_a # 3 bytes each for apostrophe and dash
   end
 
-  test 'stream_xml_nodes with malformed XML file' do
+  test 'each_node with malformed XML file' do
     assert_raises Nokogiri::XML::SyntaxError do
       @importer.nodes_from_file('//note', 'malformed.xml')
     end
   end
 
-  test 'stream_xml_nodes should reject non safe path arguments' do
+  test 'each_node should reject non safe path arguments' do
     exception = assert_raises ArgumentError do
-      @importer.send(:stream_xml_nodes, 'unsafe.xml', '//note')
+      blocked_called = false
+      @importer.each_node('unsafe.xml', '//note') { block_called = true }
+
+      refute block_called, 'should not have yielded'
     end
 
     assert_match(/should be of type SafePath/, exception.message)
+  end
+
+  test 'each_node should return an enumerable' do
+    enum = @importer.each_node(@importer.safe_path.join('utf-8_xml.xml'), '//note')
+    assert_kind_of Enumerator, enum
+    assert_equal 2, enum.to_a.length
   end
 end

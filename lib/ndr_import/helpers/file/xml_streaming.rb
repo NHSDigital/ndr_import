@@ -17,6 +17,26 @@ module NdrImport
 
         include UTF8Encoding
 
+        def each_node(safe_path, node_xpath, &block)
+          return enum_for(:each_node, safe_path, node_xpath) unless block
+
+          file_stream = ::File.open(SafeFile.safepath_to_string(safe_path))
+          re_encoded = false
+
+          begin
+            stream_xml_nodes(file_stream, node_xpath, re_encoded, &block)
+          rescue Nokogiri::XML::SyntaxError => e
+            raise e if re_encoded
+            raise e unless e.message =~ /not proper UTF-8, indicate encoding/
+
+            file_stream.rewind
+            file_stream = StringIO.new ensure_utf8!(file_stream.read)
+            re_encoded = 'UTF8'
+
+            retry
+          end
+        end
+
         private
 
         def add_nodes(xml, nodes)
@@ -43,25 +63,7 @@ module NdrImport
           parent_stack.empty? || !stubs[parent_stack].at_xpath(node_xpath)
         end
 
-        def stream_xml_nodes(safe_path, node_xpath, &block)
-          file_stream = ::File.open(SafeFile.safepath_to_string(safe_path))
-          re_encoded = false
-
-          begin
-            actually_stream_xml_nodes(file_stream, node_xpath, re_encoded, &block)
-          rescue Nokogiri::XML::SyntaxError => e
-            raise e if re_encoded
-            raise e unless e.message =~ /not proper UTF-8, indicate encoding/
-
-            file_stream.rewind
-            file_stream = StringIO.new ensure_utf8!(file_stream.read)
-            re_encoded = 'UTF8'
-
-            retry
-          end
-        end
-
-        def actually_stream_xml_nodes(io, node_xpath, encoding = nil, &block)
+        def stream_xml_nodes(io, node_xpath, encoding = nil, &block)
           require 'nokogiri'
 
           # Track nesting as the cursor moves through the document:
