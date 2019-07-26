@@ -23,9 +23,13 @@ module NdrImport
         end
 
         def stub_match?(stack, node_xpath)
-          # Only true if the xpath matches the full stack:
-          stubs[stack].at_xpath(node_xpath) &&
-            !stubs[stack[0..-2]].at_xpath(node_xpath)
+          parent_stack = stack[0..-2]
+
+          # Only true if the xpath matches the stack...
+          return false unless stubs[stack].at_xpath(node_xpath)
+
+          # ...and the entire stack:
+          parent_stack.empty? || !stubs[parent_stack].at_xpath(node_xpath)
         end
 
         def stream_xml_nodes(file_data, node_xpath, &block)

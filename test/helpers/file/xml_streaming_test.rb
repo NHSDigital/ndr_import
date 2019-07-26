@@ -25,6 +25,12 @@ class XmlTest < ActiveSupport::TestCase
     XML
   end
 
+  test 'should be able to find the root node' do
+    assert_equal 1, @importer.nodes('/*', <<~XML).length
+      <nodes><node></node><node></node></nodes>
+    XML
+  end
+
   test 'should yield matching nodes with attributes' do
     assert_equal 1, @importer.nodes('//nodes[@zone="a"]//node[@type="1"]', <<~XML).length
       <root>
