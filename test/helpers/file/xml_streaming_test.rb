@@ -156,7 +156,7 @@ class XmlStreamingTest < ActiveSupport::TestCase
 
   test 'each_node should reject non safe path arguments' do
     exception = assert_raises ArgumentError do
-      blocked_called = false
+      block_called = false
       @importer.each_node('unsafe.xml', '//note') { block_called = true }
 
       refute block_called, 'should not have yielded'

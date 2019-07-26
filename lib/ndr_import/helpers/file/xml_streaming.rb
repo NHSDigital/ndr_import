@@ -62,7 +62,7 @@ module NdrImport
               @match_depth = @stack.length
             end
 
-            return match
+            match
           end
 
           private
@@ -152,7 +152,7 @@ module NdrImport
           reader.each do |node|
             case node.node_type
             when Nokogiri::XML::Reader::TYPE_ELEMENT # "opening tag"
-              raise NestingError.new(node) if cursor.in?(node)
+              raise NestingError, node if cursor.in?(node)
 
               cursor.enter(node)
               next unless cursor.matches?
