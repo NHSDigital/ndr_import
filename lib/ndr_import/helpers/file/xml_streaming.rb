@@ -19,20 +19,25 @@ module NdrImport
           end
         end
 
-        # Object to track state as the XML is iterated over
+        # Object to track state as the XML is iterated over, and detect
+        # when an element of interest is entered.
         class Cursor
+          # wrapper to hold a representation of each element we descent into:
+          StackItem = Struct.new(:name, :attrs, :empty)
+
           def initialize(xpath)
             @xpath = xpath
             @stack = []
             @match_depth = nil
           end
 
+          # Has this cursor already passed inside a similar node?
           def in?(node)
-            @stack.assoc(node.name)
+            @stack.detect { |item| item.name == node.name }
           end
 
           def enter(node)
-            @stack.push [node.name, node.attributes]
+            @stack.push StackItem.new(node.name, node.attributes, node.empty_element?)
           end
 
           def leave(_node)
@@ -40,14 +45,18 @@ module NdrImport
             @match_depth = nil if @match_depth && @stack.length < @match_depth
           end
 
-          def attempt_match(ref, node)
-            # FIXME: neither argument should be required.
-            match = ref.send(:stub_match?, @stack, @xpath)
+          # Does the element that the cursor is currently on match what
+          # is being looked for?
+          def matches?
+            # Can't match again if we're inside a match already:
+            return false if @matched_depth
+
+            match = current_stack_match?
 
             # "empty element" matches are yielded immediately, without
             # tagging the stack as having matched, because there won't
             # be an equivalent closing tag to end the match with later.
-            if node.empty_element?
+            if in_empty_element?
               @stack.pop
             elsif match
               @match_depth = @stack.length
@@ -56,8 +65,39 @@ module NdrImport
             return match
           end
 
-          def unmatched?
-            @matched_depth.nil?
+          private
+
+          def in_empty_element?
+            @stack.last.empty
+          end
+
+          # Does the current state of the stack mean we've met the xpath
+          # criteria? Must be an exact match, not just matching a parent
+          # element in the DOM.
+          def current_stack_match?
+            parent_stack = @stack[0..-2]
+
+            return false unless dom_stubs[@stack].at_xpath(@xpath)
+
+            parent_stack.empty? || !dom_stubs[parent_stack].at_xpath(@xpath)
+          end
+
+          # A cached collection of DOM fragments, to represent the structure
+          # necessary to use xpath to descend into the main document's DOM.
+          def dom_stubs
+            @dom_stubs ||= Hash.new do |hash, items|
+              hash[items.dup] = Nokogiri::XML::Builder.new do |dom|
+                add_items_to_dom(dom, items.dup)
+              end.doc
+            end
+          end
+
+          # Helper to recursively build XML fragment.
+          def add_items_to_dom(dom, items)
+            item = items.shift
+            dom.send(item.name, item.attrs) do
+              add_items_to_dom(dom, items) if items.any?
+            end
           end
         end
 
@@ -101,50 +141,26 @@ module NdrImport
           end
         end
 
-        def add_nodes(xml, nodes)
-          name, attributes = *nodes.shift
-          xml.send(name, attributes) { add_nodes(xml, nodes) if nodes.any? }
-        end
-
-        def stubs
-          # Stubs at each nesting, to apply xpath to:
-          @stubs ||= Hash.new do |hash, nodes|
-            hash[nodes.dup] = Nokogiri::XML::Builder.new do |xml|
-              add_nodes(xml, nodes.dup)
-            end.doc
-          end
-        end
-
-        def stub_match?(stack, node_xpath)
-          parent_stack = stack[0..-2]
-
-          # Only true if the xpath matches the stack...
-          return false unless stubs[stack].at_xpath(node_xpath)
-
-          # ...and the entire stack:
-          parent_stack.empty? || !stubs[parent_stack].at_xpath(node_xpath)
-        end
-
-        def stream_xml_nodes(io, node_xpath, encoding = nil, &block)
+        def stream_xml_nodes(io, node_xpath, encoding = nil)
           # Track nesting as the cursor moves through the document:
           cursor = Cursor.new(node_xpath)
 
-          # If markup isn't well-formed, work around it and record errors
-          # for later:
+          # If markup isn't well-formed, try to work around it:
           options = Nokogiri::XML::ParseOptions::RECOVER
           reader  = Nokogiri::XML::Reader(io, nil, encoding, options)
 
           reader.each do |node|
             case node.node_type
-            when 1 then # "start element"
+            when Nokogiri::XML::Reader::TYPE_ELEMENT # "opening tag"
               raise NestingError.new(node) if cursor.in?(node)
 
               cursor.enter(node)
+              next unless cursor.matches?
 
-              if cursor.unmatched? && cursor.attempt_match(self, node)
-                block.call Nokogiri::XML(node.outer_xml).at("./#{node.name}")
-              end
-            when 15 then # "end element"
+              # The xpath matched - construct a DOM fragment to yield back:
+              element = Nokogiri::XML(node.outer_xml).at("./#{node.name}")
+              yield element
+            when Nokogiri::XML::Reader::TYPE_END_ELEMENT # "closing tag"
               cursor.leave(node)
             end
           end
