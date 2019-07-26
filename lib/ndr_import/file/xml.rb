@@ -1,5 +1,6 @@
 require 'ndr_support/safe_file'
 require 'ndr_import/helpers/file/xml'
+require 'ndr_import/helpers/file/xml_streaming'
 require_relative 'registry'
 
 module NdrImport
@@ -9,6 +10,7 @@ module NdrImport
     # This class is a xml file handler that returns a single table.
     class Xml < Base
       include NdrImport::Helpers::File::Xml
+      include NdrImport::Helpers::File::XmlStreaming
 
       private
 
@@ -17,8 +19,9 @@ module NdrImport
         return enum_for(:rows) unless block
 
         doc = read_xml_file(@filename)
+        file_data = SafeFile.new(@filename).read
 
-        doc.xpath(@options['xml_record_xpath']).each(&block)
+        stream_xml_nodes(file_data, @options['xml_record_xpath'], &block)
       rescue StandardError => e
         raise("#{SafeFile.basename(@filename)} [#{e.class}: #{e.message}]")
       end

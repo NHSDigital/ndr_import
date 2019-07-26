@@ -1,12 +1,15 @@
 require 'ndr_support/safe_file'
 require 'ndr_support/utf8_encoding'
 
+# require_relative 'xml_streaming'
+
 module NdrImport
   module Helpers
     module File
       # This mixin adds XML functionality to unified importers.
       module Xml
         include UTF8Encoding
+        # include XmlStreaming
 
         private
 
@@ -16,6 +19,7 @@ module NdrImport
           require 'nokogiri'
 
           Nokogiri::XML(ensure_utf8! file_data).tap do |doc|
+          # stream_xml_nodes(ensure_utf8!(file_data), '/*').tap do |doc|
             doc.encoding = 'UTF-8'
             emulate_strict_mode_fatal_check!(doc)
           end

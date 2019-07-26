@@ -15,6 +15,7 @@ module NdrImport
         rows      = handler.send(:rows)
         assert rows.is_a? Enumerator
         assert(rows.all? { |row| row.is_a? Nokogiri::XML::Element })
+        assert_equal 2, rows.to_a.length
       end
     end
   end
