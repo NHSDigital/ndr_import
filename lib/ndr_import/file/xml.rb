@@ -18,10 +18,14 @@ module NdrImport
       def rows(&block)
         return enum_for(:rows) unless block
 
-        doc = read_xml_file(@filename)
-        file_data = SafeFile.new(@filename).read
+        xpath = @options['xml_record_xpath']
 
-        stream_xml_nodes(file_data, @options['xml_record_xpath'], &block)
+        if @options['slurp']
+          doc = read_xml_file(@filename)
+          doc.xpath(xpath).each(&block)
+        else
+          each_node(@filename, xpath, &block)
+        end
       rescue StandardError => e
         raise("#{SafeFile.basename(@filename)} [#{e.class}: #{e.message}]")
       end
