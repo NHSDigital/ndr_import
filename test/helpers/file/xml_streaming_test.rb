@@ -126,6 +126,16 @@ class XmlStreamingTest < ActiveSupport::TestCase
     assert_equal 1, alpha_nodes.length
   end
 
+  test 'stream_xml_nodes should handle incoming declarated as UTF-16 which is not' do
+    nodes = @importer.nodes_from_file('//letter', 'claims_utf16be_but_isnt.xml')
+    punct = nodes.map(&:text).join
+
+    assert punct.valid_encoding?
+    assert_equal Encoding.find('UTF-8'), punct.encoding
+    assert_equal 2, punct.chars.to_a.length
+    assert_equal [226, 128, 153, 226, 128, 147], punct.bytes.to_a # 3 bytes each for apostrophe and dash
+  end
+
   test 'stream_xml_nodes should handle incoming Windows-1252' do
     nodes = @importer.nodes_from_file('//letter', 'windows-1252_xml.xml')
     punct = nodes.map(&:text).join

@@ -45,17 +45,17 @@ module NdrImport
 
         def stream_xml_nodes(safe_path, node_xpath, &block)
           file_stream = ::File.open(SafeFile.safepath_to_string(safe_path))
-          retried = false
+          re_encoded = false
 
           begin
-            actually_stream_xml_nodes(file_stream, node_xpath, &block)
+            actually_stream_xml_nodes(file_stream, node_xpath, re_encoded, &block)
           rescue Nokogiri::XML::SyntaxError => e
-            raise e if retried
+            raise e if re_encoded
             raise e unless e.message =~ /not proper UTF-8, indicate encoding/
 
             file_stream.rewind
             file_stream = StringIO.new ensure_utf8!(file_stream.read)
-            retried = true
+            re_encoded = 'UTF8'
 
             retry
           end
@@ -68,7 +68,12 @@ module NdrImport
           stack       = []
           match_depth = nil
 
-          Nokogiri::XML::Reader(io, nil, encoding).each do |node|
+          # If markup isn't well-formed, work around it and record errors
+          # for later:
+          options = Nokogiri::XML::ParseOptions::RECOVER
+          reader  = Nokogiri::XML::Reader(io, nil, encoding, options)
+
+          reader.each do |node|
             case node.node_type
             when 1 then # "start element"
               raise NestingError.new(node.name) if stack.assoc(node.name)
