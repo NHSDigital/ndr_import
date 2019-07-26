@@ -6,6 +6,15 @@ module NdrImport
     module File
       # This mixin adds XML streaming functionality to unified importers.
       module XmlStreaming
+        class NestingError < StandardError
+          def initialize(node_name)
+            super <<~STR
+              Element '#{node_name}' was found nested inside another of the same type.
+              This is not accessible, and a known limitation of XmlStreaming.
+            STR
+          end
+        end
+
         include UTF8Encoding
 
         private
@@ -47,7 +56,7 @@ module NdrImport
             file_stream.rewind
             file_stream = StringIO.new ensure_utf8!(file_stream.read)
             retried = true
-            
+
             retry
           end
         end
@@ -62,6 +71,8 @@ module NdrImport
           Nokogiri::XML::Reader(io, nil, encoding).each do |node|
             case node.node_type
             when 1 then # "start element"
+              raise NestingError.new(node.name) if stack.assoc(node.name)
+
               stack.push [node.name, node.attributes]
 
               if match_depth || !stub_match?(stack, node_xpath)

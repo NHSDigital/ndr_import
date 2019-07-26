@@ -3,7 +3,7 @@ require 'ndr_import/helpers/file/xml_streaming'
 require 'nokogiri'
 
 # XML streaming file helper tests
-class XmlTest < ActiveSupport::TestCase
+class XmlStreamingTest < ActiveSupport::TestCase
   # This is a test importer class to test the XML streaming file helper mixin
   class TestImporter
     include NdrImport::Helpers::File::XmlStreaming
@@ -38,6 +38,17 @@ class XmlTest < ActiveSupport::TestCase
     assert_equal 2, @importer.nodes('//node', <<~XML).length
       <nodes><node></node><node></node></nodes>
     XML
+  end
+
+  test 'should guard against nesting limitation' do
+    exception = assert_raises(NdrImport::Helpers::File::XmlStreaming::NestingError) do
+      @importer.nodes('//node', <<~XML).length
+        <nodes><node><node></node></node></nodes>
+      XML
+    end
+
+    assert_match(/Element 'node' was found/, exception.message)
+    assert_match(/known limitation of XmlStreaming/, exception.message)
   end
 
   test 'should be able to find the root node' do
