@@ -6,38 +6,100 @@ module NdrImport
     module File
       # This mixin adds XML streaming functionality to unified importers.
       module XmlStreaming
-        class NestingError < StandardError
-          def initialize(node_name)
+        # Base error for all streaming-specific issues.
+        class Error < StandardError; end
+
+        # Raised if nested tags are accounted which the streaming approach cannnot handle.
+        class NestingError < Error
+          def initialize(node)
             super <<~STR
-              Element '#{node_name}' was found nested inside another of the same type.
+              Element '#{node.name}' was found nested inside another of the same type.
               This is not accessible, and a known limitation of XmlStreaming.
             STR
           end
         end
 
+        # Object to track state as the XML is iterated over
+        class Cursor
+          def initialize(xpath)
+            @xpath = xpath
+            @stack = []
+            @match_depth = nil
+          end
+
+          def in?(node)
+            @stack.assoc(node.name)
+          end
+
+          def enter(node)
+            @stack.push [node.name, node.attributes]
+          end
+
+          def leave(_node)
+            @stack.pop
+            @match_depth = nil if @match_depth && @stack.length < @match_depth
+          end
+
+          def attempt_match(ref, node)
+            # FIXME: neither argument should be required.
+            match = ref.send(:stub_match?, @stack, @xpath)
+
+            # "empty element" matches are yielded immediately, without
+            # tagging the stack as having matched, because there won't
+            # be an equivalent closing tag to end the match with later.
+            if node.empty_element?
+              @stack.pop
+            elsif match
+              @match_depth = @stack.length
+            end
+
+            return match
+          end
+
+          def unmatched?
+            @matched_depth.nil?
+          end
+        end
+
         include UTF8Encoding
 
-        def each_node(safe_path, node_xpath, &block)
-          return enum_for(:each_node, safe_path, node_xpath) unless block
+        # Streams the contents of the given `safe_path`, and yields
+        # each element matching `xpath` as they're found.
+        #
+        # In the case of dodgy encoding, may fall back to slurping the
+        # file, but will still use stream parsing for XML.
+        def each_node(safe_path, xpath, &block)
+          return enum_for(:each_node, safe_path, xpath) unless block
 
-          file_stream = ::File.open(SafeFile.safepath_to_string(safe_path))
-          re_encoded = false
+          require 'nokogiri'
 
-          begin
-            stream_xml_nodes(file_stream, node_xpath, re_encoded, &block)
-          rescue Nokogiri::XML::SyntaxError => e
-            raise e if re_encoded
-            raise e unless e.message =~ /not proper UTF-8, indicate encoding/
+          file = ::File.open(SafeFile.safepath_to_string(safe_path))
 
-            file_stream.rewind
-            file_stream = StringIO.new ensure_utf8!(file_stream.read)
-            re_encoded = 'UTF8'
-
-            retry
+          with_encoding_retry(file) do |stream, encoding|
+            stream_xml_nodes(stream, xpath, encoding, &block)
           end
         end
 
         private
+
+        # By default, let Nokogiri try and sort out any encoding issues,
+        # but if necessary "go nuclear" - slurp the stream and force it to UTF-8.
+        def with_encoding_retry(stream)
+          forced_encoding = nil
+
+          begin
+            yield stream, forced_encoding
+          rescue Nokogiri::XML::SyntaxError => e
+            raise e if forced_encoding
+            raise e unless e.message =~ /not proper UTF-8, indicate encoding/
+
+            stream.rewind
+            stream = StringIO.new ensure_utf8!(stream.read)
+            forced_encoding = 'UTF8'
+
+            retry
+          end
+        end
 
         def add_nodes(xml, nodes)
           name, attributes = *nodes.shift
@@ -64,11 +126,8 @@ module NdrImport
         end
 
         def stream_xml_nodes(io, node_xpath, encoding = nil, &block)
-          require 'nokogiri'
-
           # Track nesting as the cursor moves through the document:
-          stack       = []
-          match_depth = nil
+          cursor = Cursor.new(node_xpath)
 
           # If markup isn't well-formed, work around it and record errors
           # for later:
@@ -78,28 +137,15 @@ module NdrImport
           reader.each do |node|
             case node.node_type
             when 1 then # "start element"
-              raise NestingError.new(node.name) if stack.assoc(node.name)
+              raise NestingError.new(node) if cursor.in?(node)
 
-              stack.push [node.name, node.attributes]
+              cursor.enter(node)
 
-              if match_depth || !stub_match?(stack, node_xpath)
-                stack.pop if node.empty_element?
-                next
+              if cursor.unmatched? && cursor.attempt_match(self, node)
+                block.call Nokogiri::XML(node.outer_xml).at("./#{node.name}")
               end
-
-              # "empty element" matches are yielded immediately, without
-              # tagging the stack as having matched, because there won't
-              # be an equivalent closing tag to end the match with later.
-              if node.empty_element?
-                stack.pop
-              else
-                match_depth = stack.length
-              end
-
-              block.call Nokogiri::XML(node.outer_xml).at("./#{node.name}")
             when 15 then # "end element"
-              stack.pop
-              match_depth = nil if match_depth && stack.length < match_depth
+              cursor.leave(node)
             end
           end
         end
