@@ -113,32 +113,36 @@ module NdrImport
 
           require 'nokogiri'
 
-          file = ::File.open(SafeFile.safepath_to_string(safe_path))
-
-          with_encoding_retry(file) do |stream, encoding|
+          with_encoding_check(safe_path) do |stream, encoding|
             stream_xml_nodes(stream, xpath, encoding, &block)
           end
         end
 
         private
 
-        # By default, let Nokogiri try and sort out any encoding issues,
-        # but if necessary "go nuclear" - slurp the stream and force it to UTF-8.
-        def with_encoding_retry(stream)
+        # We need to ensure the raw data is UTF8 before we start streaming
+        # it with nokogiri. If we can do an external check, great. Otherwise,
+        # we need to slurp and convert the raw data before presenting it.
+        def with_encoding_check(safe_path)
           forced_encoding = nil
 
-          begin
-            yield stream, forced_encoding
-          rescue Nokogiri::XML::SyntaxError => e
-            raise e if forced_encoding
-            raise e unless e.message =~ /not proper UTF-8, indicate encoding/
+          stream = ::File.open(SafeFile.safepath_to_string(safe_path))
 
-            stream.rewind
+          unless external_utf8_check?(safe_path)
             stream = StringIO.new ensure_utf8!(stream.read)
             forced_encoding = 'UTF8'
-
-            retry
           end
+
+          yield stream, forced_encoding
+        end
+
+        # Use iconv, if available, to check raw data encoding:
+        def external_utf8_check?(safe_path)
+          iconv = system('command -v iconv > /dev/null 2>&1')
+          return false unless iconv
+
+          path = SafeFile.safepath_to_string(safe_path)
+          system("iconv -f UTF-8 #{Shellwords.escape(path)} > /dev/null 2>&1")
         end
 
         def stream_xml_nodes(io, node_xpath, encoding = nil)

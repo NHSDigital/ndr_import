@@ -85,6 +85,51 @@ class XmlStreamingTest < ActiveSupport::TestCase
     assert_equal 'bar', node.text
   end
 
+  test 'should not needlessly slurp file if encoding is verified as fine' do
+    nodes_xml = (1..100).map { |x| "<node>#{x}</node>" }.join("\n")
+
+    @importer.expects(:ensure_utf8!).never
+
+    nodes = @importer.nodes('//node', <<~XML)
+      <nodes>
+        #{nodes_xml}
+      </nodes>
+    XML
+
+    assert_equal 100, nodes.length
+  end
+
+  test 'should slurp file if encoding cannnot be verified as fine' do
+    nodes_xml = <<~XML
+      <nodes>
+       #{(1..100).map { |x| "<node>#{x}</node>" }.join("\n")}
+      </nodes>
+    XML
+
+    @importer.stubs(external_utf8_check?: false)
+    @importer.expects(ensure_utf8!: nodes_xml)
+
+    nodes = @importer.nodes('//node', nodes_xml)
+    assert_equal 100, nodes.length
+  end
+
+  test 'should not yield nodes twice when switching encoding strategy' do
+    nodes_xml = (1..100).map { |x| "<node>#{x}</node>" }.join("\n")
+
+    nodes = @importer.nodes('//node', <<~XML)
+      <nodes>
+        #{nodes_xml}
+        <node>\x92</node>
+      </nodes>
+    XML
+
+    assert_equal 101, nodes.length
+    text = nodes.sum(&:text)
+    assert_equal Encoding.find('UTF-8'), text.encoding
+    assert text.valid_encoding?
+    assert_equal (1..100).sum(&:to_s) + '’', text
+  end
+
   test 'each_node should handle incoming UTF-8' do
     nodes = @importer.nodes_from_file('//letter', 'utf-8_xml.xml')
     greek = nodes.map(&:text).join
