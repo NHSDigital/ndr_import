@@ -15,7 +15,7 @@ class XmlStreamingTest < ActiveSupport::TestCase
     end
 
     def nodes(xpath, xml)
-      file_name = 'streaming_test.xml'
+      file_name = "streaming_test_#{rand(1e9)}.xml"
       file_path = safe_path.join(file_name)
       SafeFile.open(file_path, 'w') { |f| f.write xml }
 
