@@ -1,5 +1,9 @@
 ## [Unreleased]
-*no unreleased changes*
+### Changed
+* `File::Xml` will now stream XML files by default. Use `slurp: true` for the old behaviour. (#43)
+
+### Added
+* Add `XmlStreaming` helper, for more performant handling of large XML documents with Nokogiri. (#43)
 
 ## 8.6.0 / 2019-06-07
 ### Added

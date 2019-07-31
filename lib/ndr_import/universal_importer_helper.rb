@@ -38,7 +38,8 @@ module NdrImport
           'col_sep'          => table_mapping.try(:delimiter),
           'file_password'    => table_mapping.try(:file_password),
           'liberal_parsing'  => table_mapping.try(:liberal_parsing),
-          'xml_record_xpath' => table_mapping.try(:xml_record_xpath)
+          'xml_record_xpath' => table_mapping.try(:xml_record_xpath),
+          'slurp'            => table_mapping.try(:slurp)
         }
 
         tables = NdrImport::File::Registry.tables(filename, table_mapping.try(:format), options)
