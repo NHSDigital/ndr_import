@@ -1,4 +1,7 @@
 ## [Unreleased]
+*no unreleased changes*
+
+## 9.0.0 / 2019-07-31
 ### Changed
 * `File::Xml` will now stream XML files by default. Use `slurp: true` for the old behaviour. (#43)
 
