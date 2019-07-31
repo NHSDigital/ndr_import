@@ -4,7 +4,13 @@ require 'ndr_support/utf8_encoding'
 module NdrImport
   module Helpers
     module File
-      # This mixin adds XML streaming functionality to unified importers.
+      # This mixin adds XML streaming functionality, to support more performant handling
+      # of large files by Nokogiri. Uses the `XML::Reader` API, and maintains a temporary
+      # DOM as the XML is streamed to allow XPath querying from the root node.
+      #
+      # If the system has `iconv` available, will attempt to verify the encoding of the
+      # file being read externally, so it can be streamed in to Ruby. Otherwise, will load
+      # the raw data in to check the encoding, but still stream it through Nokogiri's parser.
       module XmlStreaming
         # Base error for all streaming-specific issues.
         class Error < StandardError; end
