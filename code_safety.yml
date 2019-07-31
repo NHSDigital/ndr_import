@@ -19,7 +19,7 @@ file safety:
   CHANGELOG.md:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 53c17f14ee19a9ea83d044508093147daa32ba3d
+    safe_revision: 0a4e05d45ee65e25edc36de84d3c450cc15dc3ed
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -139,7 +139,7 @@ file safety:
   lib/ndr_import/file/xml.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 4ab72f84201c2d5f0147b7dfd041f488f6ff0422
+    safe_revision: ae75fb49baf028ac8ce08e4bedcd3625ff3ff0cd
   lib/ndr_import/file/zip.rb:
     comments: 
     reviewed_by: timgentry
@@ -168,6 +168,11 @@ file safety:
     comments: 
     reviewed_by: josh.pencheon
     safe_revision: d2245268ec6a0e4f60c521d171a820f299632c4f
+  lib/ndr_import/helpers/file/xml_streaming.rb:
+    comments: uses SafePath and Shellwords when accessing filesystem, or making system
+      calls
+    reviewed_by: josh.pencheon
+    safe_revision: ae75fb49baf028ac8ce08e4bedcd3625ff3ff0cd
   lib/ndr_import/helpers/file/zip.rb:
     comments: 
     reviewed_by: timgentry
@@ -223,7 +228,7 @@ file safety:
   lib/ndr_import/universal_importer_helper.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: a69d4a57ddcf13cdc13c27bd2eb91a395fa7ea36
+    safe_revision: ae75fb49baf028ac8ce08e4bedcd3625ff3ff0cd
   lib/ndr_import/unmapped_data_error.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -231,7 +236,7 @@ file safety:
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: josh.pencheon
-    safe_revision: 53c17f14ee19a9ea83d044508093147daa32ba3d
+    safe_revision: 0a4e05d45ee65e25edc36de84d3c450cc15dc3ed
   lib/ndr_import/xml/table.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -239,7 +244,7 @@ file safety:
   ndr_import.gemspec:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: d3d9a987befeecb122a448d8d06e66d74da13fb5
+    safe_revision: ae75fb49baf028ac8ce08e4bedcd3625ff3ff0cd
   test/file/acro_form_test.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -283,7 +288,7 @@ file safety:
   test/file/xml_test.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 4ab72f84201c2d5f0147b7dfd041f488f6ff0422
+    safe_revision: ae75fb49baf028ac8ce08e4bedcd3625ff3ff0cd
   test/file/zip_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -308,6 +313,10 @@ file safety:
     comments: 
     reviewed_by: timgentry
     safe_revision: 9abdd6ced1d0c90ce8dd88abee4eb6472c7ff0d6
+  test/helpers/file/xml_streaming_test.rb:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: ae75fb49baf028ac8ce08e4bedcd3625ff3ff0cd
   test/helpers/file/xml_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -356,6 +365,10 @@ file safety:
     comments: 
     reviewed_by: timgentry
     safe_revision: dab4b8a3e4b29d85eccd971e79936982d888cffd
+  test/resources/claims_utf16be_but_isnt.xml:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: ae75fb49baf028ac8ce08e4bedcd3625ff3ff0cd
   test/resources/filesystem_paths.yml:
     comments: 
     reviewed_by: timgentry
