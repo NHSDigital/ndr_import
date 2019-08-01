@@ -2,6 +2,7 @@
 layout: page
 title: YAML Mapping User Guide
 permalink: /yaml-mapping-user-guide/
+add_to_nav: true
 ---
 
 1. [Getting Started](getting-started.md)
