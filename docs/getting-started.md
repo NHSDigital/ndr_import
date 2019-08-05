@@ -13,7 +13,8 @@ It's important to note here that the data that goes into the rawtext remains unt
 **Example Data**:
 **Note**: Real data typically contains many more fields than shown in these examples, however the rules described here are transferable where applicable.
 
-|_.Prov_code|_.Surname|_.Forename|_.dob|_.addr1|_.addr2|_.addr3|_.postcode|_.adm_method|
+|Prov_code|Surname|Forename|dob|addr1|addr2|addr3|postcode|adm_method|
+|---|---|---|---|---|---|---|---|---|
 |RGT01|Mouse|Mickey|31/12/1950|20 London Road|Disney World|London|AB12 3CD|01|
 |RGT01|Simpson|Homer|01/01/1970|742 Evergreen Terrace|Springfield|London||01|
 
@@ -99,7 +100,8 @@ For further information regarding date formats, please visit [Date Formats](date
 
 Here is a list of the most common formats and how to represent them in a mapping:
 
-|_.Syntax|_.Description|_.Sample Rendering|
+|Syntax|Description|Sample Rendering|
+|---|---|---|
 ||**Day**||
 |%d |day of the month, 2 digits with leading zeros |“01” to “31”|
 |%D |day of the week, textual, 3 letters |“Fri”|

@@ -26,7 +26,8 @@ Functionality:
 > Removes any non numeric characters
 Examples:
 
-|_. Raw Value|_. Cleaned Value|
+|Raw Value|Cleaned Value|
+|---|---|
 |"  123-456-7890"|"1234567890"|
 |"888 888 8888  "|"8888888888"|
 |"678-098    9876"|"6780989876"|
@@ -41,7 +42,8 @@ Funtionality:
 > Removes any non aplhanumeric characters
 Examples:
 
-|_. Raw Value|_. Cleaned Value|
+|Raw Value|Cleaned Value|
+|---|---|
 |"rgt9878"|"RGT9878"|
 |"   1878785234"|"1878785234"|
 |"RGT-786"|"RGT786"|
@@ -58,7 +60,8 @@ Funtionality:
 Examples:
 
 
-|_. Raw Value|_. Cleaned Value|
+|Raw Value|Cleaned Value|
+|---|---|
 |"RGT1223B"|"RGT1223"|
 |"746R876"|"746R876"|
 |"d4578886C"|"d4578886"|
@@ -72,7 +75,8 @@ Functionailty:
 > Cleans into consistent format of '1' for male, '2' for female or '0' for not known
 *Examples:*
 
-|_. Raw Value|_. Cleaned Value|
+|Raw Value|Cleaned Value|
+|---|---|
 |"male"|"1"|
 |"FEMALE"|"2"|
 |"1"|"1"|
@@ -96,7 +100,8 @@ Functionailty:
 > Removes leading and trailing spaces
 Examples:
 
-|_. Raw Value|_. Cleaned Value|
+|Raw Value|Cleaned Value|
+|---|---|
 |"ollie"|"OLLIE"|
 |"O`brian"|"O'BRIAN"|
 |"Smith        Jones"|"SMITH JONES"|
@@ -114,7 +119,8 @@ Functionailty:
 > Deromanises roman numerals between 1 and 5
 Examples:
 
-|_. Raw Value|_. Cleaned Value|
+|Raw Value|Cleaned Value|
+|---|---|
 |"I"|"1"|
 |"5"|"5"|
 |"IV"|"4"|
@@ -132,7 +138,8 @@ Functionality:
 > ICD code is removed if it is entirely non alphanumeric characters
 Examples:
 
-|_. Raw Value|_. Cleaned Value|
+|Raw Value|Cleaned Value|
+|---|---|
 |"c50.9"|"C50.9"|
 |"C61.x, C34.2, --."|"C61.X C34.2"|
 |"C14x"|"C14X"|
@@ -152,7 +159,8 @@ Functionality:
 > Cleaned codes of length < 3 or > 4 are removed
 Examples:
 
-|_. Raw Value|_. Cleaned Value|
+|Raw Value|Cleaned Value|
+|---|---|
 |"X71.9, ~~, e543"|"X719 E543"|
 |"  t-12.4"|"T124 "|
 |"Quick O`brown, Fox-38"|""|
@@ -166,7 +174,8 @@ Functionality:
 > All other values are returned untouched
 Examples:
 
-|_. Raw Value|_. Cleaned Value|
+|Raw Value|Cleaned Value|
+|---|---|
 |"N2[ _space_ ]5zz"|"N2[ _space_ ][ _space_ ]5ZZ"|
 |"ZZ32 7rr"|"ZZ327RR"| 
 |"W12 8QT "|"W12 8QT"|
@@ -184,7 +193,8 @@ Functionality:
 > All other values are downcased
 Examples:
 
-|_. Raw Value|_. Cleaned Value|
+|Raw Value|Cleaned Value|
+|---|---|
 |"T1A"|"1a"|
 |"Nx"|"X"|
 |"n1"|"1"|
