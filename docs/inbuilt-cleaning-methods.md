@@ -31,7 +31,7 @@ Examples:
 |"  123-456-7890"|"1234567890"|
 |"888 888 8888  "|"8888888888"|
 |"678-098    9876"|"6780989876"|
-|"Quick O`brown, Fox-38"|"38"|
+|"Quick O\`brown, Fox-38"|"38"|
 
 **Example fields for use**: nhsnumber
 
@@ -48,7 +48,7 @@ Examples:
 |"   1878785234"|"1878785234"|
 |"RGT-786"|"RGT786"|
 |"65 78997"|"6578997"|
-|"Quick O`brown, Fox-38"|"QUICKOBROWNFOX38"|
+|"Quick O\`brown, Fox-38"|"QUICKOBROWNFOX38"|
 
 **Example fields for use**: hospitalnumber
 
@@ -65,7 +65,7 @@ Examples:
 |"RGT1223B"|"RGT1223"|
 |"746R876"|"746R876"|
 |"d4578886C"|"d4578886"|
-|"Quick O`brown, Fox-38"|"Quick O`brown, Fox-38"|
+|"Quick O\`brown, Fox-38"|"Quick O\`brown, Fox-38"|
 
 **Example fields for use**: hospitalnumber
 
@@ -86,7 +86,7 @@ Functionailty:
 |""|"0"|
 |"UNKNOWN"|"0"|
 |"unk"|"0"|
-|"Quick O`brown, Fox-38"|"0"|
+|"Quick O\`brown, Fox-38"|"0"|
 
 **Example fields for use**: sex
 
@@ -96,7 +96,7 @@ Functionailty:
 > Removes .
 > Replaces , or ; with a space.
 > Replaces 2 or more spaces with 1 space
-> Replaces ` with '
+> Replaces \` with '
 > Removes leading and trailing spaces
 Examples:
 
@@ -108,7 +108,7 @@ Examples:
 |"  67890"|"67890"|
 |",,, Potato"|"POTATO"|
 |"Thomas h.   "|"THOMAS H"|
-|"Quick O`brown, Fox-38"|"QUICK O'BROWN FOX-38"|
+|"Quick O\`brown, Fox-38"|"QUICK O'BROWN FOX-38"|
 
 **Example fields for use**: surname, forenames, previoussurname
 
@@ -128,7 +128,7 @@ Examples:
 |"iiC"|"2C"|
 |"IIII-B"|"4-B"|
 |"UNKNOWN"|"UNKNOWN"|
-|"Quick O`brown, Fox-38"|"Qu1ck O`brown, Fox-38"|
+|"Quick O\`brown, Fox-38"|"Qu1ck O\`brown, Fox-38"|
 
 ### **:code_icd**
 
@@ -144,8 +144,8 @@ Examples:
 |"C61.x, C34.2, --."|"C61.X C34.2"|
 |"C14x"|"C14X"|
 |"C61.x, C34.2, --."|"C61.X C34.2"|
-|"c459;  ~~; C01.9"|"C459 C01.9"|
-|"Quick O`brown, Fox-38"|"QUICK O`BROWN FOX-38 "|
+|"c459;  \~\~; C01.9"|"C459 C01.9"|
+|"Quick O\`brown, Fox-38"|"QUICK O\`BROWN FOX-38 "|
 
 
 **Example fields for use**: primarydiagnoses, otherdiagnoses
@@ -161,9 +161,9 @@ Examples:
 
 |Raw Value|Cleaned Value|
 |---|---|
-|"X71.9, ~~, e543"|"X719 E543"|
+|"X71.9, \~\~, e543"|"X719 E543"|
 |"  t-12.4"|"T124 "|
-|"Quick O`brown, Fox-38"|""|
+|"Quick O\`brown, Fox-38"|""|
 
 **Example fields for use**: primaryprocedures
 
@@ -181,7 +181,7 @@ Examples:
 |"W12 8QT "|"W12 8QT"|
 |"ab213TT"|"AB213TT"|
 |"UNKNOWN"|"UNKNOWN"|
-|"Quick O`brown, Fox-38"|"Quick O`brown, Fox-38"|
+|"Quick O\`brown, Fox-38"|"Quick O\`brown, Fox-38"|
 
 **Example fields for use**: postcode
 
@@ -202,7 +202,7 @@ Examples:
 |"TIS"|"is"|
 |"m0"|"0"|
 |"Unknown"|"unknown"|
-|"Quick O`brown, Fox-38"|"quick o`brown, fox-38"| 
+|"Quick O\`brown, Fox-38"|"quick o\`brown, fox-38"| 
 
 ## Notes:
 
