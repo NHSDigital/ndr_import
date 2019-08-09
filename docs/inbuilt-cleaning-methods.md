@@ -23,7 +23,8 @@ Below is a list of the clean methods, their functionality and examples:
 ### **:nhsnumber**
 
 Functionality:
-> Removes any non numeric characters
+* Removes any non numeric characters
+
 Examples:
 
 |Raw Value|Cleaned Value|
@@ -31,15 +32,16 @@ Examples:
 |"  123-456-7890"|"1234567890"|
 |"888 888 8888  "|"8888888888"|
 |"678-098    9876"|"6780989876"|
-|"Quick O`brown, Fox-38"|"38"|
+|"Quick O\`brown, Fox-38"|"38"|
 
 **Example fields for use**: nhsnumber
 
 ### **:lpi**
 
 Funtionality:
-> Upcases
-> Removes any non aplhanumeric characters
+* Upcases
+* Removes any non aplhanumeric characters
+
 Examples:
 
 |Raw Value|Cleaned Value|
@@ -48,7 +50,7 @@ Examples:
 |"   1878785234"|"1878785234"|
 |"RGT-786"|"RGT786"|
 |"65 78997"|"6578997"|
-|"Quick O`brown, Fox-38"|"QUICKOBROWNFOX38"|
+|"Quick O\`brown, Fox-38"|"QUICKOBROWNFOX38"|
 
 **Example fields for use**: hospitalnumber
 
@@ -56,7 +58,8 @@ Examples:
 
 Funtionality:
 
-> Removes last character from value if it is not a digit 
+* Removes last character from value if it is not a digit 
+
 Examples:
 
 
@@ -65,15 +68,16 @@ Examples:
 |"RGT1223B"|"RGT1223"|
 |"746R876"|"746R876"|
 |"d4578886C"|"d4578886"|
-|"Quick O`brown, Fox-38"|"Quick O`brown, Fox-38"|
+|"Quick O\`brown, Fox-38"|"Quick O\`brown, Fox-38"|
 
 **Example fields for use**: hospitalnumber
 
 ### **:sex**
 
 Functionailty:
-> Cleans into consistent format of '1' for male, '2' for female or '0' for not known
-*Examples:*
+* Cleans into consistent format of '1' for male, '2' for female or '0' for not known
+
+Examples:
 
 |Raw Value|Cleaned Value|
 |---|---|
@@ -86,18 +90,19 @@ Functionailty:
 |""|"0"|
 |"UNKNOWN"|"0"|
 |"unk"|"0"|
-|"Quick O`brown, Fox-38"|"0"|
+|"Quick O\`brown, Fox-38"|"0"|
 
 **Example fields for use**: sex
 
 ### **:name**
 
 Functionailty:
-> Removes .
-> Replaces , or ; with a space.
-> Replaces 2 or more spaces with 1 space
-> Replaces ` with '
-> Removes leading and trailing spaces
+* Removes .
+* Replaces , or ; with a space.
+* Replaces 2 or more spaces with 1 space
+* Replaces \` with '
+* Removes leading and trailing spaces
+
 Examples:
 
 |Raw Value|Cleaned Value|
@@ -108,7 +113,7 @@ Examples:
 |"  67890"|"67890"|
 |",,, Potato"|"POTATO"|
 |"Thomas h.   "|"THOMAS H"|
-|"Quick O`brown, Fox-38"|"QUICK O'BROWN FOX-38"|
+|"Quick O\`brown, Fox-38"|"QUICK O'BROWN FOX-38"|
 
 **Example fields for use**: surname, forenames, previoussurname
 
@@ -116,7 +121,8 @@ Examples:
 ### **:roman5**
 
 Functionailty:
-> Deromanises roman numerals between 1 and 5
+* Deromanises roman numerals between 1 and 5
+
 Examples:
 
 |Raw Value|Cleaned Value|
@@ -128,14 +134,15 @@ Examples:
 |"iiC"|"2C"|
 |"IIII-B"|"4-B"|
 |"UNKNOWN"|"UNKNOWN"|
-|"Quick O`brown, Fox-38"|"Qu1ck O`brown, Fox-38"|
+|"Quick O\`brown, Fox-38"|"Qu1ck O\`brown, Fox-38"|
 
 ### **:code_icd**
 
 Functionality:
-> Splits grouped codes by comma, semicolon or space
-> Upcases
-> ICD code is removed if it is entirely non alphanumeric characters
+* Splits grouped codes by comma, semicolon or space
+* Upcases
+* ICD code is removed if it is entirely non alphanumeric characters
+
 Examples:
 
 |Raw Value|Cleaned Value|
@@ -144,8 +151,8 @@ Examples:
 |"C61.x, C34.2, --."|"C61.X C34.2"|
 |"C14x"|"C14X"|
 |"C61.x, C34.2, --."|"C61.X C34.2"|
-|"c459;  ~~; C01.9"|"C459 C01.9"|
-|"Quick O`brown, Fox-38"|"QUICK O`BROWN FOX-38 "|
+|"c459;  \~\~; C01.9"|"C459 C01.9"|
+|"Quick O\`brown, Fox-38"|"QUICK O\`BROWN FOX-38 "|
 
 
 **Example fields for use**: primarydiagnoses, otherdiagnoses
@@ -153,25 +160,27 @@ Examples:
 ### **:code_opcs**
 
 Functionality:
-> Splits grouped codes by comma, semicolon or space
-> Upcases
-> Non alphanumeric characters removed from each code
-> Cleaned codes of length < 3 or > 4 are removed
+* Splits grouped codes by comma, semicolon or space
+* Upcases
+* Non alphanumeric characters removed from each code
+* Cleaned codes of length < 3 or > 4 are removed
+
 Examples:
 
 |Raw Value|Cleaned Value|
 |---|---|
-|"X71.9, ~~, e543"|"X719 E543"|
+|"X71.9, \~\~, e543"|"X719 E543"|
 |"  t-12.4"|"T124 "|
-|"Quick O`brown, Fox-38"|""|
+|"Quick O\`brown, Fox-38"|""|
 
 **Example fields for use**: primaryprocedures
 
 ### **:postcode**
 
 Functionality:
-> Values in a postcode format are upcased and centre padded with space(s) to make it 7 characters long (if required)
-> All other values are returned untouched
+* Values in a postcode format are upcased and centre padded with space(s) to make it 7 characters long (if required)
+* All other values are returned untouched
+
 Examples:
 
 |Raw Value|Cleaned Value|
@@ -181,16 +190,17 @@ Examples:
 |"W12 8QT "|"W12 8QT"|
 |"ab213TT"|"AB213TT"|
 |"UNKNOWN"|"UNKNOWN"|
-|"Quick O`brown, Fox-38"|"Quick O`brown, Fox-38"|
+|"Quick O\`brown, Fox-38"|"Quick O\`brown, Fox-38"|
 
 **Example fields for use**: postcode
 
 ### :tnmcategory
 
 Functionality:
-> Leading 'T', 'N', or 'M' are removed (upper or lowercase)
-> Lowercase 'x' is upcased to 'X'
-> All other values are downcased
+* Leading 'T', 'N', or 'M' are removed (upper or lowercase)
+* Lowercase 'x' is upcased to 'X'
+* All other values are downcased
+
 Examples:
 
 |Raw Value|Cleaned Value|
@@ -202,7 +212,20 @@ Examples:
 |"TIS"|"is"|
 |"m0"|"0"|
 |"Unknown"|"unknown"|
-|"Quick O`brown, Fox-38"|"quick o`brown, fox-38"| 
+|"Quick O\`brown, Fox-38"|"quick o\`brown, fox-38"| 
+
+### :upcase
+
+Functionality:
+* Upcases any raw value
+
+Examples:
+
+|Raw Value|Cleaned Value|
+|---|---|
+|"c50.9"|"C50.9"|
+|"iii"|"III"|
+|"Quick O\`brown, Fox-38"|"QUICK O\`BROWN, FOX-38"| 
 
 ## Notes:
 
