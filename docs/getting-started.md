@@ -98,31 +98,6 @@ Again, let's assume that the **dob** column also differs from the canonical name
 
 For further information regarding date formats, please visit [Date Formats](date-formats.md).
 
-Here is a list of the most common formats and how to represent them in a mapping:
-
-|Syntax|Description|Sample Rendering|
-|---|---|---|
-||**Day**||
-|%d |day of the month, 2 digits with leading zeros |“01” to “31”|
-|%D |day of the week, textual, 3 letters |“Fri”|
-||**Month**||
-|%m |month |“01” to “12”|
-|%b |month, textual, 3 letters |“Jan”|
-|%B |month, textual, long |“January”|
-||**Year**||
-|%y |year, 2 digits |“99”|
-|%Y |year, 4 digits |“1999”|
-|%j |day of the year |“0” to “366”|
-||**Hours**||
-|%h |hour, 12-hour format |“01” to “12”|
-|%H |hour, 24-hour format |“00” to “23”|
-||**Minutes**||
-|%M |minutes |“00” to “59”|
-||**Seconds**||
-|%S |seconds |“00” to “59”|
-
-For further information please read the [Format Directives](http://apidock.com/ruby/DateTime/strftime)
-
 In the example data, the **address** information is sent in a structured format over 3 separate columns, **addr1**, **addr2** and **addr3**. In order to map this data to the **address** field, we will need to join the 3 columns.
 
 Firstly, let's assume that the incoming column names do not match the canonical name. We use the multiples convention shown below. We then need to define the field the data is being mapped to, the order in which each column appears in that field and then how we would like to join the data.
