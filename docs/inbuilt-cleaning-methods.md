@@ -204,6 +204,18 @@ Examples:
 |"Unknown"|"unknown"|
 |"Quick O\`brown, Fox-38"|"quick o\`brown, fox-38"| 
 
+### :upcase
+
+Functionality:
+* Upcases any raw value
+Examples:
+
+|Raw Value|Cleaned Value|
+|---|---|
+|"c50.9"|"C50.9"|
+|"iii"|"III"|
+|"Quick O\`brown, Fox-38"|"QUICK O\`BROWN, FOX-38"| 
+
 ## Notes:
 
 It's worth noting that some of these fields benefit from the [Standard YAML mappings](standard-yaml-mappings.md) functionality.
