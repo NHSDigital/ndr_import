@@ -24,6 +24,7 @@ Below is a list of the clean methods, their functionality and examples:
 
 Functionality:
 * Removes any non numeric characters
+
 Examples:
 
 |Raw Value|Cleaned Value|
@@ -40,6 +41,7 @@ Examples:
 Funtionality:
 * Upcases
 * Removes any non aplhanumeric characters
+
 Examples:
 
 |Raw Value|Cleaned Value|
@@ -57,6 +59,7 @@ Examples:
 Funtionality:
 
 * Removes last character from value if it is not a digit 
+
 Examples:
 
 
@@ -73,6 +76,7 @@ Examples:
 
 Functionailty:
 * Cleans into consistent format of '1' for male, '2' for female or '0' for not known
+
 Examples:
 
 |Raw Value|Cleaned Value|
@@ -98,6 +102,7 @@ Functionailty:
 * Replaces 2 or more spaces with 1 space
 * Replaces \` with '
 * Removes leading and trailing spaces
+
 Examples:
 
 |Raw Value|Cleaned Value|
@@ -117,6 +122,7 @@ Examples:
 
 Functionailty:
 * Deromanises roman numerals between 1 and 5
+
 Examples:
 
 |Raw Value|Cleaned Value|
@@ -136,6 +142,7 @@ Functionality:
 * Splits grouped codes by comma, semicolon or space
 * Upcases
 * ICD code is removed if it is entirely non alphanumeric characters
+
 Examples:
 
 |Raw Value|Cleaned Value|
@@ -157,6 +164,7 @@ Functionality:
 * Upcases
 * Non alphanumeric characters removed from each code
 * Cleaned codes of length < 3 or > 4 are removed
+
 Examples:
 
 |Raw Value|Cleaned Value|
@@ -172,6 +180,7 @@ Examples:
 Functionality:
 * Values in a postcode format are upcased and centre padded with space(s) to make it 7 characters long (if required)
 * All other values are returned untouched
+
 Examples:
 
 |Raw Value|Cleaned Value|
@@ -191,6 +200,7 @@ Functionality:
 * Leading 'T', 'N', or 'M' are removed (upper or lowercase)
 * Lowercase 'x' is upcased to 'X'
 * All other values are downcased
+
 Examples:
 
 |Raw Value|Cleaned Value|
@@ -208,6 +218,7 @@ Examples:
 
 Functionality:
 * Upcases any raw value
+
 Examples:
 
 |Raw Value|Cleaned Value|
