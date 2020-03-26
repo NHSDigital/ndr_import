@@ -3,7 +3,7 @@ file safety:
   ".gitignore":
     comments: whole file re-reviewed
     reviewed_by: josh.pencheon
-    safe_revision: 3ef51291c413fd5772d61a8394359146a02ae628
+    safe_revision: 02aaf91b116c510a7c16f2b6f2389736b2742f49
   ".hound.yml":
     comments: 
     reviewed_by: timgentry
@@ -19,7 +19,7 @@ file safety:
   CHANGELOG.md:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 0a4e05d45ee65e25edc36de84d3c450cc15dc3ed
+    safe_revision: 0a6e63906f9f697c2220a33fa5502cfd7df6ae0e
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -39,7 +39,7 @@ file safety:
   README.md:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: e1d967c10059e8c635452838c3f3dd2b969d9ae4
+    safe_revision: 1bc459db8970dde36e9b240b6dd08cca629664e3
   Rakefile:
     comments: 
     reviewed_by: josh.pencheon
@@ -52,6 +52,70 @@ file safety:
     comments: 
     reviewed_by: josh.pencheon
     safe_revision: e1d967c10059e8c635452838c3f3dd2b969d9ae4
+  docs/Gemfile:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 02aaf91b116c510a7c16f2b6f2389736b2742f49
+  docs/Gemfile.lock:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: af56f473382850e132f8b8953594c47a457fe579
+  docs/_config.yml:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 02aaf91b116c510a7c16f2b6f2389736b2742f49
+  docs/_includes/footer.html:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 02aaf91b116c510a7c16f2b6f2389736b2742f49
+  docs/_includes/header.html:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 02aaf91b116c510a7c16f2b6f2389736b2742f49
+  docs/capturing-data.md:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 02aaf91b116c510a7c16f2b6f2389736b2742f49
+  docs/date-formats.md:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: fa21d6d967bf132800b456b585795beec80b08a3
+  docs/getting-started.md:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: fa21d6d967bf132800b456b585795beec80b08a3
+  docs/identifying-and-splitting-records.md:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 02aaf91b116c510a7c16f2b6f2389736b2742f49
+  docs/inbuilt-cleaning-methods.md:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 694b57ce14e0709fc4d31a1357f8416e98f5de91
+  docs/index.md:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 02aaf91b116c510a7c16f2b6f2389736b2742f49
+  docs/local-code-transformation-in-yaml-mappings.md:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 02aaf91b116c510a7c16f2b6f2389736b2742f49
+  docs/non-tabular-mappings.md:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 02aaf91b116c510a7c16f2b6f2389736b2742f49
+  docs/priority-field-mapping.md:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 02aaf91b116c510a7c16f2b6f2389736b2742f49
+  docs/standard-yaml-mappings.md:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 02aaf91b116c510a7c16f2b6f2389736b2742f49
+  docs/yaml-mapping-user-guide.md:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 02aaf91b116c510a7c16f2b6f2389736b2742f49
   exe/pdf_acro_form_to_yaml:
     comments: 
     reviewed_by: josh.pencheon
@@ -172,7 +236,7 @@ file safety:
     comments: uses SafePath and Shellwords when accessing filesystem, or making system
       calls
     reviewed_by: josh.pencheon
-    safe_revision: ae75fb49baf028ac8ce08e4bedcd3625ff3ff0cd
+    safe_revision: 55e502bb4445cb8b985e530e8eb26d92b574ded9
   lib/ndr_import/helpers/file/zip.rb:
     comments: 
     reviewed_by: timgentry
@@ -228,7 +292,7 @@ file safety:
   lib/ndr_import/universal_importer_helper.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: ae75fb49baf028ac8ce08e4bedcd3625ff3ff0cd
+    safe_revision: 55e502bb4445cb8b985e530e8eb26d92b574ded9
   lib/ndr_import/unmapped_data_error.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -236,7 +300,7 @@ file safety:
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: josh.pencheon
-    safe_revision: 0a4e05d45ee65e25edc36de84d3c450cc15dc3ed
+    safe_revision: 0a6e63906f9f697c2220a33fa5502cfd7df6ae0e
   lib/ndr_import/xml/table.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -244,7 +308,7 @@ file safety:
   ndr_import.gemspec:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: ae75fb49baf028ac8ce08e4bedcd3625ff3ff0cd
+    safe_revision: be63a683043ad4cf8a4b2e98933745b8fe72177d
   test/file/acro_form_test.rb:
     comments: 
     reviewed_by: josh.pencheon
