@@ -308,7 +308,7 @@ file safety:
   ndr_import.gemspec:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: be63a683043ad4cf8a4b2e98933745b8fe72177d
+    safe_revision: 95e6ee9997d06471fe6f2f169c3c701471086371
   test/file/acro_form_test.rb:
     comments: 
     reviewed_by: josh.pencheon
