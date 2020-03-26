@@ -1,6 +1,10 @@
 ## [Unreleased]
 *no unreleased changes*
 
+## 9.0.1 / 2020-03-26
+### Fixed
+* bumps to `nokogiri` / `spreadsheet` / `rubyzip` dependencies
+
 ## 9.0.0 / 2019-07-31
 ### Changed
 * `File::Xml` will now stream XML files by default. Use `slurp: true` for the old behaviour. (#43)
