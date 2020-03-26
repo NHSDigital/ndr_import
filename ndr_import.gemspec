@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'activesupport', '>= 5.0', '< 7'
   spec.add_dependency 'ndr_support', '>= 5.3.2', '< 6'
 
-  spec.add_dependency 'rubyzip', '~> 1.2', '>= 1.2.2'
+  spec.add_dependency 'rubyzip', '~> 2.0'
   spec.add_dependency 'roo', '~> 2.0'
 
   spec.add_dependency 'docx', '~> 0.3'
