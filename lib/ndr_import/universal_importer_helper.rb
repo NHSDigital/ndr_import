@@ -1,3 +1,5 @@
+require 'shellwords'
+
 require 'ndr_import/file/registry'
 
 module NdrImport

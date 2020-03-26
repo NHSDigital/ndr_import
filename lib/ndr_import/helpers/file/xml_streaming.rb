@@ -1,3 +1,5 @@
+require 'shellwords'
+
 require 'ndr_support/safe_file'
 require 'ndr_support/utf8_encoding'
 
