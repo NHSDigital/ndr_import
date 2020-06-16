@@ -12,8 +12,8 @@ class << CSVLibrary
 
   # Ensure that we can pass "mode" straight through the underlying IO object
   def foreach(path, **options, &block)
-    return to_enum(__method__, path, options) unless block
-    open(path, options.delete(:mode) || 'r', options) do |csv|
+    return to_enum(__method__, path, **options) unless block
+    open(path, options.delete(:mode) || 'r', **options) do |csv|
       csv.each(&block)
     end
   end
