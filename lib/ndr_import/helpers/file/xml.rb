@@ -15,10 +15,13 @@ module NdrImport
 
           require 'nokogiri'
 
-          Nokogiri::XML(ensure_utf8! file_data).tap do |doc|
-            doc.encoding = 'UTF-8'
-            emulate_strict_mode_fatal_check!(doc)
+          doc = Nokogiri::XML((ensure_utf8! file_data)) do |config|
+            config.huge
           end
+          doc.encoding = 'UTF-8'
+          emulate_strict_mode_fatal_check!(doc)
+
+          doc
         end
 
         # Nokogiri can use give a `STRICT` parse option to libxml, but our friendly
