@@ -1,6 +1,10 @@
 ## [Unreleased]
 *no unreleased changes*
 
+## 9.0.2 / 2020-08-14
+### Changed
+* Configure Nokogiri with HUGE for large xml files
+
 ## 9.0.1 / 2020-03-26
 ### Fixed
 * bumps to `nokogiri` / `spreadsheet` / `rubyzip` dependencies
