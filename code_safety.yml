@@ -18,8 +18,8 @@ file safety:
     safe_revision: d3d9a987befeecb122a448d8d06e66d74da13fb5
   CHANGELOG.md:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 0a6e63906f9f697c2220a33fa5502cfd7df6ae0e
+    reviewed_by: ollietulloch
+    safe_revision: aa006cd76123db2101d145a07d201dc6a709ed6e
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -58,8 +58,8 @@ file safety:
     safe_revision: 02aaf91b116c510a7c16f2b6f2389736b2742f49
   docs/Gemfile.lock:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: af56f473382850e132f8b8953594c47a457fe579
+    reviewed_by: ollietulloch
+    safe_revision: 6f274715bb341c3070190f04f67af9500b510580
   docs/_config.yml:
     comments: 
     reviewed_by: josh.pencheon
@@ -230,8 +230,8 @@ file safety:
     safe_revision: 45da71ebd3acbc0fe53755bcd75483ba17cb6924
   lib/ndr_import/helpers/file/xml.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: d2245268ec6a0e4f60c521d171a820f299632c4f
+    reviewed_by: ollietulloch
+    safe_revision: 4d337bd233f7e60cf9d363c92400f21269a28da7
   lib/ndr_import/helpers/file/xml_streaming.rb:
     comments: uses SafePath and Shellwords when accessing filesystem, or making system
       calls
@@ -299,8 +299,8 @@ file safety:
     safe_revision: 5cd2cd0b3a1e254d30d4acc28c6731825a1f84f5
   lib/ndr_import/version.rb:
     comments: another check?
-    reviewed_by: josh.pencheon
-    safe_revision: 0a6e63906f9f697c2220a33fa5502cfd7df6ae0e
+    reviewed_by: ollietulloch
+    safe_revision: aa006cd76123db2101d145a07d201dc6a709ed6e
   lib/ndr_import/xml/table.rb:
     comments: 
     reviewed_by: josh.pencheon
