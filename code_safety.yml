@@ -14,12 +14,12 @@ file safety:
     safe_revision: b09e268ff9c8349b914aa1b7ba888e1d39f97e4a
   ".travis.yml":
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: d3d9a987befeecb122a448d8d06e66d74da13fb5
+    reviewed_by: ollietulloch
+    safe_revision: ed8513d290796b9cb9554c4ebe6e87ac21fbbeae
   CHANGELOG.md:
     comments: 
     reviewed_by: ollietulloch
-    safe_revision: aa006cd76123db2101d145a07d201dc6a709ed6e
+    safe_revision: 92d2d9d56f17c143709e25560d7620aaf147008f
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -146,8 +146,8 @@ file safety:
     safe_revision: 24d6449fd0612552f132dfbf4cada2ae28d0469e
   lib/ndr_import/csv_library.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: be12e57519d3737e8d3901d7b01485c6995708dd
+    reviewed_by: ollietulloch
+    safe_revision: acc72173b81702d55fe3aff78054425609a4d339
   lib/ndr_import/file/acro_form.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -214,8 +214,8 @@ file safety:
     safe_revision: dfc958d44b6c58355445fa395db08a62213ee709
   lib/ndr_import/helpers/file/delimited.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 607c0668f1fffd70d181bc1a31c4f56eed5f6189
+    reviewed_by: ollietulloch
+    safe_revision: acc72173b81702d55fe3aff78054425609a4d339
   lib/ndr_import/helpers/file/excel.rb:
     comments: 
     reviewed_by: joshpencheon
@@ -291,8 +291,8 @@ file safety:
     safe_revision: a69d4a57ddcf13cdc13c27bd2eb91a395fa7ea36
   lib/ndr_import/universal_importer_helper.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 55e502bb4445cb8b985e530e8eb26d92b574ded9
+    reviewed_by: ollietulloch
+    safe_revision: 830de0f8cb139c5f61525652b424423935cfc7ac
   lib/ndr_import/unmapped_data_error.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -300,7 +300,7 @@ file safety:
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: ollietulloch
-    safe_revision: aa006cd76123db2101d145a07d201dc6a709ed6e
+    safe_revision: 92d2d9d56f17c143709e25560d7620aaf147008f
   lib/ndr_import/xml/table.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -569,6 +569,10 @@ file safety:
     comments: 
     reviewed_by: timgentry
     safe_revision: 31fb1935f4578729d8786eea41cf0ce0a19be1cd
+  test/resources/two_files_single_table_mapping.zip:
+    comments: 
+    reviewed_by: ollietulloch
+    safe_revision: 830de0f8cb139c5f61525652b424423935cfc7ac
   test/resources/txt_file_xls_extension.xls:
     comments: 
     reviewed_by: timgentry
@@ -619,8 +623,8 @@ file safety:
     safe_revision: 93ccee82fc2165d1ca2d9b03d146ae03e769ea96
   test/universal_importer_helper_test.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: c3183e522bce50008df576ceb47fe4761ab8f966
+    reviewed_by: ollietulloch
+    safe_revision: 830de0f8cb139c5f61525652b424423935cfc7ac
   test/xml/table_test.rb:
     comments: 
     reviewed_by: josh.pencheon
