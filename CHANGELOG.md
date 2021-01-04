@@ -1,6 +1,15 @@
 ## [Unreleased]
+*no unreleased changes*
+
+## 9.0.3 / 2021-01-04
 ### Fixed
 * Address issue importing multiple files against the same table (#54)
+
+### Changed
+* ensure keyword args are properly splatted for ruby 2.7
+
+### Added
+* Ruby 2.7 to travis matrix
 
 ## 9.0.2 / 2020-08-14
 ### Changed
