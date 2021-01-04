@@ -36,7 +36,7 @@ module NdrImport
 
           # By now, we know `encodings` should let us read the whole
           # file succesfully; if there are problems, we should crash.
-          CSVLibrary.foreach(safe_path, encodings) do |line|
+          CSVLibrary.foreach(safe_path, **encodings) do |line|
             yield line.map(&:to_s)
           end
         end
@@ -73,7 +73,7 @@ module NdrImport
 
               row_num = 0
               # Iterate through the file; if we reach the end, this encoding worked:
-              CSVLibrary.foreach(safe_path, options) { |_line| row_num += 1 }
+              CSVLibrary.foreach(safe_path, **options) { |_line| row_num += 1 }
               return options
             rescue ArgumentError => e
               next if e.message =~ /invalid byte sequence/ # This encoding didn't work
