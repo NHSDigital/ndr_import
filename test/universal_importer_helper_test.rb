@@ -104,6 +104,26 @@ class UniversalImporterHelperTest < ActiveSupport::TestCase
     end
   end
 
+  test 'multiple files using a single NdrImport::Table' do
+    table_mappings = [
+      NdrImport::Table.new(filename_pattern: /\.txt\z/i,
+                           canonical_name: 'a_table',
+                           format: 'delimited',
+                           delimiter: '¬',
+                           header_lines: 1,
+                           footer_lines: 0,
+                           klass: 'SomeTestClass',
+                           columns: [{ 'column' => 'one' },
+                                     { 'column' => 'two' },
+                                     { 'column' => 'three' }])
+    ]
+    source_file = @permanent_test_files.join('two_files_single_table_mapping.zip')
+    @test_importer.stubs(:get_table_mapping).returns(table_mappings.first)
+    table_enums = @test_importer.table_enumerators(source_file)
+    assert table_enums.one?
+    assert_equal 4, table_enums.first.last.count
+  end
+
   test 'get_notifier' do
     class TestImporterWithoutNotifier
       include NdrImport::UniversalImporterHelper

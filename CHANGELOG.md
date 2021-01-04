@@ -1,5 +1,6 @@
 ## [Unreleased]
-*no unreleased changes*
+### Fixed
+* Address issue importing multiple files against the same table (#54)
 
 ## 9.0.2 / 2020-08-14
 ### Changed
