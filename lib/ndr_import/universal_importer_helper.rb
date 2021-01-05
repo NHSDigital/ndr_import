@@ -27,7 +27,6 @@ module NdrImport
     end
 
     def table_enumerators(filename)
-      table_enumerators = {}
       table_enumerators = Hash.new { |hash, key| hash[key] = TableEnumProxy.new }
 
       extract(filename).each do |table, rows|
