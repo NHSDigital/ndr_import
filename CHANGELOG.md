@@ -1,5 +1,6 @@
 ## [Unreleased]
-*no unreleased changes*
+### Fixed
+* Fix `CSVLibrary.foreach` on Ruby 3.0
 
 ## 9.0.3 / 2021-01-04
 ### Fixed

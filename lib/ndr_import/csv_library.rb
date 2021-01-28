@@ -11,6 +11,12 @@ class << CSVLibrary
   end
 
   # Ensure that we can pass "mode" straight through the underlying IO object
+  #
+  # Note: this could likely be refactored now, as upstream support for something
+  #       very similar was added:
+  #
+  #       https://github.com/ruby/csv/commit/b4edaf2cf1aa36f5c6264c07514b66739b87ceee
+  #
   def foreach(path, **options, &block)
     return to_enum(__method__, path, **options) unless block
     open(path, options.delete(:mode) || 'r', **options) do |csv|
