@@ -1,0 +1,23 @@
+name: Lint
+
+on: [pull_request]
+
+jobs:
+  rubocop:
+    name: RuboCop
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0 # fetch everything
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.0
+    - name: Install dependencies
+      run: bundle install
+    - name: Run RuboCop against BASE..HEAD changes
+      run: bundle exec rake rubocop:diff origin/${GITHUB_BASE_REF#*/}
+

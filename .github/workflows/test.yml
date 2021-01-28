@@ -1,0 +1,71 @@
+name: Test
+
+on: [push]
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        ruby-version:
+          - 2.6
+          - 2.7
+          - 3.0
+        gemfile:
+          - gemfiles/Gemfile.rails52
+          - gemfiles/Gemfile.rails60
+
+    name: Ruby ${{ matrix.ruby-version }} / Bundle ${{ matrix.gemfile }}
+
+    runs-on: ubuntu-latest
+
+    env:
+      BUNDLE_GEMFILE: ${{ matrix.gemfile }}
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby-version }}
+    - name: Install dependencies
+      run: bundle install
+    - name: Run tests
+      run: bundle exec rake
+
+  # A utility job upon which Branch Protection can depend,
+  # thus remaining agnostic of the matrix.
+  test_matrix:
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    name: Matrix
+    needs: test
+    steps:
+    - name: Check build matrix status
+      if: ${{ needs.test.result != 'success' }}
+      run: exit 1
+
+  notify:
+    # Run only on master, but regardless of whether tests past:
+    if: ${{ always() && github.ref == 'refs/heads/master' }}
+
+    needs: test_matrix
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: 8398a7/action-slack@v3
+      with:
+        status: custom
+        fields: workflow,commit,author
+        custom_payload: |
+          {
+            channel: 'C7FQWGDHP',
+            username: 'CI – ' + '${{ github.repository }}'.split('/')[1],
+            icon_emoji: ':hammer_and_wrench:',
+            attachments: [{
+              color: '${{ needs.test_matrix.result }}' === 'success' ? 'good' : '${{ needs.test_matrix.result }}' === 'failure' ? 'danger' : 'warning',
+              text: `${process.env.AS_WORKFLOW} against \`${{ github.ref }}\` (${process.env.AS_COMMIT}) for ${{ github.actor }} resulted in *${{ needs.test_matrix.result }}*.`
+            }]
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
