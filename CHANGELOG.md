@@ -1,4 +1,7 @@
 ## [Unreleased]
+### Added
+* `CSVLibrary` is now deprecated.
+
 ### Fixed
 * Fix `CSVLibrary.foreach` on Ruby 3.0
 
