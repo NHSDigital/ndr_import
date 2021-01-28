@@ -97,7 +97,7 @@ module NdrImport
             Roo::Excelx.new(SafeFile.safepath_to_string(path))
           end
         else
-          fail "Received file path with unexpected extension #{SafeFile.extname(path)}"
+          raise "Received file path with unexpected extension #{SafeFile.extname(path)}"
         end
       rescue Ole::Storage::FormatError => e
         # TODO: Do we need to remove the new_file after using it?
@@ -105,16 +105,14 @@ module NdrImport
         # try to load the .xls file as an .xlsx file, useful for sources like USOM
         # roo check file extensions in file_type_check (GenericSpreadsheet),
         # so we create a duplicate file in xlsx extension
-        if /(.*)\.xls$/.match(path)
-          new_file_name = SafeFile.basename(path).gsub(/(.*)\.xls$/, '\1_amend.xlsx')
-          new_file_path = SafeFile.dirname(path).join(new_file_name)
-          copy_file(path, new_file_path)
+        raise e.message unless /(.*)\.xls$/.match(path)
 
-          load_workbook(new_file_path)
-        else
-          raise e.message
-        end
-      rescue => e
+        new_file_name = SafeFile.basename(path).gsub(/(.*)\.xls$/, '\1_amend.xlsx')
+        new_file_path = SafeFile.dirname(path).join(new_file_name)
+        copy_file(path, new_file_path)
+
+        load_workbook(new_file_path)
+      rescue RuntimeError, ::Zip::Error => e
         raise ["Unable to read the file '#{path}'", e.message].join('; ')
       end
 
