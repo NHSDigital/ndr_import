@@ -90,7 +90,7 @@ module NdrImport
         case SafeFile.extname(path).downcase
         when '.xls'
           Roo::Excel.new(SafeFile.safepath_to_string(path))
-        when '.xlsx'
+        when '.xlsm', '.xlsx'
           if @options['file_password']
             Roo::Excelx.new(StringIO.new(decrypted_file_string(path, @options['file_password'])))
           else
@@ -133,6 +133,6 @@ module NdrImport
       end
     end
 
-    Registry.register(Excel, 'xls', 'xlsx')
+    Registry.register(Excel, 'xls', 'xlsm', 'xlsx')
   end
 end
