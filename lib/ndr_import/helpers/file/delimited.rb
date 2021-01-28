@@ -32,11 +32,11 @@ module NdrImport
           return enum_for(:delimited_rows, path, col_sep, liberal) unless block_given?
 
           safe_path = SafeFile.safepath_to_string(path)
-          encodings = determine_encodings!(safe_path, col_sep, liberal)
+          options = determine_encodings!(safe_path, col_sep, liberal)
 
-          # By now, we know `encodings` should let us read the whole
+          # By now, we know `options` should let us read the whole
           # file succesfully; if there are problems, we should crash.
-          CSVLibrary.foreach(safe_path, **encodings) do |line|
+          CSV.foreach(safe_path, options.delete(:mode), **options) do |line|
             yield line.map(&:to_s)
           end
         end
@@ -46,7 +46,7 @@ module NdrImport
         # Derive the source encoding by trying all supported encodings.
         # Returns first set of working options, or raises if none could be found.
         def determine_encodings!(safe_path, col_sep, liberal)
-          # delimiter encoding => # FasterCSV encoding string
+          # delimiter encoding => # CSV encoding string
           supported_encodings = {
             'UTF-8'        => 'r:bom|utf-8',
             'Windows-1252' => 'r:windows-1252:utf-8'
@@ -67,14 +67,13 @@ module NdrImport
             begin
               options = {
                 col_sep: (col_sep || ',').force_encoding(delimiter_encoding),
-                liberal_parsing: liberal,
-                mode: access_mode
+                liberal_parsing: liberal
               }
 
               row_num = 0
               # Iterate through the file; if we reach the end, this encoding worked:
-              CSVLibrary.foreach(safe_path, **options) { |_line| row_num += 1 }
-              return options
+              CSV.foreach(safe_path, access_mode, **options) { |_line| row_num += 1 }
+              return options.merge(mode: access_mode)
             rescue ArgumentError => e
               next if e.message =~ /invalid byte sequence/ # This encoding didn't work
               raise(e)
