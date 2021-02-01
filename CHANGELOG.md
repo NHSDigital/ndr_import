@@ -1,9 +1,14 @@
 ## [Unreleased]
+*no unreleased changes*
+
+## 9.1.0 / 2021-02-01
 ### Added
 * `CSVLibrary` is now deprecated.
+* Handle xlsm files
 
 ### Fixed
 * Fix `CSVLibrary.foreach` on Ruby 3.0
+* Updated jekyll bundle
 
 ## 9.0.3 / 2021-01-04
 ### Fixed
