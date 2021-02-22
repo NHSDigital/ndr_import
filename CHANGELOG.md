@@ -1,6 +1,9 @@
 ## [Unreleased]
+*no unreleased changes*
+
+## 10.0 / 2021-02-22
 ### Changed
-* By default, escape any control characters found in XML.
+* By default, escape any control characters found in XML (#60)
 
 ## 9.1.0 / 2021-02-01
 ### Added
