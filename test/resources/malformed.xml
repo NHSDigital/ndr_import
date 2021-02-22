@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <root>
-  <note><![CDATA[
-    This is  a note!
-  ]]></note>
+  <note>complete note</note>
+  <note>incomplete note
 </root>
