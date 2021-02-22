@@ -26,8 +26,8 @@ file safety:
     safe_revision: b09e268ff9c8349b914aa1b7ba888e1d39f97e4a
   CHANGELOG.md:
     comments: 
-    reviewed_by: ollietulloch
-    safe_revision: d88ded7c260da37200610e4f0b204a4ea2e481f9
+    reviewed_by: joshpencheon
+    safe_revision: 8ba7aae5e4839bed03ddc6837dd657ef7720e8ce
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -238,8 +238,8 @@ file safety:
     safe_revision: 45da71ebd3acbc0fe53755bcd75483ba17cb6924
   lib/ndr_import/helpers/file/xml.rb:
     comments: 
-    reviewed_by: ollietulloch
-    safe_revision: 4d337bd233f7e60cf9d363c92400f21269a28da7
+    reviewed_by: joshpencheon
+    safe_revision: 3947f13e0cbd17f449eba292ad343eeb82116fe9
   lib/ndr_import/helpers/file/xml_streaming.rb:
     comments: uses SafePath and Shellwords when accessing filesystem, or making system
       calls
@@ -307,8 +307,8 @@ file safety:
     safe_revision: 5cd2cd0b3a1e254d30d4acc28c6731825a1f84f5
   lib/ndr_import/version.rb:
     comments: another check?
-    reviewed_by: ollietulloch
-    safe_revision: d88ded7c260da37200610e4f0b204a4ea2e481f9
+    reviewed_by: joshpencheon
+    safe_revision: 8ba7aae5e4839bed03ddc6837dd657ef7720e8ce
   lib/ndr_import/xml/table.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -395,8 +395,8 @@ file safety:
     safe_revision: ae75fb49baf028ac8ce08e4bedcd3625ff3ff0cd
   test/helpers/file/xml_test.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 137170d443ea6bcc0afb18f62202c285ae6501eb
+    reviewed_by: joshpencheon
+    safe_revision: 3947f13e0cbd17f449eba292ad343eeb82116fe9
   test/helpers/file/zip_test.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -507,8 +507,8 @@ file safety:
     safe_revision: 71979e0a602ca5a0ce415c194f10add9959f0116
   test/resources/malformed.xml:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 137170d443ea6bcc0afb18f62202c285ae6501eb
+    reviewed_by: joshpencheon
+    safe_revision: 3947f13e0cbd17f449eba292ad343eeb82116fe9
   test/resources/malformed_pipe.csv:
     comments: 
     reviewed_by: josh.pencheon
@@ -621,6 +621,10 @@ file safety:
     comments: 
     reviewed_by: timgentry
     safe_revision: f755c6960182f7dd460c18866cccfdf09178e860
+  test/resources/with-control-chars.xml:
+    comments: 
+    reviewed_by: joshpencheon
+    safe_revision: 3947f13e0cbd17f449eba292ad343eeb82116fe9
   test/resources/xlsx_file_xls_extension.xls:
     comments: 
     reviewed_by: timgentry
