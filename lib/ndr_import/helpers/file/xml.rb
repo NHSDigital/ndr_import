@@ -10,12 +10,16 @@ module NdrImport
 
         private
 
-        def read_xml_file(path)
-          file_data = SafeFile.new(path).read
+        # By default, escapes any control characters found in the XML
+        # - their use is forbidden in XML 1.0, and highly discouraged
+        # in XML 1.1; any found are most likely to be erroneous.
+        def read_xml_file(path, preserve_control_chars: false)
+          file_data = ensure_utf8!(SafeFile.read(path))
+          escape_xml_control_chars!(file_data) unless preserve_control_chars
 
           require 'nokogiri'
 
-          doc = Nokogiri::XML((ensure_utf8! file_data)) do |config|
+          doc = Nokogiri::XML(file_data) do |config|
             config.huge
           end
           doc.encoding = 'UTF-8'
@@ -44,6 +48,13 @@ module NdrImport
             The file had #{fatal_errors.length} fatal error(s)!"
             #{fatal_errors.join("\n")}
           MSG
+        end
+
+        # In place, escape out any control chars that would cause
+        # libxml to crash. Very few are allowable in XML 1.0, and
+        # remain heavily discouraged in XML 1.1.
+        def escape_xml_control_chars!(data)
+          escape_control_chars!(data)
         end
       end
     end
