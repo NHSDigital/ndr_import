@@ -19,9 +19,7 @@ module NdrImport
 
           require 'nokogiri'
 
-          doc = Nokogiri::XML(file_data) do |config|
-            config.huge
-          end
+          doc = Nokogiri::XML(file_data, &:huge)
           doc.encoding = 'UTF-8'
           emulate_strict_mode_fatal_check!(doc)
 
@@ -44,6 +42,7 @@ module NdrImport
           end
 
           return unless fatal_errors.any?
+
           raise Nokogiri::XML::SyntaxError, <<~MSG
             The file had #{fatal_errors.length} fatal error(s)!"
             #{fatal_errors.join("\n")}
