@@ -48,9 +48,7 @@ module NdrImport
     def extract(source_file, &block)
       return enum_for(:extract, source_file) unless block
 
-      files = NdrImport::File::Registry.files(source_file,
-                                              'unzip_path' => unzip_path)
-      files.each do |filename|
+      NdrImport::File::Registry.files(source_file, 'unzip_path' => unzip_path).each do |filename|
         # now at the individual file level, can we find the table mapping?
         table_mapping = get_table_mapping(filename, nil)
 
