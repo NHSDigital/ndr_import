@@ -1,5 +1,5 @@
 ## [Unreleased]
-*no unreleased changes*
+* Allow optional `last_data_column` in NdrImport::Table mappings (#61)
 
 ## 10.0 / 2021-02-22
 ### Changed

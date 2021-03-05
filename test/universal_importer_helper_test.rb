@@ -104,6 +104,50 @@ class UniversalImporterHelperTest < ActiveSupport::TestCase
     end
   end
 
+  test 'should only extract up to a specified last_data_column from xlsx' do
+    table_mappings = [
+      NdrImport::Table.new(filename_pattern: /\.xlsx\z/i,
+                           header_lines: 1,
+                           footer_lines: 0,
+                           last_data_column: 1,
+                           klass: 'SomeTestClass',
+                           columns: [{ 'column' => '1a' }])
+    ]
+    source_file = @permanent_test_files.join('sample_xlsx.xlsx')
+    @test_importer.stubs(:get_table_mapping).returns(table_mappings.first)
+    @test_importer.extract(source_file) do |table, rows|
+      mapped_rows = table.transform(rows)
+
+      assert_instance_of NdrImport::Table, table
+      assert_instance_of Enumerator, rows
+      expected_mapped_data = [{ rawtext: { '1a' => '2A' } }]
+
+      assert_equal expected_mapped_data, (mapped_rows.to_a.map { |_klass, fields| fields })
+    end
+  end
+
+  test 'should only extract up to a specified last_data_column from xls' do
+    table_mappings = [
+      NdrImport::Table.new(filename_pattern: /\.xls\z/i,
+                           header_lines: 1,
+                           footer_lines: 0,
+                           last_data_column: 1,
+                           klass: 'SomeTestClass',
+                           columns: [{ 'column' => '1a' }])
+    ]
+    source_file = @permanent_test_files.join('sample_xls.xls')
+    @test_importer.stubs(:get_table_mapping).returns(table_mappings.first)
+    @test_importer.extract(source_file) do |table, rows|
+      mapped_rows = table.transform(rows)
+
+      assert_instance_of NdrImport::Table, table
+      assert_instance_of Enumerator, rows
+      expected_mapped_data = [{ rawtext: { '1a' => '2A' } }]
+
+      assert_equal expected_mapped_data, (mapped_rows.to_a.map { |_klass, fields| fields })
+    end
+  end
+
   test 'multiple files using a single NdrImport::Table' do
     table_mappings = [
       NdrImport::Table.new(filename_pattern: /\.txt\z/i,

@@ -57,6 +57,7 @@ module NdrImport
         options = {
           'unzip_path'       => unzip_path,
           'col_sep'          => table_mapping.try(:delimiter),
+          'last_data_column' => table_mapping.try(:last_data_column),
           'file_password'    => table_mapping.try(:file_password),
           'liberal_parsing'  => table_mapping.try(:liberal_parsing),
           'xml_record_xpath' => table_mapping.try(:xml_record_xpath),

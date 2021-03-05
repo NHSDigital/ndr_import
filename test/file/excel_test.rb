@@ -90,6 +90,16 @@ module NdrImport
         end
       end
 
+      test 'should stop reading xlsx file at last_data_column when specified' do
+        file_path = @permanent_test_files.join('sample_xlsx.xlsx')
+        handler = NdrImport::File::Excel.new(file_path, nil, last_data_column: 1)
+        handler.tables.each do |tablename, sheet|
+          assert_equal 'Sheet1', tablename
+          assert_instance_of Enumerator, sheet
+          assert_equal %w[1A], sheet.first
+        end
+      end
+
       test 'read_excel_file helper should handle exceptions' do
         # txt file
         assert_raises RuntimeError do
