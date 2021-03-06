@@ -28,8 +28,9 @@ module NdrImport
 
         col_sep = @options['col_sep']
         liberal = @options['liberal_parsing'].presence
+        last_data_column = @options['last_data_column']
 
-        delimited_rows(@filename, col_sep, liberal) { |row| yield row }
+        delimited_rows(@filename, col_sep, liberal, last_data_column) { |row| yield row }
       end
 
       # Cache working encodings, so that resetting the enumerator
