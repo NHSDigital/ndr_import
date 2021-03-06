@@ -153,7 +153,7 @@ class UniversalImporterHelperTest < ActiveSupport::TestCase
       NdrImport::Table.new(filename_pattern: /pipe/i,
                            header_lines: 1,
                            footer_lines: 0,
-                           last_data_column: 4,
+                           last_data_column: 'D',
                            format: 'delimited',
                            delimiter: '|',
                            klass: 'SomeTestClass',

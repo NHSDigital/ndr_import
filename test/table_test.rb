@@ -83,6 +83,45 @@ class TableTest < ActiveSupport::TestCase
     assert_equal expected_output, output
   end
 
+  test 'should convert last_data_column into an index' do
+    table = NdrImport::Table.new(last_data_column: 3)
+    assert_equal 2, table.send(:last_column_to_transform)
+
+    table = NdrImport::Table.new(last_data_column: 'F')
+    assert_equal 5, table.send(:last_column_to_transform)
+
+    table = NdrImport::Table.new(last_data_column: 'AE')
+    assert_equal 30, table.send(:last_column_to_transform)
+
+    table = NdrImport::Table.new(last_data_column: nil)
+    assert_equal(-1, table.send(:last_column_to_transform))
+
+    table = NdrImport::Table.new(last_data_column: Date.new(2021, 1, 1))
+    exception = assert_raises(RuntimeError) do
+      table.send(:last_column_to_transform)
+    end
+    assert_equal "Unknown 'last_data_column' format: 2021-01-01 (Date)", exception.message
+  end
+
+  test 'should not transform data after the last_data_column' do
+    lines = [%w[ONE TWO], %w[CARROT POTATO], %w[BACON SAUSAGE]]
+    table = NdrImport::Table.new(header_lines: 1, footer_lines: 0,
+                                 klass: 'SomeTestKlass',
+                                 last_data_column: 1,
+                                 columns: [{ 'column' => 'one' }])
+
+    output = []
+    table.transform(lines).each do |klass, fields, index|
+      output << [klass, fields, index]
+    end
+
+    expected_output = [
+      ['SomeTestKlass', { rawtext: { 'one' => 'CARROT' } }, 1],
+      ['SomeTestKlass', { rawtext: { 'one' => 'BACON' } }, 2]
+    ]
+    assert_equal expected_output, output
+  end
+
   def test_process_line
     # No header row, process the first line
     table = NdrImport::Table.new(:header_lines => 0, :footer_lines => 0,

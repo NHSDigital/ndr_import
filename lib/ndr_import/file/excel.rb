@@ -68,9 +68,8 @@ module NdrImport
         return enum_for(:xls_rows, workbook, sheet_name) unless block_given?
         return unless workbook.first_row(sheet_name)
 
-        last_col = @options['last_data_column'] || workbook.last_column(sheet_name)
         rows     = workbook.first_row(sheet_name)..workbook.last_row(sheet_name)
-        columns  = workbook.first_column(sheet_name)..last_col
+        columns  = workbook.first_column(sheet_name)..workbook.last_column(sheet_name)
 
         rows.each do |row|
           yield columns.map { |col| cast_excel_value(workbook.cell(row, col, sheet_name)) }

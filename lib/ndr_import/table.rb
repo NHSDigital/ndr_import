@@ -51,8 +51,9 @@ module NdrImport
       @header_best_guess = nil
       @notifier.try(:started)
 
+      last_col = last_column_to_transform
       skip_footer_lines(lines, footer_lines).each do |line|
-        process_line(line, &block)
+        line.is_a?(Array) ? process_line(line[0..last_col], &block) : process_line(line, &block)
       end
 
       @notifier.try(:finished)
@@ -226,6 +227,25 @@ module NdrImport
     # returns the column names as we expect to receive them
     def column_names(column_mappings)
       column_mappings.map { |c| (c['column'] || c['standard_mapping']).downcase }
+    end
+
+    # If specified in the mapping, stop transforming data at a given index (column)
+    def last_column_to_transform
+      return -1 if last_data_column.nil?
+      return last_data_column - 1 if last_data_column.is_a?(Integer)
+
+      error =  "Unknown 'last_data_column' format: #{last_data_column} " \
+               "(#{last_data_column.class})"
+      raise error unless last_data_column.is_a?(String) && last_data_column =~ /\A[A-Z]+\z/i
+
+      # If it's an excel column label (eg 'K', 'AF', 'DDE'), convert it to an index
+      index_from_column_label
+    end
+
+    def index_from_column_label
+      alphabet = ('A'..'Z').to_a
+      indexes  = last_data_column.upcase.split('').map { |char| alphabet.index(char) + 1 }
+      (indexes.sum + (25 * (last_data_column.length - 1))) - 1
     end
   end # class Table
 end

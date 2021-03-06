@@ -28,7 +28,7 @@ module NdrImport
         end
 
         # Iterate through the file line by line, yielding each one in turn.
-        def delimited_rows(path, col_sep = nil, liberal = false, last_data_column = nil)
+        def delimited_rows(path, col_sep = nil, liberal = false)
           return enum_for(:delimited_rows, path, col_sep, liberal) unless block_given?
 
           safe_path = SafeFile.safepath_to_string(path)
@@ -39,8 +39,7 @@ module NdrImport
           CSV.foreach(safe_path, options.delete(:mode), **options) do |line|
             # keeping last_data_column consistent with excel files where column numbers
             # start at 1, delimited rows use an array index
-            final_col = last_data_column.present? ? last_data_column - 1 : -1
-            yield line[0..final_col].map(&:to_s)
+            yield line.map(&:to_s)
           end
         end
 

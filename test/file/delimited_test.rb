@@ -228,19 +228,6 @@ module NdrImport
           end
         end
       end
-
-      test 'should stop reading csv file at last_data_column when specified' do
-        file_path = @permanent_test_files.join('normal.csv')
-        handler = NdrImport::File::Delimited.new(file_path, 'csv', 'col_sep' => nil,
-                                                                   'last_data_column' => 10)
-        handler.tables.each do |tablename, sheet|
-          assert_nil tablename
-          sheet = sheet.to_a
-          assert_equal(('A'..'J').to_a, sheet[0])
-          assert_equal ['1'] * 10, sheet[1]
-          assert_equal ['2'] * 10, sheet[2]
-        end
-      end
     end
   end
 end
