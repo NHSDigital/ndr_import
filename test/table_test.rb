@@ -93,6 +93,15 @@ class TableTest < ActiveSupport::TestCase
     table = NdrImport::Table.new(last_data_column: 'AE')
     assert_equal 30, table.send(:last_column_to_transform)
 
+    table = NdrImport::Table.new(last_data_column: 'BE')
+    assert_equal 56, table.send(:last_column_to_transform)
+
+    table = NdrImport::Table.new(last_data_column: 'ABN')
+    assert_equal 741, table.send(:last_column_to_transform)
+
+    table = NdrImport::Table.new(last_data_column: 'abn')
+    assert_equal 741, table.send(:last_column_to_transform)
+
     table = NdrImport::Table.new(last_data_column: nil)
     assert_equal(-1, table.send(:last_column_to_transform))
 

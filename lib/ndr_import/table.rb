@@ -243,9 +243,11 @@ module NdrImport
     end
 
     def index_from_column_label
-      alphabet = ('A'..'Z').to_a
-      indexes  = last_data_column.upcase.split('').map { |char| alphabet.index(char) + 1 }
-      (indexes.sum + (25 * (last_data_column.length - 1))) - 1
+      alphabet_index_hash = ('A'..'Z').map.with_index.to_h
+      index = last_data_column.upcase.chars.inject(0) do |char_index, char|
+        (char_index * 26) + (alphabet_index_hash[char] + 1)
+      end
+      index - 1
     end
   end # class Table
 end
