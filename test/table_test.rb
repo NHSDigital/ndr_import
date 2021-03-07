@@ -122,6 +122,40 @@ class TableTest < ActiveSupport::TestCase
     assert_equal expected_output, output
   end
 
+  test 'should raise an error if last_data_column is smaller than column mappings' do
+    lines = [%w[ONE TWO], %w[CARROT POTATO], %w[BACON SAUSAGE]]
+    table = NdrImport::Table.new(header_lines: 1, footer_lines: 0,
+                                 klass: 'SomeTestKlass',
+                                 last_data_column: 1,
+                                 columns: [{ 'column' => 'one' }, { 'column' => 'two' }])
+
+    exception = assert_raises(RuntimeError) do
+      output = []
+      table.transform(lines).each do |klass, fields, index|
+        output << [klass, fields, index]
+      end
+    end
+
+    assert_equal 'Header is not valid! missing: ["two"]', exception.message
+  end
+
+  test 'should raise an error if last_data_column is larger than column mappings' do
+    lines = [%w[ONE TWO THREE], %w[CARROT POTATO CABBAGE], %w[BACON SAUSAGE BURGER]]
+    table = NdrImport::Table.new(header_lines: 1, footer_lines: 0,
+                                 klass: 'SomeTestKlass',
+                                 last_data_column: 'C',
+                                 columns: [{ 'column' => 'one' }, { 'column' => 'two' }])
+
+    exception = assert_raises(RuntimeError) do
+      output = []
+      table.transform(lines).each do |klass, fields, index|
+        output << [klass, fields, index]
+      end
+    end
+
+    assert_equal 'Header is not valid! unexpected: ["three"]', exception.message
+  end
+
   def test_process_line
     # No header row, process the first line
     table = NdrImport::Table.new(:header_lines => 0, :footer_lines => 0,
