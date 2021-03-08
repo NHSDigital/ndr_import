@@ -66,10 +66,10 @@ module NdrImport
       # Iterate through an xls sheet line by line, yielding each one in turn.
       def xls_rows(workbook, sheet_name)
         return enum_for(:xls_rows, workbook, sheet_name) unless block_given?
-        return unless workbook.first_row(sheet_name)
 
-        rows     = workbook.first_row(sheet_name)..workbook.last_row(sheet_name)
-        columns  = workbook.first_column(sheet_name)..workbook.last_column(sheet_name)
+        return unless workbook.first_row(sheet_name)
+        rows    = workbook.first_row(sheet_name)..workbook.last_row(sheet_name)
+        columns = workbook.first_column(sheet_name)..workbook.last_column(sheet_name)
 
         rows.each do |row|
           yield columns.map { |col| cast_excel_value(workbook.cell(row, col, sheet_name)) }

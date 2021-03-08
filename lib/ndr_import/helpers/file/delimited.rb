@@ -37,8 +37,6 @@ module NdrImport
           # By now, we know `options` should let us read the whole
           # file succesfully; if there are problems, we should crash.
           CSV.foreach(safe_path, options.delete(:mode), **options) do |line|
-            # keeping last_data_column consistent with excel files where column numbers
-            # start at 1, delimited rows use an array index
             yield line.map(&:to_s)
           end
         end
