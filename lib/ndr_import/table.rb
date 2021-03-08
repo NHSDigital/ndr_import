@@ -10,8 +10,9 @@ module NdrImport
     include NdrImport::Mapper
 
     def self.all_valid_options
-      %w[canonical_name delimiter liberal_parsing filename_pattern file_password tablename_pattern
-         header_lines footer_lines format klass columns xml_record_xpath row_identifier]
+      %w[canonical_name delimiter liberal_parsing filename_pattern file_password last_data_column
+         tablename_pattern header_lines footer_lines format klass columns xml_record_xpath
+         row_identifier]
     end
 
     def all_valid_options
@@ -50,8 +51,9 @@ module NdrImport
       @header_best_guess = nil
       @notifier.try(:started)
 
+      last_col = last_column_to_transform
       skip_footer_lines(lines, footer_lines).each do |line|
-        process_line(line, &block)
+        line.is_a?(Array) ? process_line(line[0..last_col], &block) : process_line(line, &block)
       end
 
       @notifier.try(:finished)
@@ -225,6 +227,27 @@ module NdrImport
     # returns the column names as we expect to receive them
     def column_names(column_mappings)
       column_mappings.map { |c| (c['column'] || c['standard_mapping']).downcase }
+    end
+
+    # If specified in the mapping, stop transforming data at a given index (column)
+    def last_column_to_transform
+      return -1 if last_data_column.nil?
+      return last_data_column - 1 if last_data_column.is_a?(Integer)
+
+      error =  "Unknown 'last_data_column' format: #{last_data_column} " \
+               "(#{last_data_column.class})"
+      raise error unless last_data_column.is_a?(String) && last_data_column =~ /\A[A-Z]+\z/i
+
+      # If it's an excel column label (eg 'K', 'AF', 'DDE'), convert it to an index
+      index_from_column_label
+    end
+
+    def index_from_column_label
+      alphabet_index_hash = ('A'..'Z').map.with_index.to_h
+      index = last_data_column.upcase.chars.inject(0) do |char_index, char|
+        (char_index * 26) + (alphabet_index_hash[char] + 1)
+      end
+      index - 1
     end
   end # class Table
 end
