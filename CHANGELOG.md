@@ -1,7 +1,9 @@
 ## [Unreleased]
-* no relevant changes
+### Fixed
+* XML: ensure invalid control character *references* are also escaped
 
 ## 10.1 / 2021-03-08
+### Added
 * Allow optional `last_data_column` in NdrImport::Table mappings (#61)
 
 ## 10.0 / 2021-02-22
