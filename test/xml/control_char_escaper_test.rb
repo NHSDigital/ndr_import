@@ -1,6 +1,6 @@
 require 'test_helper'
 
-# This tests the NdrImport::Xml::Table mapping class
+# This tests the NdrImport::Xml::ControlCharEscaperTest utility class
 module Xml
   class ControlCharEscaperTest < ActiveSupport::TestCase
     def test_should_escape_in_place
