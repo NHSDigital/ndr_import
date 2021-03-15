@@ -85,10 +85,28 @@ class XmlTest < ActiveSupport::TestCase
     end
   end
 
-  test 'escaping XML file containing control chars' do
+  test 'escaping XML file containing invalid control chars' do
     doc = @importer.send(:read_xml_file, @permanent_test_files.join('with-control-chars.xml'))
     assert_empty doc.errors
-    assert_equal doc.text, "with newline\nand a cancel char: 0x18", 'should have escaped'
+    assert_equal "with newline\nand a cancel char: 0x18", doc.text, 'should have escaped'
+  end
+
+  test 'escaping XML file containing control char references within CDATA' do
+    doc = @importer.send(:read_xml_file, @permanent_test_files.join('with-control-char-references-in-cdata.xml'))
+    assert_empty doc.errors
+    assert_equal 'referencing a cancel char within CDATA: &#x18;', doc.text, 'should not have triggered escaping'
+  end
+
+  test 'escaping XML file containing invalid control char references' do
+    doc = @importer.send(:read_xml_file, @permanent_test_files.join('with-control-char-references.xml'))
+    assert_empty doc.errors
+    assert_equal 'referencing a cancel char: 0x18', doc.text, 'should have escaped'
+  end
+
+  test 'escaping XML file containing non-control char references' do
+    doc = @importer.send(:read_xml_file, @permanent_test_files.join('with-non-control-char-references.xml'))
+    assert_empty doc.errors
+    assert_equal 'referenced chars', doc.text, 'should have not escaped, and then subbed for chars'
   end
 
   test 'XML file containing control chars, opting out of escaping' do
