@@ -176,6 +176,44 @@ class UniversalImporterHelperTest < ActiveSupport::TestCase
     end
   end
 
+  test 'should map the filename' do
+    table_mappings = YAML.safe_load <<-YML.strip_heredoc, [NdrImport::Table, Regexp, Symbol]
+      ---
+      - !ruby/object:NdrImport::Table
+          filename_pattern: /\.xlsx\z/i
+          header_lines: 1
+          footer_lines: 0
+          klass: 'SomeTestClass'
+          columns:
+          - column: 1a
+            mappings:
+            - field: first
+          - column: :filename
+            mappings:
+            - field: filename
+              replace:
+              - ? !ruby/regexp /\\Asample.*\\z/
+                : 'ABC'
+          - column: 1b
+            mappings:
+            - field: second
+    YML
+    source_file = @permanent_test_files.join('sample_xls.xls')
+    @test_importer.stubs(:get_table_mapping).returns(table_mappings.first)
+    @test_importer.extract(source_file) do |table, rows|
+      mapped_rows = table.transform(rows)
+
+      assert_instance_of NdrImport::Table, table
+      assert_instance_of Enumerator, rows
+      expected_mapped_data = [{
+        'first' => '2A', 'filename' => 'ABC', 'second' => '2B',
+        rawtext: { '1a' => '2A', filename: 'sample_xls.xls', '1b' => '2B' }
+      }]
+
+      assert_equal expected_mapped_data, (mapped_rows.to_a.map { |_klass, fields| fields })
+    end
+  end
+
   test 'multiple files using a single NdrImport::Table' do
     table_mappings = [
       NdrImport::Table.new(filename_pattern: /\.txt\z/i,

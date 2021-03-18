@@ -77,7 +77,27 @@ module NdrImport
 
         mapping.notifier = get_notifier(record_total(filename, table_content))
 
-        yield(mapping, table_content)
+        augmented_table_content = filename_augmented_rows(mapping, table_content, filename)
+
+        yield(mapping, augmented_table_content)
+      end
+    end
+
+    def filename_augmented_rows(table, rows, filename, &block)
+      return enum_for(:filename_augmented_rows, table, rows, filename) unless block_given?
+
+      filename_column_position = table.columns.index { |c| c['column'] == :filename }
+
+      rows.each.with_index do |row, i|
+        if filename_column_position
+          if i < table.header_lines
+            row.insert(filename_column_position, :filename)
+          else
+            row.insert(filename_column_position, ::File.basename(filename))
+          end
+        end
+
+        yield row
       end
     end
 

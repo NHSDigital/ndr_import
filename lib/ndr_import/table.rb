@@ -226,7 +226,7 @@ module NdrImport
 
     # returns the column names as we expect to receive them
     def column_names(column_mappings)
-      column_mappings.map { |c| (c['column'] || c['standard_mapping']).downcase }
+      column_mappings.map { |c| (c['column'] || c['standard_mapping']).to_s.downcase }
     end
 
     # If specified in the mapping, stop transforming data at a given index (column)
