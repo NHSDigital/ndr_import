@@ -1,3 +1,4 @@
+require 'ndr_import/xml/control_char_escaper'
 require 'ndr_support/safe_file'
 require 'ndr_support/utf8_encoding'
 
@@ -15,13 +16,16 @@ module NdrImport
         # in XML 1.1; any found are most likely to be erroneous.
         def read_xml_file(path, preserve_control_chars: false)
           file_data = ensure_utf8!(SafeFile.read(path))
-          escape_xml_control_chars!(file_data) unless preserve_control_chars
 
           require 'nokogiri'
 
-          doc = Nokogiri::XML(file_data, &:huge)
-          doc.encoding = 'UTF-8'
-          emulate_strict_mode_fatal_check!(doc)
+          doc = nil
+
+          escaping_control_chars_if_necessary(preserve_control_chars, file_data) do
+            doc = Nokogiri::XML(file_data, &:huge)
+            doc.encoding = 'UTF-8'
+            emulate_strict_mode_fatal_check!(doc)
+          end
 
           doc
         end
@@ -49,11 +53,19 @@ module NdrImport
           MSG
         end
 
-        # In place, escape out any control chars that would cause
-        # libxml to crash. Very few are allowable in XML 1.0, and
-        # remain heavily discouraged in XML 1.1.
-        def escape_xml_control_chars!(data)
-          escape_control_chars!(data)
+        def escaping_control_chars_if_necessary(preserve_control_chars, file_data)
+          return yield if preserve_control_chars
+
+          tried_escaping = false
+          begin
+            yield
+          rescue Nokogiri::XML::SyntaxError => e
+            raise e if tried_escaping
+
+            NdrImport::Xml::ControlCharEscaper.new(file_data).escape!
+            tried_escaping = true
+            retry
+          end
         end
       end
     end

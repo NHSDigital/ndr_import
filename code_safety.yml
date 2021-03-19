@@ -26,8 +26,8 @@ file safety:
     safe_revision: b09e268ff9c8349b914aa1b7ba888e1d39f97e4a
   CHANGELOG.md:
     comments: 
-    reviewed_by: joshpencheon
-    safe_revision: 8ba7aae5e4839bed03ddc6837dd657ef7720e8ce
+    reviewed_by: josh.pencheon
+    safe_revision: 47fa3633ec2e48f1ee9fb12aad03e817e73c54bf
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -238,8 +238,8 @@ file safety:
     safe_revision: 45da71ebd3acbc0fe53755bcd75483ba17cb6924
   lib/ndr_import/helpers/file/xml.rb:
     comments: 
-    reviewed_by: joshpencheon
-    safe_revision: 3947f13e0cbd17f449eba292ad343eeb82116fe9
+    reviewed_by: josh.pencheon
+    safe_revision: 9a6cc769abce5f9bfa5b4f8bd5cda52dfe18b12b
   lib/ndr_import/helpers/file/xml_streaming.rb:
     comments: uses SafePath and Shellwords when accessing filesystem, or making system
       calls
@@ -280,7 +280,7 @@ file safety:
   lib/ndr_import/non_tabular/table.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 71979e0a602ca5a0ce415c194f10add9959f0116
+    safe_revision: f9df064adcfd38f09d83ad8c5496c84188faed98
   lib/ndr_import/non_tabular_file_helper.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -296,19 +296,23 @@ file safety:
   lib/ndr_import/table.rb:
     comments: uses File.basename
     reviewed_by: josh.pencheon
-    safe_revision: a69d4a57ddcf13cdc13c27bd2eb91a395fa7ea36
+    safe_revision: 3cf7473181f7f835b3dfe7822f6833d751805eaf
   lib/ndr_import/universal_importer_helper.rb:
     comments: 
-    reviewed_by: ollietulloch
-    safe_revision: ee2e74e4ceda4ff48cbda6872a6bdf0874212c21
+    reviewed_by: josh.pencheon
+    safe_revision: 85869d99ae93252b7f3ef2d0a4db817c88d35c9e
   lib/ndr_import/unmapped_data_error.rb:
     comments: 
     reviewed_by: josh.pencheon
     safe_revision: 5cd2cd0b3a1e254d30d4acc28c6731825a1f84f5
   lib/ndr_import/version.rb:
     comments: another check?
-    reviewed_by: joshpencheon
-    safe_revision: 8ba7aae5e4839bed03ddc6837dd657ef7720e8ce
+    reviewed_by: josh.pencheon
+    safe_revision: 47fa3633ec2e48f1ee9fb12aad03e817e73c54bf
+  lib/ndr_import/xml/control_char_escaper.rb:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 9a6cc769abce5f9bfa5b4f8bd5cda52dfe18b12b
   lib/ndr_import/xml/table.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -395,8 +399,8 @@ file safety:
     safe_revision: ae75fb49baf028ac8ce08e4bedcd3625ff3ff0cd
   test/helpers/file/xml_test.rb:
     comments: 
-    reviewed_by: joshpencheon
-    safe_revision: 3947f13e0cbd17f449eba292ad343eeb82116fe9
+    reviewed_by: josh.pencheon
+    safe_revision: 9a6cc769abce5f9bfa5b4f8bd5cda52dfe18b12b
   test/helpers/file/zip_test.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -621,10 +625,22 @@ file safety:
     comments: 
     reviewed_by: timgentry
     safe_revision: f755c6960182f7dd460c18866cccfdf09178e860
+  test/resources/with-control-char-references-in-cdata.xml:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 9a6cc769abce5f9bfa5b4f8bd5cda52dfe18b12b
+  test/resources/with-control-char-references.xml:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 9a6cc769abce5f9bfa5b4f8bd5cda52dfe18b12b
   test/resources/with-control-chars.xml:
     comments: 
     reviewed_by: joshpencheon
     safe_revision: 3947f13e0cbd17f449eba292ad343eeb82116fe9
+  test/resources/with-non-control-char-references.xml:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 9a6cc769abce5f9bfa5b4f8bd5cda52dfe18b12b
   test/resources/xlsx_file_xls_extension.xls:
     comments: 
     reviewed_by: timgentry
@@ -636,15 +652,19 @@ file safety:
   test/table_test.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: a69d4a57ddcf13cdc13c27bd2eb91a395fa7ea36
+    safe_revision: 3cf7473181f7f835b3dfe7822f6833d751805eaf
   test/test_helper.rb:
     comments: 
     reviewed_by: josh.pencheon
     safe_revision: 93ccee82fc2165d1ca2d9b03d146ae03e769ea96
   test/universal_importer_helper_test.rb:
     comments: 
-    reviewed_by: ollietulloch
-    safe_revision: 830de0f8cb139c5f61525652b424423935cfc7ac
+    reviewed_by: josh.pencheon
+    safe_revision: 85869d99ae93252b7f3ef2d0a4db817c88d35c9e
+  test/xml/control_char_escaper_test.rb:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 9a6cc769abce5f9bfa5b4f8bd5cda52dfe18b12b
   test/xml/table_test.rb:
     comments: 
     reviewed_by: josh.pencheon
