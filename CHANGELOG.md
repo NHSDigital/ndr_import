@@ -1,5 +1,6 @@
 ## [Unreleased]
-*no unreleased changes*
+### Added
+* Added the ability to define a virtual :filename column
 
 ## 10.1.1 / 2021-03-15
 ### Fixed

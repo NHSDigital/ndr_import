@@ -12,4 +12,5 @@ add_to_nav: true
 5. [Local Code Transformation in YAML Mappings](local-code-transformation-in-yaml-mappings.md)
 6. [Non Tabular Mappings](non-tabular-mappings.md)
 7. [Date Formats](date-formats.md)
+8. [Virtual Columns](virtual-columns.md)
 
