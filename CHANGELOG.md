@@ -1,5 +1,6 @@
 ## [Unreleased]
-*no unreleased changes*
+### Fixed
+* Bump `seven_zip_ruby` requirement for Ruby 2.7 support
 
 ## 10.1.1 / 2021-03-15
 ### Fixed
