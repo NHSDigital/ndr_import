@@ -22,14 +22,14 @@ columns:
 
 ### NdrImport::Table metadata
 
-1. !ruby/object:NdrImport::Table - This is the class of the table - other classes will be described in further documentation
-2. canonical_name - If you have many NdrImport::Table mappings within a mapping document, the canonical_name can be used identify which table of data this mapping refers to.
-3. filename_pattern - this is a regular expression that matches the filename that the NdrImport::Table will map
-4. tablename_pattern - If an xls[x] file contains many tabs, this regular expression can be used to match a tab name within the file matched by the filename_pattern
-5. header_lines - The number of rows above the data
-6. footer_lines - The number of rows below the data
-7. klass - This class of record that will be created on import
-8. columns - The column level mappings are described in the [getting started](getting-started.md) documentation
+1. `!ruby/object:NdrImport::Table` - This is the class of the table - other classes will be described in further documentation
+2. `canonical_name` - If you have many NdrImport::Table mappings within a mapping document, the canonical_name can be used identify which table of data this mapping refers to.
+3. `filename_pattern` - This is a regular expression that matches the filename that the NdrImport::Table will map
+4. `tablename_pattern` - If an xls[x] file contains many tabs, this regular expression can be used to match a tab name within the file matched by the filename_pattern
+5. `header_lines` - The number of rows above the data
+6. `footer_lines` - The number of rows below the data
+7. `klass` - This class of record that will be created on import
+8. `columns` - The column level mappings are described in the [getting started](getting-started.md) documentation
 
 
 ### Delimited files
@@ -127,4 +127,4 @@ last_data_column: 'EF'
 klass: AClass
 columns:
 - column: one
-- column
+- column: two
