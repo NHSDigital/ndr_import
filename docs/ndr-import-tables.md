@@ -20,7 +20,7 @@ columns:
 - column: two
 ```
 
-**NdrImport::Table metadata**:
+###NdrImport::Table metadata
 
 1. !ruby/object:NdrImport::Table - This is the class of the NdrImport::Table - other classes will be explained in further documentation
 2. canonical_name - If you have many NdrImport::Table mappings within an mapping, the canonical_name can be used identify which table of data this mapping refers to.
@@ -32,7 +32,7 @@ columns:
 8. columns - The column level mappings haven't changed, they are as per the [getting started](getting-started.md) documentation
 
 
-**Delimited files:**
+###Delimited files
 
 For tabular data that is not xls(x) or csv, often in a .txt file with several varieties of delimiter, we need to set the format as delimited and the delimiter as that files delimiter eg, a pipe |.
 
@@ -76,7 +76,7 @@ columns:
 Further reading around liberal parsing can be found [here](https://bigbinary.com/blog/ruby-2-4-introduces-liberal_parsing-option-for-parsing-bad-csv-data)
 
 
-**Multiple NdrImport::Table mappings with a single mapping document:**
+###Multiple NdrImport::Table mappings with a single mapping document
 
 It is common to receive multiple tables of data in a single upload; this can be multiple csv, txt, pdf or word files within a .zip, multiple tabs in a single xls[x] file or multiple xsl[x] files with 1 or more tabs per file. NdrImport::Table mappings allow you map all of those tables within a single mapping, meaning that multiple files can be loaded at the same time.
 
@@ -110,7 +110,7 @@ Here is an example of a multi NdrImport::Table mapping:
 In this example, there are two tables of data, both from file_1.xlsx, with a mapping each for tab_1 and tab_2.
 
 
-**Unwanted data**
+###Unwanted data
 
 In tabular files, if there IS data that ndr_import should ignore at the end of a file, a *last_data_column* can be defined in the NdrImport::Table.
 *last_data_column* can defined as either a number or as an excel column reference, eg 'EF'. The mapper will then stop extracting data from the file after that column.
