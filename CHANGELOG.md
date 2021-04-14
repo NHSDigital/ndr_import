@@ -1,4 +1,7 @@
 ## [Unreleased]
+### Fixed
+* Bump `seven_zip_ruby` requirement for Ruby 2.7 support
+
 ### Added
 * Added the ability to define a virtual :filename column
 
