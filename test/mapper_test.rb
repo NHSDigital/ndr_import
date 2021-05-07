@@ -305,7 +305,7 @@ class MapperTest < ActiveSupport::TestCase
   YML
 
   test 'map should return a number' do
-    assert_equal '1', TestMapper.new.mapped_value('A', map_mapping)
+    assert_equal 'whoops', TestMapper.new.mapped_value('A', map_mapping)
   end
 
   test 'map should return nil' do
