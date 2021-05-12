@@ -1,6 +1,12 @@
 name: Test
 
-on: [push]
+on:
+  # Run on all master branch commits:
+  push:
+    branches:
+      - master
+  # Run against all PRs
+  pull_request:
 
 jobs:
   test:
