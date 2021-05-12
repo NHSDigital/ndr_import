@@ -43,6 +43,10 @@ module Xml
       assert exception.message.starts_with? 'sample.xml [RuntimeError: Unmapped data!'
     end
 
+    def test_should_not_raise_exception_on_forced_slurp
+      NdrImport::Xml::Table.new(klass: 'SomeTestKlass', slurp: true, columns: xml_column_mapping)
+    end
+
     private
 
     def xml_column_mapping
