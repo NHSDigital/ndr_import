@@ -10,8 +10,8 @@ file safety:
     safe_revision: b64ff21375dcde2b8fefe622ee9861f0fea21487
   ".github/workflows/test.yml":
     comments: 
-    reviewed_by: ollietulloch
-    safe_revision: b64ff21375dcde2b8fefe622ee9861f0fea21487
+    reviewed_by: ollietulllch
+    safe_revision: c3dd24e8abefe61f04fa9d3bb71ec9d0ac109bbe
   ".gitignore":
     comments: whole file re-reviewed
     reviewed_by: josh.pencheon
@@ -26,8 +26,8 @@ file safety:
     safe_revision: b09e268ff9c8349b914aa1b7ba888e1d39f97e4a
   CHANGELOG.md:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 47fa3633ec2e48f1ee9fb12aad03e817e73c54bf
+    reviewed_by: ollietulloch
+    safe_revision: e938689d115b75074313541ec9d6b2bc60475add
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -67,7 +67,7 @@ file safety:
   docs/Gemfile.lock:
     comments: 
     reviewed_by: ollietulloch
-    safe_revision: ea0149c7739676463a252ffd9fbe4af238762b2b
+    safe_revision: 75877ddc14e99a10e5e751b7034964a9c7a9d1ef
   docs/_config.yml:
     comments: 
     reviewed_by: josh.pencheon
@@ -279,8 +279,8 @@ file safety:
     safe_revision: bb44ade56a2151706eede2c31142440ccf49e6f6
   lib/ndr_import/non_tabular/table.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: f9df064adcfd38f09d83ad8c5496c84188faed98
+    reviewed_by: ollietulloch
+    safe_revision: 66cff59af2f078152f7459c436d51b57cb93f28e
   lib/ndr_import/non_tabular_file_helper.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -295,8 +295,8 @@ file safety:
     safe_revision: 3c7f827d17aacbf7b811eea67e27553f3b039070
   lib/ndr_import/table.rb:
     comments: uses File.basename
-    reviewed_by: josh.pencheon
-    safe_revision: 3cf7473181f7f835b3dfe7822f6833d751805eaf
+    reviewed_by: ollietulloch
+    safe_revision: 66cff59af2f078152f7459c436d51b57cb93f28e
   lib/ndr_import/universal_importer_helper.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -307,8 +307,8 @@ file safety:
     safe_revision: 5cd2cd0b3a1e254d30d4acc28c6731825a1f84f5
   lib/ndr_import/version.rb:
     comments: another check?
-    reviewed_by: josh.pencheon
-    safe_revision: 47fa3633ec2e48f1ee9fb12aad03e817e73c54bf
+    reviewed_by: ollietulloch
+    safe_revision: da0aed5e8a8659c5f70254f6d76264f8e780d835
   lib/ndr_import/xml/control_char_escaper.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -319,8 +319,8 @@ file safety:
     safe_revision: 4ab72f84201c2d5f0147b7dfd041f488f6ff0422
   ndr_import.gemspec:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 95e6ee9997d06471fe6f2f169c3c701471086371
+    reviewed_by: ollietulloch
+    safe_revision: 3b437f0ca271fa962121edecd4559017c2446a3a
   test/csv_library_test.rb:
     comments: 
     reviewed_by: ollietulloch
@@ -667,5 +667,5 @@ file safety:
     safe_revision: 9a6cc769abce5f9bfa5b4f8bd5cda52dfe18b12b
   test/xml/table_test.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 4ab72f84201c2d5f0147b7dfd041f488f6ff0422
+    reviewed_by: ollietulloch
+    safe_revision: 66cff59af2f078152f7459c436d51b57cb93f28e
