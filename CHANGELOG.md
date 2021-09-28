@@ -1,5 +1,9 @@
 ## [Unreleased]
+*no unreleased changes*
+
+## 10.1.2 / 2020-03-26
 ### Fixed
+* Bump to `nokogiri` to address CVE-2021-41098
 * Bump `seven_zip_ruby` requirement for Ruby 2.7 support
 
 ## 10.1.1 / 2021-03-15
