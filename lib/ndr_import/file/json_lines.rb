@@ -26,7 +26,7 @@ module NdrImport
 
         # SECURE: TG 13 Oct 2015 SafeFile.safepath_to_string ensures that the path is SafePath.
         ::File.new(path, mode).each { |line| block.call JSON.parse(ensure_utf8!(line).chomp) }
-      rescue => e
+      rescue StandardError => e
         raise "Failed to read #{SafeFile.basename(@filename)} as text [#{e.class}: #{e.message}]"
       end
 
@@ -38,13 +38,15 @@ module NdrImport
         modes = ['rb:utf-16:utf-8', 'r:utf-8']
 
         begin
-          ::File.new(trusted_path, modes.first).each { |_line| }
+          ::File.new(trusted_path, modes.first).each do |_line|
+            # We're just making sure this doesn't raise an error
+          end
         rescue Encoding::InvalidByteSequenceError
           modes.shift # That one didn't work...
           retry if modes.any?
         end
 
-        modes.first || fail('Unable to determine working stream encoding!')
+        modes.first || raise('Unable to determine working stream encoding!')
       end
     end
 

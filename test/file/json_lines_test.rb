@@ -1,4 +1,3 @@
-# encoding: UTF-8
 require 'test_helper'
 require 'ndr_import/file/json_lines'
 
@@ -16,7 +15,7 @@ module NdrImport
         handler.tables.each do |tablename, sheet|
           assert_nil tablename
           assert_instance_of Enumerator, sheet
-          assert_equal [{'text' => 'Hello world,'}, {'text' => 'this is a jsonl document'}], sheet.to_a
+          assert_equal [{ 'text' => 'Hello world,' }, { 'text' => 'this is a jsonl document' }], sheet.to_a
         end
       end
 
@@ -29,8 +28,8 @@ module NdrImport
 
           lines = sheet.to_a
 
-          assert_equal [{'text' => 'Hello world'}, {'text' => 'This is a thorny þ issue!'}], lines
-          assert lines.all? { |hash| hash['text'].encoding.name == 'UTF-8' && hash['text'].valid_encoding? }
+          assert_equal [{ 'text' => 'Hello world' }, { 'text' => 'This is a thorny þ issue!' }], lines
+          assert(lines.all? { |hash| hash['text'].encoding.name == 'UTF-8' && hash['text'].valid_encoding? })
         end
       end
 
@@ -43,8 +42,8 @@ module NdrImport
 
           lines = sheet.to_a
 
-          assert_equal [{'text' => 'Hello world'}, {'text' => 'This is a thorny þ issue!'}], lines
-          assert lines.all? { |hash| hash['text'].encoding.name == 'UTF-8' && hash['text'].valid_encoding? }
+          assert_equal [{ 'text' => 'Hello world' }, { 'text' => 'This is a thorny þ issue!' }], lines
+          assert(lines.all? { |hash| hash['text'].encoding.name == 'UTF-8' && hash['text'].valid_encoding? })
         end
       end
 
@@ -57,8 +56,8 @@ module NdrImport
 
           lines = sheet.to_a
 
-          assert_equal [{'text' => 'Hello world'}, {'text' => 'This is a thorny þ issue!'}], lines
-          assert lines.all? { |hash| hash['text'].encoding.name == 'UTF-8' && hash['text'].valid_encoding? }
+          assert_equal [{ 'text' => 'Hello world' }, { 'text' => 'This is a thorny þ issue!' }], lines
+          assert(lines.all? { |hash| hash['text'].encoding.name == 'UTF-8' && hash['text'].valid_encoding? })
         end
       end
 
@@ -71,8 +70,8 @@ module NdrImport
 
           lines = sheet.to_a
 
-          assert_equal [{'text' => 'Hello windows world'}, {'text' => 'This is a thorny þ issue!'}], lines
-          assert lines.all? { |hash| hash['text'].encoding.name == 'UTF-8' && hash['text'].valid_encoding? }
+          assert_equal [{ 'text' => 'Hello windows world' }, { 'text' => 'This is a thorny þ issue!' }], lines
+          assert(lines.all? { |hash| hash['text'].encoding.name == 'UTF-8' && hash['text'].valid_encoding? })
         end
       end
 
