@@ -24,7 +24,7 @@ module NdrImport
         path = SafeFile.safepath_to_string(@filename)
         mode = read_mode_for(path)
 
-        # SECURE: TG 13 Oct 2015 SafeFile.safepath_to_string ensures that the path is SafePath.
+        # SECURE: TG 25 Oct 2021 SafeFile.safepath_to_string ensures that the path is SafePath.
         ::File.new(path, mode).each { |line| block.call JSON.parse(ensure_utf8!(line).chomp) }
       rescue StandardError => e
         raise "Failed to read #{SafeFile.basename(@filename)} as text [#{e.class}: #{e.message}]"
