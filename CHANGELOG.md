@@ -1,5 +1,6 @@
 ## [Unreleased]
-*no unreleased changes*
+### Added
+* JSON Lines file parser
 
 ## 10.1.2 / 2021-09-28
 ### Fixed
