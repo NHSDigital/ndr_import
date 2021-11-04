@@ -9,6 +9,18 @@ module NdrImport
         @permanent_test_files = SafePath.new('permanent_test_files')
       end
 
+      test 'should read JSON Lines array file correctly' do
+        file_path = @permanent_test_files.join('array.jsonl')
+        handler = NdrImport::File::JsonLines.new(file_path, nil)
+        handler.tables.each do |tablename, sheet|
+          assert_nil tablename
+          sheet = sheet.to_a
+          assert_equal(('A'..'Z').to_a, sheet[0])
+          assert_equal [1] * 26, sheet[1]
+          assert_equal [2] * 26, sheet[2]
+        end
+      end
+
       test 'should read JSON Lines file' do
         file_path = @permanent_test_files.join('hello_world.jsonl')
         handler = NdrImport::File::JsonLines.new(file_path, nil)
