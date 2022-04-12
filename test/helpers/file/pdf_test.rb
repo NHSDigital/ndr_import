@@ -15,8 +15,8 @@ class PdfTest < ActiveSupport::TestCase
 
   test 'read_pdf_file helper should read pdf file' do
     file_content = @importer.send(:read_pdf_file, @permanent_test_files.join('hello_world.pdf'))
-    assert_equal ['Hello                                         World', '',
-                  'Goodbye                                       Universe'], file_content
+    assert_equal ['Hello                                      World', '',
+                  'Goodbye                                    Universe'], file_content
   end
 
   test 'read_pdf_file helper should raise exception on invalid pdf file' do
