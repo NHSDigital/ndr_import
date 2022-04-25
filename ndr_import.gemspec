@@ -1,4 +1,4 @@
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'ndr_import/version'
 
@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'activemodel'
-  spec.add_dependency 'activesupport', '>= 5.0', '< 7'
+  spec.add_dependency 'activesupport', '>= 5.2', '< 7'
   spec.add_dependency 'ndr_support', '>= 5.3.2', '< 6'
 
   spec.add_dependency 'rubyzip', '~> 2.0'
@@ -38,10 +38,10 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'seven_zip_ruby', '~> 1.3'
   spec.add_dependency 'spreadsheet', '1.2.6'
 
-  spec.required_ruby_version = '>= 2.5'
+  spec.required_ruby_version = '>= 2.7'
 
   spec.add_development_dependency 'bundler'
-  spec.add_development_dependency 'rake', '~> 12.3', '>= 12.3.3'
+  spec.add_development_dependency 'rake', '>= 12.3.3'
   spec.add_development_dependency 'minitest'
   spec.add_development_dependency 'mocha'
   spec.add_development_dependency 'ndr_dev_support', '>= 3.1.3'

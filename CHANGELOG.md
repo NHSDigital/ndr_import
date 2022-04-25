@@ -1,6 +1,10 @@
 ## [Unreleased]
 ### Added
 * JSON Lines file parser
+* Test against Rails 6.1
+
+### Changed
+* Update Ruby/Rails supported versions. 2.7/5.2 is now minimum
 
 ## 10.1.2 / 2021-09-28
 ### Fixed
