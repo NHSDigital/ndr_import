@@ -6,7 +6,7 @@ permalink: /standard-yaml-mappings/
 
 The YAML mapper can define a set of predefined standard mappings.
 
-The following example is the list of standard mappings used within PHE NDR:
+The following example is the list of standard mappings used within NHS Digital NDR:
 
 ```yaml
 surname:

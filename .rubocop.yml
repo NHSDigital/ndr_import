@@ -1,1 +1,1 @@
-inherit_from: 'https://raw.githubusercontent.com/PublicHealthEngland/ndr_dev_support/master/.rubocop.yml'
+inherit_from: 'https://raw.githubusercontent.com/NHSDigital/ndr_dev_support/master/.rubocop.yml'

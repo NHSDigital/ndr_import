@@ -4,7 +4,7 @@ title: Inbuilt Cleaning Methods
 permalink: /inbuilt-cleaning-methods/
 ---
 
-When creating mappings, there are a number of inbuilt cleaning methods (that are provided by the [NdrSupport gem](https://github.com/PublicHealthEngland/ndr_support)).
+When creating mappings, there are a number of inbuilt cleaning methods (that are provided by the [NdrSupport gem](https://github.com/NHSDigital/ndr_support)).
 
 These methods undertake standard cleaning of data when mapped into a field, with the rawtext value remaining unchanged.
 
