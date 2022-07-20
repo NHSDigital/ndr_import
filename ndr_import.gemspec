@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = []
   spec.summary       = 'NDR Import'
   spec.description   = 'NDR ETL Importer'
-  spec.homepage      = 'https://github.com/PublicHealthEngland/ndr_import'
+  spec.homepage      = 'https://github.com/NHSDigital/ndr_import'
   spec.license       = 'MIT'
 
   # Specify which files should be added to the gem when it is released.
