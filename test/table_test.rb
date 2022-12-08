@@ -272,7 +272,7 @@ class TableTest < ActiveSupport::TestCase
     yaml_output = table.to_yaml
     assert yaml_output.include?('columns')
     refute yaml_output.include?('row_index')
-    assert YAML.load(yaml_output).is_a?(NdrImport::Table)
+    assert load_esourcemapping_yaml(yaml_output).is_a?(NdrImport::Table)
   end
 
   def test_encode_with_compare
@@ -306,8 +306,9 @@ class TableTest < ActiveSupport::TestCase
     assert ndr_table_yaml_order.last == 'columns'
 
     # test objects deserialized from yaml mappings
-    deserialized_no_coder_table_yaml = YAML.load(no_coder_table.to_yaml)
-    deserialized_ndr_table_yaml = YAML.load(ndr_table.to_yaml)
+    deserialized_no_coder_table_yaml =
+      load_esourcemapping_yaml(no_coder_table.to_yaml, extra_whitelist_classes: [TestNoCoderTable])
+    deserialized_ndr_table_yaml = load_esourcemapping_yaml(ndr_table.to_yaml)
 
     assert deserialized_no_coder_table_yaml.is_a?(NdrImport::NonTabular::Table)
     assert deserialized_ndr_table_yaml.is_a?(NdrImport::NonTabular::Table)
@@ -571,21 +572,21 @@ class TableTest < ActiveSupport::TestCase
   private
 
   def simple_deserialized_table
-    Psych.load <<YML
---- !ruby/object:NdrImport::Table
-canonical_name: somename
-# filename_pattern: !ruby/regexp //
-header_lines: 2
-footer_lines: 1
-format: pipe
-klass: SomeTestKlass
-# non_tabular_row:
-#   ...
-columns:
-- column: one
-- column: two
-- column: three
-YML
+    load_esourcemapping_yaml(<<~YML)
+      --- !ruby/object:NdrImport::Table
+      canonical_name: somename
+      # filename_pattern: !ruby/regexp //
+      header_lines: 2
+      footer_lines: 1
+      format: pipe
+      klass: SomeTestKlass
+      # non_tabular_row:
+      #   ...
+      columns:
+      - column: one
+      - column: two
+      - column: three
+    YML
   end
 
   def column_level_klass_mapping

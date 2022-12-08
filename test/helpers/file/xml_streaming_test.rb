@@ -119,15 +119,15 @@ class XmlStreamingTest < ActiveSupport::TestCase
     nodes = @importer.nodes('//node', <<~XML)
       <nodes>
         #{nodes_xml}
-        <node>\x92</node>
+        <node>#{0x92.chr}</node>
       </nodes>
     XML
 
     assert_equal 101, nodes.length
-    text = nodes.sum(&:text)
+    text = nodes.sum('', &:text)
     assert_equal Encoding.find('UTF-8'), text.encoding
     assert text.valid_encoding?
-    assert_equal (1..100).sum(&:to_s) + '’', text
+    assert_equal (1..100).sum('', &:to_s) + '’', text
   end
 
   test 'each_node should handle incoming UTF-8' do
