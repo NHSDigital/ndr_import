@@ -17,18 +17,12 @@ jobs:
         ruby-version:
           - '2.7'
           - '3.0'
+          - '3.1'
         gemfile:
-          - gemfiles/Gemfile.rails52
           - gemfiles/Gemfile.rails60
           - gemfiles/Gemfile.rails61
-          # - gemfiles/Gemfile.rails70 # not yet supported
+          - gemfiles/Gemfile.rails70
         exclude:
-          # rails 5.2 requires ruby < 3.0
-          # https://github.com/rails/rails/issues/40938
-          - ruby-version: '3.0'
-            gemfile: 'gemfiles/Gemfile.rails52'
-          - ruby-version: '3.1'
-            gemfile: 'gemfiles/Gemfile.rails52'
           # rails 7.0 requires ruby >= 2.7
           # https://www.fastruby.io/blog/ruby/rails/versions/compatibility-table.html
           - ruby-version: '2.6'

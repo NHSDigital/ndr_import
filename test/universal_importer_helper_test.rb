@@ -73,7 +73,7 @@ class UniversalImporterHelperTest < ActiveSupport::TestCase
   end
 
   test 'extract with file_password' do
-    table_mappings = YAML.safe_load <<-YML.strip_heredoc, [NdrImport::NonTabular::Table, Range, Regexp]
+    table_mappings = load_esourcemapping_yaml(<<~YML)
       ---
       - !ruby/object:NdrImport::NonTabular::Table
           file_password: salad
