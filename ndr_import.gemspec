@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.license       = 'MIT'
 
   gem_files          = %w[CHANGELOG.md CODE_OF_CONDUCT.md LICENSE.txt MIT-LICENSE README.md Rakefile
-                          app config db docs exe lib]
+                          app config db exe lib]
   spec.files         = `git ls-files -z`.split("\x0").
                        select { |f| gem_files.include?(f.split('/')[0]) }
   spec.bindir        = 'exe'
