@@ -1,5 +1,58 @@
 ## [Unreleased]
-*no unreleased changes*
+* No unreleased changes
+
+## 10.1.3 / 2022-12-08
+### Added
+* JSON Lines file parser
+* Test against Rails 6.1
+* Support Ruby 3.1, Rails 7.0
+
+### Changed
+* Update Ruby/Rails supported versions. 2.7/6.0 is now minimum
+
+## 10.1.2 / 2021-09-28
+### Fixed
+* Bump to `nokogiri` to address CVE-2021-41098
+* Bump `seven_zip_ruby` requirement for Ruby 2.7 support
+
+## 10.1.1 / 2021-03-15
+### Fixed
+* XML: ensure invalid control character *references* are also escaped (#64)
+
+## 10.1.0 / 2021-03-08
+### Added
+* Allow optional `last_data_column` in NdrImport::Table mappings (#61)
+
+## 10.0.0 / 2021-02-22
+### Changed
+* By default, escape any control characters found in XML (#60)
+
+## 9.1.0 / 2021-02-01
+### Added
+* `CSVLibrary` is now deprecated.
+* Handle xlsm files
+
+### Fixed
+* Fix `CSVLibrary.foreach` on Ruby 3.0
+* Updated jekyll bundle
+
+## 9.0.3 / 2021-01-04
+### Fixed
+* Address issue importing multiple files against the same table (#54)
+
+### Changed
+* ensure keyword args are properly splatted for ruby 2.7
+
+### Added
+* Ruby 2.7 to travis matrix
+
+## 9.0.2 / 2020-08-14
+### Changed
+* Configure Nokogiri with HUGE for large xml files
+
+## 9.0.1 / 2020-03-26
+### Fixed
+* bumps to `nokogiri` / `spreadsheet` / `rubyzip` dependencies
 
 ## 9.0.0 / 2019-07-31
 ### Changed

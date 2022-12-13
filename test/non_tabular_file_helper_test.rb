@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 require 'test_helper'
 
 # Test non tabular mapper class that expose private method(s) for testing
@@ -30,7 +28,7 @@ STR
 
   test 'should raise error with no non_tabular_row' do
     mapper = NonTabularTestMapper.new
-    mapper.mappings = YAML.load <<-YML
+    mapper.mappings = load_esourcemapping_yaml(<<~YML)
       columns:
       - column: one
     YML
@@ -41,7 +39,7 @@ STR
 
   test 'should raise error with no non_tabular_row start_line_pattern' do
     mapper = NonTabularTestMapper.new
-    mapper.mappings = YAML.load <<-YML
+    mapper.mappings = load_esourcemapping_yaml(<<~YML)
       non_tabular_row:
       columns:
       - column: one
@@ -51,7 +49,7 @@ STR
     end
 
     mapper = NonTabularTestMapper.new
-    mapper.mappings = YAML.load <<-YML
+    mapper.mappings = load_esourcemapping_yaml(<<~YML)
       non_tabular_row:
         start_line_pattern:
       columns:
@@ -64,7 +62,7 @@ STR
 
   test 'should raise error with no column non_tabular_cell' do
     mapper = NonTabularTestMapper.new
-    mapper.mappings = YAML.load <<-YML
+    mapper.mappings = load_esourcemapping_yaml(<<~YML)
       non_tabular_row:
         start_line_pattern: !ruby/regexp /^-{6}$/
       columns:
@@ -77,7 +75,7 @@ STR
 
   test 'should raise error with no column non_tabular_cell lines' do
     mapper = NonTabularTestMapper.new
-    mapper.mappings = YAML.load <<-YML
+    mapper.mappings = load_esourcemapping_yaml(<<~YML)
       non_tabular_row:
         start_line_pattern: !ruby/regexp /^-{6}$/
       columns:
@@ -89,7 +87,7 @@ STR
     end
 
     mapper = NonTabularTestMapper.new
-    mapper.mappings = YAML.load <<-YML
+    mapper.mappings = load_esourcemapping_yaml(<<~YML)
       non_tabular_row:
         start_line_pattern: !ruby/regexp /^-{6}$/
       columns:
@@ -104,7 +102,7 @@ STR
 
   test 'should raise error with no column non_tabular_cell capture' do
     mapper = NonTabularTestMapper.new
-    mapper.mappings = YAML.load <<-YML
+    mapper.mappings = load_esourcemapping_yaml(<<~YML)
       non_tabular_row:
         start_line_pattern: !ruby/regexp /^-{6}$/
       columns:
@@ -120,7 +118,7 @@ STR
     end
 
     mapper = NonTabularTestMapper.new
-    mapper.mappings = YAML.load <<-YML
+    mapper.mappings = load_esourcemapping_yaml(<<~YML)
       non_tabular_row:
         start_line_pattern: !ruby/regexp /^-{6}$/
       columns:
@@ -139,7 +137,7 @@ STR
 
   test 'should only return two results with no start_in_a_record or end_in_a_record' do
     mapper = NonTabularTestMapper.new
-    mapper.mappings = YAML.load <<-YML
+    mapper.mappings = load_esourcemapping_yaml(<<~YML)
       non_tabular_row:
         start_line_pattern: !ruby/regexp /^-{6}$/
       columns:
@@ -159,7 +157,7 @@ STR
 
   test 'should return three results with start_in_a_record' do
     mapper = NonTabularTestMapper.new
-    mapper.mappings = YAML.load <<-YML
+    mapper.mappings = load_esourcemapping_yaml(<<~YML)
       non_tabular_row:
         start_line_pattern: !ruby/regexp /^-{6}$/
         start_in_a_record: true
@@ -180,7 +178,7 @@ STR
 
   test 'should return three results with end_in_a_record' do
     mapper = NonTabularTestMapper.new
-    mapper.mappings = YAML.load <<-YML
+    mapper.mappings = load_esourcemapping_yaml(<<~YML)
       non_tabular_row:
         start_line_pattern: !ruby/regexp /^-{6}$/
         end_in_a_record: true
@@ -201,7 +199,7 @@ STR
 
   test 'should return four results with start_in_a_record and end_in_a_record' do
     mapper = NonTabularTestMapper.new
-    mapper.mappings = YAML.load <<-YML
+    mapper.mappings = load_esourcemapping_yaml(<<~YML)
       non_tabular_row:
         start_line_pattern: !ruby/regexp /^-{6}$/
         start_in_a_record: true
@@ -228,7 +226,7 @@ STR
 
   test 'should return one results with start_in_a_record and end_in_a_record' do
     mapper = NonTabularTestMapper.new
-    mapper.mappings = YAML.load <<-YML
+    mapper.mappings = load_esourcemapping_yaml(<<~YML)
       non_tabular_row:
         start_line_pattern: !ruby/regexp /^-{6}$/
         start_in_a_record: true
@@ -272,7 +270,7 @@ STR
 
   test 'should return four results with start and end dividers' do
     mapper = NonTabularTestMapper.new
-    mapper.mappings = YAML.load <<-YML
+    mapper.mappings = load_esourcemapping_yaml(<<~YML)
       non_tabular_row:
         start_line_pattern: !ruby/regexp /^----- START -----$/
         end_line_pattern: !ruby/regexp /^------ END ------$/
@@ -296,7 +294,7 @@ STR
 
   test 'documentation example' do
     mapper = NonTabularTestMapper.new
-    mapper.mappings = YAML.load <<-YML
+    mapper.mappings = load_esourcemapping_yaml(<<~YML)
       non_tabular_row:
         start_line_pattern: !ruby/regexp /^D\\|/
         capture_start_line: true
@@ -331,7 +329,7 @@ STR
 
   test 'should capture' do
     mapper = NonTabularTestMapper.new
-    mapper.mappings = YAML.load <<-YML
+    mapper.mappings = load_esourcemapping_yaml(<<~YML)
       non_tabular_row:
         start_line_pattern: !ruby/regexp /^-{6}$/
       columns:
@@ -426,20 +424,20 @@ STR
   end
 
   test 'handles non utf8 characters' do
-    mixed_encoding_example = <<-STR
-111
-Lorem ipsum dolor sit amet.
-------
-111
-Lorem ipsum dolor\xBE sit amet.
-------
-111
-Lorem ipsum dolor sit amet.
-------
-STR
+    mixed_encoding_example = <<~STR
+      111
+      Lorem ipsum dolor sit amet.
+      ------
+      111
+      Lorem ipsum dolor#{0xBE.chr} sit amet.
+      ------
+      111
+      Lorem ipsum dolor sit amet.
+      ------
+    STR
 
     mapper = NonTabularTestMapper.new
-    mapper.mappings = YAML.load <<-YML
+    mapper.mappings = load_esourcemapping_yaml(<<~YML)
       non_tabular_row:
         start_line_pattern: !ruby/regexp /^111$/
         end_in_a_record: true
@@ -467,20 +465,20 @@ STR
   end
 
   test 'should not allow junk bytes' do
-    junk = <<-STR
-111
-Lorem ipsum dolor sit amet.
-------
-111
-Lorem ipsum dolor\x8D sit amet.
-------
-111
-Lorem ipsum dolor sit amet.
-------
+    junk = <<~STR
+      111
+      Lorem ipsum dolor sit amet.
+      ------
+      111
+      Lorem ipsum dolor#{0x8D.chr} sit amet.
+      ------
+      111
+      Lorem ipsum dolor sit amet.
+      ------
 STR
 
     mapper = NonTabularTestMapper.new
-    mapper.mappings = YAML.load <<-YML
+    mapper.mappings = load_esourcemapping_yaml(<<~YML)
       non_tabular_row:
         start_line_pattern: !ruby/regexp /^111$/
         end_in_a_record: true
@@ -512,10 +510,8 @@ STR
       ------
     STR
 
-    white_listed_classes = [NdrImport::NonTabular::Table, Range, Regexp]
-
     preserve_blanks_mapper = NonTabularTestMapper.new
-    preserve_blanks_mapper.mappings = YAML.safe_load <<-YML.strip_heredoc, white_listed_classes
+    preserve_blanks_mapper.mappings = load_esourcemapping_yaml(<<~YML)
       non_tabular_row:
         start_line_pattern: !ruby/regexp /\\A111\\z/
         end_in_a_record: true
@@ -536,7 +532,7 @@ STR
     assert_equal %w[hello world], mapped_values.last.first.split("\n")
 
     mapper = NonTabularTestMapper.new
-    mapper.mappings = YAML.safe_load <<-YML.strip_heredoc, white_listed_classes
+    mapper.mappings = load_esourcemapping_yaml(<<~YML)
       non_tabular_row:
         start_line_pattern: !ruby/regexp /\\A111\\z/
         end_in_a_record: true

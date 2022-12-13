@@ -80,7 +80,8 @@ STR
   end
 
   def test_should_test_flat_file_txt
-    table = YAML.load_file(SafePath.new('permanent_test_files').join('flat_file.yml'))
+    table = load_esourcemapping_yaml(File.read(SafePath.new('permanent_test_files').
+                                               join('flat_file.yml')))
     assert table.is_a?(NdrImport::NonTabular::Table)
     filename = SafePath.new('permanent_test_files').join('flat_file.txt')
     enum = table.transform(File.new(filename).each)
@@ -95,13 +96,13 @@ STR
     assert results.first.start_with?('1')
     assert results.last.start_with?('4')
 
-    assert results.any? { |result| result =~ /This is captured/ }
-    refute results.any? { |result| result =~ /This is never captured/ }
-    refute results.any? { |result| result =~ /== Page/ }
+    assert(results.any? { |result| result =~ /This is captured/ })
+    refute(results.any? { |result| result =~ /This is never captured/ })
+    refute(results.any? { |result| result =~ /== Page/ })
   end
 
   def test_should_raise_error_with_no_column_non_tabular_cell
-    table = YAML.load <<-YML.strip_heredoc
+    table = load_esourcemapping_yaml(<<~YML)
       --- !ruby/object:NdrImport::NonTabular::Table
       start_line_pattern: !ruby/regexp /^-{6}$/
       klass: SomeTestKlass
@@ -114,7 +115,7 @@ STR
   end
 
   def test_should_raise_error_with_no_column_non_tabular_cell_lines
-    table = YAML.load <<-YML.strip_heredoc
+    table = load_esourcemapping_yaml(<<~YML)
       --- !ruby/object:NdrImport::NonTabular::Table
       start_line_pattern: !ruby/regexp /^-{6}$/
       klass: SomeTestKlass
@@ -126,7 +127,7 @@ STR
       table.transform(@simple_divider_example).to_a
     end
 
-    table = YAML.load <<-YML.strip_heredoc
+    table = load_esourcemapping_yaml(<<~YML)
       --- !ruby/object:NdrImport::NonTabular::Table
       start_line_pattern: !ruby/regexp /^-{6}$/
       klass: SomeTestKlass
@@ -141,7 +142,7 @@ STR
   end
 
   def test_should_raise_error_with_no_column_non_tabular_cell_capture
-    table = YAML.load <<-YML.strip_heredoc
+    table = load_esourcemapping_yaml(<<~YML)
       --- !ruby/object:NdrImport::NonTabular::Table
       start_line_pattern: !ruby/regexp /^-{6}$/
       klass: SomeTestKlass
@@ -157,7 +158,7 @@ STR
       table.transform(@simple_divider_example).to_a
     end
 
-    table = YAML.load <<-YML.strip_heredoc
+    table = load_esourcemapping_yaml(<<~YML)
       --- !ruby/object:NdrImport::NonTabular::Table
       start_line_pattern: !ruby/regexp /^-{6}$/
       klass: SomeTestKlass
@@ -176,7 +177,7 @@ STR
   end
 
   def test_should_only_return_two_results_with_no_start_in_a_record_or_end_in_a_record
-    table = YAML.load <<-YML.strip_heredoc
+    table = load_esourcemapping_yaml(<<~YML)
       --- !ruby/object:NdrImport::NonTabular::Table
       start_line_pattern: !ruby/regexp /^-{6}$/
       klass: SomeTestKlass
@@ -199,7 +200,7 @@ STR
   end
 
   def test_should_return_three_results_with_start_in_a_record
-    table = YAML.load <<-YML.strip_heredoc
+    table = load_esourcemapping_yaml(<<~YML)
       --- !ruby/object:NdrImport::NonTabular::Table
       start_line_pattern: !ruby/regexp /^-{6}$/
       start_in_a_record: true
@@ -223,7 +224,7 @@ STR
   end
 
   def test_should_return_three_results_with_end_in_a_record
-    table = YAML.load <<-YML.strip_heredoc
+    table = load_esourcemapping_yaml(<<~YML)
       --- !ruby/object:NdrImport::NonTabular::Table
       start_line_pattern: !ruby/regexp /^-{6}$/
       end_in_a_record: true
@@ -247,7 +248,7 @@ STR
   end
 
   def test_should_return_four_results_with_start_in_a_record_and_end_in_a_record
-    table = YAML.load <<-YML.strip_heredoc
+    table = load_esourcemapping_yaml(<<~YML)
       --- !ruby/object:NdrImport::NonTabular::Table
       start_line_pattern: !ruby/regexp /^-{6}$/
       start_in_a_record: true
@@ -272,7 +273,7 @@ STR
   end
 
   def test_should_return_one_results_with_start_in_a_record_and_end_in_a_record
-    table = YAML.load <<-YML.strip_heredoc
+    table = load_esourcemapping_yaml(<<~YML)
       --- !ruby/object:NdrImport::NonTabular::Table
       start_line_pattern: !ruby/regexp /^-{6}$/
       start_in_a_record: true
@@ -296,7 +297,7 @@ STR
   end
 
   def test_should_return_four_results_with_start_and_end_dividers
-    table = YAML.load <<-YML.strip_heredoc
+    table = load_esourcemapping_yaml(<<~YML)
       --- !ruby/object:NdrImport::NonTabular::Table
       start_line_pattern: !ruby/regexp /^----- START -----$/
       end_line_pattern: !ruby/regexp /^------ END ------$/
@@ -319,24 +320,24 @@ STR
     assert results.first.start_with?('111')
     assert results.last.start_with?('444')
 
-    assert results.any? { |result| result =~ /This is captured/ }
-    refute results.any? { |result| result =~ /This is never captured/ }
+    assert(results.any? { |result| result =~ /This is captured/ })
+    refute(results.any? { |result| result =~ /This is never captured/ })
   end
 
   def test_should_capture_end_line
     data = <<~STR.each_line
-111
-Lorem ipsum dolor sit amet.
-CAPTURE THIS CODE ABC
-111
-Lorem ipsum dolor sit amet.
-CAPTURE THIS CODE XYZ
-111
-Lorem ipsum dolor sit amet.
-CAPTURE THIS CODE 123
-STR
+      111
+      Lorem ipsum dolor sit amet.
+      CAPTURE THIS CODE ABC
+      111
+      Lorem ipsum dolor sit amet.
+      CAPTURE THIS CODE XYZ
+      111
+      Lorem ipsum dolor sit amet.
+      CAPTURE THIS CODE 123
+    STR
 
-    table = YAML.load <<-YML.strip_heredoc
+    table = load_esourcemapping_yaml(<<~YML)
       --- !ruby/object:NdrImport::NonTabular::Table
       start_line_pattern: !ruby/regexp /\\A111\\z/
       end_line_pattern: !ruby/regexp /\\ACAPTURE THIS CODE/
@@ -359,7 +360,7 @@ STR
   end
 
   def test_should_capture
-    table = YAML.load <<-YML.strip_heredoc
+    table = load_esourcemapping_yaml(<<~YML)
       --- !ruby/object:NdrImport::NonTabular::Table
       start_line_pattern: !ruby/regexp /^-{6}$/
       klass: SomeTestKlass
@@ -405,7 +406,7 @@ STR
           capture: !ruby/regexp /^(.*)$/i
           join: "\\n"
     YML
-    capture_example = <<-STR
+    capture_example = <<~STR
 This is never captured
 ------
 1111111111
@@ -432,7 +433,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit.
 Excepteur sint occaecat cupidatat non proident, sunt in culpa.
 ------
 This is never captured
-STR
+    STR
     enum = table.transform(capture_example.split(/\n/).map)
     assert_instance_of Enumerator, enum
 
@@ -469,19 +470,19 @@ STR
   end
 
   def test_handles_non_utf8_characters
-    mixed_encoding_example = <<-STR.each_line
-111
-Lorem ipsum dolor sit amet.
-------
-111
-Lorem ipsum dolor\xBE sit amet.
-------
-111
-Lorem ipsum dolor sit amet.
-------
-STR
+    mixed_encoding_example = <<~STR.each_line
+      111
+      Lorem ipsum dolor sit amet.
+      ------
+      111
+      Lorem ipsum dolor#{0xBE.chr} sit amet.
+      ------
+      111
+      Lorem ipsum dolor sit amet.
+      ------
+    STR
 
-    table = YAML.load <<-YML.strip_heredoc
+    table = load_esourcemapping_yaml(<<~YML)
       --- !ruby/object:NdrImport::NonTabular::Table
       start_line_pattern: !ruby/regexp /^111$/
       end_in_a_record: true
@@ -502,8 +503,8 @@ STR
 
     assert_equal 3, results.count, 'records were lost'
 
-    assert_equal [27, 28, 27], results.map { |row| row.chars.to_a.length }
-    assert_equal [27, 29, 27], results.map { |row| row.bytes.to_a.length }
+    assert_equal([27, 28, 27], results.map { |row| row.chars.to_a.length })
+    assert_equal([27, 29, 27], results.map { |row| row.bytes.to_a.length })
 
     results.each do |row|
       assert row.first.valid_encoding?
@@ -512,19 +513,19 @@ STR
   end
 
   def test_should_not_allow_junk_bytes
-    junk = <<-STR.each_line
-111
-Lorem ipsum dolor sit amet.
-------
-111
-Lorem ipsum dolor\x8D sit amet.
-------
-111
-Lorem ipsum dolor sit amet.
-------
-STR
+    junk = <<~STR.each_line
+      111
+      Lorem ipsum dolor sit amet.
+      ------
+      111
+      Lorem ipsum dolor#{0x8D.chr} sit amet.
+      ------
+      111
+      Lorem ipsum dolor sit amet.
+      ------
+    STR
 
-    table = YAML.load <<-YML.strip_heredoc
+    table = load_esourcemapping_yaml(<<~YML)
       --- !ruby/object:NdrImport::NonTabular::Table
       start_line_pattern: !ruby/regexp /^111$/
       end_in_a_record: true
@@ -545,7 +546,7 @@ STR
   end
 
   def test_should_strip_captured_rawtext
-    unwanted_white_space = <<-STR.each_line
+    unwanted_white_space = <<~STR.each_line
 111
 Trailing whitespace        end_of_line
 ------
@@ -558,9 +559,9 @@ Trailing whitespace        end_of_line
 111
 Should not match this
 ------
-STR
+    STR
 
-    table = YAML.load <<-YML.strip_heredoc
+    table = load_esourcemapping_yaml(<<~YML)
       --- !ruby/object:NdrImport::NonTabular::Table
       start_line_pattern: !ruby/regexp /^111$/
       end_in_a_record: true

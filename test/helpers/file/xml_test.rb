@@ -85,6 +85,41 @@ class XmlTest < ActiveSupport::TestCase
     end
   end
 
+  test 'escaping XML file containing invalid control chars' do
+    doc = @importer.send(:read_xml_file, @permanent_test_files.join('with-control-chars.xml'))
+    assert_empty doc.errors
+    assert_equal "with newline\nand a cancel char: 0x18", doc.text, 'should have escaped'
+  end
+
+  test 'escaping XML file containing control char references within CDATA' do
+    doc = @importer.send(:read_xml_file, @permanent_test_files.join('with-control-char-references-in-cdata.xml'))
+    assert_empty doc.errors
+    assert_equal 'referencing a cancel char within CDATA: &#x18;', doc.text, 'should not have triggered escaping'
+  end
+
+  test 'escaping XML file containing invalid control char references' do
+    doc = @importer.send(:read_xml_file, @permanent_test_files.join('with-control-char-references.xml'))
+    assert_empty doc.errors
+    assert_equal 'referencing a cancel char: 0x18', doc.text, 'should have escaped'
+  end
+
+  test 'escaping XML file containing non-control char references' do
+    doc = @importer.send(:read_xml_file, @permanent_test_files.join('with-non-control-char-references.xml'))
+    assert_empty doc.errors
+    assert_equal 'referenced chars', doc.text, 'should have not escaped, and then subbed for chars'
+  end
+
+  test 'XML file containing control chars, opting out of escaping' do
+    path = @permanent_test_files.join('with-control-chars.xml')
+
+    exception = assert_raises(Nokogiri::XML::SyntaxError) do
+      @importer.send(:read_xml_file, path, preserve_control_chars: true)
+    end
+
+    assert_match(/The file had \d+ fatal error/, exception.message)
+    assert_match(/3:20: FATAL: PCDATA invalid Char value 24/, exception.message)
+  end
+
   test '.import_xml_file should reject non safe path arguments' do
     assert_raises ArgumentError do
       @importer.send(:read_xml_file, @home.join('simple.xml').to_s)

@@ -1,4 +1,4 @@
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'ndr_import/version'
 
@@ -9,24 +9,22 @@ Gem::Specification.new do |spec|
   spec.email         = []
   spec.summary       = 'NDR Import'
   spec.description   = 'NDR ETL Importer'
-  spec.homepage      = 'https://github.com/PublicHealthEngland/ndr_import'
+  spec.homepage      = 'https://github.com/NHSDigital/ndr_import'
   spec.license       = 'MIT'
 
-  # Specify which files should be added to the gem when it is released.
-  # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
-  spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
-    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
-  end
-  spec.files         -= %w[.travis.yml] # Not needed in the gem
+  gem_files          = %w[CHANGELOG.md CODE_OF_CONDUCT.md LICENSE.txt MIT-LICENSE README.md Rakefile
+                          app config db exe lib]
+  spec.files         = `git ls-files -z`.split("\x0").
+                       select { |f| gem_files.include?(f.split('/')[0]) }
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
   spec.add_dependency 'activemodel'
-  spec.add_dependency 'activesupport', '>= 5.0', '< 7'
+  spec.add_dependency 'activesupport', '>= 6.0', '< 7.1'
   spec.add_dependency 'ndr_support', '>= 5.3.2', '< 6'
 
-  spec.add_dependency 'rubyzip', '~> 1.2', '>= 1.2.2'
+  spec.add_dependency 'rubyzip', '~> 2.0'
   spec.add_dependency 'roo', '~> 2.0'
 
   spec.add_dependency 'docx', '~> 0.3'
@@ -35,13 +33,13 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'ooxml_decrypt'
   spec.add_dependency 'pdf-reader', '~> 2.1'
   spec.add_dependency 'roo-xls'
-  spec.add_dependency 'seven_zip_ruby', '~> 1.2'
-  spec.add_dependency 'spreadsheet', '1.0.3'
+  spec.add_dependency 'seven_zip_ruby', '~> 1.3'
+  spec.add_dependency 'spreadsheet', '1.2.6'
 
-  spec.required_ruby_version = '>= 2.5'
+  spec.required_ruby_version = '>= 2.7'
 
   spec.add_development_dependency 'bundler'
-  spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'rake', '>= 12.3.3'
   spec.add_development_dependency 'minitest'
   spec.add_development_dependency 'mocha'
   spec.add_development_dependency 'ndr_dev_support', '>= 3.1.3'

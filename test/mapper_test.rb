@@ -74,7 +74,7 @@ class MapperTest < ActiveSupport::TestCase
       - field: consultantcode
   YML
 
-  cross_populate_replace_mapping = YAML.load <<-YML
+  cross_populate_replace_mapping = load_esourcemapping_yaml(<<-YML)
     - column: referringclinicianname
       mappings:
       - field: consultantname
@@ -281,7 +281,7 @@ class MapperTest < ActiveSupport::TestCase
       - :invalid_encoding
   YML
 
-  replace_array_mapping = YAML.load <<-YML
+  replace_array_mapping = load_esourcemapping_yaml(<<-YML)
     - column: consultantcode
       mappings:
       - field: consultantcode

@@ -33,3 +33,19 @@ CORRUPTED_QUOTES_MESSAGE_PATTERN = /(
 )/x
 
 require 'mocha/minitest'
+
+module ActiveSupport
+  class TestCase
+    # Safely load YAML that could be included in esourcemappings
+    # We define this as both a class and instance method, for convenience of use
+    def self.load_esourcemapping_yaml(yaml, extra_whitelist_classes: [])
+      white_listed_classes = [NdrImport::NonTabular::Table, NdrImport::Table,
+                              Range, Regexp, RegexpRange] + extra_whitelist_classes
+      YAML.safe_load(yaml, permitted_classes: white_listed_classes)
+    end
+
+    def load_esourcemapping_yaml(...)
+      self.class.load_esourcemapping_yaml(...)
+    end
+  end
+end

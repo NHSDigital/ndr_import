@@ -1,3 +1,5 @@
+require 'shellwords'
+
 require 'ndr_import/file/registry'
 
 module NdrImport
@@ -5,11 +7,30 @@ module NdrImport
   # complexity of enumerating over files and tables (which should be universally useful).
   # It is assumed that the host module/class defines `unzip_path`.
   module UniversalImporterHelper
+    # Helper class to allow multiple source enumerators to contribute to one overall table.
+    class TableEnumProxy
+      include Enumerable
+
+      def initialize
+        @table_enums = []
+      end
+
+      def add_table_enum(table_enum)
+        @table_enums << table_enum
+      end
+
+      def each(&block)
+        return enum_for(:each) unless block
+
+        @table_enums.each { |table_enum| table_enum.each(&block) }
+      end
+    end
+
     def table_enumerators(filename)
-      table_enumerators = {}
+      table_enumerators = Hash.new { |hash, key| hash[key] = TableEnumProxy.new }
 
       extract(filename).each do |table, rows|
-        table_enumerators[table.canonical_name] = table.transform(rows)
+        table_enumerators[table.canonical_name].add_table_enum table.transform(rows)
       end
 
       table_enumerators
@@ -27,9 +48,7 @@ module NdrImport
     def extract(source_file, &block)
       return enum_for(:extract, source_file) unless block
 
-      files = NdrImport::File::Registry.files(source_file,
-                                              'unzip_path' => unzip_path)
-      files.each do |filename|
+      NdrImport::File::Registry.files(source_file, 'unzip_path' => unzip_path).each do |filename|
         # now at the individual file level, can we find the table mapping?
         table_mapping = get_table_mapping(filename, nil)
 

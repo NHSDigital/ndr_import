@@ -29,6 +29,16 @@ module NdrImport
         end
       end
 
+      test 'should read xlsm file' do
+        file_path = @permanent_test_files.join('sample_xlsm.xlsm')
+        handler = NdrImport::File::Excel.new(file_path, nil)
+        handler.tables.each do |tablename, sheet|
+          assert_equal 'Sheet1', tablename
+          assert_instance_of Enumerator, sheet
+          assert_equal %w[1A 1B], sheet.first
+        end
+      end
+
       test 'should read xlsx file with null sheet' do
         file_path = @permanent_test_files.join('blank_tab_test.xlsx')
         handler   = NdrImport::File::Excel.new(file_path, nil)

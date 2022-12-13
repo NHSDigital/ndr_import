@@ -83,6 +83,88 @@ class TableTest < ActiveSupport::TestCase
     assert_equal expected_output, output
   end
 
+  test 'should convert last_data_column into an index' do
+    table = NdrImport::Table.new(last_data_column: 3)
+    assert_equal 2, table.send(:last_column_to_transform)
+
+    table = NdrImport::Table.new(last_data_column: 'F')
+    assert_equal 5, table.send(:last_column_to_transform)
+
+    table = NdrImport::Table.new(last_data_column: 'AE')
+    assert_equal 30, table.send(:last_column_to_transform)
+
+    table = NdrImport::Table.new(last_data_column: 'BE')
+    assert_equal 56, table.send(:last_column_to_transform)
+
+    table = NdrImport::Table.new(last_data_column: 'ABN')
+    assert_equal 741, table.send(:last_column_to_transform)
+
+    table = NdrImport::Table.new(last_data_column: 'abn')
+    assert_equal 741, table.send(:last_column_to_transform)
+
+    table = NdrImport::Table.new(last_data_column: nil)
+    assert_equal(-1, table.send(:last_column_to_transform))
+
+    table = NdrImport::Table.new(last_data_column: Date.new(2021, 1, 1))
+    exception = assert_raises(RuntimeError) do
+      table.send(:last_column_to_transform)
+    end
+    assert_equal "Unknown 'last_data_column' format: 2021-01-01 (Date)", exception.message
+  end
+
+  test 'should not transform data after the last_data_column' do
+    lines = [%w[ONE TWO], %w[CARROT POTATO], %w[BACON SAUSAGE]]
+    table = NdrImport::Table.new(header_lines: 1, footer_lines: 0,
+                                 klass: 'SomeTestKlass',
+                                 last_data_column: 1,
+                                 columns: [{ 'column' => 'one' }])
+
+    output = []
+    table.transform(lines).each do |klass, fields, index|
+      output << [klass, fields, index]
+    end
+
+    expected_output = [
+      ['SomeTestKlass', { rawtext: { 'one' => 'CARROT' } }, 1],
+      ['SomeTestKlass', { rawtext: { 'one' => 'BACON' } }, 2]
+    ]
+    assert_equal expected_output, output
+  end
+
+  test 'should raise an error if last_data_column is smaller than column mappings' do
+    lines = [%w[ONE TWO], %w[CARROT POTATO], %w[BACON SAUSAGE]]
+    table = NdrImport::Table.new(header_lines: 1, footer_lines: 0,
+                                 klass: 'SomeTestKlass',
+                                 last_data_column: 1,
+                                 columns: [{ 'column' => 'one' }, { 'column' => 'two' }])
+
+    exception = assert_raises(RuntimeError) do
+      output = []
+      table.transform(lines).each do |klass, fields, index|
+        output << [klass, fields, index]
+      end
+    end
+
+    assert_equal 'Header is not valid! missing: ["two"]', exception.message
+  end
+
+  test 'should raise an error if last_data_column is larger than column mappings' do
+    lines = [%w[ONE TWO THREE], %w[CARROT POTATO CABBAGE], %w[BACON SAUSAGE BURGER]]
+    table = NdrImport::Table.new(header_lines: 1, footer_lines: 0,
+                                 klass: 'SomeTestKlass',
+                                 last_data_column: 'C',
+                                 columns: [{ 'column' => 'one' }, { 'column' => 'two' }])
+
+    exception = assert_raises(RuntimeError) do
+      output = []
+      table.transform(lines).each do |klass, fields, index|
+        output << [klass, fields, index]
+      end
+    end
+
+    assert_equal 'Header is not valid! unexpected: ["three"]', exception.message
+  end
+
   def test_process_line
     # No header row, process the first line
     table = NdrImport::Table.new(:header_lines => 0, :footer_lines => 0,
@@ -190,7 +272,7 @@ class TableTest < ActiveSupport::TestCase
     yaml_output = table.to_yaml
     assert yaml_output.include?('columns')
     refute yaml_output.include?('row_index')
-    assert YAML.load(yaml_output).is_a?(NdrImport::Table)
+    assert load_esourcemapping_yaml(yaml_output).is_a?(NdrImport::Table)
   end
 
   def test_encode_with_compare
@@ -224,8 +306,9 @@ class TableTest < ActiveSupport::TestCase
     assert ndr_table_yaml_order.last == 'columns'
 
     # test objects deserialized from yaml mappings
-    deserialized_no_coder_table_yaml = YAML.load(no_coder_table.to_yaml)
-    deserialized_ndr_table_yaml = YAML.load(ndr_table.to_yaml)
+    deserialized_no_coder_table_yaml =
+      load_esourcemapping_yaml(no_coder_table.to_yaml, extra_whitelist_classes: [TestNoCoderTable])
+    deserialized_ndr_table_yaml = load_esourcemapping_yaml(ndr_table.to_yaml)
 
     assert deserialized_no_coder_table_yaml.is_a?(NdrImport::NonTabular::Table)
     assert deserialized_ndr_table_yaml.is_a?(NdrImport::NonTabular::Table)
@@ -489,21 +572,21 @@ class TableTest < ActiveSupport::TestCase
   private
 
   def simple_deserialized_table
-    Psych.load <<YML
---- !ruby/object:NdrImport::Table
-canonical_name: somename
-# filename_pattern: !ruby/regexp //
-header_lines: 2
-footer_lines: 1
-format: pipe
-klass: SomeTestKlass
-# non_tabular_row:
-#   ...
-columns:
-- column: one
-- column: two
-- column: three
-YML
+    load_esourcemapping_yaml(<<~YML)
+      --- !ruby/object:NdrImport::Table
+      canonical_name: somename
+      # filename_pattern: !ruby/regexp //
+      header_lines: 2
+      footer_lines: 1
+      format: pipe
+      klass: SomeTestKlass
+      # non_tabular_row:
+      #   ...
+      columns:
+      - column: one
+      - column: two
+      - column: three
+    YML
   end
 
   def column_level_klass_mapping

@@ -1,8 +1,7 @@
-# NdrImport [![Build Status](https://travis-ci.org/PublicHealthEngland/ndr_import.svg?branch=master)](https://travis-ci.org/PublicHealthEngland/ndr_import) [![Gem Version](https://badge.fury.io/rb/ndr_import.svg)](https://badge.fury.io/rb/ndr_import) [![Documentation](https://img.shields.io/badge/ndr_import-docs-blue.svg)](https://www.rubydoc.info/gems/ndr_import)
+# NdrImport [![Build Status](https://github.com/NHSDigital/ndr_import/workflows/Test/badge.svg)](https://github.com/NHSDigital/ndr_import/actions?query=workflow%3Atest) [![Gem Version](https://badge.fury.io/rb/ndr_import.svg)](https://rubygems.org/gems/ndr_import) [![Documentation](https://img.shields.io/badge/ndr_import-docs-blue.svg)](https://www.rubydoc.info/gems/ndr_import)
+This is the NHS Digital (NHSD) National Disease Registers (NDR) Import ETL ruby gem, providing:
 
-This is the Public Health England (PHE) National Disease Registers (NDR) Import ETL ruby gem, providing:
-
-1. file import handlers for *extracting* data from delimited files (csv, pipe, tab, thorn), .xls(x) spreadsheets, .doc(x) word documents, PDF, PDF AcroForms, XML, 7-Zip and Zip files.
+1. file import handlers for *extracting* data from delimited files (csv, pipe, tab, thorn), JSON Lines, .xls(x) spreadsheets, .doc(x) word documents, PDF, PDF AcroForms, XML, 7-Zip and Zip files.
 2. table mappers for *transforming* tabular and non-tabular data into key value pairs grouped by a common "klass".
 
 ## Installation
@@ -50,7 +49,7 @@ end
 
 See `test/readme_test.rb` for a more complete working example.
 
-More information on the workings of the mapper are available in the [wiki](https://github.com/PublicHealthEngland/ndr_import/wiki).
+More information on the workings of the mapper are available in the [wiki](https://github.com/NHSDigital/ndr_import/wiki).
 
 ## Development
 
@@ -60,7 +59,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-1. Fork it ( https://github.com/PublicHealthEngland/ndr_import/fork )
+1. Fork it ( https://github.com/NHSDigital/ndr_import/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
