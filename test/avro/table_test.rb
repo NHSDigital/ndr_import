@@ -40,7 +40,8 @@ module Avro
     end
 
     test 'should fail with too many columns of data' do
-      table = NdrImport::Avro::Table.new(klass: 'SomeTestKlass', columns: unexpected_columns_mapping)
+      table = NdrImport::Avro::Table.new(klass: 'SomeTestKlass',
+                                         columns: unexpected_columns_mapping)
 
       exception = assert_raises(RuntimeError) { table.transform(@element_lines).to_a }
       expected_error = 'fake_dids.avro [RuntimeError: Header is not valid! unexpected: ' \
@@ -49,7 +50,8 @@ module Avro
     end
 
     test 'should fail with missing columns of data' do
-      table = NdrImport::Avro::Table.new(klass: 'SomeTestKlass', columns: missing_columns_mapping)
+      table = NdrImport::Avro::Table.new(klass: 'SomeTestKlass',
+                                         columns: missing_columns_mapping)
 
       exception = assert_raises(RuntimeError) { table.transform(@element_lines).to_a }
       expected_error = 'fake_dids.avro [RuntimeError: Header is not valid! missing: ' \

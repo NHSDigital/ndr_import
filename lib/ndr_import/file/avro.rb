@@ -23,7 +23,7 @@ module NdrImport
         dr.each_with_index do |avro_row, i|
           # Ensure the first row is always the "header"
           yield(avro_row.keys) if i.zero?
-          yield(avro_row)
+          yield(avro_row.values.map(&:to_s))
         end
       rescue StandardError => e
         raise("#{SafeFile.basename(@filename)} [#{e.class}: #{e.message}]")
