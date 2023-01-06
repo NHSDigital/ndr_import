@@ -14,8 +14,8 @@ module NdrImport
         rows    = handler.send(:rows)
 
         assert rows.is_a? Enumerator
-        assert(rows.all? { |row| row.is_a? Hash })
-        assert_equal 10, rows.to_a.length
+        assert(rows.to_a[1..].all? { |row| row.is_a? Hash })
+        assert_equal 11, rows.to_a.length
       end
     end
   end

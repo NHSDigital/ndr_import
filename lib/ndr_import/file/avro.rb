@@ -20,7 +20,11 @@ module NdrImport
         # Equivalent to DataFileReader instance creation in Java
         dr     = ::Avro::DataFile::Reader.new(file, reader)
 
-        dr.to_a.each(&block)
+        dr.each_with_index do |avro_row, i|
+          # Ensure the first row is always the "header"
+          yield(avro_row.keys) if i.zero?
+          yield(avro_row)
+        end
       rescue StandardError => e
         raise("#{SafeFile.basename(@filename)} [#{e.class}: #{e.message}]")
       end

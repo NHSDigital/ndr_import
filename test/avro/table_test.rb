@@ -27,11 +27,11 @@ module Avro
         'diagnostictestrequestreceiveddate'          => '2022-03-28',
         'diagnostictestdate'                         => '2022-04-11',
         'imagingcode_nicip'                          => 'NSMARO',
-        'imagingcode_snomedct'                       => nil,
+        'imagingcode_snomedct'                       => '',
         'servicereportissuedate'                     => '2022-04-14',
         'sitecode_ofimaging'                         => 'RH802',
         'radiologicalaccessionnumber'                => 'Mom39Xav13aodGX6C9tL'
-      } }, 0]
+      } }, 1]
 
       transformed_data = table.transform(@element_lines)
       assert_equal 10, transformed_data.count
@@ -39,21 +39,21 @@ module Avro
       assert_equal expected_data, transformed_data.first
     end
 
-    test 'should fail with unexpected columns' do
+    test 'should fail with too many columns of data' do
       table = NdrImport::Avro::Table.new(klass: 'SomeTestKlass', columns: unexpected_columns_mapping)
 
       exception = assert_raises(RuntimeError) { table.transform(@element_lines).to_a }
-      expected_error = 'fake_dids.avro [RuntimeError: Unexpected columns: ethniccategory ' \
-                       'and persongendercodecurrent]'
+      expected_error = 'fake_dids.avro [RuntimeError: Header is not valid! unexpected: ' \
+                       '["ethniccategory", "persongendercodecurrent"]]'
       assert_equal expected_error, exception.message
     end
 
-    test 'should fail with missing columns' do
+    test 'should fail with missing columns of data' do
       table = NdrImport::Avro::Table.new(klass: 'SomeTestKlass', columns: missing_columns_mapping)
 
       exception = assert_raises(RuntimeError) { table.transform(@element_lines).to_a }
-      expected_error = 'fake_dids.avro [RuntimeError: Missing columns: missing_column_one ' \
-                       'and missing_column_two]'
+      expected_error = 'fake_dids.avro [RuntimeError: Header is not valid! missing: ' \
+                       '["missing_column_one", "missing_column_two"]]'
       assert_equal expected_error, exception.message
     end
 
