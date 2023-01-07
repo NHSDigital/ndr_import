@@ -1,5 +1,6 @@
 ## [Unreleased]
-* No unreleased changes
+### Added
+* avro file support
 
 ## 10.1.3 / 2022-12-08
 ### Added
