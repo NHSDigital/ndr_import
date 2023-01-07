@@ -15,7 +15,7 @@ module NdrImport
 
         # Create an instance of DatumReader
         reader = ::Avro::IO::DatumReader.new
-        # Open items.avro file in read mode
+        # Open @filename in read mode
         file   = ::File.open(@filename, 'rb')
         # Equivalent to DataFileReader instance creation in Java
         dr     = ::Avro::DataFile::Reader.new(file, reader)
