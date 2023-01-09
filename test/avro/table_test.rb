@@ -59,6 +59,41 @@ module Avro
       assert_equal expected_error, exception.message
     end
 
+    test 'should scaffold table mappings from avro schema file' do
+      schema_safe_path         = SafePath.new('permanent_test_files').join('fake_dids.avsc')
+      scaffolded_table_mapping = NdrImport::Avro::Table.from_schema(schema_safe_path)
+
+      assert scaffolded_table_mapping.is_a? NdrImport::Avro::Table
+
+      expected_column_mappings = [
+        { column: 'NHSNUMBER' },
+        { column: 'NHSNUMBERSTATUSINDICATORCODE' },
+        { column: 'PERSONBIRTHDATE' },
+        { column: 'ETHNICCATEGORY' },
+        { column: 'PERSONGENDERCODECURRENT' },
+        { column: 'POSTCODEOFUSUALADDRESS' },
+        { column: 'PATIENTSOURCESETTINGTYPE_DIAGNOSTICIMAGING' },
+        { column: 'REFERRERCODE' },
+        { column: 'REFERRINGORGANISATIONCODE' },
+        { column: 'DIAGNOSTICTESTREQUESTDATE' },
+        { column: 'DIAGNOSTICTESTREQUESTRECEIVEDDATE' },
+        { column: 'DIAGNOSTICTESTDATE' },
+        { column: 'IMAGINGCODE_NICIP' },
+        { column: 'IMAGINGCODE_SNOMEDCT' },
+        { column: 'SERVICEREPORTISSUEDATE' },
+        { column: 'SITECODE_OFIMAGING' },
+        { column: 'RADIOLOGICALACCESSIONNUMBER' }
+      ]
+
+      assert_equal expected_column_mappings, scaffolded_table_mapping.columns
+      assert_equal '/fake_dids.avro\z/', scaffolded_table_mapping.filename_pattern
+      assert_equal 'ExampleKlass', scaffolded_table_mapping.klass
+    end
+
+    test 'should raise security error when schema path is not a safe path' do
+      assert_raises(SecurityError) { NdrImport::Avro::Table.from_schema('not a safe path') }
+    end
+
     private
 
     def avro_column_mapping
