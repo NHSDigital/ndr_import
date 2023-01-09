@@ -18,7 +18,11 @@ ActiveSupport.test_order = :random if ActiveSupport.respond_to?(:test_order=)
 
 # The default changes to UTC in Rails 4.
 # TODO: ndr_support should cope...
-ActiveRecord::Base.default_timezone = :local
+begin
+  ActiveRecord.default_timezone = :local
+rescue NoMethodError
+  ActiveRecord::Base.default_timezone = :local
+end
 
 SafePath.configure! File.dirname(__FILE__) + '/resources/filesystem_paths.yml'
 NdrImport::StandardMappings.mappings = YAML.load_file(
