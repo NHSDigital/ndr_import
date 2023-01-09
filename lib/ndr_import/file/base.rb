@@ -9,8 +9,14 @@ module NdrImport
   module File
     # All common base file handler logic is defined here.
     class Base
-      def initialize(filename, format, options = {})
-        @filename = filename
+      def initialize(filename_or_stream, format, options = {})
+        # Set different variable depending on the type of source
+        if stream?(filename_or_stream)
+          @stream = filename_or_stream
+        else
+          @filename = filename_or_stream
+        end
+
         @format = format
         @options = options.stringify_keys
 
@@ -66,11 +72,23 @@ module NdrImport
       end
 
       def validate_filename_is_safe_and_readable!
+        return true if @filename.nil?
+
         SafeFile.safepath_to_string(@filename)
 
         # Ensure that we're allowed to read from the safe path:
         # (they can be configured to be write-only, for example)
         SafeFile.verify_mode(@filename, 'r')
+      end
+
+      def stream?(path)
+        path.kind_of?(IO) || path.is_a?(StringIO)
+      end
+
+      def safepath_or_stream(path)
+        return path if stream?(path)
+
+        SafeFile.safepath_to_string(path)
       end
     end
   end
