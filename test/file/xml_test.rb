@@ -31,6 +31,10 @@ module NdrImport
         assert(rows.all? { |row| row.is_a? Nokogiri::XML::Element })
         assert_equal 2, rows.to_a.length
       end
+
+      test 'should declare that it does not handle IO streams' do
+        refute NdrImport::File::Xml.can_stream_data?
+      end
     end
   end
 end

@@ -1,6 +1,7 @@
 ## [Unreleased]
 ### Added
-* avro file support
+* Avro file support
+* Ability to process CSV files as an IO stream
 
 ## 10.1.3 / 2022-12-08
 ### Added

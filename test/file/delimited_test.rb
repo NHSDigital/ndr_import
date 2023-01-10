@@ -228,6 +228,23 @@ module NdrImport
           end
         end
       end
+
+      test 'should declare that it does not handle IO streams' do
+        assert NdrImport::File::Delimited.can_stream_data?
+      end
+
+      test 'should read streamed csv correctly' do
+        file_path = @permanent_test_files.join('normal.csv')
+        file_object = ::File.open(file_path, 'r')
+        handler = NdrImport::File::Delimited.new(file_object, 'csv', 'col_sep' => nil)
+        handler.tables.each do |tablename, sheet|
+          assert_nil tablename
+          sheet = sheet.to_a
+          assert_equal(('A'..'Z').to_a, sheet[0])
+          assert_equal ['1'] * 26, sheet[1]
+          assert_equal ['2'] * 26, sheet[2]
+        end
+      end
     end
   end
 end
