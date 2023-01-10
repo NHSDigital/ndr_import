@@ -129,6 +129,10 @@ module NdrImport
 
         SafeFile.delete @permanent_test_files.join('txt_file_xls_extension_amend.xlsx')
       end
+
+      test 'should declare that it does not handle IO streams' do
+        refute NdrImport::File::Excel.can_stream_data?
+      end
     end
   end
 end

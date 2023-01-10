@@ -9,18 +9,29 @@ module NdrImport
   module File
     # All common base file handler logic is defined here.
     class Base
+      # Until subclasses explicitly override this method, it is assumed that they cannot deal
+      # with IO streams instead of filenames. Once all of them can, this could be removed,
+      # but with Zip files needing an unzip_path, this is currently unlikely.
+      def self.can_stream_data?
+        false
+      end
+
       def initialize(filename_or_stream, format, options = {})
         # Set different variable depending on the type of source
-        if stream?(filename_or_stream)
-          @stream = filename_or_stream
-        else
-          @filename = filename_or_stream
-        end
-
         @format = format
         @options = options.stringify_keys
 
-        validate_filename_is_safe_and_readable!
+        if stream?(filename_or_stream)
+          unless self.class.can_stream_data?
+            raise ArgumentError,
+                  "#{filename_or_stream.class.name} is not supported"
+          end
+
+          @stream = filename_or_stream
+        else
+          @filename = filename_or_stream
+          validate_filename_is_safe_and_readable!
+        end
       end
 
       # This method iterates over the files in the given file and yields the filenames.
@@ -68,12 +79,10 @@ module NdrImport
       # end
       #
       def rows
-        fail "Implement #{self.class}#rows"
+        raise "Implement #{self.class}#rows"
       end
 
       def validate_filename_is_safe_and_readable!
-        return true if @filename.nil?
-
         SafeFile.safepath_to_string(@filename)
 
         # Ensure that we're allowed to read from the safe path:
@@ -81,14 +90,18 @@ module NdrImport
         SafeFile.verify_mode(@filename, 'r')
       end
 
-      def stream?(path)
-        path.kind_of?(IO) || path.is_a?(StringIO)
+      # This method determines if the given object is a stream. Used to distingush between
+      # the existing behavour of exclusively using String filenames.
+      def stream?(object)
+        object.is_a?(IO) || object.is_a?(StringIO)
       end
 
-      def safepath_or_stream(path)
-        return path if stream?(path)
+      # This is a helper method that returns the object if it is an IO stream,
+      # otherwise it will return a SafePath of the file path.
+      def safepath_or_stream(object)
+        return object if stream?(object)
 
-        SafeFile.safepath_to_string(path)
+        SafeFile.safepath_to_string(object)
       end
     end
   end

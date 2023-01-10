@@ -98,6 +98,10 @@ module NdrImport
           end
         end
       end
+
+      test 'should declare that it does not handle IO streams' do
+        refute NdrImport::File::JsonLines.can_stream_data?
+      end
     end
   end
 end

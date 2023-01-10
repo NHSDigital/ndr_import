@@ -12,6 +12,10 @@ module NdrImport
         'csv' => nil
       }
 
+      def self.can_stream_data?
+        true
+      end
+
       def initialize(filename_or_stream, format, options = {})
         super(filename_or_stream, format, options)
 
@@ -43,8 +47,6 @@ module NdrImport
           yield line.map(&:to_s)
         end
       end
-
-      private
 
       # Cache working encodings, so that resetting the enumerator
       # doesn't mean the need to recalculate this.

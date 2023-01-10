@@ -15,25 +15,23 @@ module NdrImport
       end
 
       test 'should fail on not implementing rows' do
-        begin
-          Registry.register(SingleTableLazyDeveloper, 'lazy_dev')
+        Registry.register(SingleTableLazyDeveloper, 'lazy_dev')
 
-          exception = assert_raises(RuntimeError) do
-            file_path = @permanent_test_files.join('normal.csv')
-            handler = SingleTableLazyDeveloper.new(file_path, 'lazy_dev')
+        exception = assert_raises(RuntimeError) do
+          file_path = @permanent_test_files.join('normal.csv')
+          handler = SingleTableLazyDeveloper.new(file_path, 'lazy_dev')
 
-            handler.tables.each do |tablename, sheet|
-              assert_nil tablename
-              assert_instance_of Enumerator, sheet
-              sheet.to_a
-            end
+          handler.tables.each do |tablename, sheet|
+            assert_nil tablename
+            assert_instance_of Enumerator, sheet
+            sheet.to_a
           end
-
-          msg = 'Implement NdrImport::File::BaseTest::SingleTableLazyDeveloper#rows'
-          assert_equal msg, exception.message
-        ensure
-          Registry.unregister('lazy_dev')
         end
+
+        msg = 'Implement NdrImport::File::BaseTest::SingleTableLazyDeveloper#rows'
+        assert_equal msg, exception.message
+      ensure
+        Registry.unregister('lazy_dev')
       end
 
       test 'should not fail when set up with an readable safepath' do
@@ -48,6 +46,15 @@ module NdrImport
       test 'should fail when set up with a non-safepath' do
         exception = assert_raises(ArgumentError) { Base.new(NdrImport.root, nil) }
         assert exception.message =~ /file_name should be of type SafePath, but it is String/
+      end
+
+      test 'should fail when set up with an unsupported stream' do
+        ::File.open(@permanent_test_files.join('normal.csv'), 'r') do |file|
+          refute Base.can_stream_data?
+          assert_raise ::ArgumentError do
+            Base.new(file, nil)
+          end
+        end
       end
     end
   end

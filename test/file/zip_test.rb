@@ -42,6 +42,10 @@ module NdrImport
         end
         assert_equal 'Zip#tables should never be called', exception.message
       end
+
+      test 'should declare that it does not handle IO streams' do
+        refute NdrImport::File::Zip.can_stream_data?
+      end
     end
   end
 end
