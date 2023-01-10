@@ -1,5 +1,6 @@
 require_relative 'base'
 require_relative 'acro_form'
+require_relative 'avro'
 require_relative 'delimited'
 require_relative 'docx'
 require_relative 'excel'

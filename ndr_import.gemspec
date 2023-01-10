@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rubyzip', '~> 2.0'
   spec.add_dependency 'roo', '~> 2.0'
 
+  spec.add_dependency 'avro', '~> 1.11.0'
   spec.add_dependency 'docx', '~> 0.3'
   spec.add_dependency 'msworddoc-extractor', '0.2.0'
   spec.add_dependency 'nokogiri', '~> 1.8', '>= 1.8.5'
