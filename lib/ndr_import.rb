@@ -9,6 +9,7 @@ require 'ndr_import/non_tabular/table'
 require 'ndr_import/fixed_width/table'
 require 'ndr_import/xml/table'
 require 'ndr_import/pdf_form/table'
+require 'ndr_import/avro/table'
 require 'ndr_import/unmapped_data_error'
 require 'ndr_import/acroform_reader'
 
