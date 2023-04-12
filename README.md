@@ -1,7 +1,7 @@
 # NdrImport [![Build Status](https://github.com/NHSDigital/ndr_import/workflows/Test/badge.svg)](https://github.com/NHSDigital/ndr_import/actions?query=workflow%3Atest) [![Gem Version](https://badge.fury.io/rb/ndr_import.svg)](https://rubygems.org/gems/ndr_import) [![Documentation](https://img.shields.io/badge/ndr_import-docs-blue.svg)](https://www.rubydoc.info/gems/ndr_import)
 This is the NHS Digital (NHSD) National Disease Registers (NDR) Import ETL ruby gem, providing:
 
-1. file import handlers for *extracting* data from delimited files (csv, pipe, tab, thorn), JSON Lines, .xls(x) spreadsheets, .doc(x) word documents, PDF, PDF AcroForms, XML, 7-Zip and Zip files.
+1. file import handlers for *extracting* data from delimited files (csv, pipe, tab, thorn), JSON Lines, .xls(x) spreadsheets, .doc(x) word documents, PDF, PDF AcroForms, XML, 7-Zip, Zip and avro files.
 2. table mappers for *transforming* tabular and non-tabular data into key value pairs grouped by a common "klass".
 
 ## Installation
