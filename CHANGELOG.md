@@ -1,6 +1,9 @@
 ## [Unreleased]
-### Added
+*no unreleased changes*
+
+## 10.2.0 / 2023-05-16
 * avro file support
+* allow storage of `significant_mapped_fields` in `Table`
 
 ## 10.1.3 / 2022-12-08
 ### Added
