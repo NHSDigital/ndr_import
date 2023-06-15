@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'activemodel'
-  spec.add_dependency 'activesupport', '>= 6.0', '< 7.1'
+  spec.add_dependency 'activesupport', '>= 6.1', '< 7.1'
   spec.add_dependency 'ndr_support', '>= 5.3.2', '< 6'
 
   spec.add_dependency 'rubyzip', '~> 2.0'
@@ -38,7 +38,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'seven_zip_ruby', '~> 1.3'
   spec.add_dependency 'spreadsheet', '1.2.6'
 
-  spec.required_ruby_version = '>= 2.7'
+  spec.required_ruby_version = '>= 3.0'
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake', '>= 12.3.3'
