@@ -15,11 +15,10 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
-          - '2.7'
           - '3.0'
           - '3.1'
+          - '3.2'
         gemfile:
-          - gemfiles/Gemfile.rails60
           - gemfiles/Gemfile.rails61
           - gemfiles/Gemfile.rails70
         exclude:
