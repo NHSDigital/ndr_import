@@ -1,5 +1,5 @@
 ## [Unreleased]
-*no unreleased changes*
+* VCF file support
 
 ## 10.2.0 / 2023-05-16
 * avro file support
