@@ -1,6 +1,7 @@
 require 'test_helper'
 
 # This tests the NdrImport::Vcf::Table mapping class
+# Testing signed commits
 module Vcf
   class TableTest < ActiveSupport::TestCase
     def setup
