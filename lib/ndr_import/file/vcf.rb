@@ -5,6 +5,7 @@ require_relative 'registry'
 module NdrImport
   # This is one of a collection of file handlers that deal with individual formats of data.
   # They can be instantiated directly or via the factory method Registry.tables
+  # Testing signed commits
   module File
     # This class is a vcf file handler that returns a single table.
     class Vcf < Base
