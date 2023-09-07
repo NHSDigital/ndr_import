@@ -10,8 +10,8 @@ file safety:
     safe_revision: b64ff21375dcde2b8fefe622ee9861f0fea21487
   ".github/workflows/test.yml":
     comments:
-    reviewed_by: brian.shand
-    safe_revision: 5227e095de9bedddda9619720007b497355c138b
+    reviewed_by: ollietulloch
+    safe_revision: 94eda331be377f09d48b467d273aecd2ff543a4e
   ".gitignore":
     comments: whole file re-reviewed
     reviewed_by: brian.shand
@@ -26,8 +26,8 @@ file safety:
     safe_revision: 6ec135a5dfde54992c6efb4f26c6da8041f3aefd
   CHANGELOG.md:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: 5a429d8971394b17fceb02222fa03185c7ca7987
+    reviewed_by: ollietulloch
+    safe_revision: bade9c67da7a6809a49d786f8326b197d9b455a1
   CODE_OF_CONDUCT.md:
     comments:
     reviewed_by: timgentry
@@ -46,8 +46,8 @@ file safety:
     safe_revision: 6ec135a5dfde54992c6efb4f26c6da8041f3aefd
   README.md:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: bb2dde41a90456e0923522d1797582da32778ddc
+    reviewed_by: ollietulloch
+    safe_revision: cf5e762a442088e87e295f80cc8478c285501c3a
   Rakefile:
     comments:
     reviewed_by: josh.pencheon
@@ -62,12 +62,12 @@ file safety:
     safe_revision: e1d967c10059e8c635452838c3f3dd2b969d9ae4
   docs/Gemfile:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: 9b530d919745924ff7b967339d6fff72567fe4bd
+    reviewed_by: ollietulloch
+    safe_revision: b55df15017761651c7a313fa2cc94497e875bad9
   docs/Gemfile.lock:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: 0b6ceaee8d1f6af2b75d4b01e38a84bc48910512
+    reviewed_by: ollietulloch
+    safe_revision: 468b4d80ee6d2430b4734ce064f861d319555b22
   docs/_config.yml:
     comments:
     reviewed_by: brian.shand
@@ -136,10 +136,6 @@ file safety:
     comments:
     reviewed_by: josh.pencheon
     safe_revision: e1d967c10059e8c635452838c3f3dd2b969d9ae4
-  gemfiles/Gemfile.rails60:
-    comments:
-    reviewed_by: brian.shand
-    safe_revision: f30a3db592512ba1f1b8de999a573b97dac5abea
   gemfiles/Gemfile.rails61:
     comments:
     reviewed_by: brian.shand
@@ -150,8 +146,8 @@ file safety:
     safe_revision: f30a3db592512ba1f1b8de999a573b97dac5abea
   lib/ndr_import.rb:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: 419c2cbc3f62ee69087941a837a09b7ebb31b420
+    reviewed_by: ollietulloch
+    safe_revision: cf5e762a442088e87e295f80cc8478c285501c3a
   lib/ndr_import/acroform_reader.rb:
     comments:
     reviewed_by: josh.pencheon
@@ -170,8 +166,8 @@ file safety:
     safe_revision: 8a6ea666616c5b5d7c93cdf5aa019e8fc69d19e1
   lib/ndr_import/file/all.rb:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: 419c2cbc3f62ee69087941a837a09b7ebb31b420
+    reviewed_by: ollietulloch
+    safe_revision: cf5e762a442088e87e295f80cc8478c285501c3a
   lib/ndr_import/file/avro.rb:
     comments:
     reviewed_by: brian.shand
@@ -220,6 +216,10 @@ file safety:
     comments:
     reviewed_by: josh.pencheon
     safe_revision: 2104514689a1a1286195fff18144a8cecb93048b
+  lib/ndr_import/file/vcf.rb:
+    comments:
+    reviewed_by: ollietulloch
+    safe_revision: cf5e762a442088e87e295f80cc8478c285501c3a
   lib/ndr_import/file/word.rb:
     comments:
     reviewed_by: timgentry
@@ -321,10 +321,14 @@ file safety:
     comments:
     reviewed_by: josh.pencheon
     safe_revision: 5cd2cd0b3a1e254d30d4acc28c6731825a1f84f5
+  lib/ndr_import/vcf/table.rb:
+    comments:
+    reviewed_by: ollietulloch
+    safe_revision: cf5e762a442088e87e295f80cc8478c285501c3a
   lib/ndr_import/version.rb:
     comments: another check?
-    reviewed_by: brian.shand
-    safe_revision: 5a429d8971394b17fceb02222fa03185c7ca7987
+    reviewed_by: ollietulloch
+    safe_revision: bade9c67da7a6809a49d786f8326b197d9b455a1
   lib/ndr_import/xml/control_char_escaper.rb:
     comments:
     reviewed_by: josh.pencheon
@@ -335,8 +339,8 @@ file safety:
     safe_revision: 4ab72f84201c2d5f0147b7dfd041f488f6ff0422
   ndr_import.gemspec:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: 419c2cbc3f62ee69087941a837a09b7ebb31b420
+    reviewed_by: ollietulloch
+    safe_revision: cf5e762a442088e87e295f80cc8478c285501c3a
   test/avro/table_test.rb:
     comments:
     reviewed_by: brian.shand
@@ -379,8 +383,8 @@ file safety:
     safe_revision: 4f0fe2588f86af6b8cae0ff63215f90fd19d8956
   test/file/registry_test.rb:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: 419c2cbc3f62ee69087941a837a09b7ebb31b420
+    reviewed_by: ollietulloch
+    safe_revision: cf5e762a442088e87e295f80cc8478c285501c3a
   test/file/seven_zip_test.rb:
     comments:
     reviewed_by: josh.pencheon
@@ -389,10 +393,14 @@ file safety:
     comments:
     reviewed_by: timgentry
     safe_revision: 3107f711805b6d3b89d32ec923178425aa600dac
-  test/file/word_test.rb:
+  test/file/vcf_test.rb:
     comments:
-    reviewed_by: josh.pencheon
-    safe_revision: 1b66cfcbb61dfac93c44889ca0ced5836101c20c
+    reviewed_by: ollietulloch
+    safe_revision: cf5e762a442088e87e295f80cc8478c285501c3a
+  test/file/word_test.rb:
+    comments: ollie
+    reviewed_by: ollietulloch
+    safe_revision: 94eda331be377f09d48b467d273aecd2ff543a4e
   test/file/xml_test.rb:
     comments:
     reviewed_by: josh.pencheon
@@ -419,8 +427,8 @@ file safety:
     safe_revision: 4f0fe2588f86af6b8cae0ff63215f90fd19d8956
   test/helpers/file/word_test.rb:
     comments:
-    reviewed_by: timgentry
-    safe_revision: 9abdd6ced1d0c90ce8dd88abee4eb6472c7ff0d6
+    reviewed_by: ollietulloch
+    safe_revision: 94eda331be377f09d48b467d273aecd2ff543a4e
   test/helpers/file/xml_streaming_test.rb:
     comments:
     reviewed_by: brian.shand
@@ -625,6 +633,10 @@ file safety:
     comments:
     reviewed_by: josh.pencheon
     safe_revision: 4ab72f84201c2d5f0147b7dfd041f488f6ff0422
+  test/resources/sample_vcf.vcf:
+    comments:
+    reviewed_by: ollietulloch
+    safe_revision: cf5e762a442088e87e295f80cc8478c285501c3a
   test/resources/sample_xls.xls:
     comments:
     reviewed_by: timgentry
@@ -715,12 +727,16 @@ file safety:
     safe_revision: 5227e095de9bedddda9619720007b497355c138b
   test/test_helper.rb:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: 562278d6212310e30ab0f0d659e4370c9e586baa
+    reviewed_by: ollietulloch
+    safe_revision: 94eda331be377f09d48b467d273aecd2ff543a4e
   test/universal_importer_helper_test.rb:
     comments:
     reviewed_by: brian.shand
     safe_revision: 5227e095de9bedddda9619720007b497355c138b
+  test/vcf/table_test.rb:
+    comments:
+    reviewed_by: ollietulloch
+    safe_revision: cf5e762a442088e87e295f80cc8478c285501c3a
   test/xml/control_char_escaper_test.rb:
     comments:
     reviewed_by: josh.pencheon
