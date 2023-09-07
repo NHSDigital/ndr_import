@@ -1,8 +1,10 @@
 ## [Unreleased]
 =======
-* VCF file support
+*no unreleased changes*
 
+## 10.3.0 / 2023-09-07
 ### Added
+* VCF file support
 * Support Ruby 3.2. Drop support for Ruby 2.7, Rails 6.0
 
 ## 10.2.0 / 2023-05-16
