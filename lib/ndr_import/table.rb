@@ -11,8 +11,8 @@ module NdrImport
 
     def self.all_valid_options
       %w[canonical_name delimiter liberal_parsing filename_pattern file_password last_data_column
-         tablename_pattern header_lines footer_lines format klass columns xml_record_xpath slurp
-         row_identifier significant_mapped_fields]
+         tablename_pattern header_lines footer_lines format klass columns xml_record_xpath xml_root
+         slurp row_identifier significant_mapped_fields]
     end
 
     def all_valid_options

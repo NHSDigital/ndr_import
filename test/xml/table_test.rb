@@ -5,7 +5,8 @@ module Xml
   class TableTest < ActiveSupport::TestCase
     def setup
       file_path = SafePath.new('permanent_test_files').join('sample.xml')
-      handler   = NdrImport::File::Xml.new(file_path, nil, 'xml_record_xpath' => 'root/record')
+      handler   = NdrImport::File::Xml.new(file_path, nil, 'xml_record_xpath' => 'record',
+                                                           'xml_root' => 'root')
 
       @element_lines = handler.send(:rows)
     end

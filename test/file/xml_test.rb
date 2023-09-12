@@ -7,7 +7,7 @@ module NdrImport
     class XmlTest < ActiveSupport::TestCase
       def setup
         @file_path = SafePath.new('permanent_test_files').join('sample.xml')
-        @options   = { 'xml_record_xpath' => 'root/record' }
+        @options   = { 'xml_root' => 'root', 'xml_record_xpath' => 'record' }
       end
 
       test 'should return enum of xml stream by default' do

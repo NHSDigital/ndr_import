@@ -18,12 +18,14 @@ module NdrImport
       def rows(&block)
         return enum_for(:rows) unless block
 
-        xpath = @options['xml_record_xpath']
-
         if @options['slurp']
           doc = read_xml_file(@filename)
-          doc.xpath(xpath).each(&block)
+          record_nodes = doc.xpath(@options['xml_root']).children.find_all do |node|
+            node.name =~ Regexp.new(@options['xml_record_xpath'])
+          end
+          record_nodes.each(&block)
         else
+          xpath = "#{@options['xml_root']}/#{@options['xml_record_xpath']}"
           each_node(@filename, xpath, &block)
         end
       rescue StandardError => e
