@@ -59,8 +59,11 @@ module NdrImport
 
         line.xpath('.//*[not(child::*)]').each do |node|
           xpath = node.path.sub(line.path + '/', '')
-          xpaths << xpath
-          node.attributes.each_key { |key| xpaths << "#{xpath}/@#{key}" }
+          if node.attributes.any?
+            node.attributes.each_key { |key| xpaths << "#{xpath}/@#{key}" }
+          else
+            xpaths << xpath
+          end
         end
         xpaths
       end
