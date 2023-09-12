@@ -7,11 +7,11 @@ module NdrImport
     class XmlTest < ActiveSupport::TestCase
       def setup
         @file_path = SafePath.new('permanent_test_files').join('sample.xml')
-        @options   = { 'xml_root' => 'root', 'xml_record_xpath' => 'record' }
       end
 
       test 'should return enum of xml stream by default' do
-        handler = NdrImport::File::Xml.new(@file_path, nil, @options)
+        options = { 'xml_root' => 'root', 'xml_record_xpath' => 'record' }
+        handler = NdrImport::File::Xml.new(@file_path, nil, options)
         handler.expects(:read_xml_file).never
 
         rows = handler.send(:rows)
@@ -22,7 +22,8 @@ module NdrImport
       end
 
       test 'should slurp xml only if asked' do
-        handler = NdrImport::File::Xml.new(@file_path, nil, @options.merge('slurp' => true))
+        options = { 'xml_root' => 'root', 'xml_record_xpath' => '\Arecord', 'slurp' => true }
+        handler = NdrImport::File::Xml.new(@file_path, nil, options)
         handler.expects(:each_node).never
 
         rows = handler.send(:rows)
