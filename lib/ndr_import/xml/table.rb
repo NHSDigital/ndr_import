@@ -31,13 +31,11 @@ module NdrImport
 
         xml_line = column_xpaths.map { |column_xpath| line.xpath(column_xpath).inner_text }
 
-        xml_line_fields = []
         masked_mappings.each do |klass, klass_mappings|
           fields = mapped_line(xml_line, klass_mappings)
           next if fields[:skip].to_s == 'true'.freeze
-          xml_line_fields << [klass, fields, index]
+          yield(klass, fields, index)
         end
-        yield xml_line_fields
       end
 
       private
