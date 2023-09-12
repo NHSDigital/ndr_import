@@ -20,10 +20,10 @@ module NdrImport
 
         if @options['slurp']
           doc = read_xml_file(@filename)
-          record_nodes = doc.xpath(@options['xml_root']).children.find_all do |node|
-            node.name =~ Regexp.new(@options['xml_record_xpath'])
+          record_elements = doc.root.children.find_all do |element|
+            element.name =~ Regexp.new(@options['xml_record_xpath'])
           end
-          record_nodes.each(&block)
+          record_elements.each(&block)
         else
           xpath = "#{@options['xml_root']}/#{@options['xml_record_xpath']}"
           each_node(@filename, xpath, &block)
