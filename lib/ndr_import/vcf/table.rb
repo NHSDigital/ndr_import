@@ -7,7 +7,7 @@ module NdrImport
     class Table < ::NdrImport::Table
       def self.all_valid_options
         super - %w[delimiter header_lines footer_lines pattern_match_record_xpath 
-                   xml_record_xpath xml_root yield_xml_record]
+                   xml_record_xpath yield_xml_record]
       end
 
       def header_lines
