@@ -58,9 +58,9 @@ module NdrImport
           'file_password'    => table_mapping.try(:file_password),
           'liberal_parsing'  => table_mapping.try(:liberal_parsing),
           'xml_record_xpath' => table_mapping.try(:xml_record_xpath),
-          'xml_root'         => table_mapping.try(:xml_root),
           'slurp'            => table_mapping.try(:slurp),
-          'yield_xml_record' => table_mapping.try(:yield_xml_record)
+          'yield_xml_record' => table_mapping.try(:yield_xml_record),
+          'pattern_match_record_xpath' => table_mapping.try(:pattern_match_record_xpath)
         }
 
         tables = NdrImport::File::Registry.tables(filename, table_mapping.try(:format), options)
