@@ -7,9 +7,13 @@ module NdrImport
     # attention has been made to use enumerables throughout to help with the
     # transformation of large quantities of data.
     class Table < ::NdrImport::Table
+      XML_OPTIONS = %w[pattern_match_record_xpath xml_record_xpath yield_xml_record].freeze
+
       def self.all_valid_options
-        super - %w[delimiter header_lines footer_lines]
+        super - %w[delimiter header_lines footer_lines] + XML_OPTIONS
       end
+
+      attr_reader(*XML_OPTIONS)
 
       def header_lines
         0

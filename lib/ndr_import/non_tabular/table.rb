@@ -17,8 +17,7 @@ module NdrImport
       include UTF8Encoding
 
       TABULAR_ONLY_OPTIONS = %w[delimiter last_data_column liberal_parsing tablename_pattern
-                                header_lines footer_lines pattern_match_record_xpath 
-                                slurp xml_record_xpath yield_xml_record].freeze
+                                header_lines footer_lines slurp].freeze
 
       NON_TABULAR_OPTIONS = %w[capture_end_line capture_start_line start_line_pattern
                                end_line_pattern remove_lines start_in_a_record
