@@ -77,7 +77,7 @@ module NdrImport
           raise "could not identify klass for #{unmapped_node}" unless klass_increment_match
 
           new_column = new_column_mapping_for(exsiting_column, unmapped_node_parts,
-                                              klass_increment_match[1])
+                                              klass_increment_match[1], line)
           columns << new_column
           @column_xpaths << build_xpath_from(new_column)
         end
@@ -104,14 +104,30 @@ module NdrImport
                                                        unmapped_column_attribute) }
       end
 
-      def new_column_mapping_for(exsiting_column, unmapped_node_parts, klass_increment)
-        new_column = exsiting_column.deep_dup
-        if exsiting_column.dig('xml_cell', 'multiple')
-          new_column['rawtext_name'] = exsiting_column['rawtext_name'] + "_#{klass_increment}"
-        end
-        new_column['column'] = unmapped_node_parts[:column_name]
+      def new_column_mapping_for(exsiting_column, unmapped_node_parts, klass_increment, line)
+        new_column                              = exsiting_column.deep_dup
+        new_column['column']                    = unmapped_node_parts[:column_name]
         new_column['xml_cell']['relative_path'] = unmapped_node_parts[:column_relative_path]
-        new_column['klass'] = exsiting_column['klass'] + "##{klass_increment}" unless @klass
+
+        repeating_item   = exsiting_column.dig('xml_cell', 'multiple')
+        section_xpath    = exsiting_column.dig('xml_cell', 'section')
+        build_new_record = exsiting_column.dig('xml_cell', 'build_new_record')
+
+
+        # create unique rawtext names for repeating sections within a record
+        if repeating_item
+          rawtext_increment = unmapped_node_parts[:column_relative_path].match /\[(\d+)\]\z/
+          if rawtext_increment
+            new_column['rawtext_name'] = exsiting_column['rawtext_name'] + "_#{rawtext_increment[1]}"
+          end
+        end
+
+        no_new_record = @klass.present? || build_new_record == false ||
+                        repeating_item && line.xpath(section_xpath).one?
+        # If a table level @klass is defined, there is nothing to increment at the column level.
+        # Similarly, not all repeating sections/items require a separate record.
+        # No need to create new records for a single occurence of a repeating section
+        new_column['klass'] = exsiting_column['klass'] + "##{klass_increment}" unless no_new_record
 
         new_column
       end
