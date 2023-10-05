@@ -185,7 +185,7 @@ module NdrImport
       end
 
       # Not memoizing this by design, @columns can change if new column mappings are
-      # added on thw fly
+      # added on the fly
       def masked_mappings
         if @klass
           { @klass => @columns }
