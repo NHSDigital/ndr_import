@@ -47,6 +47,17 @@ module Xml
       NdrImport::Xml::Table.new(klass: 'SomeTestKlass', slurp: true, columns: xml_column_mapping)
     end
 
+    def test_should_augment_columns_for_repeating_sections
+      file_path     = SafePath.new('permanent_test_files').join('repeating_section_sample.xml')
+      handler       = NdrImport::File::Xml.new(file_path, nil, 'xml_record_xpath' => 'record')
+      element_lines = handler.send(:rows)
+      table         = NdrImport::Xml::Table.new(klass: 'SomeTestKlass', columns: xml_column_mapping)
+
+      # Trigger the augmentation logic
+      table.transform(element_lines).first
+      assert_equal augmenting_xml_column_mapping, table.columns
+    end
+
     private
 
     def xml_column_mapping
@@ -73,6 +84,40 @@ module Xml
           'xml_cell' => { 'relative_path' => 'pathology' } },
         { 'column' => 'should_be_blank',
           'xml_cell' => { 'relative_path' => 'not_present' } }
+      ]
+    end
+
+    def augmenting_xml_column_mapping
+      [
+        { 'column' => 'no_relative_path',
+          'xml_cell' => { 'relative_path' => '', 'attribute' => 'value' } },
+        { 'column' => 'no_relative_path', 'rawtext_name' => 'no_relative_path_inner_text',
+          'xml_cell' => { 'relative_path' => '' } },
+        { 'column' => 'no_path_or_att',
+          'xml_cell' => { 'relative_path' => '', 'attribute' => '' } },
+        { 'column' => 'demographics_1', 'xml_cell' => { 'relative_path' => 'demographics' } },
+        { 'column' => 'demographics_2',
+          'xml_cell' => { 'relative_path' => 'demographics', 'attribute' => 'code' } },
+        { 'column' => 'demographics_2', 'rawtext_name' => 'demographics_2_inner_text',
+          'xml_cell' => { 'relative_path' => 'demographics' } },
+        { 'column' => 'address_line1[1]', 'rawtext_name' => 'address1',
+          'xml_cell' => { 'relative_path' => 'demographics/address' } },
+        { 'column' => 'address_line1[2]', 'rawtext_name' => 'address2',
+          'xml_cell' => { 'relative_path' => 'demographics/address' } },
+        { 'column' => 'pathology_date_1',
+          'xml_cell' => { 'relative_path' => 'pathology' } },
+        { 'column' => 'pathology_date_2',
+          'xml_cell' => { 'relative_path' => 'pathology' } },
+        { 'column' => 'should_be_blank',
+          'xml_cell' => { 'relative_path' => 'not_present' } },
+        { 'column' => 'pathology_date_1',
+          'xml_cell' => { 'relative_path' => 'pathology[1]' } },
+        { 'column' => 'pathology_date_2',
+          'xml_cell' => { 'relative_path' => 'pathology[1]' } },
+        { 'column' => 'pathology_date_1',
+          'xml_cell' => { 'relative_path' => 'pathology[2]' } },
+        { 'column' => 'pathology_date_2',
+          'xml_cell' => { 'relative_path' => 'pathology[2]' } }
       ]
     end
 

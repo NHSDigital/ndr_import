@@ -28,18 +28,18 @@ module NdrImport
       # and fields for each mapped klass.
       def transform_line(line, index)
         return enum_for(:transform_line, line, index) unless block_given?
-
         raise 'Not an Nokogiri::XML::Element!' unless line.is_a? Nokogiri::XML::Element
 
-        validate_column_mappings(line)
+        augment_and_validate_column_mappings_for(line)
 
-        xml_line = column_xpaths.map { |column_xpath| line.xpath(column_xpath).inner_text }
-
+        xml_line = xml_line_from(line)
         records_from_xml_line = []
+
         masked_mappings.each do |klass, klass_mappings|
           fields = mapped_line(xml_line, klass_mappings)
 
           next if fields[:skip].to_s == 'true'.freeze
+
           if yield_xml_record
             records_from_xml_line << [klass, fields, index]
           else
@@ -51,10 +51,94 @@ module NdrImport
 
       private
 
+      def xml_line_from(line)
+        @column_xpaths.map do |column_xpath|
+          # Augmenting the column mappings should account for repeating sections/items
+          line.xpath(column_xpath).count > 1 ? '' : line.xpath(column_xpath).inner_text
+        end
+      end
+
+      def augment_and_validate_column_mappings_for(line)
+        augment_column_mappings_for(line)
+        validate_column_mappings(line)
+      end
+
+      # Add missing column mappings where repeating sections / data items appear
+      def augment_column_mappings_for(line)
+        missing = unmapped_nodes(line)
+        return if missing.none?
+
+        missing.each do |unmapped_node|
+          exsiting_column = find_existing_column_for(unmapped_node.dup)
+          next unless exsiting_column
+
+          unmapped_node_parts   = unmapped_node_parts(unmapped_node)
+          klass_increment_match = unmapped_node.match(/\[(\d+)\]/)
+          raise "could not identify klass for #{unmapped_node}" unless klass_increment_match
+
+          new_column = new_column_mapping_for(exsiting_column, unmapped_node_parts,
+                                              klass_increment_match[1])
+          columns << new_column
+          @column_xpaths << build_xpath_from(new_column)
+        end
+      end
+
+      def find_existing_column_for(unmapped_node)
+        # Remove any e.g. [2] which will be present on repeating sections
+        unmapped_node.gsub!(/\[\d+\]/, '')
+        unmapped_node_parts = unmapped_node_parts(unmapped_node)
+        columns.detect do |column|
+          column['column'] == unmapped_node_parts[:column_name] &&
+            column.dig('xml_cell', 'relative_path') == unmapped_node_parts[:column_relative_path] &&
+            column.dig('xml_cell', 'attribute') == unmapped_node_parts[:column_attribute]
+        end
+      end
+
+      def unmapped_node_parts(unmapped_node)
+        unmapped_node_parts       = unmapped_node.split('/')
+        unmapped_column_attribute = new_column_attribute_from(unmapped_node_parts)
+
+        { column_attribute: unmapped_column_attribute,
+          column_name: new_column_name_from(unmapped_node_parts, unmapped_column_attribute),
+          column_relative_path: new_relative_path_from(unmapped_node_parts,
+                                                       unmapped_column_attribute) }
+      end
+
+      def new_column_mapping_for(exsiting_column, unmapped_node_parts, klass_increment)
+        new_column = exsiting_column.deep_dup
+        if exsiting_column.dig('xml_cell', 'multiple')
+          new_column['rawtext_name'] = exsiting_column['rawtext_name'] + "_#{klass_increment}"
+        end
+        new_column['column'] = unmapped_node_parts[:column_name]
+        new_column['xml_cell']['relative_path'] = unmapped_node_parts[:column_relative_path]
+        new_column['klass'] = exsiting_column['klass'] + "##{klass_increment}" unless @klass
+
+        new_column
+      end
+
+      def new_column_attribute_from(unmapped_node_parts)
+        unmapped_node_parts.last.starts_with?('@') ? unmapped_node_parts.last[1...] : nil
+      end
+
+      def new_column_name_from(unmapped_node_parts, unmapped_column_attribute)
+        unmapped_column_attribute.present? ? unmapped_node_parts[-2] : unmapped_node_parts.last
+      end
+
+      def new_relative_path_from(unmapped_node_parts, unmapped_column_attribute)
+        upper_limit = unmapped_column_attribute.present? ? -3 : -2
+        unmapped_node_parts.count > 1 ? unmapped_node_parts[0..upper_limit].join('/') : nil
+      end
+
       # Ensure every leaf is accounted for in the column mappings
       def validate_column_mappings(line)
-        missing_nodes = mappable_xpaths_from(line) - column_xpaths
+        missing_nodes = unmapped_nodes(line)
         raise "Unmapped data! #{missing_nodes}" unless missing_nodes.empty?
+      end
+
+      # Not memoized this by design, we want to re-calculate unmapped nodes after
+      # `columns` have been augmented for each `line`
+      def unmapped_nodes(line)
+        mappable_xpaths_from(line) - column_xpaths
       end
 
       def column_name_from(column)
@@ -69,7 +153,7 @@ module NdrImport
         xpaths = []
 
         line.xpath('.//*[not(child::*)]').each do |node|
-          xpath = node.path.sub(line.path + '/', '')
+          xpath = node.path.sub("#{line.path}/", '')
           if node.attributes.any?
             node.attributes.each_key { |key| xpaths << "#{xpath}/@#{key}" }
           else
@@ -97,6 +181,16 @@ module NdrImport
           colum_name + '/' + attribute
         else
           colum_name
+        end
+      end
+
+      # Not memoizing this by design, @columns can change if new column mappings are
+      # added on thw fly
+      def masked_mappings
+        if @klass
+          { @klass => @columns }
+        else
+          column_level_klass_masked_mappings
         end
       end
     end

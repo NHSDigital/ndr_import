@@ -53,13 +53,13 @@ module NdrImport
         table_mapping = get_table_mapping(filename, nil)
 
         options = {
-          'unzip_path'       => unzip_path,
-          'col_sep'          => table_mapping.try(:delimiter),
-          'file_password'    => table_mapping.try(:file_password),
-          'liberal_parsing'  => table_mapping.try(:liberal_parsing),
-          'xml_record_xpath' => table_mapping.try(:xml_record_xpath),
-          'slurp'            => table_mapping.try(:slurp),
-          'yield_xml_record' => table_mapping.try(:yield_xml_record),
+          'unzip_path'                 => unzip_path,
+          'col_sep'                    => table_mapping.try(:delimiter),
+          'file_password'              => table_mapping.try(:file_password),
+          'liberal_parsing'            => table_mapping.try(:liberal_parsing),
+          'xml_record_xpath'           => table_mapping.try(:xml_record_xpath),
+          'slurp'                      => table_mapping.try(:slurp),
+          'yield_xml_record'           => table_mapping.try(:yield_xml_record),
           'pattern_match_record_xpath' => table_mapping.try(:pattern_match_record_xpath)
         }
 
