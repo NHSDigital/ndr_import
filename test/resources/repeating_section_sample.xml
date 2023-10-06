@@ -11,12 +11,20 @@
       <demographics_2 code="03">Inner text</demographics_2>
     </demographics>
     <pathology>
-      <pathology_date_1>2018-01-01</pathology_date_1>
-      <pathology_date_2 />
+      <sample>
+        <pathology_date>2018-01-01</pathology_date>
+        <pathology_id>AAA</pathology_id>
+      </sample>
+      <sample>
+        <pathology_date>2019-01-01</pathology_date>
+        <pathology_id>BBB</pathology_id>
+      </sample>
     </pathology>
     <pathology>
-      <pathology_date_1>2020-01-01</pathology_date_1>
-      <pathology_date_2 />
+      <sample>
+        <pathology_date>2020-01-01</pathology_date>
+        <pathology_id>CCC</pathology_id>
+      </sample>
     </pathology>
   </record>
   <record>
@@ -30,8 +38,32 @@
     </demographics>
     <no_path_or_att><![CDATA[Another value]]></no_path_or_att>
     <pathology>
-      <pathology_date_1>2018-01-01</pathology_date_1>
-      <pathology_date_2 />
+      <sample>
+        <pathology_date>2021-01-01</pathology_date>
+        <pathology_id>DDD</pathology_id>
+      </sample>
+      <sample>
+        <pathology_date>2022-01-01</pathology_date>
+        <pathology_id>EEE</pathology_id>
+      </sample>
+    </pathology>
+    <no_relative_path value="A value"/>
+  </record>
+  <record>
+    <demographics>
+      <address>
+        <address_line1>Address</address_line1>
+        <address_line1>Address 2</address_line1>
+      </address>
+      <demographics_2 code="03">Inner text</demographics_2>
+      <demographics_1>AAA</demographics_1>
+    </demographics>
+    <no_path_or_att><![CDATA[Another value]]></no_path_or_att>
+    <pathology>
+      <sample>
+        <pathology_date>2023-01-01</pathology_date>
+        <pathology_id>FFF</pathology_id>
+      </sample>
     </pathology>
     <no_relative_path value="A value"/>
   </record>

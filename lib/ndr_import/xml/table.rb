@@ -69,14 +69,14 @@ module NdrImport
         return if missing.none?
 
         missing.each do |unmapped_node|
-          exsiting_column = find_existing_column_for(unmapped_node.dup)
-          next unless exsiting_column
+          existing_column = find_existing_column_for(unmapped_node.dup)
+          next unless existing_column
 
           unmapped_node_parts   = unmapped_node_parts(unmapped_node)
           klass_increment_match = unmapped_node.match(/\[(\d+)\]/)
           raise "could not identify klass for #{unmapped_node}" unless klass_increment_match
 
-          new_column = new_column_mapping_for(exsiting_column, unmapped_node_parts,
+          new_column = new_column_mapping_for(existing_column, unmapped_node_parts,
                                               klass_increment_match[1], line)
           columns << new_column
           @column_xpaths << build_xpath_from(new_column)
@@ -104,32 +104,36 @@ module NdrImport
                                                        unmapped_column_attribute) }
       end
 
-      def new_column_mapping_for(exsiting_column, unmapped_node_parts, klass_increment, line)
-        new_column                              = exsiting_column.deep_dup
+      def new_column_mapping_for(existing_column, unmapped_node_parts, klass_increment, line)
+        new_column                              = existing_column.deep_dup
         new_column['column']                    = unmapped_node_parts[:column_name]
         new_column['xml_cell']['relative_path'] = unmapped_node_parts[:column_relative_path]
 
-        repeating_item   = exsiting_column.dig('xml_cell', 'multiple')
-        section_xpath    = exsiting_column.dig('xml_cell', 'section')
-        build_new_record = exsiting_column.dig('xml_cell', 'build_new_record')
-
+        repeating_item   = existing_column.dig('xml_cell', 'multiple')
+        section_xpath    = existing_column.dig('xml_cell', 'section')
+        build_new_record = existing_column.dig('xml_cell', 'build_new_record')
 
         # create unique rawtext names for repeating sections within a record
-        if repeating_item
-          rawtext_increment = unmapped_node_parts[:column_relative_path].match /\[(\d+)\]\z/
-          if rawtext_increment
-            new_column['rawtext_name'] = exsiting_column['rawtext_name'] + "_#{rawtext_increment[1]}"
-          end
-        end
+        new_column['rawtext_name'] = new_rawtext_name(existing_column, new_column) if repeating_item
 
-        no_new_record = @klass.present? || build_new_record == false ||
-                        repeating_item && line.xpath(section_xpath).one?
         # If a table level @klass is defined, there is nothing to increment at the column level.
         # Similarly, not all repeating sections/items require a separate record.
         # No need to create new records for a single occurence of a repeating section
-        new_column['klass'] = exsiting_column['klass'] + "##{klass_increment}" unless no_new_record
+        no_new_record = @klass.present? || build_new_record == false ||
+                        (repeating_item && line.xpath(section_xpath).one?)
+        new_column['klass'] = existing_column['klass'] + "##{klass_increment}" unless no_new_record
 
         new_column
+      end
+
+      # append "_1", "_2" etc to repeating rawtext names within a single record
+      def new_rawtext_name(existing_column, new_column)
+        existing_rawtext       = existing_column['rawtext_name'] || existing_column['column']
+        column_name_increment  = new_column['column'].match(/\[(\d+)\]\z/)
+        relative_pathincrement = new_column.dig('xml_cell', 'relative_path').match(/\[(\d+)\]\z/)
+
+        rawtext_increment = column_name_increment || relative_pathincrement
+        rawtext_increment ? existing_rawtext + "_#{rawtext_increment[1]}" : existing_rawtext
       end
 
       def new_column_attribute_from(unmapped_node_parts)
@@ -203,11 +207,7 @@ module NdrImport
       # Not memoizing this by design, @columns can change if new column mappings are
       # added on the fly
       def masked_mappings
-        if @klass
-          { @klass => @columns }
-        else
-          column_level_klass_masked_mappings
-        end
+        @klass.present? ? { @klass => @columns } : column_level_klass_masked_mappings
       end
     end
   end
