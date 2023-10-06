@@ -112,11 +112,11 @@ module Xml
               'multiple' => true,
               'build_new_record' => false } },
         { 'column' => 'pathology_date', 'klass' => 'SomeTestKlass',
-          'xml_cell' => 
+          'xml_cell' =>
             { 'relative_path' => 'pathology/sample',
               'multiple' => true } },
         { 'column' => 'pathology_id', 'klass' => 'SomeTestKlass',
-          'xml_cell' => 
+          'xml_cell' =>
             { 'relative_path' => 'pathology/sample',
               'multiple' => true } },
         { 'column' => 'should_be_blank', 'klass' => 'SomeTestKlass',
@@ -128,14 +128,14 @@ module Xml
     def augmented_xml_columns
       [{ 'column' => 'address_line1[1]', 'klass' => 'SomeTestKlass',
          'rawtext_name' => 'address_1',
-         'xml_cell' =>  { 'relative_path' => 'demographics/address',
-                          'multiple' => true,
-                          'build_new_record' => false }},
+         'xml_cell' => { 'relative_path' => 'demographics/address',
+                         'multiple' => true,
+                         'build_new_record' => false } },
        { 'column' => 'address_line1[2]', 'klass' => 'SomeTestKlass',
          'rawtext_name' => 'address_2',
          'xml_cell' => { 'relative_path' => 'demographics/address',
                          'multiple' => true,
-                         'build_new_record' => false }},
+                         'build_new_record' => false } },
        { 'column' => 'pathology_date', 'klass' => 'SomeTestKlass#1',
          'xml_cell' => { 'relative_path' => 'pathology[1]/sample[1]', 'multiple' => true },
          'rawtext_name' => 'pathology_date_1' },
