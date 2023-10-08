@@ -30,12 +30,11 @@ module NdrImport
         return enum_for(:transform_line, line, index) unless block_given?
         raise 'Not an Nokogiri::XML::Element!' unless line.is_a? Nokogiri::XML::Element
 
-        augment_and_validate_column_mappings_for(line)
+        augmented_masked_mappings = augment_and_validate_column_mappings_for(line)
 
         xml_line = xml_line_from(line)
         records_from_xml_line = []
-
-        masked_mappings.each do |klass, klass_mappings|
+        augmented_masked_mappings.each do |klass, klass_mappings|
           fields = mapped_line(xml_line, klass_mappings)
 
           next if fields[:skip].to_s == 'true'.freeze
@@ -61,9 +60,23 @@ module NdrImport
       def augment_and_validate_column_mappings_for(line)
         augment_column_mappings_for(line)
         validate_column_mappings(line)
+
+        augmented_masked_mappings = masked_mappings
+        # Remove any masked klasses where additional columns mappings
+        # have been added for repeated sections
+        # e.g. SomeTestKLass column mappings are not needed if SomeTestKLass#1
+        # have been added
+        masked_mappings.each_key do |masked_key|
+          if masked_mappings.keys.any? { |key| key =~ /#{masked_key}#\d+/}
+            augmented_masked_mappings.delete(masked_key)
+          end
+        end
+
+        augmented_masked_mappings
       end
 
-      # Add missing column mappings where repeating sections / data items appear
+      # Add missing column mappings (and @column_xpaths) where
+      # repeating sections / data items appear
       def augment_column_mappings_for(line)
         missing = unmapped_nodes(line)
         return if missing.none?
@@ -205,7 +218,7 @@ module NdrImport
       end
 
       # Not memoizing this by design, @columns can change if new column mappings are
-      # added on the fly
+      # added on the fly where repeating sections are present
       def masked_mappings
         @klass.present? ? { @klass => @columns } : column_level_klass_masked_mappings
       end
