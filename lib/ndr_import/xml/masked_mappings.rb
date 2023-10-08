@@ -1,8 +1,6 @@
-# encoding: UTF-8
-
 module NdrImport
   module Xml
-    # This class applies a do_not_capture mask to those mappings that do not related to each klass.
+    # This class applies a do_not_capture mask to those mappings that do not relate to each klass.
     # Overriding the NdrImport::Table method to avoid memoizing. This by design, column mappings
     # can change if new mappings are added on the fly where repeating sections are present
     class MaskedMappings
@@ -14,7 +12,7 @@ module NdrImport
       end
 
       def call
-        return  { klass => augmented_columns } if klass.present?
+        return { klass => augmented_columns } if klass.present?
 
         masked_mappings = column_level_klass_masked_mappings
 
@@ -24,7 +22,7 @@ module NdrImport
         # e.g. SomeTestKLass column mappings are not needed if SomeTestKLass#1
         # have been added
         masked_mappings.each_key do |masked_key|
-          if masked_mappings.keys.any? { |key| key =~ /#{masked_key}#\d+/}
+          if masked_mappings.keys.any? { |key| key =~ /#{masked_key}#\d+/ }
             augmented_masked_mappings.delete(masked_key)
           end
         end
@@ -36,7 +34,6 @@ module NdrImport
 
       # This method duplicates the mappings and applies a do_not_capture mask to those that do not
       # relate to this klass, returning the masked mappings
-      # Overriding the base class method to use `@augmented_columns`
       def mask_mappings_by_klass(klass)
         augmented_columns.deep_dup.map do |mapping|
           Array(mapping['klass']).flatten.include?(klass) ? mapping : { 'do_not_capture' => true }
@@ -48,8 +45,8 @@ module NdrImport
 
         # Loop through each klass
         masked_mappings = {}
-        augmented_columns.map { |mapping| mapping['klass'] }.flatten.compact.uniq.each do |klass|
-          # Duplicate the column mappings and do not capture fields that relate to other klasses
+        augmented_columns.pluck('klass').flatten.compact.uniq.each do |klass|
+          # Do not capture fields that relate to other klasses
           masked_mappings[klass] = mask_mappings_by_klass(klass)
         end
         masked_mappings

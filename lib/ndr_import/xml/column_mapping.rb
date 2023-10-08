@@ -1,18 +1,17 @@
-# encoding: UTF-8
-
 module NdrImport
   module Xml
     # This class generates new XML column mappings where repeating columns/sections have been
-    # identifued in the xml.
+    # identified in the xml.
     # This avoids need to need for mappings verbosly defining repeating columns/sections
     class ColumnMapping
-      attr_accessor :existing_column, :unmapped_node_parts, :klass_increment, :xml_line
+      attr_accessor :existing_column, :unmapped_node_parts, :klass_increment, :xml_line, :klass
 
-      def initialize(existing_column, unmapped_node_parts, klass_increment, xml_line)
+      def initialize(existing_column, unmapped_node_parts, klass_increment, xml_line, klass)
         @existing_column     = existing_column
         @unmapped_node_parts = unmapped_node_parts
         @klass_increment     = klass_increment
         @xml_line            = xml_line
+        @klass               = klass
       end
 
       def call
@@ -27,10 +26,10 @@ module NdrImport
         # create unique rawtext names for repeating sections within a record
         new_column['rawtext_name'] = new_rawtext_name(new_column) if repeating_item
 
-        # If a table level @klass is defined, there is nothing to increment at the column level.
+        # If a table level klass is defined, there is nothing to increment at the column level.
         # Similarly, not all repeating sections/items require a separate record.
         # No need to create new records for a single occurence of a repeating section
-        no_new_record = @klass.present? || build_new_record == false ||
+        no_new_record = klass.present? || build_new_record == false ||
                         (repeating_item && xml_line.xpath(section_xpath).one?)
         new_column['klass'] = existing_column['klass'] + "##{klass_increment}" unless no_new_record
 

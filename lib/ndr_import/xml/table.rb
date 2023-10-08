@@ -8,6 +8,7 @@ module NdrImport
     # transformation of large quantities of data.
     class Table < ::NdrImport::Table
       require 'ndr_import/xml/column_mapping'
+      require 'ndr_import/xml/masked_mappings'
 
       XML_OPTIONS = %w[pattern_match_record_xpath xml_record_xpath yield_xml_record].freeze
 
@@ -67,10 +68,8 @@ module NdrImport
         # as each line is processed
         @augmented_columns       = @columns.deep_dup
         @augmented_column_xpaths = column_xpaths.deep_dup
-        missing = unmapped_nodes(line)
-        return if missing.none?
 
-        missing.each do |unmapped_node|
+        unmapped_nodes(line).each do |unmapped_node|
           existing_column = find_existing_column_for(unmapped_node.dup)
           next unless existing_column
 
@@ -79,7 +78,8 @@ module NdrImport
           raise "could not identify klass for #{unmapped_node}" unless klass_increment_match
 
           new_column = NdrImport::Xml::ColumnMapping.new(existing_column, unmapped_node_parts,
-                                                         klass_increment_match[1], line).call
+                                                         klass_increment_match[1], line,
+                                                         @klass).call
           @augmented_columns << new_column
           @augmented_column_xpaths << build_xpath_from(new_column)
         end
