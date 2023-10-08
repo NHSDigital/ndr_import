@@ -67,7 +67,7 @@ module NdrImport
         # e.g. SomeTestKLass column mappings are not needed if SomeTestKLass#1
         # have been added
         masked_mappings.each_key do |masked_key|
-          if masked_mappings.keys.any? { |key| key =~ /#{masked_key}#\d+/}
+          if masked_mappings.keys.any? { |key| key =~ /#{masked_key}#\d+/ }
             augmented_masked_mappings.delete(masked_key)
           end
         end
