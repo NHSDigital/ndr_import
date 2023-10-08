@@ -7,6 +7,8 @@ module NdrImport
     # attention has been made to use enumerables throughout to help with the
     # transformation of large quantities of data.
     class Table < ::NdrImport::Table
+      require 'ndr_import/xml/column_mapping'
+
       XML_OPTIONS = %w[pattern_match_record_xpath xml_record_xpath yield_xml_record].freeze
 
       def self.all_valid_options
@@ -33,6 +35,7 @@ module NdrImport
         augmented_masked_mappings = augment_and_validate_column_mappings_for(line)
 
         xml_line = xml_line_from(line)
+
         records_from_xml_line = []
         augmented_masked_mappings.each do |klass, klass_mappings|
           fields = mapped_line(xml_line, klass_mappings)
@@ -50,34 +53,20 @@ module NdrImport
 
       private
 
-      def xml_line_from(line)
-        @column_xpaths.map do |column_xpath|
-          # Augmenting the column mappings should account for repeating sections/items
-          line.xpath(column_xpath).count > 1 ? '' : line.xpath(column_xpath).inner_text
-        end
-      end
-
       def augment_and_validate_column_mappings_for(line)
         augment_column_mappings_for(line)
         validate_column_mappings(line)
 
-        augmented_masked_mappings = masked_mappings
-        # Remove any masked klasses where additional columns mappings
-        # have been added for repeated sections
-        # e.g. SomeTestKLass column mappings are not needed if SomeTestKLass#1
-        # have been added
-        masked_mappings.each_key do |masked_key|
-          if masked_mappings.keys.any? { |key| key =~ /#{masked_key}#\d+/ }
-            augmented_masked_mappings.delete(masked_key)
-          end
-        end
-
-        augmented_masked_mappings
+        NdrImport::Xml::MaskedMappings.new(@klass, @augmented_columns.deep_dup).call
       end
 
-      # Add missing column mappings (and @column_xpaths) where
+      # Add missing column mappings (and column_xpaths) where
       # repeating sections / data items appear
       def augment_column_mappings_for(line)
+        # Start with a fresh set of `columns` for each line, adding new mappings required
+        # as each line is processed
+        @augmented_columns       = @columns.deep_dup
+        @augmented_column_xpaths = column_xpaths.deep_dup
         missing = unmapped_nodes(line)
         return if missing.none?
 
@@ -89,10 +78,18 @@ module NdrImport
           klass_increment_match = unmapped_node.match(/\[(\d+)\]/)
           raise "could not identify klass for #{unmapped_node}" unless klass_increment_match
 
-          new_column = new_column_mapping_for(existing_column, unmapped_node_parts,
-                                              klass_increment_match[1], line)
-          columns << new_column
-          @column_xpaths << build_xpath_from(new_column)
+          new_column = NdrImport::Xml::ColumnMapping.new(existing_column, unmapped_node_parts,
+                                                         klass_increment_match[1], line).call
+          @augmented_columns << new_column
+          @augmented_column_xpaths << build_xpath_from(new_column)
+        end
+      end
+
+      def xml_line_from(line)
+        @augmented_column_xpaths.map do |column_xpath|
+          # Augmenting the column mappings should account for repeating sections/items
+          # TODO: Is this needed now that we removed "duplicated" klass mappings?
+          line.xpath(column_xpath).count > 1 ? '' : line.xpath(column_xpath).inner_text
         end
       end
 
@@ -117,38 +114,6 @@ module NdrImport
                                                        unmapped_column_attribute) }
       end
 
-      def new_column_mapping_for(existing_column, unmapped_node_parts, klass_increment, line)
-        new_column                              = existing_column.deep_dup
-        new_column['column']                    = unmapped_node_parts[:column_name]
-        new_column['xml_cell']['relative_path'] = unmapped_node_parts[:column_relative_path]
-
-        repeating_item   = existing_column.dig('xml_cell', 'multiple')
-        section_xpath    = existing_column.dig('xml_cell', 'section')
-        build_new_record = existing_column.dig('xml_cell', 'build_new_record')
-
-        # create unique rawtext names for repeating sections within a record
-        new_column['rawtext_name'] = new_rawtext_name(existing_column, new_column) if repeating_item
-
-        # If a table level @klass is defined, there is nothing to increment at the column level.
-        # Similarly, not all repeating sections/items require a separate record.
-        # No need to create new records for a single occurence of a repeating section
-        no_new_record = @klass.present? || build_new_record == false ||
-                        (repeating_item && line.xpath(section_xpath).one?)
-        new_column['klass'] = existing_column['klass'] + "##{klass_increment}" unless no_new_record
-
-        new_column
-      end
-
-      # append "_1", "_2" etc to repeating rawtext names within a single record
-      def new_rawtext_name(existing_column, new_column)
-        existing_rawtext       = existing_column['rawtext_name'] || existing_column['column']
-        column_name_increment  = new_column['column'].match(/\[(\d+)\]\z/)
-        relative_pathincrement = new_column.dig('xml_cell', 'relative_path').match(/\[(\d+)\]\z/)
-
-        rawtext_increment = column_name_increment || relative_pathincrement
-        rawtext_increment ? existing_rawtext + "_#{rawtext_increment[1]}" : existing_rawtext
-      end
-
       def new_column_attribute_from(unmapped_node_parts)
         unmapped_node_parts.last.starts_with?('@') ? unmapped_node_parts.last[1...] : nil
       end
@@ -171,7 +136,7 @@ module NdrImport
       # Not memoized this by design, we want to re-calculate unmapped nodes after
       # `columns` have been augmented for each `line`
       def unmapped_nodes(line)
-        mappable_xpaths_from(line) - column_xpaths
+        mappable_xpaths_from(line) - (@augmented_column_xpaths || column_xpaths)
       end
 
       def column_name_from(column)
@@ -215,12 +180,6 @@ module NdrImport
         else
           colum_name
         end
-      end
-
-      # Not memoizing this by design, @columns can change if new column mappings are
-      # added on the fly where repeating sections are present
-      def masked_mappings
-        @klass.present? ? { @klass => @columns } : column_level_klass_masked_mappings
       end
     end
   end
