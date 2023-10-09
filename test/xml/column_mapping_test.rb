@@ -1,6 +1,6 @@
 require 'test_helper'
 
-# This tests the NdrImport::Xml::ColumnMappingclass
+# This tests the NdrImport::Xml::ColumnMapping class
 module Xml
   class ColumnMappingTest < ActiveSupport::TestCase
     def setup
