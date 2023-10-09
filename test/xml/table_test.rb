@@ -53,10 +53,33 @@ module Xml
       element_lines = handler.send(:rows)
       table         = NdrImport::Xml::Table.new(columns: repeating_secion_xml_mapping)
 
+      expected_data = [
+        ['SomeTestKlass#1', { rawtext:
+           { 'pathology_date_1' => '2018-01-01', 'pathology_id_1' => 'AAA',
+             'pathology_date_2' => '2019-01-01', 'pathology_id_2' => 'BBB' } },
+         0],
+        ['SomeTestKlass#2', { rawtext:
+          { 'pathology_date' => '2020-01-01', 'pathology_id' => 'CCC' } },
+         0],
+        ['SomeTestKlass#1', { rawtext:
+          { 'pathology_date_1' => '2021-01-01', 'pathology_id_1' => 'DDD' } },
+         1],
+        ['SomeTestKlass#2', { rawtext:
+          { 'pathology_date_2' => '2022-01-01', 'pathology_id_2' => 'EEE' } },
+         1],
+        ['SomeTestKlass', { rawtext:
+          { 'no_relative_path' => 'A value', 'no_path_or_att' => 'Another value',
+            'demographics_1' => 'AAA', 'demographics_2' => '03',
+            'demographics_2_inner_text' => 'Inner text', 'address' => '',
+            'pathology_date' => '2023-01-01', 'pathology_id' => 'FFF',
+            'should_be_blank' => '', 'address_1' => 'Address', 'address_2' => 'Address 2' } },
+         2]
+      ]
+
       # Trigger the augmentation logic
-      table.transform(element_lines).first
-      new_columns = table.columns - repeating_secion_xml_mapping
-      assert_equal augmented_xml_columns, new_columns
+      transformed_data = table.transform(element_lines).to_a
+
+      assert_equal expected_data, transformed_data
     end
 
     private
@@ -125,37 +148,6 @@ module Xml
     end
 
     # These columns are made on the fly by the Table
-    def augmented_xml_columns
-      [{ 'column' => 'address_line1[1]', 'klass' => 'SomeTestKlass',
-         'rawtext_name' => 'address_1',
-         'xml_cell' => { 'relative_path' => 'demographics/address',
-                         'multiple' => true,
-                         'build_new_record' => false } },
-       { 'column' => 'address_line1[2]', 'klass' => 'SomeTestKlass',
-         'rawtext_name' => 'address_2',
-         'xml_cell' => { 'relative_path' => 'demographics/address',
-                         'multiple' => true,
-                         'build_new_record' => false } },
-       { 'column' => 'pathology_date', 'klass' => 'SomeTestKlass#1',
-         'xml_cell' => { 'relative_path' => 'pathology[1]/sample[1]', 'multiple' => true },
-         'rawtext_name' => 'pathology_date_1' },
-       { 'column' => 'pathology_id', 'klass' => 'SomeTestKlass#1',
-         'xml_cell' => { 'relative_path' => 'pathology[1]/sample[1]', 'multiple' => true },
-         'rawtext_name' => 'pathology_id_1' },
-       { 'column' => 'pathology_date', 'klass' => 'SomeTestKlass#1',
-         'xml_cell' => { 'relative_path' => 'pathology[1]/sample[2]', 'multiple' => true },
-         'rawtext_name' => 'pathology_date_2' },
-       { 'column' => 'pathology_id', 'klass' => 'SomeTestKlass#1',
-         'xml_cell' => { 'relative_path' => 'pathology[1]/sample[2]', 'multiple' => true },
-         'rawtext_name' => 'pathology_id_2' },
-       { 'column' => 'pathology_date', 'klass' => 'SomeTestKlass#2',
-         'xml_cell' => { 'relative_path' => 'pathology[2]/sample', 'multiple' => true },
-         'rawtext_name' => 'pathology_date' },
-       { 'column' => 'pathology_id', 'klass' => 'SomeTestKlass#2',
-         'xml_cell' => { 'relative_path' => 'pathology[2]/sample', 'multiple' => true },
-         'rawtext_name' => 'pathology_id' }]
-    end
-
     def partial_xml_column_mapping
       [
         { 'column' => 'no_relative_path',
