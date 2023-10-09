@@ -147,7 +147,6 @@ module Xml
       ]
     end
 
-    # These columns are made on the fly by the Table
     def partial_xml_column_mapping
       [
         { 'column' => 'no_relative_path',
