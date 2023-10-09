@@ -55,11 +55,11 @@ module NdrImport
 
       # Append "_1", "_2" etc to repeating rawtext names within a single record
       def new_rawtext_name(new_column)
-        existing_rawtext       = existing_column['rawtext_name'] || existing_column['column']
-        column_name_increment  = new_column['column'].match(/\[(\d+)\]\z/)
-        relative_pathincrement = new_column.dig('xml_cell', 'relative_path').match(/\[(\d+)\]\z/)
+        existing_rawtext        = existing_column['rawtext_name'] || existing_column['column']
+        column_name_increment   = new_column['column'].match(/\[(\d+)\]\z/)
+        relative_path_increment = new_column.dig('xml_cell', 'relative_path').match(/\[(\d+)\]\z/)
 
-        rawtext_increment = column_name_increment || relative_pathincrement
+        rawtext_increment = column_name_increment || relative_path_increment
         rawtext_increment ? existing_rawtext + "_#{rawtext_increment[1]}" : existing_rawtext
       end
     end
