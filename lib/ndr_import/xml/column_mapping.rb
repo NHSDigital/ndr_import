@@ -2,7 +2,7 @@ module NdrImport
   module Xml
     # This class generates new XML column mappings where repeating columns/sections have been
     # identified in the xml.
-    # This avoids need to need for mappings verbosly defining repeating columns/sections
+    # This avoids need to need for mappings to verbosly define repeating columns/sections
     class ColumnMapping
       attr_accessor :existing_column, :unmapped_node_parts, :klass_increment, :xml_line, :klass
 
@@ -38,7 +38,7 @@ module NdrImport
 
       private
 
-      # append "_1", "_2" etc to repeating rawtext names within a single record
+      # Append "_1", "_2" etc to repeating rawtext names within a single record
       def new_rawtext_name(new_column)
         existing_rawtext       = existing_column['rawtext_name'] || existing_column['column']
         column_name_increment  = new_column['column'].match(/\[(\d+)\]\z/)

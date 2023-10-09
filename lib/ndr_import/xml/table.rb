@@ -64,8 +64,8 @@ module NdrImport
       # Add missing column mappings (and column_xpaths) where
       # repeating sections / data items appear
       def augment_column_mappings_for(line)
-        # Start with a fresh set of `columns` for each line, adding new mappings required
-        # as each line is processed
+        # Start with a fresh set of @augmented_columns for each line, adding new mappings as
+        # required for each `line`
         @augmented_columns       = @columns.deep_dup
         @augmented_column_xpaths = column_xpaths.deep_dup
 
@@ -134,7 +134,7 @@ module NdrImport
       end
 
       # Not memoized this by design, we want to re-calculate unmapped nodes after
-      # `columns` have been augmented for each `line`
+      # `@augmented_column_xpaths` have been augmented for each `line`
       def unmapped_nodes(line)
         mappable_xpaths_from(line) - (@augmented_column_xpaths || column_xpaths)
       end
