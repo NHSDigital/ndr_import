@@ -15,19 +15,28 @@ module NdrImport
       private
 
       # Iterate through the file, yielding each 'xml_record_xpath' element in turn.
+      # Iterate through the file, yielding each 'xml_record_xpath' element in turn.
       def rows(&block)
         return enum_for(:rows) unless block
 
-        xpath = @options['xml_record_xpath']
-
         if @options['slurp']
-          doc = read_xml_file(@filename)
-          doc.xpath(xpath).each(&block)
+          record_elements(read_xml_file(@filename)).each(&block)
         else
+          xpath = "*/#{@options['xml_record_xpath']}"
           each_node(@filename, xpath, &block)
         end
       rescue StandardError => e
         raise("#{SafeFile.basename(@filename)} [#{e.class}: #{e.message}]")
+      end
+
+      def record_elements(doc)
+        if @options['pattern_match_record_xpath']
+          doc.root.children.find_all do |element|
+            element.name =~ Regexp.new(@options['xml_record_xpath'])
+          end
+        else
+          doc.root.xpath(@options['xml_record_xpath'])
+        end
       end
     end
     # Not all xml files may want to be registered, so 'xml' is not registered by design.
