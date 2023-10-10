@@ -15,7 +15,6 @@ module NdrImport
       private
 
       # Iterate through the file, yielding each 'xml_record_xpath' element in turn.
-      # Iterate through the file, yielding each 'xml_record_xpath' element in turn.
       def rows(&block)
         return enum_for(:rows) unless block
 
