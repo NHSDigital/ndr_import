@@ -22,7 +22,9 @@ module NdrImport
         repeating_item = existing_column.dig('xml_cell', 'multiple')
 
         # create unique rawtext names for repeating sections within a record
-        new_column['rawtext_name'] = new_rawtext_name(new_column) if repeating_item
+        apply_new_rawtext_and_mapped_names_to(new_column) if repeating_item
+
+        # new_column['rawtext_name'] = new_rawtext_name(new_column) if repeating_item
 
         return new_column if new_record_not_needed?(repeating_item)
 
@@ -53,14 +55,25 @@ module NdrImport
         end
       end
 
-      # Append "_1", "_2" etc to repeating rawtext names within a single record
-      def new_rawtext_name(new_column)
+      # Append "_1", "_2" etc to repeating rawtext and optionally mapped field names within a
+      # single record, so data is not overwritten
+      def apply_new_rawtext_and_mapped_names_to(new_column)
         existing_rawtext        = existing_column['rawtext_name'] || existing_column['column']
         column_name_increment   = new_column['column'].match(/\[(\d+)\]\z/)
         relative_path_increment = new_column.dig('xml_cell', 'relative_path').match(/\[(\d+)\]\z/)
 
-        rawtext_increment = column_name_increment || relative_path_increment
-        rawtext_increment ? existing_rawtext + "_#{rawtext_increment[1]}" : existing_rawtext
+        increment = column_name_increment || relative_path_increment
+        new_column['rawtext_name'] = existing_rawtext + "_#{increment[1]}" if increment
+
+        return unless increment && new_column.dig('xml_cell', 'increment_field_name')
+
+        mappings = new_column['mappings'].map do |mapping|
+          mapping['field'] = "#{mapping['field']}_#{increment[1]}"
+
+          mapping
+        end
+
+        new_column['mappings'] = mappings
       end
     end
   end

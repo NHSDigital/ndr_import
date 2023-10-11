@@ -19,14 +19,14 @@ module Xml
                           'xml_cell' => {
                             'relative_path' => 'demographics/address',
                             'multiple' => true,
+                            'increment_field_name' => true,
                             'build_new_record' => false
                           },
-                          'mappings' => [{ 'field' => 'test_field' }] }
+                          'mappings' => [{ 'field' => 'test_field',
+                                           'replace' => [{ 'a' => 'b' }, { 'c' => 'd' }] }] }
 
       unmapped_node_parts = { column_attribute: nil, column_name: 'address_line1[1]',
                               column_relative_path: 'demographics/address' }
-      klass_increment = '1'
-      klass = nil
 
       expected_column = { 'column' => 'address_line1[1]',
                           'klass' => 'SomeTestKlass',
@@ -34,12 +34,16 @@ module Xml
                           'xml_cell' => {
                             'relative_path' => 'demographics/address',
                             'multiple' => true,
+                            'increment_field_name' => true,
                             'build_new_record' => false
                           },
-                          'mappings' => [{ 'field' => 'test_field' }] }
+                          'mappings' => [{ 'field' => 'test_field_1',
+                                           'replace' => [{ 'a' => 'b' }, { 'c' => 'd' }] }] }
 
-      new_column = NdrImport::Xml::ColumnMapping.new(existing_column, unmapped_node_parts,
-                                                     klass_increment, @xml_line, klass).call
+      klass_increment = '1'
+      klass           = nil
+      new_column      = NdrImport::Xml::ColumnMapping.new(existing_column, unmapped_node_parts,
+                                                          klass_increment, @xml_line, klass).call
 
       assert_equal expected_column, new_column
     end
@@ -52,8 +56,11 @@ module Xml
                           } }
       unmapped_node_parts = { column_attribute: nil, column_name: 'pathology_date',
                               column_relative_path: 'pathology[1]/sample[1]' }
+
       klass_increment = '1'
-      klass = nil
+      klass           = nil
+      new_column      = NdrImport::Xml::ColumnMapping.new(existing_column, unmapped_node_parts,
+                                                          klass_increment, @xml_line, klass).call
 
       expected_column = { 'column' => 'pathology_date',
                           'klass' => 'SomeTestKlass#1',
@@ -61,10 +68,6 @@ module Xml
                             'relative_path' => 'pathology[1]/sample[1]', 'multiple' => true
                           },
                           'rawtext_name' => 'pathology_date_1' }
-
-      new_column = NdrImport::Xml::ColumnMapping.new(existing_column, unmapped_node_parts,
-                                                     klass_increment, @xml_line, klass).call
-
       assert_equal expected_column, new_column
     end
   end
