@@ -24,8 +24,6 @@ module NdrImport
         # create unique rawtext names for repeating sections within a record
         apply_new_rawtext_and_mapped_names_to(new_column) if repeating_item
 
-        # new_column['rawtext_name'] = new_rawtext_name(new_column) if repeating_item
-
         return new_column if new_record_not_needed?(repeating_item)
 
         new_column['klass'] = incremented_klass
