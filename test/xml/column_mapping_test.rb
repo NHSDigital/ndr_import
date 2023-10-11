@@ -21,7 +21,7 @@ module Xml
                             'multiple' => true,
                             'build_new_record' => false
                           },
-                          'mappings' => ['field' => 'test_field'] }
+                          'mappings' => [{ 'field' => 'test_field' }] }
 
       unmapped_node_parts = { column_attribute: nil, column_name: 'address_line1[1]',
                               column_relative_path: 'demographics/address' }
