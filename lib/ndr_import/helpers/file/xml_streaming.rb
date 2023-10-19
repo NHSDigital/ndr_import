@@ -33,8 +33,9 @@ module NdrImport
           # wrapper to hold a representation of each element we descent into:
           StackItem = Struct.new(:name, :attrs, :empty)
 
-          def initialize(xpath)
+          def initialize(xpath, pattern_match_xpath)
             @xpath = xpath
+            @pattern_match_xpath = pattern_match_xpath
             @stack = []
             @match_depth = nil
           end
@@ -85,9 +86,27 @@ module NdrImport
           def current_stack_match?
             parent_stack = @stack[0..-2]
 
-            return false unless dom_stubs[@stack].at_xpath(@xpath)
+            stack_match = if @pattern_match_xpath
+                            dom_stubs[@stack].root.children.find_all do |node|
+                              node.name =~ Regexp.new(@xpath)
+                            end.first
+                          else
+                            dom_stubs[@stack].at_xpath(@xpath)
+                          end
 
-            parent_stack.empty? || !dom_stubs[parent_stack].at_xpath(@xpath)
+            return unless stack_match
+
+            parent_stack.empty? || xpath_not_in_parent_document?(dom_stubs[parent_stack])
+          end
+
+          def xpath_not_in_parent_document?(parent_document)
+            if @pattern_match_xpath
+              parent_document.root.children.find_all do |node|
+                node.name =~ Regexp.new(@xpath)
+              end.first.nil?
+            else
+              !parent_document.at_xpath(@xpath)
+            end
           end
 
           # A cached collection of DOM fragments, to represent the structure
@@ -116,13 +135,15 @@ module NdrImport
         #
         # In the case of dodgy encoding, may fall back to slurping the
         # file, but will still use stream parsing for XML.
-        def each_node(safe_path, xpath, &block)
-          return enum_for(:each_node, safe_path, xpath) unless block
+        #
+        # Optionally pattern match the xpath
+        def each_node(safe_path, xpath, pattern_match_xpath = nil, &block)
+          return enum_for(:each_node, safe_path, xpath, pattern_match_xpath) unless block
 
           require 'nokogiri'
 
           with_encoding_check(safe_path) do |stream, encoding|
-            stream_xml_nodes(stream, xpath, encoding, &block)
+            stream_xml_nodes(stream, xpath, pattern_match_xpath, encoding, &block)
           end
         end
 
@@ -153,9 +174,9 @@ module NdrImport
           system("iconv -f UTF-8 #{Shellwords.escape(path)} > /dev/null 2>&1")
         end
 
-        def stream_xml_nodes(io, node_xpath, encoding = nil)
+        def stream_xml_nodes(io, node_xpath, pattern_match_xpath, encoding = nil)
           # Track nesting as the cursor moves through the document:
-          cursor = Cursor.new(node_xpath)
+          cursor = Cursor.new(node_xpath, pattern_match_xpath)
 
           # If markup isn't well-formed, try to work around it:
           options = Nokogiri::XML::ParseOptions::RECOVER
