@@ -69,15 +69,15 @@ module NdrImport
         @augmented_columns       = @columns.deep_dup
         @augmented_column_xpaths = column_xpaths.deep_dup
 
-        unmapped_nodes(line).each do |unmapped_node|
-          existing_column = find_existing_column_for(unmapped_node.dup)
+        unmapped_xpaths(line).each do |unmapped_xpath|
+          existing_column = find_existing_column_for(unmapped_xpath.dup)
           next unless existing_column
 
-          unmapped_node_parts   = unmapped_node_parts(unmapped_node)
-          klass_increment_match = unmapped_node.match(/\[(\d+)\]/)
-          raise "could not identify klass for #{unmapped_node}" unless klass_increment_match
+          unmapped_xpath_hash   = labelled_xpath_components_from(unmapped_xpath)
+          klass_increment_match = unmapped_xpath.match(/\[(\d+)\]/)
+          raise "could not identify klass for #{unmapped_xpath}" unless klass_increment_match
 
-          new_column = NdrImport::Xml::ColumnMapping.new(existing_column, unmapped_node_parts,
+          new_column = NdrImport::Xml::ColumnMapping.new(existing_column, unmapped_xpath_hash,
                                                          klass_increment_match[1], line,
                                                          @klass).call
           @augmented_columns << new_column
@@ -93,57 +93,63 @@ module NdrImport
         end
       end
 
-      def find_existing_column_for(unmapped_node)
+      def find_existing_column_for(unmapped_xpath)
         # Remove any e.g. [2] which will be present on repeating sections
-        unmapped_node.gsub!(/\[\d+\]/, '')
-        unmapped_node_parts = unmapped_node_parts(unmapped_node)
+        unmapped_xpath.gsub!(/\[\d+\]/, '')
+        unmapped_xpath_hash = labelled_xpath_components_from(unmapped_xpath)
         columns.detect do |column|
-          column['column'] == unmapped_node_parts[:column_name] &&
-            column.dig('xml_cell', 'relative_path') == unmapped_node_parts[:column_relative_path] &&
-            column.dig('xml_cell', 'attribute') == unmapped_node_parts[:column_attribute]
+          column['column'] == unmapped_xpath_hash[:column_name] &&
+            column.dig('xml_cell', 'relative_path') == unmapped_xpath_hash[:column_relative_path] &&
+            column.dig('xml_cell', 'attribute') == unmapped_xpath_hash[:column_attribute]
         end
       end
 
-      def unmapped_node_parts(unmapped_node)
-        unmapped_node_parts       = unmapped_node.split('/')
-        unmapped_column_attribute = new_column_attribute_from(unmapped_node_parts)
+      # Returns a Hash containing labelled components for the given `unmapped_xpath`
+      # For example, an `unmapped_xpath` of "Record/Demographics/Sex/@code" would result in:
+      # { column_attribute: '@code',
+      #   column_name: 'Sex',
+      #   column_relative_path: 'Record/Demographics' }
+      def labelled_xpath_components_from(unmapped_xpath)
+        xpath_components = unmapped_xpath.split('/')
+        column_attribute = new_column_attribute_from(xpath_components)
 
-        { column_attribute: unmapped_column_attribute,
-          column_name: new_column_name_from(unmapped_node_parts, unmapped_column_attribute),
-          column_relative_path: new_relative_path_from(unmapped_node_parts,
-                                                       unmapped_column_attribute) }
+        { column_attribute:,
+          column_name: new_column_name_from(xpath_components, column_attribute),
+          column_relative_path: new_relative_path_from(xpath_components, column_attribute) }
       end
 
-      def new_column_attribute_from(unmapped_node_parts)
-        unmapped_node_parts.last.starts_with?('@') ? unmapped_node_parts.last[1...] : nil
+      def new_column_attribute_from(xpath_components)
+        xpath_components.last.starts_with?('@') ? xpath_components.last[1...] : nil
       end
 
-      def new_column_name_from(unmapped_node_parts, unmapped_column_attribute)
-        unmapped_column_attribute.present? ? unmapped_node_parts[-2] : unmapped_node_parts.last
+      def new_column_name_from(xpath_components, column_attribute)
+        return xpath_components[-2] if column_attribute.present?
+
+        xpath_components.last
       end
 
       # xpaths can be e.g. Record/Demographics/Sex/@code or Record/Demographics/Surname
-      # `unmapped_node_parts` is an array of the xpath components, for example:
+      # `xpath_components` is an array of the xpath's components, for example:
       # Record/Demographics/Sex/@code => ['Record', 'Demographics', 'Sex', '@code']
       #
       # For the relative path, we want to return Record/Demographics.
       # The upper_limit removes the "field name" (Sex or Surname here) and optionally the
-      # attribute (@code here) if present, from `unmapped_node_parts`.
+      # attribute (@code here) if present, from `xpath_components`.
       # The resulting array is joined back together to form the relative path.
-      def new_relative_path_from(unmapped_node_parts, unmapped_column_attribute)
-        upper_limit = unmapped_column_attribute.present? ? -3 : -2
-        unmapped_node_parts.count > 1 ? unmapped_node_parts[0..upper_limit].join('/') : nil
+      def new_relative_path_from(xpath_components, column_attribute)
+        upper_limit = column_attribute.present? ? -3 : -2
+        xpath_components.count > 1 ? xpath_components[0..upper_limit].join('/') : nil
       end
 
       # Ensure every leaf is accounted for in the column mappings
       def validate_column_mappings(line)
-        missing_nodes = unmapped_nodes(line)
-        raise "Unmapped data! #{missing_nodes}" unless missing_nodes.empty?
+        missing_xpaths = unmapped_xpaths(line)
+        raise "Unmapped data! #{missing_xpaths}" unless missing_xpaths.empty?
       end
 
-      # Not memoized this by design, we want to re-calculate unmapped nodes after
+      # Not memoized this by design, we want to re-calculate unmapped xpaths after
       # `@augmented_column_xpaths` have been augmented for each `line`
-      def unmapped_nodes(line)
+      def unmapped_xpaths(line)
         mappable_xpaths_from(line) - (@augmented_column_xpaths || column_xpaths)
       end
 
