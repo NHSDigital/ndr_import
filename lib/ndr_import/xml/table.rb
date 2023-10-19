@@ -122,6 +122,10 @@ module NdrImport
         unmapped_column_attribute.present? ? unmapped_node_parts[-2] : unmapped_node_parts.last
       end
 
+      # xpaths can be e.g. Record/Demographics/Sex/@code or Record/Demographics/Surname
+      # For the relative path, we want Record/Demographics.
+      # The upper_limit removes the "field name" (Sex or Surname here)
+      # and optionally the attribute (@code here) if present.
       def new_relative_path_from(unmapped_node_parts, unmapped_column_attribute)
         upper_limit = unmapped_column_attribute.present? ? -3 : -2
         unmapped_node_parts.count > 1 ? unmapped_node_parts[0..upper_limit].join('/') : nil

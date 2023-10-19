@@ -19,10 +19,10 @@ module NdrImport
         augmented_masked_mappings = masked_mappings
         # Remove any masked klasses where additional columns mappings
         # have been added for repeated sections
-        # e.g. SomeTestKLass column mappings are not needed if SomeTestKLass#1
+        # e.g. SomeTestKLass column mappings are not needed if SomeTestKlass#1
         # have been added
         masked_mappings.each_key do |masked_key|
-          if masked_mappings.keys.any? { |key| key =~ /#{masked_key}#\d+/ }
+          if masked_mappings.keys.any? { |key| key =~ /\A#{masked_key}#\d+/ }
             augmented_masked_mappings.delete(masked_key)
           end
         end

@@ -2,7 +2,7 @@ module NdrImport
   module Xml
     # This class generates new XML column mappings where repeating columns/sections have been
     # identified in the xml.
-    # This avoids need to need for mappings to verbosly define repeating columns/sections
+    # This avoids the need for mappings to verbosly define repeating columns/sections
     class ColumnMapping
       attr_accessor :existing_column, :unmapped_node_parts, :klass_increment, :xml_line, :klass
 
