@@ -113,7 +113,7 @@ module NdrImport
         xpath_components = unmapped_xpath.split('/')
         column_attribute = new_column_attribute_from(xpath_components)
 
-        { column_attribute:,
+        { column_attribute: column_attribute,
           column_name: new_column_name_from(xpath_components, column_attribute),
           column_relative_path: new_relative_path_from(xpath_components, column_attribute) }
       end
