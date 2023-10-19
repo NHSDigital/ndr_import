@@ -22,7 +22,7 @@ module NdrImport
         # e.g. SomeTestKLass column mappings are not needed if SomeTestKlass#1
         # have been added
         masked_mappings.each_key do |masked_key|
-          if masked_mappings.keys.any? { |key| key =~ /\A#{masked_key}#\d+/ }
+          if masked_mappings.keys.any? { |key| key =~ /\A#{masked_key}#\d+\z/ }
             augmented_masked_mappings.delete(masked_key)
           end
         end
