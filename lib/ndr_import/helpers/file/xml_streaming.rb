@@ -41,8 +41,12 @@ module NdrImport
           end
 
           # Has this cursor already passed inside a similar node?
+          # attribute comparison allows for e.g.:
+          # <SameName>
+          #   <SameName code="N"/>
+          # </SameName>
           def in?(node)
-            @stack.detect { |item| item.name == node.name }
+            @stack.detect { |item| item.name == node.name && item.attrs == node.attributes }
           end
 
           def enter(node)
