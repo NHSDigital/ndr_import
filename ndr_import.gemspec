@@ -35,7 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'ooxml_decrypt'
   spec.add_dependency 'pdf-reader', '~> 2.1'
   spec.add_dependency 'roo-xls'
-  spec.add_dependency 'seven_zip_ruby', '~> 1.3'
+  spec.add_dependency 'seven-zip', '~> 1.4'
   spec.add_dependency 'spreadsheet', '1.2.6'
 
   spec.required_ruby_version = '>= 3.0'
