@@ -57,21 +57,25 @@ module NdrImport
       # single record, so data is not overwritten
       def apply_new_rawtext_and_mapped_names_to(new_column)
         existing_rawtext        = existing_column['rawtext_name'] || existing_column['column']
-        column_name_increment   = new_column['column'].match(/\[(\d+)\]\z/)
-        relative_path_increment = new_column.dig('xml_cell', 'relative_path').match(/\[(\d+)\]\z/)
+        column_name_increment   = new_column['column'].scan(/\[(\d+)\]\z/)
+        relative_path_increment = new_column.dig('xml_cell', 'relative_path').scan(/\[(\d+)\]/)
 
-        increment = column_name_increment || relative_path_increment
-        new_column['rawtext_name'] = existing_rawtext + "_#{increment[1]}" if increment
+        # Find all the increments (e.g. [1], [2]) from the new column
+        increments = column_name_increment.flatten.presence || relative_path_increment.flatten
+        new_column['rawtext_name'] = existing_rawtext + "_#{increments.last}" if increments.present?
 
-        return unless increment && new_column.dig('xml_cell', 'increment_field_name')
+        return unless increments.present? && new_column.dig('xml_cell', 'increment_field_name')
 
-        mappings = new_column['mappings'].map do |mapping|
-          mapping['field'] = "#{mapping['field']}_#{increment[1]}"
+        new_column['mappings'] = incremented_mappings_for(new_column, increments)
+      end
+
+      # Increment the mapped `field` names
+      def incremented_mappings_for(new_column, increments)
+        new_column['mappings'].map do |mapping|
+          mapping['field'] = "#{mapping['field']}_#{increments.last}"
 
           mapping
         end
-
-        new_column['mappings'] = mappings
       end
     end
   end

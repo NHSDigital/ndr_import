@@ -51,7 +51,7 @@ module Xml
       file_path     = SafePath.new('permanent_test_files').join('repeating_section_sample.xml')
       handler       = NdrImport::File::Xml.new(file_path, nil, 'xml_record_xpath' => 'record')
       element_lines = handler.send(:rows)
-      table         = NdrImport::Xml::Table.new(columns: repeating_secion_xml_mapping)
+      table         = NdrImport::Xml::Table.new(columns: repeating_section_xml_mapping)
 
       expected_data = [
         ['SomeTestKlass#1', { rawtext:
@@ -59,7 +59,7 @@ module Xml
              'pathology_date_2' => '2019-01-01', 'pathology_id_2' => 'BBB' } },
          0],
         ['SomeTestKlass#2', { rawtext:
-          { 'pathology_date' => '2020-01-01', 'pathology_id' => 'CCC' } },
+          { 'pathology_date_2' => '2020-01-01', 'pathology_id_2' => 'CCC' } },
          0],
         ['SomeTestKlass#1', { rawtext:
           { 'pathology_date_1' => '2021-01-01', 'pathology_id_1' => 'DDD' } },
@@ -115,7 +115,7 @@ module Xml
       ]
     end
 
-    def repeating_secion_xml_mapping
+    def repeating_section_xml_mapping
       [
         { 'column' => 'no_relative_path', 'klass' => 'SomeTestKlass',
           'xml_cell' => { 'relative_path' => '', 'attribute' => 'value' } },

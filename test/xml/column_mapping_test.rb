@@ -55,7 +55,7 @@ module Xml
                             'relative_path' => 'pathology/sample', 'multiple' => true
                           } }
       unmapped_node_parts = { column_attribute: nil, column_name: 'pathology_date',
-                              column_relative_path: 'pathology[1]/sample[1]' }
+                              column_relative_path: 'pathology[2]/sample[1]' }
 
       klass_increment = '1'
       klass           = nil
@@ -65,7 +65,7 @@ module Xml
       expected_column = { 'column' => 'pathology_date',
                           'klass' => 'SomeTestKlass#1',
                           'xml_cell' => {
-                            'relative_path' => 'pathology[1]/sample[1]', 'multiple' => true
+                            'relative_path' => 'pathology[2]/sample[1]', 'multiple' => true
                           },
                           'rawtext_name' => 'pathology_date_1' }
       assert_equal expected_column, new_column
