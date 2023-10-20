@@ -112,10 +112,12 @@ module NdrImport
       def labelled_xpath_components_from(unmapped_xpath)
         xpath_components = unmapped_xpath.split('/')
         column_attribute = new_column_attribute_from(xpath_components)
-
+        # I dislike the `EnforcedShorthandSyntax`, code is less readable
+        # rubocop:disable Style::HashSyntax
         { column_attribute: column_attribute,
           column_name: new_column_name_from(xpath_components, column_attribute),
           column_relative_path: new_relative_path_from(xpath_components, column_attribute) }
+        # rubocop:enable Style::HashSyntax
       end
 
       def new_column_attribute_from(xpath_components)

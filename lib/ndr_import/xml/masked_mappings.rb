@@ -19,9 +19,11 @@ module NdrImport
         augmented_masked_mappings = masked_mappings
         # Remove any masked klasses where additional columns mappings
         # have been added for repeated sections
-        # e.g. SomeTestKLass column mappings are not needed if SomeTestKlass#1
+        # e.g. SomeTestKlass column mappings are not needed if SomeTestKlass#1
         # have been added
         masked_mappings.each do |masked_key, columns|
+          # There may be occasions where the e.g. SomeTestKlass should be kept,
+          # This can be flagged in the one the klass's column mappings
           next if columns.any? { |column| column.dig('xml_cell', 'keep_klass') }
 
           if masked_mappings.keys.any? { |key| key =~ /\A#{masked_key}#\d+\z/ }
