@@ -24,7 +24,7 @@ module NdrImport
         # create unique rawtext names for repeating sections within a record
         apply_new_rawtext_and_mapped_names_to(new_column) if repeating_item
 
-        return new_column if new_record_not_needed?(repeating_item)
+        return new_column unless incremented_klass_needed?(repeating_item)
 
         new_column['klass'] = incremented_klass
         new_column
@@ -35,12 +35,24 @@ module NdrImport
       # If a table level klass is defined, there is nothing to increment at the column level.
       # Similarly, not all repeating sections/items require a separate record.
       # No need to create new records for a single occurence of a repeating section
+      def incremented_klass_needed?(repeating_item)
+        section_xpath    = existing_column.dig('xml_cell', 'section')
+        build_new_record = existing_column.dig('xml_cell', 'build_new_record')
+
+        return false if klass.present?
+        # Column mapping needs to explicitly flag when additionals should not be made
+        return false if build_new_record == false
+        return false if xml_line.xpath(section_xpath).one? && repeating_item
+
+        true
+      end
+
       def new_record_not_needed?(repeating_item)
         section_xpath    = existing_column.dig('xml_cell', 'section')
         build_new_record = existing_column.dig('xml_cell', 'build_new_record')
 
         klass.present? || build_new_record == false ||
-          (repeating_item && xml_line.xpath(section_xpath).one?)
+          (xml_line.xpath(section_xpath).one? && repeating_item)
       end
 
       def incremented_klass
@@ -57,22 +69,23 @@ module NdrImport
       # single record, so data is not overwritten
       def apply_new_rawtext_and_mapped_names_to(new_column)
         existing_rawtext        = existing_column['rawtext_name'] || existing_column['column']
-        column_name_increment   = new_column['column'].scan(/\[(\d+)\]\z/)
+        column_name_increment   = new_column['column'].scan(/\[(\d+)\]/)
         relative_path_increment = new_column.dig('xml_cell', 'relative_path').scan(/\[(\d+)\]/)
 
-        # Find all the increments (e.g. [1], [2]) from the new column
-        increments = column_name_increment.flatten.presence || relative_path_increment.flatten
-        new_column['rawtext_name'] = existing_rawtext + "_#{increments.last}" if increments.present?
+        # Find all the increments (e.g. [1], [2]) from the new column and use their sum
+        # as the rawtext and column name increment
+        increment = (column_name_increment + relative_path_increment).flatten.map(&:to_i).sum
+        new_column['rawtext_name'] = existing_rawtext + "_#{increment}" unless increment.zero?
 
-        return unless increments.present? && new_column.dig('xml_cell', 'increment_field_name')
+        return unless !increment.zero? && new_column.dig('xml_cell', 'increment_field_name')
 
-        new_column['mappings'] = incremented_mappings_for(new_column, increments)
+        new_column['mappings'] = incremented_mappings_for(new_column, increment)
       end
 
       # Increment the mapped `field` names
-      def incremented_mappings_for(new_column, increments)
+      def incremented_mappings_for(new_column, increment)
         new_column['mappings'].map do |mapping|
-          mapping['field'] = "#{mapping['field']}_#{increments.last}"
+          mapping['field'] = "#{mapping['field']}_#{increment}"
 
           mapping
         end
