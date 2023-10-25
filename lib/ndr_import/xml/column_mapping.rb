@@ -4,22 +4,25 @@ module NdrImport
     # identified in the xml.
     # This avoids the need for mappings to verbosly define repeating columns/sections
     class ColumnMapping
-      attr_accessor :existing_column, :unmapped_node_parts, :klass_increment, :xml_line, :klass
+      attr_accessor :existing_column, :unmapped_node_parts, :klass_increment, :xml_line, :klass,
+                    :repeating_item, :increment_field_name, :build_new_record, :klass_section_xpath
 
       def initialize(existing_column, unmapped_node_parts, klass_increment, xml_line, klass)
         @existing_column     = existing_column
-        @unmapped_node_parts = unmapped_node_parts
-        @klass_increment     = klass_increment
-        @xml_line            = xml_line
-        @klass               = klass
+        @unmapped_node_parts  = unmapped_node_parts
+        @klass_increment      = klass_increment
+        @xml_line             = xml_line
+        @klass                = klass
+        @repeating_item       = existing_column.dig('xml_cell', 'multiple')
+        @increment_field_name = existing_column.dig('xml_cell', 'increment_field_name')
+        @build_new_record     = existing_column.dig('xml_cell', 'build_new_record')
+        @klass_section_xpath  = existing_column.dig('xml_cell', 'klass_section')
       end
 
       def call
         new_column                              = existing_column.deep_dup
         new_column['column']                    = unmapped_node_parts[:column_name]
         new_column['xml_cell']['relative_path'] = unmapped_node_parts[:column_relative_path]
-
-        repeating_item = existing_column.dig('xml_cell', 'multiple')
 
         # create unique rawtext names for repeating sections within a record
         apply_new_rawtext_and_mapped_names_to(new_column) if repeating_item
@@ -36,23 +39,17 @@ module NdrImport
       # Similarly, not all repeating sections/items require a separate record.
       # No need to create new records for a single occurence of a repeating section
       def incremented_klass_needed?(repeating_item)
-        section_xpath    = existing_column.dig('xml_cell', 'section')
-        build_new_record = existing_column.dig('xml_cell', 'build_new_record')
-
         return false if klass.present?
         # Column mapping needs to explicitly flag when additionals should not be made
         return false if build_new_record == false
-        return false if xml_line.xpath(section_xpath).one? && repeating_item
+        return false if xml_line.xpath(klass_section_xpath).one? && repeating_item
 
         true
       end
 
       def new_record_not_needed?(repeating_item)
-        section_xpath    = existing_column.dig('xml_cell', 'section')
-        build_new_record = existing_column.dig('xml_cell', 'build_new_record')
-
         klass.present? || build_new_record == false ||
-          (xml_line.xpath(section_xpath).one? && repeating_item)
+          (xml_line.xpath(klass_section_xpath).one? && repeating_item)
       end
 
       def incremented_klass
@@ -77,7 +74,7 @@ module NdrImport
         increment = (column_name_increment + relative_path_increment).flatten.map(&:to_i).sum
         new_column['rawtext_name'] = existing_rawtext + "_#{increment}" unless increment.zero?
 
-        return unless !increment.zero? && new_column.dig('xml_cell', 'increment_field_name')
+        return unless !increment.zero? && increment_field_name
 
         new_column['mappings'] = incremented_mappings_for(new_column, increment)
       end
