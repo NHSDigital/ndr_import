@@ -55,8 +55,8 @@ module Xml
 
       expected_data = [
         ['SomeTestKlass#1', { rawtext:
-           { 'pathology_date_1' => '2018-01-01', 'pathology_id_1' => 'AAA',
-             'pathology_date_2' => '2019-01-01', 'pathology_id_2' => 'BBB' } },
+           { 'pathology_date_2' => '2018-01-01', 'pathology_id_2' => 'AAA',
+             'pathology_date_3' => '2019-01-01', 'pathology_id_3' => 'BBB' } },
          0],
         ['SomeTestKlass#2', { rawtext:
           { 'pathology_date_2' => '2020-01-01', 'pathology_id_2' => 'CCC' } },
