@@ -98,7 +98,7 @@ module NdrImport
                             dom_stubs[@stack].at_xpath(@xpath)
                           end
 
-            return unless stack_match
+            return false unless stack_match
 
             parent_stack.empty? || xpath_not_in_parent_document?(dom_stubs[parent_stack])
           end

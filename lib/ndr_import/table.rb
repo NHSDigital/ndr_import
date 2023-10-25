@@ -6,6 +6,7 @@ module NdrImport
   # required to transform a table of data into "records". Particular attention
   # has been made to use enumerables throughout to help with the transformation
   # of large quantities of data.
+  # rubocop:disable Metrics/ClassLength
   class Table
     include NdrImport::Mapper
 
@@ -250,4 +251,5 @@ module NdrImport
       index - 1
     end
   end # class Table
+  # rubocop:enable Metrics/ClassLength
 end

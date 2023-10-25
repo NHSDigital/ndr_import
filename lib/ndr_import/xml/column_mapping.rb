@@ -8,7 +8,7 @@ module NdrImport
                     :repeating_item, :increment_field_name, :build_new_record, :klass_section_xpath
 
       def initialize(existing_column, unmapped_node_parts, klass_increment, xml_line, klass)
-        @existing_column     = existing_column
+        @existing_column      = existing_column
         @unmapped_node_parts  = unmapped_node_parts
         @klass_increment      = klass_increment
         @xml_line             = xml_line
@@ -27,7 +27,7 @@ module NdrImport
         # create unique rawtext names for repeating sections within a record
         apply_new_rawtext_and_mapped_names_to(new_column) if repeating_item
 
-        return new_column unless incremented_klass_needed?(repeating_item)
+        return new_column unless incremented_klass_needed?
 
         new_column['klass'] = incremented_klass
         new_column
@@ -38,18 +38,13 @@ module NdrImport
       # If a table level klass is defined, there is nothing to increment at the column level.
       # Similarly, not all repeating sections/items require a separate record.
       # No need to create new records for a single occurence of a repeating section
-      def incremented_klass_needed?(repeating_item)
+      def incremented_klass_needed?
         return false if klass.present?
         # Column mapping needs to explicitly flag when additionals should not be made
         return false if build_new_record == false
         return false if xml_line.xpath(klass_section_xpath).one? && repeating_item
 
         true
-      end
-
-      def new_record_not_needed?(repeating_item)
-        klass.present? || build_new_record == false ||
-          (xml_line.xpath(klass_section_xpath).one? && repeating_item)
       end
 
       def incremented_klass
