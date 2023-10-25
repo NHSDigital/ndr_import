@@ -146,7 +146,9 @@ module NdrImport
       # Ensure every leaf is accounted for in the column mappings
       def validate_column_mappings(line)
         missing_xpaths = unmapped_xpaths(line)
-        raise "Unmapped data! #{missing_xpaths}" unless missing_xpaths.empty?
+        return if missing_xpaths.none?
+
+        raise(NdrImport::Xml::UnmappedXpathError, missing_xpaths.to_sentence)
       end
 
       # Not memoized this by design, we want to re-calculate unmapped xpaths after

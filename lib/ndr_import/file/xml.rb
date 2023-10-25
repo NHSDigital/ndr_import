@@ -29,8 +29,6 @@ module NdrImport
         else
           each_node(@filename, xml_record_xpath, @pattern_match_xpath, &block)
         end
-      rescue StandardError => e
-        raise("#{SafeFile.basename(@filename)} [#{e.class}: #{e.message}]")
       end
 
       def xml_record_xpath

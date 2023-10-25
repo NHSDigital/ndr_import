@@ -39,8 +39,12 @@ module Xml
     def test_should_fail_with_unmappped_nodes
       table = NdrImport::Xml::Table.new(klass: 'SomeTestKlass', columns: partial_xml_column_mapping)
 
-      exception = assert_raises(RuntimeError) { table.transform(@element_lines).to_a }
-      assert exception.message.starts_with? 'sample.xml [RuntimeError: Unmapped data!'
+      exception = assert_raises NdrImport::Xml::UnmappedXpathError do
+        table.transform(@element_lines).to_a
+      end
+      expected_error = 'Unmapped xpath(s): pathology/pathology_date_1 ' \
+                       'and pathology/pathology_date_2'
+      assert_equal expected_error, exception.message
     end
 
     def test_should_not_raise_exception_on_forced_slurp

@@ -13,6 +13,7 @@ require 'ndr_import/avro/table'
 require 'ndr_import/vcf/table'
 require 'ndr_import/unmapped_data_error'
 require 'ndr_import/acroform_reader'
+require 'ndr_import/xml/unmapped_xpath_error'
 
 module NdrImport
   def self.root
