@@ -93,10 +93,9 @@ module Xml
                                            'slurp' => true)
       xml_lines = handler.send(:rows)
 
-      allowed_classes = [NdrImport::Xml::Table, Regexp, Symbol]
       mapping_file_path = SafePath.new('permanent_test_files').join('complex_xml_mapping.yml')
 
-      table = YAML.load_file mapping_file_path, permitted_classes: allowed_classes
+      table = load_esourcemapping_yaml(File.read(mapping_file_path, mode: 'r:bom|utf-8'))
 
       expected_mapped_lines = YAML.load_file SafePath.new('permanent_test_files').
                               join('complex_xml_transformed.yml')
@@ -108,8 +107,8 @@ module Xml
 
       expected_columns_filepath = SafePath.new('permanent_test_files').
                                   join('complex_xml_augmented_column_mappings.yml')
-      expected_column_mappings = YAML.load_file(expected_columns_filepath,
-                                                permitted_classes: allowed_classes)
+      expected_column_mappings = load_esourcemapping_yaml(File.read(expected_columns_filepath,
+                                                                    mode: 'r:bom|utf-8'))
       assert_equal expected_column_mappings, table.instance_variable_get('@augmented_columns')
     end
 
