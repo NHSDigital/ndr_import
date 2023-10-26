@@ -1,0 +1,4534 @@
+﻿---
+- column: Id
+  klass: ECosdXmlRecord
+  rawtext_name: cosdrecordid
+  xml_cell:
+    id:
+    relative_path:
+    attribute: root
+    version: ">= 10.0.1"
+- column: NhsNumber
+  klass: ECosdXmlRecord
+  rawtext_name: nhsnumber
+  xml_cell:
+    id: CR0010
+    relative_path: PatientIdentityDetails
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: nhsnumber
+- column: LocalPatientIdentifier
+  klass: ECosdXmlRecord
+  rawtext_name: hospitalnumber
+  xml_cell:
+    id: CR0020
+    relative_path: PatientIdentityDetails
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: hospitalnumber
+- column: NhsNumberStatusIndicatorCode
+  klass: ECosdXmlRecord
+  rawtext_name: nhsnumberstatusindicatorcode
+  xml_cell:
+    id: CR1350
+    relative_path: PatientIdentityDetails
+    attribute: code
+    version: ">= 10.0.1"
+- column: PersonBirthDate
+  klass: ECosdXmlRecord
+  rawtext_name: dateofbirth
+  xml_cell:
+    id: CR0100
+    relative_path: PatientIdentityDetails
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: dateofbirth
+- column: OrganisationIdentifierCodeOfProvider
+  klass: ECosdXmlRecord
+  rawtext_name: hospitalnumberprovidercode
+  xml_cell:
+    id: CR0030
+    relative_path: PatientIdentityDetails
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: orgidecodofpro
+- column: PersonFamilyName
+  klass: ECosdXmlRecord
+  rawtext_name: surname
+  xml_cell:
+    id: CR0050
+    relative_path: Demographics
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: surname
+- column: PersonGivenName
+  klass: ECosdXmlRecord
+  rawtext_name: forenames
+  xml_cell:
+    id: CR0060
+    relative_path: Demographics
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: forenames
+- column: StreetAddressLine
+  klass: ECosdXmlRecord
+  rawtext_name: address
+  xml_cell:
+    id:
+    relative_path: Demographics/Address/UnstructuredAddress
+    attribute:
+    version: ">= 10.0.1"
+- column: StreetAddressLine
+  klass: ECosdXmlRecord
+  rawtext_name: address
+  xml_cell:
+    id:
+    relative_path: Demographics/Address/StructuredAddress
+    attribute:
+    version: ">= 10.0.1"
+    multiple: true
+    build_new_record: false
+- column: PostcodeOfUsualAddressAtDiagnosis
+  klass: ECosdXmlRecord
+  rawtext_name: postcode
+  xml_cell:
+    id: CR0080
+    relative_path: Demographics
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: postcode
+    clean: :postcode
+- column: PersonStatedGenderCode
+  klass: ECosdXmlRecord
+  rawtext_name: sex
+  xml_cell:
+    id: CR3170
+    relative_path: Demographics
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: sex
+- column: PersonSexualOrientationCodeAtDiagnosis
+  klass: ECosdXmlRecord
+  rawtext_name: sexual_orientation_at_diag
+  xml_cell:
+    id: CR6840
+    relative_path: Demographics
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: sexual_orientation_at_diag
+- column: GeneralMedicalPractitionerSpecified
+  klass: ECosdXmlRecord
+  rawtext_name: gpcode
+  xml_cell:
+    id: CR0110
+    relative_path: Demographics
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: gpcode
+- column: GeneralMedicalPracticePatientRegistration
+  klass: ECosdXmlRecord
+  rawtext_name: gppracticecode
+  xml_cell:
+    id: CR0120
+    relative_path: Demographics
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: gppracticecode
+- column: PersonFamilyNameAtBirth
+  klass: ECosdXmlRecord
+  rawtext_name: previoussurname
+  xml_cell:
+    id: CR0140
+    relative_path: Demographics
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: previoussurname
+- column: EthnicCategory
+  klass: ECosdXmlRecord
+  rawtext_name: ethniccategory
+  xml_cell:
+    id: CR0150
+    relative_path: Demographics
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: ethniccategory
+- column: OrganisationSiteIdentifierOfImaging
+  klass:
+  - ECosdXmlImaging
+  rawtext_name: sitecode_ofimaging
+  xml_cell:
+    id: CR0310
+    relative_path: Imaging
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: providercode
+- column: ProcedureDateCancerImaging
+  klass:
+  - ECosdXmlImaging
+  rawtext_name: proceduredate_cancerimaging
+  xml_cell:
+    id: CR0320
+    relative_path: Imaging
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: clinicalinterventiondate
+- column: ImagingOutcome
+  klass:
+  - ECosdXmlImaging
+  rawtext_name: cancer_imaging_outcome
+  xml_cell:
+    id: CR6780
+    relative_path: Imaging
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: cancer_imaging_outcome
+- column: ImagingCodeNicip
+  klass:
+  - ECosdXmlImaging
+  rawtext_name: imagingcode_nicip
+  xml_cell:
+    id: CR1610
+    relative_path: Imaging
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: imagingcode_nicip
+- column: ImagingCodeSnomedCt
+  klass:
+  - ECosdXmlImaging
+  rawtext_name: imagingcode_snomedct
+  xml_cell:
+    id: CR3110
+    relative_path: Imaging
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: imagingcode_snomedct
+- column: CancerImagingModality
+  klass:
+  - ECosdXmlImaging
+  rawtext_name: cancerimagingmodality
+  xml_cell:
+    id: CR0330
+    relative_path: Imaging/ImagingLocationGroup
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: imagingmodality
+- column: ImagingAnatomicalSite
+  klass:
+  - ECosdXmlImaging
+  rawtext_name: imaginganatomicalsite
+  xml_cell:
+    id: CR0340
+    relative_path: Imaging/ImagingLocationGroup
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: anatomicalexaminationsite
+- column: AnatomicalSideImaging
+  klass:
+  - ECosdXmlImaging
+  rawtext_name: anatomicalside_imaging
+  xml_cell:
+    id: CR3000
+    relative_path: Imaging/ImagingLocationGroup
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: anatomicalside_imaging
+- column: ImagingReportText
+  klass:
+  - ECosdXmlImaging
+  rawtext_name: imagingreporttext
+  xml_cell:
+    id: CR0160
+    relative_path: Imaging
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: imagingreporttext
+- column: OrganisationSiteIdentifierDiagnosticProcedure
+  klass:
+  - ECosdXmlDiagnosticProcedure
+  rawtext_name: diagnostic_procedure_sitecode
+  xml_cell:
+    id: CR7500
+    relative_path: DiagnosticProcedures
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: providercode
+- column: DiagnosticProcedureDate
+  klass:
+  - ECosdXmlDiagnosticProcedure
+  rawtext_name: diagnosticproceduredate
+  xml_cell:
+    id: CR7510
+    relative_path: DiagnosticProcedures
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: diagnosticproceduredate
+- column: DiagnosticProcedureOpcs
+  klass:
+  - ECosdXmlDiagnosticProcedure
+  rawtext_name: diagnosticprocedureopcs
+  xml_cell:
+    id: CR7520
+    relative_path: DiagnosticProcedures
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: diagnosticprocedureopcscode
+- column: DiagnosticProcedureSnomedCt
+  klass:
+  - ECosdXmlDiagnosticProcedure
+  rawtext_name: diagnosticproceduresnomedct
+  xml_cell:
+    id: CR7530
+    relative_path: DiagnosticProcedures
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: diagnosticproceduresnomedct
+- column: SentinelNodeBiopsyOutcome
+  klass:
+  - ECosdXmlDiagnosticProcedure
+  rawtext_name: sentinelnodebiopsyoutcome
+  xml_cell:
+    id: CR7540
+    relative_path: DiagnosticProcedures/SentinelNodeBiopsy
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: sentinelnodebiopsyoutcome
+- column: DiffusionCapacityDlcoOrTlcoResult
+  klass:
+  - ECosdXmlDiagnosticProcedure
+  rawtext_name: diffusioncapacitytestresult
+  xml_cell:
+    id: LU10310
+    relative_path: DiagnosticProcedures/DiffusionCapacity
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: diffusioncapacitytestresult
+- column: Fev1Percentage
+  klass:
+  - ECosdXmlDiagnosticProcedure
+  rawtext_name: fev1percentage
+  xml_cell:
+    id: LU10040
+    relative_path: DiagnosticProcedures/Fev1
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: fev1percentage
+- column: Fev1AbsoluteValue
+  klass:
+  - ECosdXmlDiagnosticProcedure
+  rawtext_name: fev1absolutevalue
+  xml_cell:
+    id: LU10050
+    relative_path: DiagnosticProcedures/Fev1
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: fev1absolutevalue
+- column: BronchoscopyPerformedType
+  klass:
+  - ECosdXmlDiagnosticProcedure
+  rawtext_name: bronchoscopyperformedtype
+  xml_cell:
+    id: LU10400
+    relative_path: DiagnosticProcedures/Bronchoscopy
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: bronchoscopyperformedtype
+- column: ProstateBiopsyTechnique
+  klass:
+  - ECosdXmlDiagnosticProcedure
+  rawtext_name: prostatebiopsytechnique
+  xml_cell:
+    id: UR15410
+    relative_path: DiagnosticProcedures/Prostate
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: prostatebiopsytechnique
+- column: BiopsyAnaesthetic
+  klass:
+  - ECosdXmlDiagnosticProcedure
+  rawtext_name: biopsyanaesthetic
+  xml_cell:
+    id: UR15440
+    relative_path: DiagnosticProcedures/Prostate
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: biopsyanaesthetic
+- column: PersonObservationHeightInMetres
+  klass:
+  - ECosdXmlPersonObservation
+  rawtext_name: personheightinmetres
+  xml_cell:
+    id: CR6430
+    relative_path: PersonObservation
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: heightinmetres
+- column: PersonObservationWeight
+  klass:
+  - ECosdXmlPersonObservation
+  rawtext_name: personobservation_weight
+  xml_cell:
+    id: CR6440
+    relative_path: PersonObservation
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: weightinkg
+- column: BodyMassIndex
+  klass:
+  - ECosdXmlPersonObservation
+  rawtext_name: bodymassindex
+  xml_cell:
+    id: CR6450
+    relative_path: PersonObservation
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: bodymassindex
+- column: DateObservationMeasured
+  klass:
+  - ECosdXmlPersonObservation
+  rawtext_name: observation_date
+  xml_cell:
+    id: CR6460
+    relative_path: PersonObservation
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: observation_date
+- column: ClinicalNurseSpecialistIndicationCode
+  klass:
+  - ECosdXmlCnsRiskFactorAssessment
+  rawtext_name: clinicalnursespecialistindicationcode
+  xml_cell:
+    id: CR2050
+    relative_path: ClinicalNurseSpecialistAndRiskFactorAssessment
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: clinicalnursespecialist
+- column: TobaccoSmokingStatus
+  klass:
+  - ECosdXmlCnsRiskFactorAssessment
+  rawtext_name: tobaccosmokingstatus
+  xml_cell:
+    id: CR7800
+    relative_path: ClinicalNurseSpecialistAndRiskFactorAssessment
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: tobaccosmokingstatus
+- column: TobaccoSmokingCessation
+  klass:
+  - ECosdXmlCnsRiskFactorAssessment
+  rawtext_name: tobaccosmokingcessation
+  xml_cell:
+    id: CR7810
+    relative_path: ClinicalNurseSpecialistAndRiskFactorAssessment
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: tobaccosmokingcessation
+- column: HistoryOfAlcoholCurrent
+  klass:
+  - ECosdXmlCnsRiskFactorAssessment
+  rawtext_name: history_of_alcohol_current
+  xml_cell:
+    id: CR6760
+    relative_path: ClinicalNurseSpecialistAndRiskFactorAssessment
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: history_of_alcohol_current
+- column: HistoryOfAlcoholPast
+  klass:
+  - ECosdXmlCnsRiskFactorAssessment
+  rawtext_name: history_of_alcohol_past
+  xml_cell:
+    id: CR6770
+    relative_path: ClinicalNurseSpecialistAndRiskFactorAssessment
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: history_of_alcohol_past
+- column: DiabetesMellitusType1AndType2Indicator
+  klass:
+  - ECosdXmlCnsRiskFactorAssessment
+  rawtext_name: diabetes_mellitus_type1_and_type_2_indicator
+  xml_cell:
+    id: CR9070
+    relative_path: ClinicalNurseSpecialistAndRiskFactorAssessment
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: diameltypandtyp2ind
+- column: MenopausalStatus
+  klass:
+  - ECosdXmlCnsRiskFactorAssessment
+  rawtext_name: menopausalstatus
+  xml_cell:
+    id: CR7830
+    relative_path: ClinicalNurseSpecialistAndRiskFactorAssessment
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: menopausalstatus
+- column: PhysicalActivityCurrent
+  klass:
+  - ECosdXmlCnsRiskFactorAssessment
+  rawtext_name: physicalactivitycurrent
+  xml_cell:
+    id: CR7840
+    relative_path: ClinicalNurseSpecialistAndRiskFactorAssessment
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: physicalactivitycurrent
+- column: FitnessAssessmentIndicator
+  klass:
+  - ECosdXmlCnsRiskFactorAssessment
+  rawtext_name: fitnessassessmentindicator
+  xml_cell:
+    id: BR4500
+    relative_path: ClinicalNurseSpecialistAndRiskFactorAssessment/Breast
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: fitnessassessmentindicator
+- column: FitnessAssessmentDate
+  klass:
+  - ECosdXmlCnsRiskFactorAssessment
+  rawtext_name: fitnessassessmentdate
+  xml_cell:
+    id: BR4510
+    relative_path: ClinicalNurseSpecialistAndRiskFactorAssessment/Breast
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: fitnessassessmentdate
+- column: ClinicalFrailtyScale
+  klass:
+  - ECosdXmlCnsRiskFactorAssessment
+  rawtext_name: clinicalfrailtyscale
+  xml_cell:
+    id: BR4520
+    relative_path: ClinicalNurseSpecialistAndRiskFactorAssessment/Breast
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: clinicalfrailtyscale
+- column: AbbreviatedMentalTestScore
+  klass:
+  - ECosdXmlCnsRiskFactorAssessment
+  rawtext_name: abbreviatedmentaltestscore
+  xml_cell:
+    id: BR4530
+    relative_path: ClinicalNurseSpecialistAndRiskFactorAssessment/Breast
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: abbreviatedmentaltestscore
+- column: CardiorespiratoryDisease
+  klass:
+  - ECosdXmlCnsRiskFactorAssessment
+  rawtext_name: cardiorespiratorydisease
+  xml_cell:
+    id: BR4540
+    relative_path: ClinicalNurseSpecialistAndRiskFactorAssessment/Breast
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: cardiorespiratorydisease
+- column: OtherNonBreastLocallyAdvancedMetastaticMalignancy
+  klass:
+  - ECosdXmlCnsRiskFactorAssessment
+  rawtext_name: othernonbreastlocallyadvancedmetastaticmalignancy
+  xml_cell:
+    id: BR4550
+    relative_path: ClinicalNurseSpecialistAndRiskFactorAssessment/Breast
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: nonbreastmalignancy
+- column: DementiaDiagnosis
+  klass:
+  - ECosdXmlCnsRiskFactorAssessment
+  rawtext_name: dementia_diagnosis
+  xml_cell:
+    id: BR4560
+    relative_path: ClinicalNurseSpecialistAndRiskFactorAssessment/Breast
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: dementia_diagnosis
+- column: ClinicalNurseSpecialistType
+  klass:
+  - ECosdXmlCnsRiskFactorAssessment
+  rawtext_name: clinicalnursespecialist
+  xml_cell:
+    id: CO5180
+    relative_path: ClinicalNurseSpecialistAndRiskFactorAssessment/Colorectal
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: clinicalnursespecialisttype
+- column: AssessmentOffered
+  klass:
+  - ECosdXmlHnaAndPcsp
+  rawtext_name: assessmentoffered
+  xml_cell:
+    id: CR7900
+    relative_path: HolisticNeedsAssessmentAndPersonalisedCareAndSupportPlanning
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: offered
+- column: AssessmentCarePlanStatus
+  klass:
+  - ECosdXmlHnaAndPcsp
+  rawtext_name: assessment_care_plan_status
+  xml_cell:
+    id: CR7920
+    relative_path: HolisticNeedsAssessmentAndPersonalisedCareAndSupportPlanning
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: assessment_care_plan_status
+- column: AssessmentCarePlanDate
+  klass:
+  - ECosdXmlHnaAndPcsp
+  rawtext_name: assessment_care_plan_date
+  xml_cell:
+    id: CR7930
+    relative_path: HolisticNeedsAssessmentAndPersonalisedCareAndSupportPlanning
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: assessment_care_plan_date
+- column: AssessmentCarePlanPointOfPathway
+  klass:
+  - ECosdXmlHnaAndPcsp
+  rawtext_name: assessment_care_plan_point_of_pathway
+  xml_cell:
+    id: CR7940
+    relative_path: HolisticNeedsAssessmentAndPersonalisedCareAndSupportPlanning
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: assplapoiofpat
+- column: StaffRoleOfferingTheAssessment
+  klass:
+  - ECosdXmlHnaAndPcsp
+  rawtext_name: staff_role_offering_the_assessment
+  xml_cell:
+    id: CR7950
+    relative_path: HolisticNeedsAssessmentAndPersonalisedCareAndSupportPlanning
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: starolofftheass
+- column: StaffRoleOfferingThePlanning
+  klass:
+  - ECosdXmlHnaAndPcsp
+  rawtext_name: staff_role_offering_the_planning
+  xml_cell:
+    id: CR7960
+    relative_path: HolisticNeedsAssessmentAndPersonalisedCareAndSupportPlanning
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: staroloffthepla
+- column: MultidisciplinaryTeamMeetingDiscussion
+  klass:
+  - ECosdXmlMdtMeeting
+  rawtext_name: multidisciplinaryteammeetingdiscussion
+  xml_cell:
+    id: CR8100
+    relative_path: MultidisciplinaryTeamMeetings
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: mdtmeetingdiscussion
+- column: MultidisciplinaryTeamMeetingDiscussionType
+  klass:
+  - ECosdXmlMdtMeeting
+  rawtext_name: multidisciplinaryteammeetingdiscussiontype
+  xml_cell:
+    id: CR8110
+    relative_path: MultidisciplinaryTeamMeetings/MultidisciplinaryTeamMeetingDetail
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: mdtmeetingdiscussiontype
+- column: MultidisciplinaryTeamMeetingDate
+  klass:
+  - ECosdXmlMdtMeeting
+  rawtext_name: multidisciplinaryteammeetingdate_cancer
+  xml_cell:
+    id: CR3080
+    relative_path: MultidisciplinaryTeamMeetings/MultidisciplinaryTeamMeetingDetail
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: mdtmeetingdate_cancer
+- column: OrganisationSiteIdentifierOfMultidisciplinaryTeamMeeting
+  klass:
+  - ECosdXmlMdtMeeting
+  rawtext_name: organisationsiteidentifierofmultidisciplinaryteammeeting
+  xml_cell:
+    id: CR3090
+    relative_path: MultidisciplinaryTeamMeetings/MultidisciplinaryTeamMeetingDetail
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: sitecode
+- column: MultidisciplinaryTeamMeetingType
+  klass:
+  - ECosdXmlMdtMeeting
+  rawtext_name: multidisciplinaryteammeetingtype_cancer
+  xml_cell:
+    id: CR3190
+    relative_path: MultidisciplinaryTeamMeetings/MultidisciplinaryTeamMeetingDetail
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: mdtmeetingtype_cancer
+- column: MultidisciplinaryMeetingTypeComment
+  klass:
+  - ECosdXmlMdtMeeting
+  rawtext_name: multidisciplinaryteammeetingtypecomment_cancer
+  xml_cell:
+    id: CR3160
+    relative_path: MultidisciplinaryTeamMeetings/MultidisciplinaryTeamMeetingDetail
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: mdtmeetingtypecomment_cancer
+- column: AdjunctiveTherapy
+  klass:
+  - ECosdXmlTreatment
+  - ECosdXmlSurgery
+  rawtext_name: adjunctivetherapy
+  xml_cell:
+    id: CR6540
+    relative_path: Treatment
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: adjunctive_therapy_type
+- column: CancerTreatmentIntent
+  klass:
+  - ECosdXmlTreatment
+  - ECosdXmlSurgery
+  rawtext_name: cancertreatmentintent
+  xml_cell:
+    id: CR0680
+    relative_path: Treatment
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: treatmentintent
+- column: TreatmentStartDateCancer
+  klass:
+  - ECosdXmlTreatment
+  - ECosdXmlSurgery
+  rawtext_name: treatmentstartdatecancer
+  xml_cell:
+    id: CR1370
+    relative_path: Treatment
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: startoradmissiondate
+- column: CancerTreatmentModalityRegistration
+  klass:
+  - ECosdXmlTreatment
+  - ECosdXmlSurgery
+  rawtext_name: cancertreatmentmodalityregistration
+  xml_cell:
+    id: CR2040
+    relative_path: Treatment
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: cancertreatmentmodality
+- column: OrganisationSiteIdentifierOfProviderCancerTreatmentStartDate
+  klass:
+  - ECosdXmlTreatment
+  - ECosdXmlSurgery
+  rawtext_name: organisationsiteidentifierofprovidercancertreatmentstartdate
+  xml_cell:
+    id: CR1450
+    relative_path: Treatment
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: providercode
+- column: ProfessionalRegistrationIssuerCode-ConsultantTreatment
+  klass:
+  - ECosdXmlTreatment
+  - ECosdXmlSurgery
+  rawtext_name: professionalregistrationissuercode-consultanttreatment
+  xml_cell:
+    id: CR8400
+    relative_path: Treatment/ConsultantTreatment
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: pric_treatment
+- column: ProfessionalRegistrationEntryIdentifier-ConsultantTreatment
+  klass:
+  - ECosdXmlTreatment
+  - ECosdXmlSurgery
+  rawtext_name: professionalregistrationentryidentifier-consultanttreatment
+  xml_cell:
+    id: CR8410
+    relative_path: Treatment/ConsultantTreatment
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: prei_treatment
+- column: EndOfTreatmentSummaryDate
+  klass:
+  - ECosdXmlTreatment
+  - ECosdXmlSurgery
+  rawtext_name: endoftreatmentsummarydates
+  xml_cell:
+    id: CR8420
+    relative_path: Treatment
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: endoftreatmentsummarydates
+- column: DischargeDateHospitalProviderSpell
+  klass:
+  - ECosdXmlTreatment
+  - ECosdXmlSurgery
+  rawtext_name: dischargedatehospitalproviderspell
+  xml_cell:
+    id: CR0740
+    relative_path: Treatment
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: dischargedatehospprovspell
+- column: DestinationOfDischargeHospitalProviderSpell
+  klass:
+  - ECosdXmlTreatment
+  - ECosdXmlSurgery
+  rawtext_name: destination_of_discharge_hospital_provider_spell
+  xml_cell:
+    id: CR9080
+    relative_path: Treatment
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: desofdishosprospe
+- column: ProcedureDate
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: proceduredate
+  xml_cell:
+    id: CR0710
+    relative_path: Treatment/Surgery
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: proceduredate
+- column: SurgicalAdmissionType
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: surgicaladmissiontype
+  xml_cell:
+    id: CR8500
+    relative_path: Treatment/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: surgicaladmissiontype
+- column: ProfessionalRegistrationIssuerCode-ConsultantSurgeon
+  klass: ECosdXmlSurgery
+  rawtext_name: professionalregistrationissuercode_consultantsurgeon
+  xml_cell:
+    id: CR8510
+    relative_path: Treatment/Surgery/ConsultantSurgeon
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: professionalregistrationissuercode_consultantsurgeon
+- column: ProfessionalRegistrationEntryIdentifier-ConsultantSurgeon
+  klass: ECosdXmlSurgery
+  rawtext_name: professionalregistrationentryidentifier_consultantsurgeon
+  xml_cell:
+    id: CR8520
+    relative_path: Treatment/Surgery/ConsultantSurgeon
+    attribute:
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: professionalregistrationentryidentifier_consultantsurgeon
+- column: PrimaryProcedureOpcs
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: primaryprocedures1
+  xml_cell:
+    id: CR0720
+    relative_path: Treatment/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: primaryprocedure_opcs
+- column: PrimaryProcedureSnomedCt
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: primaryprocedure_snomedct
+  xml_cell:
+    id: CR3040
+    relative_path: Treatment/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: primaryprocedure_snomedct
+- column: ProcedureOpcs
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: otherprocedures
+  xml_cell:
+    id: CR0730
+    relative_path: Treatment/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: procedure_opcs
+- column: ProcedureSnomedCt
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: procedure_snomedct
+  xml_cell:
+    id: CR3050
+    relative_path: Treatment/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: procedure_snomedct
+- column: UnplannedReturnToTheatreIndicator
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: unplannedreturntotheatreindicator
+  xml_cell:
+    id: CR6480
+    relative_path: Treatment/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: uplannedoperationind
+- column: AsaScore
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: asascore
+  xml_cell:
+    id: CR6010
+    relative_path: Treatment/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: asascore
+- column: SurgicalAccessType
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: surgicalaccesstype
+  xml_cell:
+    id: CR6310
+    relative_path: Treatment/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: surgicalaccess
+- column: LesionLocationSurgical
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: tumourlocation_surgical
+  xml_cell:
+    id: BA3100
+    relative_path: Treatment/Surgery/CNS
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: tumourlocation_surgical
+- column: BiopsyType
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: biopsy_type_cns_tumours
+  xml_cell:
+    id: BA3200
+    relative_path: Treatment/Surgery/CNS
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: biopsy_type_cns_tumours
+- column: ExcisionOrProcedureType
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: excision_type_cns_tumours
+  xml_cell:
+    id: BA3210
+    relative_path: Treatment/Surgery/CNS
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: excision_type_cns_tumours
+- column: ResectionStatus
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: resection_status
+  xml_cell:
+    id: CT7390
+    relative_path: Treatment/Surgery/CTYA
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: resection_status
+- column: SurgicalUrgencyType
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: surgical_urgency_type
+  xml_cell:
+    id: CO6000
+    relative_path: Treatment/Surgery/Colorectal
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: surgical_urgency_type
+- column: ResidualDisease
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: residual_disease_size
+  xml_cell:
+    id: GY7460
+    relative_path: Treatment/Surgery/Gynaecological
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: residual_disease_size
+- column: SurgeryType
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: liver_surgery_type
+  xml_cell:
+    id: LV16210
+    relative_path: Treatment/Surgery/Liver
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: liver_surgery_type
+- column: RegionalAnaestheticTechnique
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: regional_anaesthetic_technique
+  xml_cell:
+    id: LU10390
+    relative_path: Treatment/Surgery/Lccop
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: regional_anaesthetic_technique
+- column: GradeOfClinicianSurgeonOperating
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: gradeofcliniciane_cosd_xml_mdt_meetingoperating
+  xml_cell:
+    id: SK12010
+    relative_path: Treatment/Surgery/BccSccMm
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: gradeofclinicianoperating
+- column: MemberOfSpecialistMdt
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: member_of_specialist_mdt
+  xml_cell:
+    id: SK12700
+    relative_path: Treatment/Surgery/BccSccMm
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: member_of_specialist_mdt
+- column: NonCurativeIntentReasonUpperGi
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: palliativetreatmentreason_uppergi
+  xml_cell:
+    id: UG13810
+    relative_path: Treatment/Surgery/General
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: palliativetreatmentreason
+- column: PostOperativeTumourSiteUpperGi
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: postoperativetumoursite_uppergi
+  xml_cell:
+    id: UG14230
+    relative_path: Treatment/Surgery/OG
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: postoptumoursite
+- column: SurgicalComplications-InternationalEsophagealDatabaseEsodata
+  klass: ECosdXmlSurgery
+  rawtext_name: surgicalcomplications-internationalesophagealdatabaseesodata
+  xml_cell:
+    id: UG15010
+    relative_path: Treatment/Surgery/Esodata
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: surgicalcomplicationsieded
+- column: SurgicalComplications-InternationalEsophagealDatabaseEsodata
+  klass: ECosdXmlSurgery
+  rawtext_name: surgicalcomplications-internationalesophagealdatabaseesodata_leakseverity
+  xml_cell:
+    id: UG15010
+    relative_path: Treatment/Surgery/Esodata/SurgicalComplicationsLeakSeverityType
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: surgicalcomplicationsieded_leakseverity
+- column: LeakSeverityType
+  klass: ECosdXmlSurgery
+  rawtext_name: leakseveritytype
+  xml_cell:
+    id: UG15020
+    relative_path: Treatment/Surgery/Esodata/SurgicalComplicationsLeakSeverityType
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: leakseveritytype
+- column: SurgicalComplications-InternationalEsophagealDatabaseEsodata
+  klass: ECosdXmlSurgery
+  rawtext_name: surgicalcomplications-internationalesophagealdatabaseesodata_conduitnecrosisfailure
+  xml_cell:
+    id: UG15010
+    relative_path: Treatment/Surgery/Esodata/SurgicalComplicationsConduitNecrosisFailureType
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: surgicalcomplicationsieded_conduitnecrosisfailure
+- column: ConduitNecrosisFailureType
+  klass: ECosdXmlSurgery
+  rawtext_name: conduitnecrosisfailuretype
+  xml_cell:
+    id: UG15030
+    relative_path: Treatment/Surgery/Esodata/SurgicalComplicationsConduitNecrosisFailureType
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: conduitnecrosisfailuretype
+- column: SurgicalComplications-InternationalEsophagealDatabaseEsodata
+  klass: ECosdXmlSurgery
+  rawtext_name: surgicalcomplications-internationalesophagealdatabaseesodata_nerveinjuryinvolvement
+  xml_cell:
+    id: UG15010
+    relative_path: Treatment/Surgery/Esodata/SurgicalComplicationsRecurrentLaryngealNerveInjuryInvolvementType
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: surgicalcomplicationsieded_nerveinjuryinvolvement
+- column: RecurrentLaryngealNerveInjuryInvolvementType
+  klass: ECosdXmlSurgery
+  rawtext_name: recurrentlaryngealnerveinjuryinvolvementtype
+  xml_cell:
+    id: UG15040
+    relative_path: Treatment/Surgery/Esodata/SurgicalComplicationsRecurrentLaryngealNerveInjuryInvolvementType
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: laryngealnerveinjuryinvtype
+- column: SurgicalComplications-InternationalEsophagealDatabaseEsodata
+  klass: ECosdXmlSurgery
+  rawtext_name: surgicalcomplications-internationalesophagealdatabaseesodata_chyleleak
+  xml_cell:
+    id: UG15010
+    relative_path: Treatment/Surgery/Esodata/SurgicalComplicationsChyleLeakSeverityType
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: surgicalcomplicationsieded_chyleleak
+- column: ChyleLeakSeverityType
+  klass: ECosdXmlSurgery
+  rawtext_name: chyleleakseveritytype
+  xml_cell:
+    id: UG15050
+    relative_path: Treatment/Surgery/Esodata/SurgicalComplicationsChyleLeakSeverityType
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: chyleleakseveritytype
+- column: SurgicalComplications-InternationalEsophagealDatabaseEsodata
+  klass: ECosdXmlSurgery
+  rawtext_name: surgicalcomplications-internationalesophagealdatabaseesodata_additional
+  xml_cell:
+    id: UG15010
+    relative_path: Treatment/Surgery/Esodata/SurgicalComplicationsAdditionalComplications
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: surgicalcomplicationsieded_additional
+- column: AdditionalComplications
+  klass: ECosdXmlSurgery
+  rawtext_name: additionalcomplication
+  xml_cell:
+    id: UG15070
+    relative_path: Treatment/Surgery/Esodata/SurgicalComplicationsAdditionalComplications
+    attribute:
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: additionalcomplication
+- column: Clavien-dindoClassificationOfSurgicalClassifications
+  klass: ECosdXmlSurgery
+  rawtext_name: calvien-dindoclassificationofsurgicalclassifications
+  xml_cell:
+    id: UG15060
+    relative_path: Treatment/Surgery/Esodata
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: calviendindoclassification
+- column: ChangeInLevelOfCare
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: changeinlevelofcare
+  xml_cell:
+    id: UG15110
+    relative_path: Treatment/Surgery/OutcomeMeasures
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: changeinlevelofcare
+- column: BloodProductUtilisation
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: bloodproductutilisation
+  xml_cell:
+    id: UG15120
+    relative_path: Treatment/Surgery/OutcomeMeasures
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: bloodproductutilisation
+- column: NumberOfUnitsTransfused
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: numberofunitstransfused
+  xml_cell:
+    id: UG15130
+    relative_path: Treatment/Surgery/OutcomeMeasures
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: numberofunitstransfused
+- column: SurgicalApproachType
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: surgicalapproachtype
+  xml_cell:
+    id: UG15200
+    relative_path: Treatment/Surgery/Oesophagectomy
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: surgicalapproachtype
+- column: OpenApproachType
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: openapproachtype
+  xml_cell:
+    id: UG15210
+    relative_path: Treatment/Surgery/Oesophagectomy
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: openapproachtype
+- column: MinimallyInvasiveApproachType
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: minimallyinvasiveapproachtype
+  xml_cell:
+    id: UG15220
+    relative_path: Treatment/Surgery/Oesophagectomy
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: minimallyinvasiveapproachtype
+- column: AnastomosisType
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: anastomosistype
+  xml_cell:
+    id: UG15230
+    relative_path: Treatment/Surgery/Oesophagectomy
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: anastomosistype
+- column: OesophagealConduitType
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: oesophagealconduittype
+  xml_cell:
+    id: UG15240
+    relative_path: Treatment/Surgery/Oesophagectomy
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: oesophagealconduittype
+- column: NeckDissection
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: neckdissection
+  xml_cell:
+    id: UG15250
+    relative_path: Treatment/Surgery/Oesophagectomy
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: neckdissection
+- column: SurgicalPalliationType
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: surgicalpalliationtype
+  xml_cell:
+    id: UG13240
+    relative_path: Treatment/Surgery/LiverCholangiocarcinomaAndPancreatic
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: surgicalpalliationtype
+- column: EndoscopicProcedureType
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: endoscopicproceduretype
+  xml_cell:
+    id: UG14290
+    relative_path: Treatment/Surgery/PancreaticAndOG
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: endoscopicproceduretype
+- column: EndoscopicOrRadiologicalComplicationType
+  klass:
+  - ECosdXmlSurgery
+  rawtext_name: endoscopicorradiologicalcomplicationtype
+  xml_cell:
+    id: UG13090
+    relative_path: Treatment/Surgery/Main
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: endradcomplicationtype
+- column: ChildhoodPrincipalTreatmentCentre
+  klass:
+  - ECosdXmlTreatment
+  - ECosdXmlSurgery
+  rawtext_name: childhoodprincipaltreatmentcentre
+  xml_cell:
+    id: CT7600
+    relative_path: Treatment/PrincipalTreatmentCentre
+    attribute: extension
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: childhoodprincipaltreatmentcentre
+- column: TeenageYoungAdultTyaPrincipalTreatmentCentre
+  klass:
+  - ECosdXmlTreatment
+  - ECosdXmlSurgery
+  rawtext_name: tyaprincipaltreatmentcentres
+  xml_cell:
+    id: CT7610
+    relative_path: Treatment/PrincipalTreatmentCentre
+    attribute: extension
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: tyaprincipaltreatmentcentres
+- column: AblativeTherapyType
+  klass:
+  - ECosdXmlTreatment
+  - ECosdXmlSurgery
+  rawtext_name: ablativetherapytype
+  xml_cell:
+    id: LV16300
+    relative_path: Treatment/Liver
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: ablativetherapytype
+- column: EmbolisationModality
+  klass:
+  - ECosdXmlTreatment
+  - ECosdXmlSurgery
+  rawtext_name: embolisation_modality
+  xml_cell:
+    id: LV16320
+    relative_path: Treatment/Liver
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: embolisation_modality
+- column: IntravesicalChemotherapyReceivedIndicator
+  klass:
+  - ECosdXmlTreatment
+  - ECosdXmlSurgery
+  rawtext_name: intravesicalchemotherapyreceivedindicator
+  xml_cell:
+    id: UR15100
+    relative_path: Treatment/Bladder
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: intravesicalchemrecind
+- column: IntravesicalImmunotherapyReceivedIndicator
+  klass:
+  - ECosdXmlTreatment
+  - ECosdXmlSurgery
+  rawtext_name: intravesicalimmunotherapyreceivedindicator
+  xml_cell:
+    id: UR15110
+    relative_path: Treatment/Bladder
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: intravesicalimmunorecind
+- column: Procedure-NerveSparing
+  klass:
+  - ECosdXmlTreatment
+  - ECosdXmlSurgery
+  rawtext_name: procedure_nerve_sparing
+  xml_cell:
+    id: UR15420
+    relative_path: Treatment/Prostate
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: procedure_nerve_sparing
+- column: RadicalProstatectomyMarginStatus
+  klass:
+  - ECosdXmlTreatment
+  - ECosdXmlSurgery
+  rawtext_name: prostatectomy_margin_status
+  xml_cell:
+    id: UR15430
+    relative_path: Treatment/Prostate
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: prostatectomy_margin_status
+- column: AcuteOncologyAssessmentDate
+  klass:
+  - ECosdXmlAcuteOnocology
+  rawtext_name: acuteoncologyassessmentdate
+  xml_cell:
+    id: CR8700
+    relative_path: AcuteOncology
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: acuteoncologyassessmentdate
+- column: OrganisationSiteIdentifierAcuteOncology
+  klass:
+  - ECosdXmlAcuteOnocology
+  rawtext_name: organisationsiteidentifieracuteoncology
+  xml_cell:
+    id: CR8710
+    relative_path: AcuteOncology
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: providercode
+- column: AssessmentLocation
+  klass:
+  - ECosdXmlAcuteOnocology
+  rawtext_name: assessmentlocation
+  xml_cell:
+    id: CR8720
+    relative_path: AcuteOncology
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: assessmentlocation
+- column: PatientType
+  klass:
+  - ECosdXmlAcuteOnocology
+  rawtext_name: patienttype
+  xml_cell:
+    id: CR8730
+    relative_path: AcuteOncology
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: patienttype
+- column: Outcome
+  klass:
+  - ECosdXmlAcuteOnocology
+  rawtext_name: outcome
+  xml_cell:
+    id: CR8740
+    relative_path: AcuteOncology
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: outcome
+- column: LaboratoryResultDate
+  klass:
+  - ECosdXmlLabResults
+  rawtext_name: laboratoryresultdate
+  xml_cell:
+    id: CR8800
+    relative_path: LaboratoryResults
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: laboratoryresultdate
+- column: OrganisationIdentifierLaboratoryResult
+  klass:
+  - ECosdXmlLabResults
+  rawtext_name: organisationidentifierlaboratoryresult
+  xml_cell:
+    id: CR8810
+    relative_path: LaboratoryResults
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: providercode
+- column: LdhValue
+  klass:
+  - ECosdXmlLabResults
+  rawtext_name: ldhvalue
+  xml_cell:
+    id: CR8900
+    relative_path: LaboratoryResults/General
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: lactatedehydrogenaselevel_ctya
+- column: BetaHumanChorionicGonadotropinSerum
+  klass:
+  - ECosdXmlLabResults
+  rawtext_name: betahumanchorionicgonadotropinserum
+  xml_cell:
+    id: CR8910
+    relative_path: LaboratoryResults/General
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: betahcg_serum
+- column: AlphaFetoproteinSerum
+  klass:
+  - ECosdXmlLabResults
+  rawtext_name: alphafetoproteinserum
+  xml_cell:
+    id: CR8920
+    relative_path: LaboratoryResults/General
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: afp_serum
+- column: AlphaFetoproteinCerebrospinalFluid
+  klass:
+  - ECosdXmlLabResults
+  rawtext_name: alphafetoproteincerebrospinalfluid
+  xml_cell:
+    id: BA4000
+    relative_path: LaboratoryResults/GermCellCnsTumours
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: afp_cerebrospinalfluid
+- column: BetaHumanChorionicGonadotropinCerebrospinalFluid
+  klass:
+  - ECosdXmlLabResults
+  rawtext_name: betahumanchorionicgonadotropincerebrospinalfluid
+  xml_cell:
+    id: BA4010
+    relative_path: LaboratoryResults/GermCellCnsTumours
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: betahcg_cerebrospinalfluid
+- column: BoneMarrowBlasts
+  klass:
+  - ECosdXmlLabResults
+  rawtext_name: bonemarrowblasts
+  xml_cell:
+    id: CT7330
+    relative_path: LaboratoryResults/CTYA
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: bloodmyeloblastspercentage
+- column: CytogeneticsSubsidiaryComment
+  klass:
+  - ECosdXmlLabResults
+  rawtext_name: cytogeneticssubsidiarycomment
+  xml_cell:
+    id: CT6240
+    relative_path: LaboratoryResults/CTYA
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: cytogeneticfindingscomment
+- column: Cellularity
+  klass:
+  - ECosdXmlLabResults
+  rawtext_name: cellularity
+  xml_cell:
+    id: CT7340
+    relative_path: LaboratoryResults/PaediatricMyelodysplasia
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: cellularity_percentage
+- column: DebTest
+  klass:
+  - ECosdXmlLabResults
+  rawtext_name: debtest
+  xml_cell:
+    id: CT7350
+    relative_path: LaboratoryResults/PaediatricMyelodysplasia
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: dep_test_result
+- column: DysplasticHaemopoiesis
+  klass:
+  - ECosdXmlLabResults
+  rawtext_name: dysplastichaemopoiesis
+  xml_cell:
+    id: CT7360
+    relative_path: LaboratoryResults/PaediatricMyelodysplasia
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: dysplastic_haemopoiesis
+- column: WhiteBloodCellCountHighestPreTreatment
+  klass:
+  - ECosdXmlLabResults
+  rawtext_name: whitebloodcellcounthighestpretreatment
+  xml_cell:
+    id: CT7800
+    relative_path: LaboratoryResults/AcuteLymphoblasticLeukaemia
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: whitebccountpretreatment
+- column: PostInductionMrd
+  klass:
+  - ECosdXmlLabResults
+  rawtext_name: postinductionmrd
+  xml_cell:
+    id: CT7700
+    relative_path: LaboratoryResults/Response
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: postinductionmrd
+- column: TripleDiagnosticAssessment
+  klass:
+  - ECosdXmlDiagnosticAssessment
+  rawtext_name: triplediagnosticassessment
+  xml_cell:
+    id: BR4400
+    relative_path: TripleDiagnosticAssessment
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: triplediagnosticassessment
+- column: PatientTrialStatusCancer
+  klass:
+  - ECosdXmlTrial
+  rawtext_name: patienttrialstatus_cancer
+  xml_cell:
+    id: CT7900
+    relative_path: ClinicalTrials
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: patienttrialstatus
+- column: ClinicalTrialDecisionDatePatient
+  klass:
+  - ECosdXmlTrial
+  rawtext_name: clinical_trial_decision_date
+  xml_cell:
+    id: CT7910
+    relative_path: ClinicalTrials
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: clinical_trial_decision_date
+- column: RiskClassificationPathologicalAfterImmediateNephrectomy
+  klass:
+  - ECosdXmlRenalTumours
+  rawtext_name: pathriskcodepostnephrectomy
+  xml_cell:
+    id: CT6680
+    relative_path: RenalTumours
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: pathriskcodepostnephrectomy
+- column: RiskClassificationPathologicalAfterPreoperativeChemotherapy
+  klass:
+  - ECosdXmlRenalTumours
+  rawtext_name: pathriskcodepostpreopchemo
+  xml_cell:
+    id: CT6340
+    relative_path: RenalTumours
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: pathriskcodepostpreopchemo
+- column: RetinoblastomaAssessmentLaterality
+  klass:
+  - ECosdXmlRetinolastoma
+  rawtext_name: retinoblastomaassessmentlaterality
+  xml_cell:
+    id: CT6780
+    relative_path: Retinoblastoma
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: retasslat
+- column: InternationalClassificationForIntraocularRetinoblastoma
+  klass:
+  - ECosdXmlRetinolastoma
+  rawtext_name: internationalclassificationforintraocularretinoblastoma
+  xml_cell:
+    id: CT6790
+    relative_path: Retinoblastoma
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: intclaforintret
+- column: PrimaryInductionFailure
+  klass:
+  - ECosdXmlAcuteLeukamia
+  rawtext_name: primary_induction_failure_ind
+  xml_cell:
+    id: CT7110
+    relative_path: AcuteLeukaemias
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: primary_induction_failure_ind
+- column: PortalInvasion
+  klass:
+  - ECosdXmlTreatmentAndPrognosticIndicator
+  rawtext_name: portalveininvasionindicator
+  xml_cell:
+    id: LV16120
+    relative_path: TreatmentAndPrognosticIndicators
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: portalveininvasionindicator
+- column: UkeldScore
+  klass:
+  - ECosdXmlTreatmentAndPrognosticIndicator
+  rawtext_name: ukled_score
+  xml_cell:
+    id: LV16130
+    relative_path: TreatmentAndPrognosticIndicators
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: ukled_score
+- column: Child-pughScore
+  klass:
+  - ECosdXmlTreatmentAndPrognosticIndicator
+  rawtext_name: childpughscore
+  xml_cell:
+    id: LV16140
+    relative_path: TreatmentAndPrognosticIndicators
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: childpughscore
+- column: LiverTransplantation
+  klass:
+  - ECosdXmlLiverTransplantation
+  rawtext_name: liver_transplant_wait_list_ind
+  xml_cell:
+    id: LV16200
+    relative_path: Transplantation
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: liver_transplant_wait_list_ind
+- column: MediastinalSamplingIndicator
+  klass:
+  - ECosdXmlMediastinalSampling
+  rawtext_name: mediastinalsamplingindicator
+  xml_cell:
+    id: LU10060
+    relative_path: MediastinalSampling
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: mediastinalsamplingindicator
+- column: LungHealthCheckIndication
+  klass:
+  - ECosdXmlHealthCheck
+  rawtext_name: lung_health_check_indication
+  xml_cell:
+    id: LU10600
+    relative_path: HealthCheck
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: lung_health_check_indication
+- column: PrimaryDiagnosisIcd
+  klass: ECosdXmlRecord
+  rawtext_name: primarydiagnoses
+  xml_cell:
+    id: CR0370
+    relative_path: PrimaryPathway/PrimaryCancerPathwayDetails
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: primarydiagnoses
+- column: TumourLaterality
+  klass: ECosdXmlRecord
+  rawtext_name: tumourlaterality
+  xml_cell:
+    id: CR0380
+    relative_path: PrimaryPathway/PrimaryCancerPathwayDetails
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: tumourlaterality
+- column: DateOfPrimaryDiagnosisClinicallyAgreed
+  klass: ECosdXmlRecord
+  rawtext_name: diagnosisdate
+  xml_cell:
+    id: CR2030
+    relative_path: PrimaryPathway/PrimaryCancerPathwayDetails
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: diagnosisdate
+- column: SourceOfReferralForOut-patients
+  klass:
+  - ECosdXmlReferral
+  rawtext_name: sourceofreferralforout-patients
+  xml_cell:
+    id: CR1600
+    relative_path: PrimaryPathway/ReferralsAndFirstStageOfPatientPathway
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: sourceofreferralforoutpatients
+- column: DateFirstSeen
+  klass:
+  - ECosdXmlReferral
+  rawtext_name: datefirstseen
+  xml_cell:
+    id: CR0230
+    relative_path: PrimaryPathway/ReferralsAndFirstStageOfPatientPathway
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: datefirstseen
+- column: ProfessionalRegistrationIssuerCode-ConsultantFirstSeen
+  klass:
+  - ECosdXmlReferral
+  rawtext_name: professionalregistrationissuercode-consultantfirstseen
+  xml_cell:
+    id: CR7300
+    relative_path: PrimaryPathway/ReferralsAndFirstStageOfPatientPathway/ConsultantFirstSeen
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: pric_referral
+- column: ProfessionalRegistrationEntryIdentifier-ConsultantFirstSeen
+  klass:
+  - ECosdXmlReferral
+  rawtext_name: professionalregistrationentryidentifier-consultantfirstseen
+  xml_cell:
+    id: CR7310
+    relative_path: PrimaryPathway/ReferralsAndFirstStageOfPatientPathway/ConsultantFirstSeen
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: prei_referral
+- column: OrganisationSiteIdentifierProviderFirstSeen
+  klass:
+  - ECosdXmlReferral
+  rawtext_name: organisationsiteidentifierproviderfirstseen
+  xml_cell:
+    id: CR1410
+    relative_path: PrimaryPathway/ReferralsAndFirstStageOfPatientPathway
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: providercode
+- column: DateFirstSeenCancerSpecialist
+  klass:
+  - ECosdXmlReferral
+  rawtext_name: datefirstseen_cancerspecialist
+  xml_cell:
+    id: CR1360
+    relative_path: PrimaryPathway/ReferralsAndFirstStageOfPatientPathway
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: datefirstseen_cancerspecialist
+- column: OrganisationSiteIdentifierProviderFirstCancerSpecialist
+  klass:
+  - ECosdXmlReferral
+  rawtext_name: organisationsiteidentifierproviderfirstcancerspecialist
+  xml_cell:
+    id: CR1400
+    relative_path: PrimaryPathway/ReferralsAndFirstStageOfPatientPathway
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: providercode_cancerspecialist
+- column: SpecialtyReferrerToSpecialist
+  klass:
+  - ECosdXmlReferral
+  rawtext_name: specialtyreferrertospecialist
+  xml_cell:
+    id: CT6050
+    relative_path: PrimaryPathway/ReferralsAndFirstStageOfPatientPathway/CTYA
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: specialty_referrertospecialist
+- column: CancerSymptomsFirstNotedDate
+  klass:
+  - ECosdXmlReferral
+  rawtext_name: cancersymptomsfirstnoteddate
+  xml_cell:
+    id: CT2000
+    relative_path: PrimaryPathway/ReferralsAndFirstStageOfPatientPathway/CTYA
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: symptomsfirstnoteddate
+- column: OrganisationSiteIdentifierOfDiagnosis
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: site_code_of_diagnosis
+  xml_cell:
+    id: CR6230
+    relative_path: PrimaryPathway/Diagnosis
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: site_code_of_diagnosis
+- column: BasisOfDiagnosisCancer
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: basisofdiagnosis_cancer
+  xml_cell:
+    id: CR0390
+    relative_path: PrimaryPathway/Diagnosis
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: basisofdiagnosis
+- column: MorphologyIcd-o-3
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: morphology_icdo3
+  xml_cell:
+    id: CR0180
+    relative_path: PrimaryPathway/Diagnosis
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: histology_icdo3
+- column: MorphologySnomedDiagnosis
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: morphology_snomed
+  xml_cell:
+    id: CR6400
+    relative_path: PrimaryPathway/Diagnosis/CurrentMorphology
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: histology_snomed
+- column: SnomedVersionDiagnosis
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: snomed_version
+  xml_cell:
+    id: CR6490
+    relative_path: PrimaryPathway/Diagnosis/CurrentMorphology
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: snomed_version
+- column: TopographyIcd-o-3
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: topography_icdo3
+  xml_cell:
+    id: CR0480
+    relative_path: PrimaryPathway/Diagnosis
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: topography_icdo3
+- column: Ki67
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: ki67
+  xml_cell:
+    id: CR9010
+    relative_path: PrimaryPathway/Diagnosis
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: ki67
+- column: GradeOfDifferentiationAtDiagnosis
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: gradeofdifferentiation_atdiagnosis
+  xml_cell:
+    id: CR0410
+    relative_path: PrimaryPathway/Diagnosis
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: gradeofdifferentiation_diag
+- column: PerformanceStatusAdult
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: performancestatus_adult
+  xml_cell:
+    id: CR0510
+    relative_path: PrimaryPathway/Diagnosis
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: performancestatus_adult
+- column: DiagnosisCodesnomedCt
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: diagnosis_snomedct
+  xml_cell:
+    id: CR6830
+    relative_path: PrimaryPathway/Diagnosis
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: diagnosis_snomedct
+- column: MetastaticType
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: metastatictype
+  xml_cell:
+    id: CR6960
+    relative_path: PrimaryPathway/Diagnosis/MetastaticTypeAndSite
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    build_new_record: false
+  mappings:
+  - field: metastatictype
+- column: MetastaticSite
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: metastaticsite
+  xml_cell:
+    id: CR6970
+    relative_path: PrimaryPathway/Diagnosis/MetastaticTypeAndSite
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    build_new_record: false
+  mappings:
+  - field: metastaticsite
+- column: PrimaryDiagnosisSubsidiaryComment
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: primarydiagnosissubsidiarycomment
+  xml_cell:
+    id: CR7600
+    relative_path: PrimaryPathway/Diagnosis/AdditionalItems
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: primarydiagcancercomment
+- column: SecondaryDiagnosisIcd
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: secondarydiagnosis_icd
+  xml_cell:
+    id: CR7610
+    relative_path: PrimaryPathway/Diagnosis/AdditionalItems
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: secondarydiagnosis_icd
+- column: OtherSignificantDiagnosisSubsidiaryComment
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: othersignificantdiagnosissubsidiarycomment
+  xml_cell:
+    id: CR7620
+    relative_path: PrimaryPathway/Diagnosis/AdditionalItems
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: secondarydiagcancercomment
+- column: FamilialCancerSyndrome
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: familialcancersyndrome
+  xml_cell:
+    id: CR7630
+    relative_path: PrimaryPathway/Diagnosis/AdditionalItems
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: familialcancersyndrome
+- column: FamilialCancerSyndromeSubsidiaryComment
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: familialcancersyndromesubsidiarycomment
+  xml_cell:
+    id: CR7640
+    relative_path: PrimaryPathway/Diagnosis/AdditionalItems
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: familialcancersyndromecmt
+- column: FunctionalSyndromeClassificationIndicator
+  klass: ECosdXmlDiagnosis
+  rawtext_name: functional_syndrome_classification_indicator
+  xml_cell:
+    id: CR9020
+    relative_path: PrimaryPathway/Diagnosis/AdditionalItems
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: funsynclaind
+- column: FunctionalSyndromeClassificationType
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: functional_syndrome_classification_type
+  xml_cell:
+    id: CR9030
+    relative_path: PrimaryPathway/Diagnosis/AdditionalItems
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    build_new_record: false
+    increment_field_name: true
+  mappings:
+  - field: functional_syndrome_classification_type
+- column: FunctionalSyndromeClassificationType
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: pair_functional_syndrome_classification_type
+  xml_cell:
+    id: CR9030
+    relative_path: PrimaryPathway/Diagnosis/AdditionalItems/FunctionalSyndromeClassificationTypeUnknown
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    build_new_record: false
+    increment_field_name: true
+  mappings:
+  - field: pair_functional_syndrome_classification_type
+- column: OtherFunctionalSyndromeClassificationType
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: pair_other_functional_syndrome_classification_type
+  xml_cell:
+    id: CR9040
+    relative_path: PrimaryPathway/Diagnosis/AdditionalItems/FunctionalSyndromeClassificationTypeUnknown
+    attribute:
+    version: ">= 10.0.1"
+    multiple: true
+    build_new_record: false
+    increment_field_name: true
+  mappings:
+  - field: pair_other_functional_syndrome_classification_type
+- column: MetastaticType
+  klass:
+  - ECosdXmlProgression
+  rawtext_name: metastatictype
+  xml_cell:
+    id: CR6960
+    relative_path: PrimaryPathway/Diagnosis/Progression/MetastaticTypeAndSite
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: PrimaryPathway/Diagnosis/Progression
+  mappings:
+  - field: metastatictype
+- column: MetastaticSite
+  klass:
+  - ECosdXmlProgression
+  rawtext_name: metastaticsite
+  xml_cell:
+    id: CR6970
+    relative_path: PrimaryPathway/Diagnosis/Progression/MetastaticTypeAndSite
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: PrimaryPathway/Diagnosis/Progression
+  mappings:
+  - field: metastaticsite
+- column: ProgressionDatePrimaryPathway
+  klass:
+  - ECosdXmlProgression
+  rawtext_name: dateofnonprimarydiagnosis
+  xml_cell:
+    id: CR6910
+    relative_path: PrimaryPathway/Diagnosis/Progression
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: dateofnonprimarydiagnosis
+- column: TransformationDatePrimaryPathway
+  klass:
+  - ECosdXmlTransformation
+  rawtext_name: dateofnonprimarydiagnosis
+  xml_cell:
+    id: CR7020
+    relative_path: PrimaryPathway/Diagnosis/Transformation
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: dateofnonprimarydiagnosis
+- column: MorphologyIcd-o-3Transformation
+  klass:
+  - ECosdXmlTransformation
+  rawtext_name: transformation_icdo
+  xml_cell:
+    id: CR7010
+    relative_path: PrimaryPathway/Diagnosis/Transformation
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: transformation_icdo
+- column: MorphologySnomedTransformation
+  klass:
+  - ECosdXmlTransformation
+  rawtext_name: transformation_snomed
+  xml_cell:
+    id: CR7000
+    relative_path: PrimaryPathway/Diagnosis/Transformation/CurrentMorphology
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: transformation_snomed
+- column: SnomedVersionTransformation
+  klass:
+  - ECosdXmlTransformation
+  rawtext_name: transformation_snomed_version
+  xml_cell:
+    id: CR7030
+    relative_path: PrimaryPathway/Diagnosis/Transformation/CurrentMorphology
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: transformation_snomed_version
+- column: SynchronousTumourIndicator
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: synchronous_tumour_colon_location
+  xml_cell:
+    id: CO5400
+    relative_path: PrimaryPathway/Diagnosis/Colorectal
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: syntumind
+- column: TumourHeightAboveAnalVerge
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: tumourheightaboveanalverge
+  xml_cell:
+    id: CO5160
+    relative_path: PrimaryPathway/Diagnosis/Colorectal
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: tumourheightaboveanalverge
+- column: ConsultantSpecialtyAtDiagnosis
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: consultantspecialty_atdiagnosis
+  xml_cell:
+    id: CT6030
+    relative_path: PrimaryPathway/Diagnosis/CTYA
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: mainspecialtycode
+- column: ConsultantAgeSpecialtyAtDiagnosis
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: consultantagespecialty_atdiagnosis
+  xml_cell:
+    id: CT6040
+    relative_path: PrimaryPathway/Diagnosis/CTYA
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: ctyaagecategoryatdiag
+- column: BankedTissueAtDiagnosis
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: tissue_banked_diagnosis_indicator
+  xml_cell:
+    id: CT6990
+    relative_path: PrimaryPathway/Diagnosis/BankedTissue
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: bantisatdia
+- column: LifeThreateningSymptomsAtPresentation
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: life_threatening_symptoms_indicator
+  xml_cell:
+    id: CT7070
+    relative_path: PrimaryPathway/Diagnosis/Neuroblastoma
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: lifthrsymatpre
+- column: MixedPhenotypeSymptomsAtDiagnosis
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: mpal_symptoms_at_diagnosis
+  xml_cell:
+    id: CT7200
+    relative_path: PrimaryPathway/Diagnosis/MixedPhenotypeAcuteLeukaemia
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: mpal_symptoms_at_diagnosis
+- column: EgilScore
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: egil_score
+  xml_cell:
+    id: CT7240
+    relative_path: PrimaryPathway/Diagnosis/MixedPhenotypeAcuteLeukaemia
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: egil_score
+- column: PaediatricCytogeneticMolecularGeneticRiskGroup
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: paediatric_cytogenic_molecular_genetic_risk_group
+  xml_cell:
+    id: CT7170
+    relative_path: PrimaryPathway/Diagnosis/AcuteMyeloidLeukaemia
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: paecytmolgenrisgro
+- column: AmlRiskFactors
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: aml_risk_factors
+  xml_cell:
+    id: CT7180
+    relative_path: PrimaryPathway/Diagnosis/AcuteMyeloidLeukaemia
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: aml_risk_factors
+- column: PaediatricMyelodysplasia
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: paediatric_mds_clinical_findings
+  xml_cell:
+    id: CT7260
+    relative_path: PrimaryPathway/Diagnosis/PaediatricMyelodysplasia
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: paemye
+- column: UnderlyingDiseaseAssociatedWithMds
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: underlying_disease_associated_mds
+  xml_cell:
+    id: CT7270
+    relative_path: PrimaryPathway/Diagnosis/PaediatricMyelodysplasia
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: unddisasswitmds
+- column: CongenitalAnomalies
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: congenital_anomalies_comment
+  xml_cell:
+    id: CT7380
+    relative_path: PrimaryPathway/Diagnosis/PaediatricMyelodysplasia
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: congenital_anomalies_comment
+- column: MyelodysplasiaSymptomsAtDiagnosis
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: other_mds_symptoms
+  xml_cell:
+    id: CT7310
+    relative_path: PrimaryPathway/Diagnosis/PaediatricMyelodysplasia
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: other_mds_symptoms
+- column: LiverSurveillanceScans
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: liver_cancer_surveillance_scan_indicator
+  xml_cell:
+    id: LV16000
+    relative_path: PrimaryPathway/Diagnosis/Liver
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: liver_surveillance_scan_ind
+- column: LiverCirrhosisType
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: livercirrhosistype
+  xml_cell:
+    id: LV16010
+    relative_path: PrimaryPathway/Diagnosis/Liver
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: liver_cirrhosis_type
+- column: CauseOfLiverCirrhosis
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: livercirrhosiscausetype
+  xml_cell:
+    id: LV16020
+    relative_path: PrimaryPathway/Diagnosis/Liver
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: liver_cirrhosis_cause_type
+- column: CholangiocarcinomaCategory
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: cholangiocarcinomacategory
+  xml_cell:
+    id: LV16400
+    relative_path: PrimaryPathway/Diagnosis/Cholangiocarcinoma
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: cholangiocarcinomacategory
+- column: CholangiocarcinomaRiskFactorsType
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: cholangiocarcinoma_risk_factors_type
+  xml_cell:
+    id: LV16500
+    relative_path: PrimaryPathway/Diagnosis/Cholangiocarcinoma
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: chorisfactyp
+- column: SarcomaTumourSiteBone
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: sarcomatumoursite_bone
+  xml_cell:
+    id: SA11000
+    relative_path: PrimaryPathway/Diagnosis/BoneAndSoftTissue
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: sarcomatumoursite_bone
+- column: SarcomaTumourSiteSoftTissue
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: sarcomatumoursite_softtissue
+  xml_cell:
+    id: SA11080
+    relative_path: PrimaryPathway/Diagnosis/BoneAndSoftTissue
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: sarcomatumoursite_softtissue
+- column: IrsPostSurgicalGroup
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: irspostsurgicalgroup
+  xml_cell:
+    id: CT6350
+    relative_path: PrimaryPathway/Diagnosis/RhabdomyosarcomaAndOtherSoftTissueSarcomas
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: irspostsurgicalgroup
+- column: IrsPostSurgicalGroupDate
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: irspostsurgicalgroupdate
+  xml_cell:
+    id: CT6750
+    relative_path: PrimaryPathway/Diagnosis/RhabdomyosarcomaAndOtherSoftTissueSarcomas
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: irspostsurgicalgroupdate
+- column: RhabdomyosarcomaSitePrognosisCode
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: rhabdomyosarcomasiteprognosiscode
+  xml_cell:
+    id: CT6370
+    relative_path: PrimaryPathway/Diagnosis/RhabdomyosarcomaAndOtherSoftTissueSarcomas
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: rhabdomyosarcomasiteprogcode
+- column: TumourVolumeAtDiagnosis
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: tumourvolumeatdiagnosis
+  xml_cell:
+    id: CT6450
+    relative_path: PrimaryPathway/Diagnosis/Ewings
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: tumourvolumeatdiagnosis
+- column: MpmriPre-biopsy
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: mpmripre-biopsy
+  xml_cell:
+    id: UR15500
+    relative_path: PrimaryPathway/Diagnosis/Prostate
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: mpmriprebiopsy
+- column: MriFusionBiopsy
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: mrifusionbiopsy
+  xml_cell:
+    id: UR15510
+    relative_path: PrimaryPathway/Diagnosis/Prostate
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: mrifusionbiopsy
+- column: PsaDiagnosis
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: psa_diagnosis
+  xml_cell:
+    id: UR15070
+    relative_path: PrimaryPathway/Diagnosis/Prostate
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: psadiagnosis
+- column: MultidisciplinaryTeamDiscussionDateCancer
+  klass:
+  - ECosdXmlCancerCarePlan
+  rawtext_name: multidisciplinaryteamdiscussiondate_cancer
+  xml_cell:
+    id: CR0430
+    relative_path: PrimaryPathway/CancerCarePlan
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: mdtdiscussiondate_cancer
+- column: CancerCarePlanIntent
+  klass:
+  - ECosdXmlCancerCarePlan
+  rawtext_name: cancercareplanintent
+  xml_cell:
+    id: CR0460
+    relative_path: PrimaryPathway/CancerCarePlan
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: cancercareplanintent
+- column: PlannedCancerTreatmentType
+  klass:
+  - ECosdXmlCancerCarePlan
+  rawtext_name: plannedcancertreatmenttype
+  xml_cell:
+    id: CR0470
+    relative_path: PrimaryPathway/CancerCarePlan
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: plannedcancertreatmenttype
+- column: NoCancerTreatmentReason
+  klass:
+  - ECosdXmlCancerCarePlan
+  rawtext_name: nocancertreatmentreason
+  xml_cell:
+    id: CR0490
+    relative_path: PrimaryPathway/CancerCarePlan
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: nocancertreatmentreason
+- column: MdtProvisionalDiagnosisIcd
+  klass:
+  - ECosdXmlCancerCarePlan
+  rawtext_name: mdtprovisionaldiagnosisicd
+  xml_cell:
+    id: BA3080
+    relative_path: PrimaryPathway/CancerCarePlan/CNS
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: mdtprovisionaldiagnosis_icd
+- column: SokalIndexChronicMyeloidLeukaemia
+  klass:
+  - ECosdXmlCancerCarePlan
+  rawtext_name: sokalindexchronicmyeloidleukaemia
+  xml_cell:
+    id: HA8010
+    relative_path: PrimaryPathway/CancerCarePlan/Cml
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: sokalindex_cml
+- column: Ipss-rMyelodysplasia
+  klass:
+  - ECosdXmlCancerCarePlan
+  rawtext_name: ipss-rmyelodysplasia
+  xml_cell:
+    id: HA9000
+    relative_path: PrimaryPathway/CancerCarePlan/Myelodysplasia
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: ipssrmyelodysplasia
+- column: Flipi2IndexScore
+  klass:
+  - ECosdXmlCancerCarePlan
+  rawtext_name: flipi2indexscore
+  xml_cell:
+    id: HA8360
+    relative_path: PrimaryPathway/CancerCarePlan/FollicularLymphoma
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: flipiindexscore
+- column: PrimaryExtranodalSite
+  klass:
+  - ECosdXmlCancerCarePlan
+  rawtext_name: primaryextranodalsite
+  xml_cell:
+    id: HA8330
+    relative_path: PrimaryPathway/CancerCarePlan/Dlbcl
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: diseaseoforigin
+- column: NumberOfExtranodalSitesCode
+  klass:
+  - ECosdXmlCancerCarePlan
+  rawtext_name: numberofextranodalsitescode
+  xml_cell:
+    id: HA8420
+    relative_path: PrimaryPathway/CancerCarePlan/Dlbcl
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: extranodalsitescode
+- column: NumberOfAbnormalNodalAreas
+  klass:
+  - ECosdXmlCancerCarePlan
+  rawtext_name: numberofabnormalnodalareas
+  xml_cell:
+    id: HA8320
+    relative_path: PrimaryPathway/CancerCarePlan/HodgkinLymphoma
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: numberofabnormalnodalareas
+- column: HasencleverIndex
+  klass:
+  - ECosdXmlCancerCarePlan
+  rawtext_name: hasencleverindex
+  xml_cell:
+    id: HA8670
+    relative_path: PrimaryPathway/CancerCarePlan/HodgkinLymphoma
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: hasencleverindex
+- column: RipiIndexScore
+  klass:
+  - ECosdXmlCancerCarePlan
+  rawtext_name: ripiindexfordlbclscore
+  xml_cell:
+    id: HA8450
+    relative_path: PrimaryPathway/CancerCarePlan/InternationalPrognosticScoreIndex
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: ipiindexfordlbclscore
+- column: IpiIndexScore
+  klass:
+  - ECosdXmlCancerCarePlan
+  rawtext_name: ipi_index_score
+  xml_cell:
+    id: HA9500
+    relative_path: PrimaryPathway/CancerCarePlan/InternationalPrognosticScoreIndex
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: ipi_index_score
+- column: MipiIndexScore
+  klass:
+  - ECosdXmlCancerCarePlan
+  rawtext_name: mipi_index_score
+  xml_cell:
+    id: HA9510
+    relative_path: PrimaryPathway/CancerCarePlan/InternationalPrognosticScoreIndex
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: mipi_index_score
+- column: ImmunosuppressedStatus
+  klass:
+  - ECosdXmlCancerCarePlan
+  rawtext_name: immunosuppressed_status
+  xml_cell:
+    id: SK13000
+    relative_path: PrimaryPathway/CancerCarePlan/Skin
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: immunosuppressed_status
+- column: EstimatedGlomerularFiltrationRate
+  klass:
+  - ECosdXmlCancerCarePlan
+  rawtext_name: estimatedglomerularfiltrationrate
+  xml_cell:
+    id: UR15000
+    relative_path: PrimaryPathway/CancerCarePlan/Urological
+    attribute: value
+    version: ">= 10.0.1"
+  mappings:
+  - field: estimatedglomerularfiltration
+- column: Hydronephrosis
+  klass:
+  - ECosdXmlCancerCarePlan
+  rawtext_name: hydronephrosis
+  xml_cell:
+    id: UR15010
+    relative_path: PrimaryPathway/CancerCarePlan/Urological
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: hydronephrosis
+- column: Preoperatives-category
+  klass:
+  - ECosdXmlCancerCarePlan
+  rawtext_name: s-category
+  xml_cell:
+    id: UR15030
+    relative_path: PrimaryPathway/CancerCarePlan/Urological
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: scategorycode
+- column: PostoperativeNadirs-category
+  klass:
+  - ECosdXmlCancerCarePlan
+  rawtext_name: postoperative_nadirs-category
+  xml_cell:
+    id: UR15600
+    relative_path: PrimaryPathway/CancerCarePlan/Urological
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: postoperative_nadirs_category
+- column: TCategoryFinalPretreatment
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: tcategory_finalpretreatment
+  xml_cell:
+    id: CR0520
+    relative_path: PrimaryPathway/Staging
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: tcategory_finalpretreatment
+- column: NCategoryFinalPretreatment
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: ncategory_finalpretreatment
+  xml_cell:
+    id: CR0540
+    relative_path: PrimaryPathway/Staging
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: ncategory_finalpretreatment
+- column: MCategoryFinalPretreatment
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: mcategory_finalpretreatment
+  xml_cell:
+    id: CR0560
+    relative_path: PrimaryPathway/Staging
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: mcategory_finalpretreatment
+- column: TnmStageGroupingFinalPretreatment
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: tnmstagegrouping_finalpretreatment
+  xml_cell:
+    id: CR0580
+    relative_path: PrimaryPathway/Staging
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: tnmstagrofinpre
+- column: OrganisationSiteIdentifierReportedPretreatmentTnmStage
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: org_site_tnm_group_final_pt
+  xml_cell:
+    id: CR6800
+    relative_path: PrimaryPathway/Staging
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: org_site_tnm_group_final_pt
+- column: StageDateFinalPretreatmentStage
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: tnmstagegroupingdate_finalpretreatment
+  xml_cell:
+    id: CR3120
+    relative_path: PrimaryPathway/Staging
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: stadatfinpresta
+- column: TCategoryIntegratedStage
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: tcategory_integratedstage
+  xml_cell:
+    id: CR0620
+    relative_path: PrimaryPathway/Staging
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: tcategory_integratedstage
+- column: NCategoryIntegratedStage
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: ncategory_integratedstage
+  xml_cell:
+    id: CR0630
+    relative_path: PrimaryPathway/Staging
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: ncategory_integratedstage
+- column: MCategoryIntegratedStage
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: mcategory_integratedstage
+  xml_cell:
+    id: CR0640
+    relative_path: PrimaryPathway/Staging
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: mcategory_integratedstage
+- column: TnmStageGroupingIntegrated
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: tnmstagegrouping_integrated
+  xml_cell:
+    id: CR0610
+    relative_path: PrimaryPathway/Staging
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: tnmstagegrouping_integrated
+- column: OrganisationSiteIdentifierReportedIntegratedTnmStage
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: org_site_tnm_group_int
+  xml_cell:
+    id: CR6810
+    relative_path: PrimaryPathway/Staging
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: org_site_tnm_group_int
+- column: StageDateIntegratedStage
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: tnmstagegroupingdate_integrated
+  xml_cell:
+    id: CR3130
+    relative_path: PrimaryPathway/Staging
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: stadatintsta
+- column: TnmCodingEdition
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: tnm_coding_edition
+  xml_cell:
+    id: CR6980
+    relative_path: PrimaryPathway/Staging
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: tnm_coding_edition
+- column: TnmVersionNumberStaging
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: tnmeditionnumber
+  xml_cell:
+    id: CR2070
+    relative_path: PrimaryPathway/Staging
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: tnmedition
+- column: OrganisationSiteIdentifierSiteSpecificStage
+  klass: ECosdXmlStaging#SS
+  rawtext_name: org_site_sitespecific
+  xml_cell:
+    id: CR8300
+    relative_path: PrimaryPathway/SiteSpecificStaging
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: org_site_sitespecific
+- column: StageDateSiteSpecificStage
+  klass: ECosdXmlStaging#SS
+  rawtext_name: stagedatesitespecific
+  xml_cell:
+    id: CR8310
+    relative_path: PrimaryPathway/SiteSpecificStaging
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: stagedatesitespecific
+- column: ChangStagingSystemStage
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: changstagingformedulloblastoma
+  xml_cell:
+    id: CT6560
+    relative_path: PrimaryPathway/SiteSpecificStaging/CNS
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: changstage
+- column: WilmsTumourStage
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: wilmstumourstage
+  xml_cell:
+    id: CT6330
+    relative_path: PrimaryPathway/SiteSpecificStaging/RenalTumours
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: wilmstumourstage
+- column: InternationalNeuroblastomaRiskGroupInrgStagingSystem
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: intl_risk_group_staging_system_stage
+  xml_cell:
+    id: CT7050
+    relative_path: PrimaryPathway/SiteSpecificStaging/Neuroblastoma
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: intneurisgroinrstasys
+- column: PretextStagingSystemStage
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: pretextstagingsystemstage
+  xml_cell:
+    id: CT6500
+    relative_path: PrimaryPathway/SiteSpecificStaging/Hepatoblastoma
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: pretextstagingsystemstage
+- column: PretextAnnotationFactors
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: pretextannotationfactors
+  xml_cell:
+    id: CT7500
+    relative_path: PrimaryPathway/SiteSpecificStaging/Hepatoblastoma
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: pretextannotationfactors
+- column: InternationalStagingSystemForRetinoblastoma
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: internationalstagingsystemforretinoblastoma
+  xml_cell:
+    id: CT6800
+    relative_path: PrimaryPathway/SiteSpecificStaging/Retinoblastoma
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: intlstageforretinoblastoma
+- column: FinalFigoStage
+  klass:
+  - ECosdXmlStaging#SS
+  rawtext_name: finalfigostage
+  xml_cell:
+    id: GY7010
+    relative_path: PrimaryPathway/SiteSpecificStaging/Gynaecological
+    attribute:
+    version: ">= 10.0.1"
+    multiple: true
+  mappings:
+  - field: finalfigostage
+- column: AnnArborStage
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: annarborstage
+  xml_cell:
+    id: HA8280
+    relative_path: PrimaryPathway/SiteSpecificStaging/AnnArbor
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: annarborstage
+- column: BinetStage
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: binetstage
+  xml_cell:
+    id: HA8240
+    relative_path: PrimaryPathway/SiteSpecificStaging/Cll
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: binet
+- column: R-issStageForMyeloma
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: rissstageformyeloma
+  xml_cell:
+    id: HA9100
+    relative_path: PrimaryPathway/SiteSpecificStaging/Myeloma
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: rissstageformyeloma
+- column: MurphyStJudeStage
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: murphy_stjudestage
+  xml_cell:
+    id: CT6250
+    relative_path: PrimaryPathway/SiteSpecificStaging/NonHodgkinLymphoma
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: murphy_stjudestage
+- column: ChildrensOncologyGroupCogStagingSystemStage
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: childrens_oncology_group_cog_staging_system_stage
+  xml_cell:
+    id: CT8270
+    relative_path: PrimaryPathway/SiteSpecificStaging/AcuteLymphoblasticLeukaemia
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: chioncgrocogstasyssta
+- column: CentralNervousSystemInvolvement
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: central_nervous_system_involvement
+  xml_cell:
+    id: CT8280
+    relative_path: PrimaryPathway/SiteSpecificStaging/AcuteMyeloidLeukaemia
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: cennersysinv
+- column: BarcelonaClinicLiverCancerBclcStage
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: barcelonacliniclivercancerstagebclcstage
+  xml_cell:
+    id: LV16100
+    relative_path: PrimaryPathway/SiteSpecificStaging/Liver
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: bclcstage
+- column: StageGroupingTesticular
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: stagegrouping_testicular
+  xml_cell:
+    id: UR15300
+    relative_path: PrimaryPathway/SiteSpecificStaging/Testicular
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: stagegrouping_testicular
+- column: AnnArborSymptoms
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: annarborsymptoms
+  xml_cell:
+    id: HA8290
+    relative_path: PrimaryPathway/AnnArborExtensions
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: annarborsymptoms
+- column: AnnArborExtranodality
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: annarborextranodality
+  xml_cell:
+    id: HA8300
+    relative_path: PrimaryPathway/AnnArborExtensions
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: annarborextranodality
+- column: AnnArborBulk
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: annarborbulk
+  xml_cell:
+    id: HA8310
+    relative_path: PrimaryPathway/AnnArborExtensions
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: annarborbulk
+- column: AnnArborSplenicInvolvement
+  klass:
+  - ECosdXmlStaging
+  rawtext_name: annarborsplenicinvolvement
+  xml_cell:
+    id: HA8680
+    relative_path: PrimaryPathway/AnnArborExtensions
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: annarborsplenicinvolvement
+- column: DateOfNonPrimaryCancerDiagnosisClinicallyAgreed
+  klass:
+  - ECosdXmlRecurrence#NPP
+  - ECosdXmlProgression#NPP
+  - ECosdXmlTransformation
+  rawtext_name: dateofnonprimarydiagnosis
+  xml_cell:
+    id: CR6500
+    relative_path: NonPrimaryPathway/NonPrimaryCancerPathwayDetails
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: dateofnonprimarydiagnosis
+- column: OriginalPrimaryDiagnosisIcd
+  klass:
+  - ECosdXmlRecurrence#NPP
+  rawtext_name: originalprimarydiagnosis_icd
+  xml_cell:
+    id: CR7100
+    relative_path: NonPrimaryPathway/Recurrence
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: originalprimarydiagnosis_icd
+- column: MetastaticType
+  klass:
+  - ECosdXmlRecurrence#NPP
+  rawtext_name: metastatictype
+  xml_cell:
+    id: CR6520
+    relative_path: NonPrimaryPathway/Recurrence/MetastaticTypeAndSite
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+  mappings:
+  - field: metastatictype
+- column: MetastaticSite
+  klass:
+  - ECosdXmlRecurrence#NPP
+  rawtext_name: metastaticsite
+  xml_cell:
+    id: CR1590
+    relative_path: NonPrimaryPathway/Recurrence/MetastaticTypeAndSite
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    build_new_record: false
+  mappings:
+  - field: metastaticsite
+- column: PalliativeCareSpecialistSeenIndicatorCancerRecurrence
+  klass:
+  - ECosdXmlRecurrence
+  rawtext_name: palliativecarespecialistseenindicator_cancerrecurrence
+  xml_cell:
+    id: CR1550
+    relative_path: NonPrimaryPathway/Recurrence
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: palliativespecialistseenind
+- column: Relapse-MethodOfDetection
+  klass:
+  - ECosdXmlRecurrence
+  rawtext_name: relapse_method_of_detection
+  xml_cell:
+    id: CR9000
+    relative_path: NonPrimaryPathway/Recurrence
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: relapsemethodofdetection
+- column: ProgressionIcd
+  klass:
+  - ECosdXmlProgression#NPP
+  rawtext_name: cancer_progression_icd
+  xml_cell:
+    id: CR6900
+    relative_path: NonPrimaryPathway/Progression
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: cancer_progression_icd
+- column: MetastaticType
+  klass:
+  - ECosdXmlProgression#NPP
+  rawtext_name: metastatictype
+  xml_cell:
+    id: CR6520
+    relative_path: NonPrimaryPathway/Progression/MetastaticTypeAndSite
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    build_new_record: false
+  mappings:
+  - field: metastatictype
+- column: MetastaticSite
+  klass:
+  - ECosdXmlProgression#NPP
+  rawtext_name: metastaticsite
+  xml_cell:
+    id: CR1590
+    relative_path: NonPrimaryPathway/Progression/MetastaticTypeAndSite
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    build_new_record: false
+  mappings:
+  - field: metastaticsite
+- column: OriginalMorphologyIcd-o-3
+  klass:
+  - ECosdXmlTransformation
+  rawtext_name: originalmorphology_icdo3
+  xml_cell:
+    id: CR7200
+    relative_path: NonPrimaryPathway/Transformation
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: originalmorphology_icdo3
+- column: OriginalMorphologySnomed
+  klass:
+  - ECosdXmlTransformation
+  rawtext_name: originalmorphology_snomed
+  xml_cell:
+    id: CR7210
+    relative_path: NonPrimaryPathway/Transformation
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: originalmorphology_snomed
+- column: MorphologyIcd-o-3Transformation
+  klass:
+  - ECosdXmlTransformation
+  rawtext_name: transformation_icdo
+  xml_cell:
+    id: CR7010
+    relative_path: NonPrimaryPathway/Transformation
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: transformation_icdo
+- column: MorphologySnomedTransformation
+  klass:
+  - ECosdXmlTransformation
+  rawtext_name: transformation_snomed
+  xml_cell:
+    id: CR7000
+    relative_path: NonPrimaryPathway/Transformation/CurrentMorphology
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: transformation_snomed
+- column: SnomedVersionCurrentTransformation
+  klass:
+  - ECosdXmlTransformation
+  rawtext_name: transformation_snomed_version
+  xml_cell:
+    id: CR7030
+    relative_path: NonPrimaryPathway/Transformation/CurrentMorphology
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: transformation_snomed_version
+- column: SourceOfReferralForNonPrimaryCancerPathway
+  klass:
+  - ECosdXmlReferral
+  rawtext_name: sourceofreferralfornonprimarycancerpathway
+  xml_cell:
+    id: CR0300
+    relative_path: NonPrimaryPathway/Referral
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: sourceofreferral_npcp
+- column: DateFirstSeen-NonPrimaryCancerPathway
+  klass:
+  - ECosdXmlReferral
+  rawtext_name: datefirstseen-nonprimarycancerpathway
+  xml_cell:
+    id: CR7400
+    relative_path: NonPrimaryPathway/Referral
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: datefirstseen_npcp
+- column: OrganisationSiteIdentifierProviderFirstSeen-NonPrimaryCancerPathway
+  klass:
+  - ECosdXmlReferral
+  rawtext_name: organisationsiteidentifierproviderfirstseen-nonprimarycancerpathway
+  xml_cell:
+    id: CR7410
+    relative_path: NonPrimaryPathway/Referral
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: sitecodefirstseen_npcp
+- column: MetastaticType
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: metastatictype_1
+  xml_cell:
+    id: CR6960
+    relative_path: PrimaryPathway/Diagnosis/MetastaticTypeAndSite[1]
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    build_new_record: false
+  mappings:
+  - field: metastatictype_1
+- column: MetastaticSite
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: metastaticsite_1
+  xml_cell:
+    id: CR6970
+    relative_path: PrimaryPathway/Diagnosis/MetastaticTypeAndSite[1]
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    build_new_record: false
+  mappings:
+  - field: metastaticsite_1
+- column: MetastaticType
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: metastatictype_2
+  xml_cell:
+    id: CR6960
+    relative_path: PrimaryPathway/Diagnosis/MetastaticTypeAndSite[2]
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    build_new_record: false
+  mappings:
+  - field: metastatictype_2
+- column: MetastaticSite
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: metastaticsite_2
+  xml_cell:
+    id: CR6970
+    relative_path: PrimaryPathway/Diagnosis/MetastaticTypeAndSite[2]
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    build_new_record: false
+  mappings:
+  - field: metastaticsite_2
+- column: FunctionalSyndromeClassificationType[1]
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: functional_syndrome_classification_type_1
+  xml_cell:
+    id: CR9030
+    relative_path: PrimaryPathway/Diagnosis/AdditionalItems
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    build_new_record: false
+    increment_field_name: true
+  mappings:
+  - field: functional_syndrome_classification_type_1
+- column: FunctionalSyndromeClassificationType[2]
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: functional_syndrome_classification_type_2
+  xml_cell:
+    id: CR9030
+    relative_path: PrimaryPathway/Diagnosis/AdditionalItems
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    build_new_record: false
+    increment_field_name: true
+  mappings:
+  - field: functional_syndrome_classification_type_2
+- column: FunctionalSyndromeClassificationType[3]
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: functional_syndrome_classification_type_3
+  xml_cell:
+    id: CR9030
+    relative_path: PrimaryPathway/Diagnosis/AdditionalItems
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    build_new_record: false
+    increment_field_name: true
+  mappings:
+  - field: functional_syndrome_classification_type_3
+- column: FunctionalSyndromeClassificationType
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: pair_functional_syndrome_classification_type_1
+  xml_cell:
+    id: CR9030
+    relative_path: PrimaryPathway/Diagnosis/AdditionalItems/FunctionalSyndromeClassificationTypeUnknown[1]
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    build_new_record: false
+    increment_field_name: true
+  mappings:
+  - field: pair_functional_syndrome_classification_type_1
+- column: OtherFunctionalSyndromeClassificationType
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: pair_other_functional_syndrome_classification_type_1
+  xml_cell:
+    id: CR9040
+    relative_path: PrimaryPathway/Diagnosis/AdditionalItems/FunctionalSyndromeClassificationTypeUnknown[1]
+    attribute:
+    version: ">= 10.0.1"
+    multiple: true
+    build_new_record: false
+    increment_field_name: true
+  mappings:
+  - field: pair_other_functional_syndrome_classification_type_1
+- column: FunctionalSyndromeClassificationType
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: pair_functional_syndrome_classification_type_2
+  xml_cell:
+    id: CR9030
+    relative_path: PrimaryPathway/Diagnosis/AdditionalItems/FunctionalSyndromeClassificationTypeUnknown[2]
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    build_new_record: false
+    increment_field_name: true
+  mappings:
+  - field: pair_functional_syndrome_classification_type_2
+- column: OtherFunctionalSyndromeClassificationType
+  klass:
+  - ECosdXmlDiagnosis
+  rawtext_name: pair_other_functional_syndrome_classification_type_2
+  xml_cell:
+    id: CR9040
+    relative_path: PrimaryPathway/Diagnosis/AdditionalItems/FunctionalSyndromeClassificationTypeUnknown[2]
+    attribute:
+    version: ">= 10.0.1"
+    multiple: true
+    build_new_record: false
+    increment_field_name: true
+  mappings:
+  - field: pair_other_functional_syndrome_classification_type_2
+- column: MetastaticType
+  klass:
+  - ECosdXmlProgression#1
+  rawtext_name: metastatictype_1
+  xml_cell:
+    id: CR6960
+    relative_path: PrimaryPathway/Diagnosis/Progression[1]/MetastaticTypeAndSite
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: PrimaryPathway/Diagnosis/Progression
+  mappings:
+  - field: metastatictype_1
+- column: MetastaticSite
+  klass:
+  - ECosdXmlProgression#1
+  rawtext_name: metastaticsite_1
+  xml_cell:
+    id: CR6970
+    relative_path: PrimaryPathway/Diagnosis/Progression[1]/MetastaticTypeAndSite
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: PrimaryPathway/Diagnosis/Progression
+  mappings:
+  - field: metastaticsite_1
+- column: ProgressionDatePrimaryPathway
+  klass:
+  - ECosdXmlProgression#1
+  rawtext_name: dateofnonprimarydiagnosis
+  xml_cell:
+    id: CR6910
+    relative_path: PrimaryPathway/Diagnosis/Progression[1]
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: dateofnonprimarydiagnosis
+- column: MetastaticType
+  klass:
+  - ECosdXmlProgression#2
+  rawtext_name: metastatictype_3
+  xml_cell:
+    id: CR6960
+    relative_path: PrimaryPathway/Diagnosis/Progression[2]/MetastaticTypeAndSite[1]
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: PrimaryPathway/Diagnosis/Progression
+  mappings:
+  - field: metastatictype_3
+- column: MetastaticSite
+  klass:
+  - ECosdXmlProgression#2
+  rawtext_name: metastaticsite_3
+  xml_cell:
+    id: CR6970
+    relative_path: PrimaryPathway/Diagnosis/Progression[2]/MetastaticTypeAndSite[1]
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: PrimaryPathway/Diagnosis/Progression
+  mappings:
+  - field: metastaticsite_3
+- column: MetastaticType
+  klass:
+  - ECosdXmlProgression#2
+  rawtext_name: metastatictype_4
+  xml_cell:
+    id: CR6960
+    relative_path: PrimaryPathway/Diagnosis/Progression[2]/MetastaticTypeAndSite[2]
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: PrimaryPathway/Diagnosis/Progression
+  mappings:
+  - field: metastatictype_4
+- column: MetastaticSite
+  klass:
+  - ECosdXmlProgression#2
+  rawtext_name: metastaticsite_4
+  xml_cell:
+    id: CR6970
+    relative_path: PrimaryPathway/Diagnosis/Progression[2]/MetastaticTypeAndSite[2]
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: PrimaryPathway/Diagnosis/Progression
+  mappings:
+  - field: metastaticsite_4
+- column: ProgressionDatePrimaryPathway
+  klass:
+  - ECosdXmlProgression#2
+  rawtext_name: dateofnonprimarydiagnosis
+  xml_cell:
+    id: CR6910
+    relative_path: PrimaryPathway/Diagnosis/Progression[2]
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: dateofnonprimarydiagnosis
+- column: OrganisationSiteIdentifierSiteSpecificStage
+  klass: ECosdXmlStaging#SS#1
+  rawtext_name: org_site_sitespecific
+  xml_cell:
+    id: CR8300
+    relative_path: PrimaryPathway/SiteSpecificStaging[1]
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: org_site_sitespecific
+- column: StageDateSiteSpecificStage
+  klass: ECosdXmlStaging#SS#1
+  rawtext_name: stagedatesitespecific
+  xml_cell:
+    id: CR8310
+    relative_path: PrimaryPathway/SiteSpecificStaging[1]
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: stagedatesitespecific
+- column: OrganisationSiteIdentifierSiteSpecificStage
+  klass: ECosdXmlStaging#SS#2
+  rawtext_name: org_site_sitespecific
+  xml_cell:
+    id: CR8300
+    relative_path: PrimaryPathway/SiteSpecificStaging[2]
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: org_site_sitespecific
+- column: StageDateSiteSpecificStage
+  klass: ECosdXmlStaging#SS#2
+  rawtext_name: stagedatesitespecific
+  xml_cell:
+    id: CR8310
+    relative_path: PrimaryPathway/SiteSpecificStaging[2]
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: stagedatesitespecific
+- column: StreetAddressLine[1]
+  klass: ECosdXmlRecord
+  rawtext_name: address_1
+  xml_cell:
+    id:
+    relative_path: Demographics/Address/StructuredAddress
+    attribute:
+    version: ">= 10.0.1"
+    multiple: true
+    build_new_record: false
+- column: StreetAddressLine[2]
+  klass: ECosdXmlRecord
+  rawtext_name: address_2
+  xml_cell:
+    id:
+    relative_path: Demographics/Address/StructuredAddress
+    attribute:
+    version: ">= 10.0.1"
+    multiple: true
+    build_new_record: false
+- column: StreetAddressLine[3]
+  klass: ECosdXmlRecord
+  rawtext_name: address_3
+  xml_cell:
+    id:
+    relative_path: Demographics/Address/StructuredAddress
+    attribute:
+    version: ">= 10.0.1"
+    multiple: true
+    build_new_record: false
+- column: StreetAddressLine[4]
+  klass: ECosdXmlRecord
+  rawtext_name: address_4
+  xml_cell:
+    id:
+    relative_path: Demographics/Address/StructuredAddress
+    attribute:
+    version: ">= 10.0.1"
+    multiple: true
+    build_new_record: false
+- column: OrganisationSiteIdentifierOfImaging
+  klass:
+  - ECosdXmlImaging#1
+  rawtext_name: sitecode_ofimaging
+  xml_cell:
+    id: CR0310
+    relative_path: Imaging[1]
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: providercode
+- column: ProcedureDateCancerImaging
+  klass:
+  - ECosdXmlImaging#1
+  rawtext_name: proceduredate_cancerimaging
+  xml_cell:
+    id: CR0320
+    relative_path: Imaging[1]
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: clinicalinterventiondate
+- column: ImagingOutcome
+  klass:
+  - ECosdXmlImaging#1
+  rawtext_name: cancer_imaging_outcome
+  xml_cell:
+    id: CR6780
+    relative_path: Imaging[1]
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: cancer_imaging_outcome
+- column: CancerImagingModality
+  klass:
+  - ECosdXmlImaging#1
+  rawtext_name: cancerimagingmodality
+  xml_cell:
+    id: CR0330
+    relative_path: Imaging[1]/ImagingLocationGroup
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: imagingmodality
+- column: ImagingAnatomicalSite
+  klass:
+  - ECosdXmlImaging#1
+  rawtext_name: imaginganatomicalsite
+  xml_cell:
+    id: CR0340
+    relative_path: Imaging[1]/ImagingLocationGroup
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: anatomicalexaminationsite
+- column: AnatomicalSideImaging
+  klass:
+  - ECosdXmlImaging#1
+  rawtext_name: anatomicalside_imaging
+  xml_cell:
+    id: CR3000
+    relative_path: Imaging[1]/ImagingLocationGroup
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: anatomicalside_imaging
+- column: ImagingReportText
+  klass:
+  - ECosdXmlImaging#1
+  rawtext_name: imagingreporttext
+  xml_cell:
+    id: CR0160
+    relative_path: Imaging[1]
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: imagingreporttext
+- column: OrganisationSiteIdentifierOfImaging
+  klass:
+  - ECosdXmlImaging#2
+  rawtext_name: sitecode_ofimaging
+  xml_cell:
+    id: CR0310
+    relative_path: Imaging[2]
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: providercode
+- column: ProcedureDateCancerImaging
+  klass:
+  - ECosdXmlImaging#2
+  rawtext_name: proceduredate_cancerimaging
+  xml_cell:
+    id: CR0320
+    relative_path: Imaging[2]
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: clinicalinterventiondate
+- column: ImagingOutcome
+  klass:
+  - ECosdXmlImaging#2
+  rawtext_name: cancer_imaging_outcome
+  xml_cell:
+    id: CR6780
+    relative_path: Imaging[2]
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: cancer_imaging_outcome
+- column: ImagingCodeSnomedCt
+  klass:
+  - ECosdXmlImaging#2
+  rawtext_name: imagingcode_snomedct
+  xml_cell:
+    id: CR3110
+    relative_path: Imaging[2]
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: imagingcode_snomedct
+- column: ImagingReportText
+  klass:
+  - ECosdXmlImaging#2
+  rawtext_name: imagingreporttext
+  xml_cell:
+    id: CR0160
+    relative_path: Imaging[2]
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: imagingreporttext
+- column: AdjunctiveTherapy
+  klass:
+  - ECosdXmlTreatment#1
+  - ECosdXmlSurgery#1
+  rawtext_name: adjunctivetherapy
+  xml_cell:
+    id: CR6540
+    relative_path: Treatment[1]
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: adjunctive_therapy_type
+- column: CancerTreatmentIntent
+  klass:
+  - ECosdXmlTreatment#1
+  - ECosdXmlSurgery#1
+  rawtext_name: cancertreatmentintent
+  xml_cell:
+    id: CR0680
+    relative_path: Treatment[1]
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: treatmentintent
+- column: TreatmentStartDateCancer
+  klass:
+  - ECosdXmlTreatment#1
+  - ECosdXmlSurgery#1
+  rawtext_name: treatmentstartdatecancer
+  xml_cell:
+    id: CR1370
+    relative_path: Treatment[1]
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: startoradmissiondate
+- column: CancerTreatmentModalityRegistration
+  klass:
+  - ECosdXmlTreatment#1
+  - ECosdXmlSurgery#1
+  rawtext_name: cancertreatmentmodalityregistration
+  xml_cell:
+    id: CR2040
+    relative_path: Treatment[1]
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: cancertreatmentmodality
+- column: OrganisationSiteIdentifierOfProviderCancerTreatmentStartDate
+  klass:
+  - ECosdXmlTreatment#1
+  - ECosdXmlSurgery#1
+  rawtext_name: organisationsiteidentifierofprovidercancertreatmentstartdate
+  xml_cell:
+    id: CR1450
+    relative_path: Treatment[1]
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: providercode
+- column: ProfessionalRegistrationIssuerCode-ConsultantTreatment
+  klass:
+  - ECosdXmlTreatment#1
+  - ECosdXmlSurgery#1
+  rawtext_name: professionalregistrationissuercode-consultanttreatment
+  xml_cell:
+    id: CR8400
+    relative_path: Treatment[1]/ConsultantTreatment
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: pric_treatment
+- column: ProfessionalRegistrationEntryIdentifier-ConsultantTreatment
+  klass:
+  - ECosdXmlTreatment#1
+  - ECosdXmlSurgery#1
+  rawtext_name: professionalregistrationentryidentifier-consultanttreatment
+  xml_cell:
+    id: CR8410
+    relative_path: Treatment[1]/ConsultantTreatment
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: prei_treatment
+- column: EndOfTreatmentSummaryDate
+  klass:
+  - ECosdXmlTreatment#1
+  - ECosdXmlSurgery#1
+  rawtext_name: endoftreatmentsummarydates
+  xml_cell:
+    id: CR8420
+    relative_path: Treatment[1]
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: endoftreatmentsummarydates
+- column: DischargeDateHospitalProviderSpell
+  klass:
+  - ECosdXmlTreatment#1
+  - ECosdXmlSurgery#1
+  rawtext_name: dischargedatehospitalproviderspell
+  xml_cell:
+    id: CR0740
+    relative_path: Treatment[1]
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: dischargedatehospprovspell
+- column: DestinationOfDischargeHospitalProviderSpell
+  klass:
+  - ECosdXmlTreatment#1
+  - ECosdXmlSurgery#1
+  rawtext_name: destination_of_discharge_hospital_provider_spell
+  xml_cell:
+    id: CR9080
+    relative_path: Treatment[1]
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: desofdishosprospe
+- column: ProcedureDate
+  klass:
+  - ECosdXmlSurgery#1
+  rawtext_name: proceduredate
+  xml_cell:
+    id: CR0710
+    relative_path: Treatment[1]/Surgery
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: proceduredate
+- column: SurgicalAdmissionType
+  klass:
+  - ECosdXmlSurgery#1
+  rawtext_name: surgicaladmissiontype
+  xml_cell:
+    id: CR8500
+    relative_path: Treatment[1]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: surgicaladmissiontype
+- column: ProfessionalRegistrationIssuerCode-ConsultantSurgeon
+  klass: ECosdXmlSurgery#1
+  rawtext_name: professionalregistrationissuercode_consultantsurgeon_2
+  xml_cell:
+    id: CR8510
+    relative_path: Treatment[1]/Surgery/ConsultantSurgeon[1]
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: professionalregistrationissuercode_consultantsurgeon_2
+- column: ProfessionalRegistrationEntryIdentifier-ConsultantSurgeon
+  klass: ECosdXmlSurgery#1
+  rawtext_name: professionalregistrationentryidentifier_consultantsurgeon_2
+  xml_cell:
+    id: CR8520
+    relative_path: Treatment[1]/Surgery/ConsultantSurgeon[1]
+    attribute:
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: professionalregistrationentryidentifier_consultantsurgeon_2
+- column: ProfessionalRegistrationIssuerCode-ConsultantSurgeon
+  klass: ECosdXmlSurgery#1
+  rawtext_name: professionalregistrationissuercode_consultantsurgeon_3
+  xml_cell:
+    id: CR8510
+    relative_path: Treatment[1]/Surgery/ConsultantSurgeon[2]
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: professionalregistrationissuercode_consultantsurgeon_3
+- column: ProfessionalRegistrationEntryIdentifier-ConsultantSurgeon
+  klass: ECosdXmlSurgery#1
+  rawtext_name: professionalregistrationentryidentifier_consultantsurgeon_3
+  xml_cell:
+    id: CR8520
+    relative_path: Treatment[1]/Surgery/ConsultantSurgeon[2]
+    attribute:
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: professionalregistrationentryidentifier_consultantsurgeon_3
+- column: PrimaryProcedureOpcs
+  klass:
+  - ECosdXmlSurgery#1
+  rawtext_name: primaryprocedures1
+  xml_cell:
+    id: CR0720
+    relative_path: Treatment[1]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: primaryprocedure_opcs
+- column: PrimaryProcedureSnomedCt
+  klass:
+  - ECosdXmlSurgery#1
+  rawtext_name: primaryprocedure_snomedct
+  xml_cell:
+    id: CR3040
+    relative_path: Treatment[1]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: primaryprocedure_snomedct
+- column: ProcedureOpcs
+  klass:
+  - ECosdXmlSurgery#1
+  rawtext_name: otherprocedures
+  xml_cell:
+    id: CR0730
+    relative_path: Treatment[1]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: procedure_opcs
+- column: ProcedureSnomedCt
+  klass:
+  - ECosdXmlSurgery#1
+  rawtext_name: procedure_snomedct
+  xml_cell:
+    id: CR3050
+    relative_path: Treatment[1]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: procedure_snomedct
+- column: UnplannedReturnToTheatreIndicator
+  klass:
+  - ECosdXmlSurgery#1
+  rawtext_name: unplannedreturntotheatreindicator
+  xml_cell:
+    id: CR6480
+    relative_path: Treatment[1]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: uplannedoperationind
+- column: AsaScore
+  klass:
+  - ECosdXmlSurgery#1
+  rawtext_name: asascore
+  xml_cell:
+    id: CR6010
+    relative_path: Treatment[1]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: asascore
+- column: SurgicalAccessType
+  klass:
+  - ECosdXmlSurgery#1
+  rawtext_name: surgicalaccesstype
+  xml_cell:
+    id: CR6310
+    relative_path: Treatment[1]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: surgicalaccess
+- column: AdjunctiveTherapy
+  klass:
+  - ECosdXmlTreatment#2
+  - ECosdXmlSurgery#2
+  rawtext_name: adjunctivetherapy
+  xml_cell:
+    id: CR6540
+    relative_path: Treatment[2]
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: adjunctive_therapy_type
+- column: CancerTreatmentIntent
+  klass:
+  - ECosdXmlTreatment#2
+  - ECosdXmlSurgery#2
+  rawtext_name: cancertreatmentintent
+  xml_cell:
+    id: CR0680
+    relative_path: Treatment[2]
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: treatmentintent
+- column: TreatmentStartDateCancer
+  klass:
+  - ECosdXmlTreatment#2
+  - ECosdXmlSurgery#2
+  rawtext_name: treatmentstartdatecancer
+  xml_cell:
+    id: CR1370
+    relative_path: Treatment[2]
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: startoradmissiondate
+- column: CancerTreatmentModalityRegistration
+  klass:
+  - ECosdXmlTreatment#2
+  - ECosdXmlSurgery#2
+  rawtext_name: cancertreatmentmodalityregistration
+  xml_cell:
+    id: CR2040
+    relative_path: Treatment[2]
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: cancertreatmentmodality
+- column: OrganisationSiteIdentifierOfProviderCancerTreatmentStartDate
+  klass:
+  - ECosdXmlTreatment#2
+  - ECosdXmlSurgery#2
+  rawtext_name: organisationsiteidentifierofprovidercancertreatmentstartdate
+  xml_cell:
+    id: CR1450
+    relative_path: Treatment[2]
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: providercode
+- column: ProfessionalRegistrationIssuerCode-ConsultantTreatment
+  klass:
+  - ECosdXmlTreatment#2
+  - ECosdXmlSurgery#2
+  rawtext_name: professionalregistrationissuercode-consultanttreatment
+  xml_cell:
+    id: CR8400
+    relative_path: Treatment[2]/ConsultantTreatment
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: pric_treatment
+- column: ProfessionalRegistrationEntryIdentifier-ConsultantTreatment
+  klass:
+  - ECosdXmlTreatment#2
+  - ECosdXmlSurgery#2
+  rawtext_name: professionalregistrationentryidentifier-consultanttreatment
+  xml_cell:
+    id: CR8410
+    relative_path: Treatment[2]/ConsultantTreatment
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: prei_treatment
+- column: EndOfTreatmentSummaryDate
+  klass:
+  - ECosdXmlTreatment#2
+  - ECosdXmlSurgery#2
+  rawtext_name: endoftreatmentsummarydates
+  xml_cell:
+    id: CR8420
+    relative_path: Treatment[2]
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: endoftreatmentsummarydates
+- column: DischargeDateHospitalProviderSpell
+  klass:
+  - ECosdXmlTreatment#2
+  - ECosdXmlSurgery#2
+  rawtext_name: dischargedatehospitalproviderspell
+  xml_cell:
+    id: CR0740
+    relative_path: Treatment[2]
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: dischargedatehospprovspell
+- column: DestinationOfDischargeHospitalProviderSpell
+  klass:
+  - ECosdXmlTreatment#2
+  - ECosdXmlSurgery#2
+  rawtext_name: destination_of_discharge_hospital_provider_spell
+  xml_cell:
+    id: CR9080
+    relative_path: Treatment[2]
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: desofdishosprospe
+- column: ProcedureDate
+  klass:
+  - ECosdXmlSurgery#2
+  rawtext_name: proceduredate
+  xml_cell:
+    id: CR0710
+    relative_path: Treatment[2]/Surgery
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: proceduredate
+- column: SurgicalAdmissionType
+  klass:
+  - ECosdXmlSurgery#2
+  rawtext_name: surgicaladmissiontype
+  xml_cell:
+    id: CR8500
+    relative_path: Treatment[2]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: surgicaladmissiontype
+- column: ProfessionalRegistrationIssuerCode-ConsultantSurgeon
+  klass: ECosdXmlSurgery#2
+  rawtext_name: professionalregistrationissuercode_consultantsurgeon_3
+  xml_cell:
+    id: CR8510
+    relative_path: Treatment[2]/Surgery/ConsultantSurgeon[1]
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: professionalregistrationissuercode_consultantsurgeon_3
+- column: ProfessionalRegistrationEntryIdentifier-ConsultantSurgeon
+  klass: ECosdXmlSurgery#2
+  rawtext_name: professionalregistrationentryidentifier_consultantsurgeon_3
+  xml_cell:
+    id: CR8520
+    relative_path: Treatment[2]/Surgery/ConsultantSurgeon[1]
+    attribute:
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: professionalregistrationentryidentifier_consultantsurgeon_3
+- column: ProfessionalRegistrationIssuerCode-ConsultantSurgeon
+  klass: ECosdXmlSurgery#2
+  rawtext_name: professionalregistrationissuercode_consultantsurgeon_4
+  xml_cell:
+    id: CR8510
+    relative_path: Treatment[2]/Surgery/ConsultantSurgeon[2]
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: professionalregistrationissuercode_consultantsurgeon_4
+- column: ProfessionalRegistrationEntryIdentifier-ConsultantSurgeon
+  klass: ECosdXmlSurgery#2
+  rawtext_name: professionalregistrationentryidentifier_consultantsurgeon_4
+  xml_cell:
+    id: CR8520
+    relative_path: Treatment[2]/Surgery/ConsultantSurgeon[2]
+    attribute:
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: professionalregistrationentryidentifier_consultantsurgeon_4
+- column: PrimaryProcedureOpcs
+  klass:
+  - ECosdXmlSurgery#2
+  rawtext_name: primaryprocedures1
+  xml_cell:
+    id: CR0720
+    relative_path: Treatment[2]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: primaryprocedure_opcs
+- column: PrimaryProcedureSnomedCt
+  klass:
+  - ECosdXmlSurgery#2
+  rawtext_name: primaryprocedure_snomedct
+  xml_cell:
+    id: CR3040
+    relative_path: Treatment[2]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: primaryprocedure_snomedct
+- column: ProcedureOpcs
+  klass:
+  - ECosdXmlSurgery#2
+  rawtext_name: otherprocedures
+  xml_cell:
+    id: CR0730
+    relative_path: Treatment[2]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: procedure_opcs
+- column: ProcedureSnomedCt
+  klass:
+  - ECosdXmlSurgery#2
+  rawtext_name: procedure_snomedct
+  xml_cell:
+    id: CR3050
+    relative_path: Treatment[2]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: procedure_snomedct
+- column: UnplannedReturnToTheatreIndicator
+  klass:
+  - ECosdXmlSurgery#2
+  rawtext_name: unplannedreturntotheatreindicator
+  xml_cell:
+    id: CR6480
+    relative_path: Treatment[2]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: uplannedoperationind
+- column: AsaScore
+  klass:
+  - ECosdXmlSurgery#2
+  rawtext_name: asascore
+  xml_cell:
+    id: CR6010
+    relative_path: Treatment[2]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: asascore
+- column: SurgicalAccessType
+  klass:
+  - ECosdXmlSurgery#2
+  rawtext_name: surgicalaccesstype
+  xml_cell:
+    id: CR6310
+    relative_path: Treatment[2]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: surgicalaccess
+- column: AcuteOncologyAssessmentDate
+  klass:
+  - ECosdXmlAcuteOnocology#1
+  rawtext_name: acuteoncologyassessmentdate
+  xml_cell:
+    id: CR8700
+    relative_path: AcuteOncology[1]
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: acuteoncologyassessmentdate
+- column: OrganisationSiteIdentifierAcuteOncology
+  klass:
+  - ECosdXmlAcuteOnocology#1
+  rawtext_name: organisationsiteidentifieracuteoncology
+  xml_cell:
+    id: CR8710
+    relative_path: AcuteOncology[1]
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: providercode
+- column: AssessmentLocation
+  klass:
+  - ECosdXmlAcuteOnocology#1
+  rawtext_name: assessmentlocation
+  xml_cell:
+    id: CR8720
+    relative_path: AcuteOncology[1]
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: assessmentlocation
+- column: PatientType
+  klass:
+  - ECosdXmlAcuteOnocology#1
+  rawtext_name: patienttype
+  xml_cell:
+    id: CR8730
+    relative_path: AcuteOncology[1]
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: patienttype
+- column: Outcome
+  klass:
+  - ECosdXmlAcuteOnocology#1
+  rawtext_name: outcome
+  xml_cell:
+    id: CR8740
+    relative_path: AcuteOncology[1]
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: outcome
+- column: AcuteOncologyAssessmentDate
+  klass:
+  - ECosdXmlAcuteOnocology#2
+  rawtext_name: acuteoncologyassessmentdate
+  xml_cell:
+    id: CR8700
+    relative_path: AcuteOncology[2]
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: acuteoncologyassessmentdate
+- column: OrganisationSiteIdentifierAcuteOncology
+  klass:
+  - ECosdXmlAcuteOnocology#2
+  rawtext_name: organisationsiteidentifieracuteoncology
+  xml_cell:
+    id: CR8710
+    relative_path: AcuteOncology[2]
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: providercode
+- column: AssessmentLocation
+  klass:
+  - ECosdXmlAcuteOnocology#2
+  rawtext_name: assessmentlocation
+  xml_cell:
+    id: CR8720
+    relative_path: AcuteOncology[2]
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: assessmentlocation
+- column: PatientType
+  klass:
+  - ECosdXmlAcuteOnocology#2
+  rawtext_name: patienttype
+  xml_cell:
+    id: CR8730
+    relative_path: AcuteOncology[2]
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: patienttype
+- column: Outcome
+  klass:
+  - ECosdXmlAcuteOnocology#2
+  rawtext_name: outcome
+  xml_cell:
+    id: CR8740
+    relative_path: AcuteOncology[2]
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: outcome

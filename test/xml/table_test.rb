@@ -86,6 +86,33 @@ module Xml
       assert_equal expected_data, transformed_data
     end
 
+    test 'complex xml test' do
+      file_path = SafePath.new('permanent_test_files').join('complex_xml.xml')
+      handler   = NdrImport::File::Xml.new(file_path, nil,
+                                           'xml_record_xpath' => 'BreastRecord',
+                                           'slurp' => true)
+      xml_lines = handler.send(:rows)
+
+      allowed_classes = [NdrImport::Xml::Table, Regexp, Symbol]
+      mapping_file_path = SafePath.new('permanent_test_files').join('complex_xml_mapping.yml')
+
+      table = YAML.load_file mapping_file_path, permitted_classes: allowed_classes
+
+      expected_mapped_lines = YAML.load_file SafePath.new('permanent_test_files').
+                              join('complex_xml_transformed.yml')
+      assert_equal expected_mapped_lines, table.transform(xml_lines).to_a
+
+      expected_xpaths = YAML.load_file SafePath.new('permanent_test_files').
+                        join('complex_xml_augmented_xpaths.yml')
+      assert_equal expected_xpaths, table.instance_variable_get('@augmented_column_xpaths')
+
+      expected_columns_filepath = SafePath.new('permanent_test_files').
+                                  join('complex_xml_augmented_column_mappings.yml')
+      expected_column_mappings = YAML.load_file(expected_columns_filepath,
+                                                permitted_classes: allowed_classes)
+      assert_equal expected_column_mappings, table.instance_variable_get('@augmented_columns')
+    end
+
     private
 
     def xml_column_mapping
