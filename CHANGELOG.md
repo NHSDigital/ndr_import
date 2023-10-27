@@ -1,7 +1,12 @@
 ## [Unreleased]
 =======
+*no unreleased changes*
+
+## 11.0.0 / 2023-10-27
+### Added
 * XML enhancements
-* Move from seven_zip_ruby to seven-zip
+### Fixed
+* Replace unsupported seven_zip_ruby gem with seven-zip fork
 
 ## 10.3.0 / 2023-09-07
 ### Added
