@@ -1,6 +1,7 @@
 ## [Unreleased]
 =======
-*no unreleased changes*
+* XML enhancements
+* Move from seven_zip_ruby to seven-zip
 
 ## 10.3.0 / 2023-09-07
 ### Added

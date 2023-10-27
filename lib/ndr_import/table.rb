@@ -6,13 +6,14 @@ module NdrImport
   # required to transform a table of data into "records". Particular attention
   # has been made to use enumerables throughout to help with the transformation
   # of large quantities of data.
+  # rubocop:disable Metrics/ClassLength
   class Table
     include NdrImport::Mapper
 
     def self.all_valid_options
       %w[canonical_name delimiter liberal_parsing filename_pattern file_password last_data_column
-         tablename_pattern header_lines footer_lines format klass columns xml_record_xpath slurp
-         row_identifier significant_mapped_fields]
+         tablename_pattern header_lines footer_lines format klass columns slurp row_identifier
+         significant_mapped_fields]
     end
 
     def all_valid_options
@@ -250,4 +251,5 @@ module NdrImport
       index - 1
     end
   end # class Table
+  # rubocop:enable Metrics/ClassLength
 end

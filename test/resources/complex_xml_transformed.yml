@@ -1,0 +1,626 @@
+﻿---
+- - - ECosdXmlRecord
+    - nhsnumber: '1111111111'
+      dateofbirth: '2023-10-26'
+      orgidecodofpro: FWC
+      surname: 0PkEC9DE4m3mPIoaBUyrNxCa4pxqRwLuyx0
+      forenames: 6mt6AcIOFTMqynaJK8iYuFNYVlrCFaRgtKL
+      postcode: WXO9Epup
+      sex: '9'
+      sexual_orientation_at_diag: U
+      gpcode: DuyujYLZ
+      gppracticecode: UYDN5C
+      previoussurname: I2mgthmNL9zCbUI1w78H9O4csujfww4ADVm
+      ethniccategory: '99'
+      primarydiagnoses: 5vTddo
+      tumourlaterality: '9'
+      diagnosisdate: '2023-10-26'
+      :rawtext:
+        cosdrecordid: AAD0ce33-d168-26c6-A4Df-7A0B4d2a5aeC
+        nhsnumber: '1111111111'
+        hospitalnumber: ''
+        nhsnumberstatusindicatorcode: '04'
+        dateofbirth: '2023-10-26'
+        hospitalnumberprovidercode: FWC
+        surname: 0PkEC9DE4m3mPIoaBUyrNxCa4pxqRwLuyx0
+        forenames: 6mt6AcIOFTMqynaJK8iYuFNYVlrCFaRgtKL
+        address: ''
+        postcode: WXO9Epup
+        sex: '9'
+        sexual_orientation_at_diag: U
+        gpcode: DuyujYLZ
+        gppracticecode: UYDN5C
+        previoussurname: I2mgthmNL9zCbUI1w78H9O4csujfww4ADVm
+        ethniccategory: '99'
+        primarydiagnoses: 5vTddo
+        tumourlaterality: '9'
+        diagnosisdate: '2023-10-26'
+        address_1: Address line 1
+        address_2: Address line 2
+        address_3: Address line 3
+        address_4: Address line 4
+    - 0
+  - - ECosdXmlDiagnosticProcedure
+    - :rawtext:
+        diagnostic_procedure_sitecode: ''
+        diagnosticproceduredate: ''
+        diagnosticprocedureopcs: ''
+        diagnosticproceduresnomedct: ''
+        sentinelnodebiopsyoutcome: ''
+        diffusioncapacitytestresult: ''
+        fev1percentage: ''
+        fev1absolutevalue: ''
+        bronchoscopyperformedtype: ''
+        prostatebiopsytechnique: ''
+        biopsyanaesthetic: ''
+    - 0
+  - - ECosdXmlPersonObservation
+    - :rawtext:
+        personheightinmetres: ''
+        personobservation_weight: ''
+        bodymassindex: ''
+        observation_date: ''
+    - 0
+  - - ECosdXmlCnsRiskFactorAssessment
+    - clinicalnursespecialist: Y3
+      tobaccosmokingstatus: '9'
+      tobaccosmokingcessation: '3'
+      history_of_alcohol_current: '3'
+      history_of_alcohol_past: Z
+      diameltypandtyp2ind: '4'
+      menopausalstatus: '2'
+      physicalactivitycurrent: '9'
+      fitnessassessmentindicator: Y
+      fitnessassessmentdate: '2023-10-26'
+      clinicalfrailtyscale: '8'
+      abbreviatedmentaltestscore: '1'
+      cardiorespiratorydisease: Y
+      nonbreastmalignancy: Y
+      dementia_diagnosis: Y
+      :rawtext:
+        clinicalnursespecialistindicationcode: Y3
+        tobaccosmokingstatus: '9'
+        tobaccosmokingcessation: '3'
+        history_of_alcohol_current: '3'
+        history_of_alcohol_past: Z
+        diabetes_mellitus_type1_and_type_2_indicator: '4'
+        menopausalstatus: '2'
+        physicalactivitycurrent: '9'
+        fitnessassessmentindicator: Y
+        fitnessassessmentdate: '2023-10-26'
+        clinicalfrailtyscale: '8'
+        abbreviatedmentaltestscore: '1'
+        cardiorespiratorydisease: Y
+        othernonbreastlocallyadvancedmetastaticmalignancy: Y
+        dementia_diagnosis: Y
+        clinicalnursespecialist: ''
+    - 0
+  - - ECosdXmlHnaAndPcsp
+    - :rawtext:
+        assessmentoffered: ''
+        assessment_care_plan_status: ''
+        assessment_care_plan_date: ''
+        assessment_care_plan_point_of_pathway: ''
+        staff_role_offering_the_assessment: ''
+        staff_role_offering_the_planning: ''
+    - 0
+  - - ECosdXmlMdtMeeting
+    - :rawtext:
+        multidisciplinaryteammeetingdiscussion: ''
+        multidisciplinaryteammeetingdiscussiontype: ''
+        multidisciplinaryteammeetingdate_cancer: ''
+        organisationsiteidentifierofmultidisciplinaryteammeeting: ''
+        multidisciplinaryteammeetingtype_cancer: ''
+        multidisciplinaryteammeetingtypecomment_cancer: ''
+    - 0
+  - - ECosdXmlLabResults
+    - :rawtext:
+        laboratoryresultdate: ''
+        organisationidentifierlaboratoryresult: ''
+        ldhvalue: ''
+        betahumanchorionicgonadotropinserum: ''
+        alphafetoproteinserum: ''
+        alphafetoproteincerebrospinalfluid: ''
+        betahumanchorionicgonadotropincerebrospinalfluid: ''
+        bonemarrowblasts: ''
+        cytogeneticssubsidiarycomment: ''
+        cellularity: ''
+        debtest: ''
+        dysplastichaemopoiesis: ''
+        whitebloodcellcounthighestpretreatment: ''
+        postinductionmrd: ''
+    - 0
+  - - ECosdXmlDiagnosticAssessment
+    - triplediagnosticassessment: N
+      :rawtext:
+        triplediagnosticassessment: N
+    - 0
+  - - ECosdXmlTrial
+    - :rawtext:
+        patienttrialstatus_cancer: ''
+        clinical_trial_decision_date: ''
+    - 0
+  - - ECosdXmlRenalTumours
+    - :rawtext:
+        pathriskcodepostnephrectomy: ''
+        pathriskcodepostpreopchemo: ''
+    - 0
+  - - ECosdXmlRetinolastoma
+    - :rawtext:
+        retinoblastomaassessmentlaterality: ''
+        internationalclassificationforintraocularretinoblastoma: ''
+    - 0
+  - - ECosdXmlAcuteLeukamia
+    - :rawtext:
+        primary_induction_failure_ind: ''
+    - 0
+  - - ECosdXmlTreatmentAndPrognosticIndicator
+    - :rawtext:
+        portalveininvasionindicator: ''
+        ukled_score: ''
+        childpughscore: ''
+    - 0
+  - - ECosdXmlLiverTransplantation
+    - :rawtext:
+        liver_transplant_wait_list_ind: ''
+    - 0
+  - - ECosdXmlMediastinalSampling
+    - :rawtext:
+        mediastinalsamplingindicator: ''
+    - 0
+  - - ECosdXmlHealthCheck
+    - :rawtext:
+        lung_health_check_indication: ''
+    - 0
+  - - ECosdXmlReferral
+    - sourceofreferralforoutpatients: '11'
+      datefirstseen: '2023-10-26'
+      pric_referral: '08'
+      prei_referral: ZkJOKmw4IKzp42SWunFt2ielSRnSiFyySDCSDC
+      providercode: 00RLN
+      datefirstseen_cancerspecialist: '2023-10-26'
+      providercode_cancerspecialist: Y7WCLU0
+      :rawtext:
+        sourceofreferralforout-patients: '11'
+        datefirstseen: '2023-10-26'
+        professionalregistrationissuercode-consultantfirstseen: '08'
+        professionalregistrationentryidentifier-consultantfirstseen: ZkJOKmw4IKzp42SWunFt2ielSRnSiFyySDCSDC
+        organisationsiteidentifierproviderfirstseen: 00RLN
+        datefirstseen_cancerspecialist: '2023-10-26'
+        organisationsiteidentifierproviderfirstcancerspecialist: Y7WCLU0
+        specialtyreferrertospecialist: ''
+        cancersymptomsfirstnoteddate: ''
+        sourceofreferralfornonprimarycancerpathway: ''
+        datefirstseen-nonprimarycancerpathway: ''
+        organisationsiteidentifierproviderfirstseen-nonprimarycancerpathway: ''
+    - 0
+  - - ECosdXmlDiagnosis
+    - site_code_of_diagnosis: XLSTO
+      basisofdiagnosis: '0'
+      histology_icdo3: rOT1Dd
+      histology_snomed: NZI0FV
+      snomed_version: '99'
+      topography_icdo3: jwS7vv
+      ki67: '442'
+      gradeofdifferentiation_diag: G1
+      performancestatus_adult: '1'
+      diagnosis_snomedct: '877695198525371141'
+      primarydiagcancercomment: AOihgohZ07FUeEPyE2wjUNOm1IFn0kVIV6BjUqvj76c6FH3zwf
+      secondarydiagnosis_icd: 48MQK
+      secondarydiagcancercomment: kfHHfEzPAcLPJEQ3vN2nMzQRMbLR9BvX7oeQZOZitHscOg5BSB
+      familialcancersyndrome: '9'
+      familialcancersyndromecmt: IczsTyiN4VZyONvCHqUcXaubxwbXoEbiUNWFYNrhDau3SA25jY
+      funsynclaind: N
+      metastatictype_1: '01'
+      metastaticsite_1: '07'
+      metastatictype_2: '01'
+      metastaticsite_2: '11'
+      functional_syndrome_classification_type_1: '03'
+      functional_syndrome_classification_type_2: '04'
+      functional_syndrome_classification_type_3: '05'
+      pair_functional_syndrome_classification_type_1: '98'
+      pair_other_functional_syndrome_classification_type_1: sdc
+      pair_functional_syndrome_classification_type_2: '98'
+      pair_other_functional_syndrome_classification_type_2: dccd
+      :rawtext:
+        site_code_of_diagnosis: XLSTO
+        basisofdiagnosis_cancer: '0'
+        morphology_icdo3: rOT1Dd
+        morphology_snomed: NZI0FV
+        snomed_version: '99'
+        topography_icdo3: jwS7vv
+        ki67: '442'
+        gradeofdifferentiation_atdiagnosis: G1
+        performancestatus_adult: '1'
+        diagnosis_snomedct: '877695198525371141'
+        metastatictype: ''
+        metastaticsite: ''
+        primarydiagnosissubsidiarycomment: AOihgohZ07FUeEPyE2wjUNOm1IFn0kVIV6BjUqvj76c6FH3zwf
+        secondarydiagnosis_icd: 48MQK
+        othersignificantdiagnosissubsidiarycomment: kfHHfEzPAcLPJEQ3vN2nMzQRMbLR9BvX7oeQZOZitHscOg5BSB
+        familialcancersyndrome: '9'
+        familialcancersyndromesubsidiarycomment: IczsTyiN4VZyONvCHqUcXaubxwbXoEbiUNWFYNrhDau3SA25jY
+        functional_syndrome_classification_indicator: N
+        functional_syndrome_classification_type: ''
+        pair_functional_syndrome_classification_type: ''
+        pair_other_functional_syndrome_classification_type: ''
+        synchronous_tumour_colon_location: ''
+        tumourheightaboveanalverge: ''
+        consultantspecialty_atdiagnosis: ''
+        consultantagespecialty_atdiagnosis: ''
+        tissue_banked_diagnosis_indicator: ''
+        life_threatening_symptoms_indicator: ''
+        mpal_symptoms_at_diagnosis: ''
+        egil_score: ''
+        paediatric_cytogenic_molecular_genetic_risk_group: ''
+        aml_risk_factors: ''
+        paediatric_mds_clinical_findings: ''
+        underlying_disease_associated_mds: ''
+        congenital_anomalies_comment: ''
+        other_mds_symptoms: ''
+        liver_cancer_surveillance_scan_indicator: ''
+        livercirrhosistype: ''
+        livercirrhosiscausetype: ''
+        cholangiocarcinomacategory: ''
+        cholangiocarcinoma_risk_factors_type: ''
+        sarcomatumoursite_bone: ''
+        sarcomatumoursite_softtissue: ''
+        irspostsurgicalgroup: ''
+        irspostsurgicalgroupdate: ''
+        rhabdomyosarcomasiteprognosiscode: ''
+        tumourvolumeatdiagnosis: ''
+        mpmripre-biopsy: ''
+        mrifusionbiopsy: ''
+        psa_diagnosis: ''
+        metastatictype_1: '01'
+        metastaticsite_1: '07'
+        metastatictype_2: '01'
+        metastaticsite_2: '11'
+        functional_syndrome_classification_type_1: '03'
+        functional_syndrome_classification_type_2: '04'
+        functional_syndrome_classification_type_3: '05'
+        pair_functional_syndrome_classification_type_1: '98'
+        pair_other_functional_syndrome_classification_type_1: sdc
+        pair_functional_syndrome_classification_type_2: '98'
+        pair_other_functional_syndrome_classification_type_2: dccd
+    - 0
+  - - ECosdXmlTransformation
+    - :rawtext:
+        dateofnonprimarydiagnosis: ''
+        transformation_icdo: ''
+        transformation_snomed: ''
+        transformation_snomed_version: ''
+        originalmorphology_icdo3: ''
+        originalmorphology_snomed: ''
+    - 0
+  - - ECosdXmlCancerCarePlan
+    - mdtdiscussiondate_cancer: '2023-10-26'
+      cancercareplanintent: '9'
+      plannedcancertreatmenttype: '04'
+      nocancertreatmentreason: '99'
+      :rawtext:
+        multidisciplinaryteamdiscussiondate_cancer: '2023-10-26'
+        cancercareplanintent: '9'
+        plannedcancertreatmenttype: '04'
+        nocancertreatmentreason: '99'
+        mdtprovisionaldiagnosisicd: ''
+        sokalindexchronicmyeloidleukaemia: ''
+        ipss-rmyelodysplasia: ''
+        flipi2indexscore: ''
+        primaryextranodalsite: ''
+        numberofextranodalsitescode: ''
+        numberofabnormalnodalareas: ''
+        hasencleverindex: ''
+        ripiindexfordlbclscore: ''
+        ipi_index_score: ''
+        mipi_index_score: ''
+        immunosuppressed_status: ''
+        estimatedglomerularfiltrationrate: ''
+        hydronephrosis: ''
+        s-category: ''
+        postoperative_nadirs-category: ''
+    - 0
+  - - ECosdXmlStaging
+    - tcategory_finalpretreatment: ngv1KRgf5WOXuc7
+      ncategory_finalpretreatment: V8h1It3jLl4Izvf
+      mcategory_finalpretreatment: 483wBKjug9MRB0l
+      tnmstagrofinpre: o5aUmT28ffUyKWj
+      org_site_tnm_group_final_pt: LN0ZH
+      stadatfinpresta: '2023-10-26'
+      tcategory_integratedstage: lqvDg6O5jw7QDFE
+      ncategory_integratedstage: kDI6Bnk5qbUN64B
+      mcategory_integratedstage: e0fxG2RfYosEFE5
+      tnmstagegrouping_integrated: oOBlEwwH3GtZKWQ
+      org_site_tnm_group_int: 3KLUG
+      stadatintsta: '2023-10-26'
+      tnm_coding_edition: '1'
+      tnmedition: QL
+      :rawtext:
+        tcategory_finalpretreatment: ngv1KRgf5WOXuc7
+        ncategory_finalpretreatment: V8h1It3jLl4Izvf
+        mcategory_finalpretreatment: 483wBKjug9MRB0l
+        tnmstagegrouping_finalpretreatment: o5aUmT28ffUyKWj
+        org_site_tnm_group_final_pt: LN0ZH
+        tnmstagegroupingdate_finalpretreatment: '2023-10-26'
+        tcategory_integratedstage: lqvDg6O5jw7QDFE
+        ncategory_integratedstage: kDI6Bnk5qbUN64B
+        mcategory_integratedstage: e0fxG2RfYosEFE5
+        tnmstagegrouping_integrated: oOBlEwwH3GtZKWQ
+        org_site_tnm_group_int: 3KLUG
+        tnmstagegroupingdate_integrated: '2023-10-26'
+        tnm_coding_edition: '1'
+        tnmeditionnumber: QL
+        changstagingformedulloblastoma: ''
+        wilmstumourstage: ''
+        intl_risk_group_staging_system_stage: ''
+        pretextstagingsystemstage: ''
+        pretextannotationfactors: ''
+        internationalstagingsystemforretinoblastoma: ''
+        annarborstage: ''
+        binetstage: ''
+        rissstageformyeloma: ''
+        murphy_stjudestage: ''
+        childrens_oncology_group_cog_staging_system_stage: ''
+        central_nervous_system_involvement: ''
+        barcelonacliniclivercancerstagebclcstage: ''
+        stagegrouping_testicular: ''
+        annarborsymptoms: ''
+        annarborextranodality: ''
+        annarborbulk: ''
+        annarborsplenicinvolvement: ''
+    - 0
+  - - ECosdXmlRecurrence#NPP
+    - :rawtext:
+        dateofnonprimarydiagnosis: ''
+        originalprimarydiagnosis_icd: ''
+        metastatictype: ''
+        metastaticsite: ''
+    - 0
+  - - ECosdXmlProgression#NPP
+    - :rawtext:
+        dateofnonprimarydiagnosis: ''
+        cancer_progression_icd: ''
+        metastatictype: ''
+        metastaticsite: ''
+    - 0
+  - - ECosdXmlRecurrence
+    - :rawtext:
+        palliativecarespecialistseenindicator_cancerrecurrence: ''
+        relapse_method_of_detection: ''
+    - 0
+  - - ECosdXmlProgression#1
+    - metastatictype_1: '02'
+      metastaticsite_1: '07'
+      dateofnonprimarydiagnosis: '2023-10-26'
+      :rawtext:
+        metastatictype_1: '02'
+        metastaticsite_1: '07'
+        dateofnonprimarydiagnosis: '2023-10-26'
+    - 0
+  - - ECosdXmlProgression#2
+    - metastatictype_3: '01'
+      metastaticsite_3: '09'
+      metastatictype_4: '03'
+      metastaticsite_4: '02'
+      dateofnonprimarydiagnosis: '2023-10-26'
+      :rawtext:
+        metastatictype_3: '01'
+        metastaticsite_3: '09'
+        metastatictype_4: '03'
+        metastaticsite_4: '02'
+        dateofnonprimarydiagnosis: '2023-10-26'
+    - 0
+  - - ECosdXmlStaging#SS#1
+    - org_site_sitespecific: MX2WUC
+      stagedatesitespecific: '2023-10-26'
+      :rawtext:
+        org_site_sitespecific: MX2WUC
+        stagedatesitespecific: '2023-10-26'
+    - 0
+  - - ECosdXmlStaging#SS#2
+    - org_site_sitespecific: 168MN
+      stagedatesitespecific: '2023-10-26'
+      :rawtext:
+        org_site_sitespecific: 168MN
+        stagedatesitespecific: '2023-10-26'
+    - 0
+  - - ECosdXmlImaging#1
+    - providercode: DL4TT84
+      clinicalinterventiondate: '2023-10-26'
+      cancer_imaging_outcome: '05'
+      imagingmodality: C01X
+      anatomicalexaminationsite: 2MYc6
+      anatomicalside_imaging: '9'
+      imagingreporttext: ecMpJN0H4yckY7kI0DKAMpbFmyxX9UWsWn69WHTMKc75NOFBKqWWzMjwQAZhcKclHS24kJpSIeBfWzC4vB5vIE71WWyLJQUH3tGA
+      :rawtext:
+        sitecode_ofimaging: DL4TT84
+        proceduredate_cancerimaging: '2023-10-26'
+        cancer_imaging_outcome: '05'
+        cancerimagingmodality: C01X
+        imaginganatomicalsite: 2MYc6
+        anatomicalside_imaging: '9'
+        imagingreporttext: ecMpJN0H4yckY7kI0DKAMpbFmyxX9UWsWn69WHTMKc75NOFBKqWWzMjwQAZhcKclHS24kJpSIeBfWzC4vB5vIE71WWyLJQUH3tGA
+    - 0
+  - - ECosdXmlImaging#2
+    - providercode: 1ZLOI
+      clinicalinterventiondate: '2023-09-30'
+      cancer_imaging_outcome: '02'
+      imagingcode_snomedct: '341733708745831948'
+      imagingreporttext: HUN8ERtMmwfGJpOb1IqC0BAvjTj3s5xgsqgiyu5qFgirOHZGG1jXcdSTPT3i9rdyfHCjZNEL9e212zYZ5cfKrFWHfBmSxTAsglY4
+      :rawtext:
+        sitecode_ofimaging: 1ZLOI
+        proceduredate_cancerimaging: '2023-09-30'
+        cancer_imaging_outcome: '02'
+        imagingcode_snomedct: '341733708745831948'
+        imagingreporttext: HUN8ERtMmwfGJpOb1IqC0BAvjTj3s5xgsqgiyu5qFgirOHZGG1jXcdSTPT3i9rdyfHCjZNEL9e212zYZ5cfKrFWHfBmSxTAsglY4
+    - 0
+  - - ECosdXmlTreatment#1
+    - adjunctive_therapy_type: '2'
+      treatmentintent: '05'
+      startoradmissiondate: '2023-10-26'
+      cancertreatmentmodality: '05'
+      providercode: QR18G
+      pric_treatment: '09'
+      prei_treatment: fsUFFLE1cbJNmpc5WsBQG5Qp4ehm8vZa
+      endoftreatmentsummarydates: '2023-10-26'
+      dischargedatehospprovspell: '2023-10-26'
+      desofdishosprospe: '99'
+      :rawtext:
+        adjunctivetherapy: '2'
+        cancertreatmentintent: '05'
+        treatmentstartdatecancer: '2023-10-26'
+        cancertreatmentmodalityregistration: '05'
+        organisationsiteidentifierofprovidercancertreatmentstartdate: QR18G
+        professionalregistrationissuercode-consultanttreatment: '09'
+        professionalregistrationentryidentifier-consultanttreatment: fsUFFLE1cbJNmpc5WsBQG5Qp4ehm8vZa
+        endoftreatmentsummarydates: '2023-10-26'
+        dischargedatehospitalproviderspell: '2023-10-26'
+        destination_of_discharge_hospital_provider_spell: '99'
+    - 0
+  - - ECosdXmlSurgery#1
+    - adjunctive_therapy_type: '2'
+      treatmentintent: '05'
+      startoradmissiondate: '2023-10-26'
+      cancertreatmentmodality: '05'
+      providercode: QR18G
+      pric_treatment: '09'
+      prei_treatment: fsUFFLE1cbJNmpc5WsBQG5Qp4ehm8vZa
+      endoftreatmentsummarydates: '2023-10-26'
+      dischargedatehospprovspell: '2023-10-26'
+      desofdishosprospe: '99'
+      proceduredate: '2023-10-26'
+      surgicaladmissiontype: '1'
+      professionalregistrationissuercode_consultantsurgeon_2: '03'
+      professionalregistrationentryidentifier_consultantsurgeon_2: y7TbOSKjulFH9xYO1GqaOCNrveyfS5lZ
+      professionalregistrationissuercode_consultantsurgeon_3: '04'
+      professionalregistrationentryidentifier_consultantsurgeon_3: eWirLrEQlN6LdPE0v7qPF8Sc1bty57Bz
+      primaryprocedure_opcs: F283
+      primaryprocedure_snomedct: '2195969045173055'
+      procedure_opcs: O233
+      procedure_snomedct: '829545645189153998'
+      uplannedoperationind: N
+      asascore: '3'
+      surgicalaccess: Z
+      :rawtext:
+        adjunctivetherapy: '2'
+        cancertreatmentintent: '05'
+        treatmentstartdatecancer: '2023-10-26'
+        cancertreatmentmodalityregistration: '05'
+        organisationsiteidentifierofprovidercancertreatmentstartdate: QR18G
+        professionalregistrationissuercode-consultanttreatment: '09'
+        professionalregistrationentryidentifier-consultanttreatment: fsUFFLE1cbJNmpc5WsBQG5Qp4ehm8vZa
+        endoftreatmentsummarydates: '2023-10-26'
+        dischargedatehospitalproviderspell: '2023-10-26'
+        destination_of_discharge_hospital_provider_spell: '99'
+        proceduredate: '2023-10-26'
+        surgicaladmissiontype: '1'
+        professionalregistrationissuercode_consultantsurgeon_2: '03'
+        professionalregistrationentryidentifier_consultantsurgeon_2: y7TbOSKjulFH9xYO1GqaOCNrveyfS5lZ
+        professionalregistrationissuercode_consultantsurgeon_3: '04'
+        professionalregistrationentryidentifier_consultantsurgeon_3: eWirLrEQlN6LdPE0v7qPF8Sc1bty57Bz
+        primaryprocedures1: F283
+        primaryprocedure_snomedct: '2195969045173055'
+        otherprocedures: O233
+        procedure_snomedct: '829545645189153998'
+        unplannedreturntotheatreindicator: N
+        asascore: '3'
+        surgicalaccesstype: Z
+    - 0
+  - - ECosdXmlTreatment#2
+    - adjunctive_therapy_type: '1'
+      treatmentintent: '01'
+      startoradmissiondate: '2023-10-26'
+      cancertreatmentmodality: '98'
+      providercode: 1H4MY
+      pric_treatment: '08'
+      prei_treatment: kYjVWJoYehi0jNkQs5Ej0yuqIshgO148
+      endoftreatmentsummarydates: '2023-10-26'
+      dischargedatehospprovspell: '2023-10-26'
+      desofdishosprospe: '52'
+      :rawtext:
+        adjunctivetherapy: '1'
+        cancertreatmentintent: '01'
+        treatmentstartdatecancer: '2023-10-26'
+        cancertreatmentmodalityregistration: '98'
+        organisationsiteidentifierofprovidercancertreatmentstartdate: 1H4MY
+        professionalregistrationissuercode-consultanttreatment: '08'
+        professionalregistrationentryidentifier-consultanttreatment: kYjVWJoYehi0jNkQs5Ej0yuqIshgO148
+        endoftreatmentsummarydates: '2023-10-26'
+        dischargedatehospitalproviderspell: '2023-10-26'
+        destination_of_discharge_hospital_provider_spell: '52'
+    - 0
+  - - ECosdXmlSurgery#2
+    - adjunctive_therapy_type: '1'
+      treatmentintent: '01'
+      startoradmissiondate: '2023-10-26'
+      cancertreatmentmodality: '98'
+      providercode: 1H4MY
+      pric_treatment: '08'
+      prei_treatment: kYjVWJoYehi0jNkQs5Ej0yuqIshgO148
+      endoftreatmentsummarydates: '2023-10-26'
+      dischargedatehospprovspell: '2023-10-26'
+      desofdishosprospe: '52'
+      proceduredate: '2023-10-26'
+      surgicaladmissiontype: '9'
+      professionalregistrationissuercode_consultantsurgeon_3: '08'
+      professionalregistrationentryidentifier_consultantsurgeon_3: UPtNP9BiYDdy5xtVo9RgHtxBNcqrDrn2
+      professionalregistrationissuercode_consultantsurgeon_4: '02'
+      professionalregistrationentryidentifier_consultantsurgeon_4: LjhgaPwtKjhYkfWLLK4U9Wj3Vyj2TXXk
+      primaryprocedure_opcs: F574
+      primaryprocedure_snomedct: '199159788094901508'
+      procedure_opcs: B155
+      procedure_snomedct: '762953579186792200'
+      uplannedoperationind: N
+      asascore: '4'
+      surgicalaccess: '2'
+      :rawtext:
+        adjunctivetherapy: '1'
+        cancertreatmentintent: '01'
+        treatmentstartdatecancer: '2023-10-26'
+        cancertreatmentmodalityregistration: '98'
+        organisationsiteidentifierofprovidercancertreatmentstartdate: 1H4MY
+        professionalregistrationissuercode-consultanttreatment: '08'
+        professionalregistrationentryidentifier-consultanttreatment: kYjVWJoYehi0jNkQs5Ej0yuqIshgO148
+        endoftreatmentsummarydates: '2023-10-26'
+        dischargedatehospitalproviderspell: '2023-10-26'
+        destination_of_discharge_hospital_provider_spell: '52'
+        proceduredate: '2023-10-26'
+        surgicaladmissiontype: '9'
+        professionalregistrationissuercode_consultantsurgeon_3: '08'
+        professionalregistrationentryidentifier_consultantsurgeon_3: UPtNP9BiYDdy5xtVo9RgHtxBNcqrDrn2
+        professionalregistrationissuercode_consultantsurgeon_4: '02'
+        professionalregistrationentryidentifier_consultantsurgeon_4: LjhgaPwtKjhYkfWLLK4U9Wj3Vyj2TXXk
+        primaryprocedures1: F574
+        primaryprocedure_snomedct: '199159788094901508'
+        otherprocedures: B155
+        procedure_snomedct: '762953579186792200'
+        unplannedreturntotheatreindicator: N
+        asascore: '4'
+        surgicalaccesstype: '2'
+    - 0
+  - - ECosdXmlAcuteOnocology#1
+    - acuteoncologyassessmentdate: '2023-10-26'
+      providercode: FA38N
+      assessmentlocation: '01'
+      patienttype: '02'
+      outcome: '10'
+      :rawtext:
+        acuteoncologyassessmentdate: '2023-10-26'
+        organisationsiteidentifieracuteoncology: FA38N
+        assessmentlocation: '01'
+        patienttype: '02'
+        outcome: '10'
+    - 0
+  - - ECosdXmlAcuteOnocology#2
+    - acuteoncologyassessmentdate: '2023-10-26'
+      providercode: MNCN3
+      assessmentlocation: '04'
+      patienttype: '09'
+      outcome: '17'
+      :rawtext:
+        acuteoncologyassessmentdate: '2023-10-26'
+        organisationsiteidentifieracuteoncology: MNCN3
+        assessmentlocation: '04'
+        patienttype: '09'
+        outcome: '17'
+    - 0

@@ -1,0 +1,257 @@
+﻿<COSD:COSD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:COSD="http://www.datadictionary.nhs.uk/messages/COSD-v10-0-1">
+  <BreastRecord>
+    <Id root="AAD0ce33-d168-26c6-A4Df-7A0B4d2a5aeC"/>
+    <PatientIdentityDetails>
+      <NhsNumber extension="1111111111"/>
+      <NhsNumberStatusIndicatorCode code="04"/>
+      <PersonBirthDate>2023-10-26</PersonBirthDate>
+      <OrganisationIdentifierCodeOfProvider extension="FWC"/>
+    </PatientIdentityDetails>
+    <PrimaryPathway>
+      <PrimaryCancerPathwayDetails>
+        <PrimaryDiagnosisIcd code="5vTddo"/>
+        <TumourLaterality code="9"/>
+        <DateOfPrimaryDiagnosisClinicallyAgreed>2023-10-26</DateOfPrimaryDiagnosisClinicallyAgreed>
+      </PrimaryCancerPathwayDetails>
+      <ReferralsAndFirstStageOfPatientPathway>
+        <SourceOfReferralForOut-patients code="11"/>
+        <DateFirstSeen>2023-10-26</DateFirstSeen>
+        <ConsultantFirstSeen>
+          <ProfessionalRegistrationIssuerCode-ConsultantFirstSeen code="08"/>
+          <ProfessionalRegistrationEntryIdentifier-ConsultantFirstSeen>ZkJOKmw4IKzp42SWunFt2ielSRnSiFyySDCSDC</ProfessionalRegistrationEntryIdentifier-ConsultantFirstSeen>
+        </ConsultantFirstSeen>
+        <OrganisationSiteIdentifierProviderFirstSeen extension="00RLN"/>
+        <DateFirstSeenCancerSpecialist>2023-10-26</DateFirstSeenCancerSpecialist>
+        <OrganisationSiteIdentifierProviderFirstCancerSpecialist extension="Y7WCLU0"/>
+      </ReferralsAndFirstStageOfPatientPathway>
+      <Diagnosis>
+        <OrganisationSiteIdentifierOfDiagnosis extension="XLSTO"/>
+        <BasisOfDiagnosisCancer code="0"/>
+        <MorphologyIcd-o-3 code="rOT1Dd"/>
+        <CurrentMorphology>
+          <MorphologySnomedDiagnosis code="NZI0FV"/>
+          <SnomedVersionDiagnosis code="99"/>
+        </CurrentMorphology>
+        <TopographyIcd-o-3 code="jwS7vv"/>
+        <Ki67 value="442"/>
+        <GradeOfDifferentiationAtDiagnosis code="G1"/>
+        <PerformanceStatusAdult code="1"/>
+        <DiagnosisCodesnomedCt code="877695198525371141"/>
+        <MetastaticTypeAndSite>
+          <MetastaticType code="01"/>
+          <MetastaticSite code="07"/>
+        </MetastaticTypeAndSite>
+        <MetastaticTypeAndSite>
+          <MetastaticType code="01"/>
+          <MetastaticSite code="11"/>
+        </MetastaticTypeAndSite>
+        <AdditionalItems>
+          <PrimaryDiagnosisSubsidiaryComment>AOihgohZ07FUeEPyE2wjUNOm1IFn0kVIV6BjUqvj76c6FH3zwf</PrimaryDiagnosisSubsidiaryComment>
+          <SecondaryDiagnosisIcd code="48MQK"/>
+          <OtherSignificantDiagnosisSubsidiaryComment>kfHHfEzPAcLPJEQ3vN2nMzQRMbLR9BvX7oeQZOZitHscOg5BSB</OtherSignificantDiagnosisSubsidiaryComment>
+          <FamilialCancerSyndrome code="9"/>
+          <FamilialCancerSyndromeSubsidiaryComment>IczsTyiN4VZyONvCHqUcXaubxwbXoEbiUNWFYNrhDau3SA25jY</FamilialCancerSyndromeSubsidiaryComment>
+          <FunctionalSyndromeClassificationIndicator code="N"/>
+          <FunctionalSyndromeClassificationType code="03"/>
+          <FunctionalSyndromeClassificationType code="04"/>
+          <FunctionalSyndromeClassificationType code="05"/>
+          <FunctionalSyndromeClassificationTypeUnknown>
+            <FunctionalSyndromeClassificationType code="98"/>
+            <OtherFunctionalSyndromeClassificationType>sdc</OtherFunctionalSyndromeClassificationType>
+          </FunctionalSyndromeClassificationTypeUnknown>
+          <FunctionalSyndromeClassificationTypeUnknown>
+            <FunctionalSyndromeClassificationType code="98"/>
+            <OtherFunctionalSyndromeClassificationType>dccd</OtherFunctionalSyndromeClassificationType>
+          </FunctionalSyndromeClassificationTypeUnknown>
+        </AdditionalItems>
+        <Progression>
+          <MetastaticTypeAndSite>
+            <MetastaticType code="02"/>
+            <MetastaticSite code="07"/>
+          </MetastaticTypeAndSite>
+          <ProgressionDatePrimaryPathway>2023-10-26</ProgressionDatePrimaryPathway>
+        </Progression>
+        <Progression>
+          <MetastaticTypeAndSite>
+            <MetastaticType code="01"/>
+            <MetastaticSite code="09"/>
+          </MetastaticTypeAndSite>
+          <MetastaticTypeAndSite>
+            <MetastaticType code="03"/>
+            <MetastaticSite code="02"/>
+          </MetastaticTypeAndSite>
+          <ProgressionDatePrimaryPathway>2023-10-26</ProgressionDatePrimaryPathway>
+        </Progression>
+      </Diagnosis>
+      <CancerCarePlan>
+        <MultidisciplinaryTeamDiscussionDateCancer>2023-10-26</MultidisciplinaryTeamDiscussionDateCancer>
+        <CancerCarePlanIntent code="9"/>
+        <PlannedCancerTreatmentType code="04"/>
+        <NoCancerTreatmentReason code="99"/>
+      </CancerCarePlan>
+      <Staging>
+        <TCategoryFinalPretreatment>ngv1KRgf5WOXuc7</TCategoryFinalPretreatment>
+        <NCategoryFinalPretreatment>V8h1It3jLl4Izvf</NCategoryFinalPretreatment>
+        <MCategoryFinalPretreatment>483wBKjug9MRB0l</MCategoryFinalPretreatment>
+        <TnmStageGroupingFinalPretreatment>o5aUmT28ffUyKWj</TnmStageGroupingFinalPretreatment>
+        <OrganisationSiteIdentifierReportedPretreatmentTnmStage extension="LN0ZH"/>
+        <StageDateFinalPretreatmentStage>2023-10-26</StageDateFinalPretreatmentStage>
+        <TCategoryIntegratedStage>lqvDg6O5jw7QDFE</TCategoryIntegratedStage>
+        <NCategoryIntegratedStage>kDI6Bnk5qbUN64B</NCategoryIntegratedStage>
+        <MCategoryIntegratedStage>e0fxG2RfYosEFE5</MCategoryIntegratedStage>
+        <TnmStageGroupingIntegrated>oOBlEwwH3GtZKWQ</TnmStageGroupingIntegrated>
+        <OrganisationSiteIdentifierReportedIntegratedTnmStage extension="3KLUG"/>
+        <StageDateIntegratedStage>2023-10-26</StageDateIntegratedStage>
+        <TnmCodingEdition code="1"/>
+        <TnmVersionNumberStaging>QL</TnmVersionNumberStaging>
+      </Staging>
+      <SiteSpecificStaging>
+        <OrganisationSiteIdentifierSiteSpecificStage extension="MX2WUC"/>
+        <StageDateSiteSpecificStage>2023-10-26</StageDateSiteSpecificStage>
+      </SiteSpecificStaging>
+      <SiteSpecificStaging>
+        <OrganisationSiteIdentifierSiteSpecificStage extension="168MN"/>
+        <StageDateSiteSpecificStage>2023-10-26</StageDateSiteSpecificStage>
+      </SiteSpecificStaging>
+    </PrimaryPathway>
+    <Demographics>
+      <PersonFamilyName>0PkEC9DE4m3mPIoaBUyrNxCa4pxqRwLuyx0</PersonFamilyName>
+      <PersonGivenName>6mt6AcIOFTMqynaJK8iYuFNYVlrCFaRgtKL</PersonGivenName>
+      <Address>
+        <StructuredAddress>
+          <StreetAddressLine>Address line 1</StreetAddressLine>
+          <StreetAddressLine>Address line 2</StreetAddressLine>
+          <StreetAddressLine>Address line 3</StreetAddressLine>
+          <StreetAddressLine>Address line 4</StreetAddressLine>
+        </StructuredAddress>
+      </Address>
+      <PostcodeOfUsualAddressAtDiagnosis>WXO9Epup</PostcodeOfUsualAddressAtDiagnosis>
+      <PersonStatedGenderCode code="9"/>
+      <PersonSexualOrientationCodeAtDiagnosis code="U"/>
+      <GeneralMedicalPractitionerSpecified extension="DuyujYLZ"/>
+      <GeneralMedicalPracticePatientRegistration extension="UYDN5C"/>
+      <PersonFamilyNameAtBirth>I2mgthmNL9zCbUI1w78H9O4csujfww4ADVm</PersonFamilyNameAtBirth>
+      <EthnicCategory code="99"/>
+    </Demographics>
+    <Imaging>
+      <OrganisationSiteIdentifierOfImaging extension="DL4TT84"/>
+      <ProcedureDateCancerImaging>2023-10-26</ProcedureDateCancerImaging>
+      <ImagingOutcome code="05"/>
+      <ImagingLocationGroup>
+        <CancerImagingModality code="C01X"/>
+        <ImagingAnatomicalSite code="2MYc6"/>
+        <AnatomicalSideImaging code="9"/>
+      </ImagingLocationGroup>
+      <ImagingReportText>ecMpJN0H4yckY7kI0DKAMpbFmyxX9UWsWn69WHTMKc75NOFBKqWWzMjwQAZhcKclHS24kJpSIeBfWzC4vB5vIE71WWyLJQUH3tGA</ImagingReportText>
+    </Imaging>
+    <Imaging>
+      <OrganisationSiteIdentifierOfImaging extension="1ZLOI"/>
+      <ProcedureDateCancerImaging>2023-09-30</ProcedureDateCancerImaging>
+      <ImagingOutcome code="02"/>
+      <ImagingCodeSnomedCt code="341733708745831948"/>
+      <ImagingReportText>HUN8ERtMmwfGJpOb1IqC0BAvjTj3s5xgsqgiyu5qFgirOHZGG1jXcdSTPT3i9rdyfHCjZNEL9e212zYZ5cfKrFWHfBmSxTAsglY4</ImagingReportText>
+    </Imaging>
+    <ClinicalNurseSpecialistAndRiskFactorAssessment>
+      <ClinicalNurseSpecialistIndicationCode code="Y3"/>
+      <TobaccoSmokingStatus code="9"/>
+      <TobaccoSmokingCessation code="3"/>
+      <HistoryOfAlcoholCurrent code="3"/>
+      <HistoryOfAlcoholPast code="Z"/>
+      <DiabetesMellitusType1AndType2Indicator code="4"/>
+      <MenopausalStatus code="2"/>
+      <PhysicalActivityCurrent code="9"/>
+      <Breast>
+        <FitnessAssessmentIndicator code="Y"/>
+        <FitnessAssessmentDate>2023-10-26</FitnessAssessmentDate>
+        <ClinicalFrailtyScale code="8"/>
+        <AbbreviatedMentalTestScore value="1"/>
+        <CardiorespiratoryDisease code="Y"/>
+        <OtherNonBreastLocallyAdvancedMetastaticMalignancy code="Y"/>
+        <DementiaDiagnosis code="Y"/>
+      </Breast>
+    </ClinicalNurseSpecialistAndRiskFactorAssessment>
+    <Treatment>
+      <AdjunctiveTherapy code="2"/>
+      <CancerTreatmentIntent code="05"/>
+      <TreatmentStartDateCancer>2023-10-26</TreatmentStartDateCancer>
+      <CancerTreatmentModalityRegistration code="05"/>
+      <OrganisationSiteIdentifierOfProviderCancerTreatmentStartDate extension="QR18G"/>
+      <ConsultantTreatment>
+        <ProfessionalRegistrationIssuerCode-ConsultantTreatment code="09"/>
+        <ProfessionalRegistrationEntryIdentifier-ConsultantTreatment>fsUFFLE1cbJNmpc5WsBQG5Qp4ehm8vZa</ProfessionalRegistrationEntryIdentifier-ConsultantTreatment>
+      </ConsultantTreatment>
+      <EndOfTreatmentSummaryDate>2023-10-26</EndOfTreatmentSummaryDate>
+      <DischargeDateHospitalProviderSpell>2023-10-26</DischargeDateHospitalProviderSpell>
+      <DestinationOfDischargeHospitalProviderSpell code="99"/>
+      <Surgery>
+        <ProcedureDate>2023-10-26</ProcedureDate>
+        <SurgicalAdmissionType code="1"/>
+        <ConsultantSurgeon>
+          <ProfessionalRegistrationIssuerCode-ConsultantSurgeon code="03"/>
+          <ProfessionalRegistrationEntryIdentifier-ConsultantSurgeon>y7TbOSKjulFH9xYO1GqaOCNrveyfS5lZ</ProfessionalRegistrationEntryIdentifier-ConsultantSurgeon>
+        </ConsultantSurgeon>
+        <ConsultantSurgeon>
+          <ProfessionalRegistrationIssuerCode-ConsultantSurgeon code="04"/>
+          <ProfessionalRegistrationEntryIdentifier-ConsultantSurgeon>eWirLrEQlN6LdPE0v7qPF8Sc1bty57Bz</ProfessionalRegistrationEntryIdentifier-ConsultantSurgeon>
+        </ConsultantSurgeon>
+        <PrimaryProcedureOpcs code="F283"/>
+        <PrimaryProcedureSnomedCt code="2195969045173055"/>
+        <ProcedureOpcs code="O233"/>
+        <ProcedureSnomedCt code="829545645189153998"/>
+        <UnplannedReturnToTheatreIndicator code="N"/>
+        <AsaScore code="3"/>
+        <SurgicalAccessType code="Z"/>
+      </Surgery>
+    </Treatment>
+    <Treatment>
+      <AdjunctiveTherapy code="1"/>
+      <CancerTreatmentIntent code="01"/>
+      <TreatmentStartDateCancer>2023-10-26</TreatmentStartDateCancer>
+      <CancerTreatmentModalityRegistration code="98"/>
+      <OrganisationSiteIdentifierOfProviderCancerTreatmentStartDate extension="1H4MY"/>
+      <ConsultantTreatment>
+        <ProfessionalRegistrationIssuerCode-ConsultantTreatment code="08"/>
+        <ProfessionalRegistrationEntryIdentifier-ConsultantTreatment>kYjVWJoYehi0jNkQs5Ej0yuqIshgO148</ProfessionalRegistrationEntryIdentifier-ConsultantTreatment>
+      </ConsultantTreatment>
+      <EndOfTreatmentSummaryDate>2023-10-26</EndOfTreatmentSummaryDate>
+      <DischargeDateHospitalProviderSpell>2023-10-26</DischargeDateHospitalProviderSpell>
+      <DestinationOfDischargeHospitalProviderSpell code="52"/>
+      <Surgery>
+        <ProcedureDate>2023-10-26</ProcedureDate>
+        <SurgicalAdmissionType code="9"/>
+        <ConsultantSurgeon>
+          <ProfessionalRegistrationIssuerCode-ConsultantSurgeon code="08"/>
+          <ProfessionalRegistrationEntryIdentifier-ConsultantSurgeon>UPtNP9BiYDdy5xtVo9RgHtxBNcqrDrn2</ProfessionalRegistrationEntryIdentifier-ConsultantSurgeon>
+        </ConsultantSurgeon>
+        <ConsultantSurgeon>
+          <ProfessionalRegistrationIssuerCode-ConsultantSurgeon code="02"/>
+          <ProfessionalRegistrationEntryIdentifier-ConsultantSurgeon>LjhgaPwtKjhYkfWLLK4U9Wj3Vyj2TXXk</ProfessionalRegistrationEntryIdentifier-ConsultantSurgeon>
+        </ConsultantSurgeon>
+        <PrimaryProcedureOpcs code="F574"/>
+        <PrimaryProcedureSnomedCt code="199159788094901508"/>
+        <ProcedureOpcs code="B155"/>
+        <ProcedureSnomedCt code="762953579186792200"/>
+        <UnplannedReturnToTheatreIndicator code="N"/>
+        <AsaScore code="4"/>
+        <SurgicalAccessType code="2"/>
+      </Surgery>
+    </Treatment>
+    <AcuteOncology>
+      <AcuteOncologyAssessmentDate>2023-10-26</AcuteOncologyAssessmentDate>
+      <OrganisationSiteIdentifierAcuteOncology extension="FA38N"/>
+      <AssessmentLocation code="01"/>
+      <PatientType code="02"/>
+      <Outcome code="10"/>
+    </AcuteOncology>
+    <AcuteOncology>
+      <AcuteOncologyAssessmentDate>2023-10-26</AcuteOncologyAssessmentDate>
+      <OrganisationSiteIdentifierAcuteOncology extension="MNCN3"/>
+      <AssessmentLocation code="04"/>
+      <PatientType code="09"/>
+      <Outcome code="17"/>
+    </AcuteOncology>
+    <TripleDiagnosticAssessment>
+      <TripleDiagnosticAssessment code="N"/>
+    </TripleDiagnosticAssessment>
+  </BreastRecord>
+</COSD:COSD>

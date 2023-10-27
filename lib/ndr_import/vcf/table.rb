@@ -6,7 +6,7 @@ module NdrImport
     # All other Table logic is inherited from `NdrImport::Table`
     class Table < ::NdrImport::Table
       def self.all_valid_options
-        super - %w[delimiter header_lines footer_lines xml_record_xpath]
+        super - %w[delimiter header_lines footer_lines]
       end
 
       def header_lines
