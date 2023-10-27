@@ -26,8 +26,8 @@ file safety:
     safe_revision: 6ec135a5dfde54992c6efb4f26c6da8041f3aefd
   CHANGELOG.md:
     comments:
-    reviewed_by: ollietulloch
-    safe_revision: bade9c67da7a6809a49d786f8326b197d9b455a1
+    reviewed_by: brian.shand
+    safe_revision: 931c2fefa236f2f75bebb0c28b999eaa52cbbcab
   CODE_OF_CONDUCT.md:
     comments:
     reviewed_by: timgentry
@@ -66,8 +66,8 @@ file safety:
     safe_revision: b55df15017761651c7a313fa2cc94497e875bad9
   docs/Gemfile.lock:
     comments:
-    reviewed_by: ollietulloch
-    safe_revision: 468b4d80ee6d2430b4734ce064f861d319555b22
+    reviewed_by: brian.shand
+    safe_revision: ae92852248ae9279f525a24fb2f3795befcac3d4
   docs/_config.yml:
     comments:
     reviewed_by: brian.shand
@@ -120,10 +120,14 @@ file safety:
     comments:
     reviewed_by: brian.shand
     safe_revision: 6ec135a5dfde54992c6efb4f26c6da8041f3aefd
+  docs/xml-mappings.md:
+    comments:
+    reviewed_by: brian.shand
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   docs/yaml-mapping-user-guide.md:
     comments:
-    reviewed_by: josh.pencheon
-    safe_revision: 02aaf91b116c510a7c16f2b6f2389736b2742f49
+    reviewed_by: brian.shand
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   exe/pdf_acro_form_to_yaml:
     comments:
     reviewed_by: josh.pencheon
@@ -146,8 +150,8 @@ file safety:
     safe_revision: f30a3db592512ba1f1b8de999a573b97dac5abea
   lib/ndr_import.rb:
     comments:
-    reviewed_by: ollietulloch
-    safe_revision: cf5e762a442088e87e295f80cc8478c285501c3a
+    reviewed_by: brian.shand
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   lib/ndr_import/acroform_reader.rb:
     comments:
     reviewed_by: josh.pencheon
@@ -226,8 +230,8 @@ file safety:
     safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
   lib/ndr_import/file/xml.rb:
     comments:
-    reviewed_by: josh.pencheon
-    safe_revision: ae75fb49baf028ac8ce08e4bedcd3625ff3ff0cd
+    reviewed_by: brian.shand
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   lib/ndr_import/file/zip.rb:
     comments:
     reviewed_by: timgentry
@@ -259,8 +263,8 @@ file safety:
   lib/ndr_import/helpers/file/xml_streaming.rb:
     comments: uses SafePath and Shellwords when accessing filesystem, or making system
       calls
-    reviewed_by: josh.pencheon
-    safe_revision: 55e502bb4445cb8b985e530e8eb26d92b574ded9
+    reviewed_by: brian.shand
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   lib/ndr_import/helpers/file/zip.rb:
     comments:
     reviewed_by: timgentry
@@ -295,8 +299,8 @@ file safety:
     safe_revision: bb44ade56a2151706eede2c31142440ccf49e6f6
   lib/ndr_import/non_tabular/table.rb:
     comments:
-    reviewed_by: ollietulloch
-    safe_revision: 66cff59af2f078152f7459c436d51b57cb93f28e
+    reviewed_by: brian.shand
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   lib/ndr_import/non_tabular_file_helper.rb:
     comments:
     reviewed_by: josh.pencheon
@@ -312,35 +316,47 @@ file safety:
   lib/ndr_import/table.rb:
     comments: uses File.basename
     reviewed_by: brian.shand
-    safe_revision: 8caf40bc60ea9977374c6248728a208464e81848
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   lib/ndr_import/universal_importer_helper.rb:
     comments:
-    reviewed_by: josh.pencheon
-    safe_revision: 85869d99ae93252b7f3ef2d0a4db817c88d35c9e
+    reviewed_by: brian.shand
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   lib/ndr_import/unmapped_data_error.rb:
     comments:
     reviewed_by: josh.pencheon
     safe_revision: 5cd2cd0b3a1e254d30d4acc28c6731825a1f84f5
   lib/ndr_import/vcf/table.rb:
     comments:
-    reviewed_by: ollietulloch
-    safe_revision: cf5e762a442088e87e295f80cc8478c285501c3a
+    reviewed_by: brian.shand
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   lib/ndr_import/version.rb:
     comments: another check?
-    reviewed_by: ollietulloch
-    safe_revision: bade9c67da7a6809a49d786f8326b197d9b455a1
+    reviewed_by: brian.shand
+    safe_revision: 931c2fefa236f2f75bebb0c28b999eaa52cbbcab
+  lib/ndr_import/xml/column_mapping.rb:
+    comments:
+    reviewed_by: brian.shand
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   lib/ndr_import/xml/control_char_escaper.rb:
     comments:
     reviewed_by: josh.pencheon
     safe_revision: 9a6cc769abce5f9bfa5b4f8bd5cda52dfe18b12b
+  lib/ndr_import/xml/masked_mappings.rb:
+    comments:
+    reviewed_by: brian.shand
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   lib/ndr_import/xml/table.rb:
     comments:
-    reviewed_by: josh.pencheon
-    safe_revision: 4ab72f84201c2d5f0147b7dfd041f488f6ff0422
+    reviewed_by: brian.shand
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
+  lib/ndr_import/xml/unmapped_xpath_error.rb:
+    comments:
+    reviewed_by: brian.shand
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   ndr_import.gemspec:
     comments:
-    reviewed_by: ollietulloch
-    safe_revision: cf5e762a442088e87e295f80cc8478c285501c3a
+    reviewed_by: brian.shand
+    safe_revision: eaa8fe221598f7b47fa6496bdd396539b3e0c456
   test/avro/table_test.rb:
     comments:
     reviewed_by: brian.shand
@@ -403,8 +419,8 @@ file safety:
     safe_revision: 94eda331be377f09d48b467d273aecd2ff543a4e
   test/file/xml_test.rb:
     comments:
-    reviewed_by: josh.pencheon
-    safe_revision: ae75fb49baf028ac8ce08e4bedcd3625ff3ff0cd
+    reviewed_by: brian.shand
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   test/file/zip_test.rb:
     comments:
     reviewed_by: timgentry
@@ -489,6 +505,26 @@ file safety:
     comments:
     reviewed_by: josh.pencheon
     safe_revision: ae75fb49baf028ac8ce08e4bedcd3625ff3ff0cd
+  test/resources/complex_xml.xml:
+    comments: All field values are clearly made up data.
+    reviewed_by: brian.shand
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
+  test/resources/complex_xml_augmented_column_mappings.yml:
+    comments:
+    reviewed_by: brian.shand
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
+  test/resources/complex_xml_augmented_xpaths.yml:
+    comments:
+    reviewed_by: brian.shand
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
+  test/resources/complex_xml_mapping.yml:
+    comments:
+    reviewed_by: brian.shand
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
+  test/resources/complex_xml_transformed.yml:
+    comments: All field values are clearly made up data.
+    reviewed_by: brian.shand
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   test/resources/fake_dids.avro:
     comments: Reviewed contents, confirmed fake original data.
     reviewed_by: brian.shand
@@ -629,6 +665,10 @@ file safety:
     comments:
     reviewed_by: josh.pencheon
     safe_revision: a69d4a57ddcf13cdc13c27bd2eb91a395fa7ea36
+  test/resources/repeating_section_sample.xml:
+    comments:
+    reviewed_by: brian.shand
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   test/resources/sample.xml:
     comments:
     reviewed_by: josh.pencheon
@@ -727,8 +767,8 @@ file safety:
     safe_revision: 5227e095de9bedddda9619720007b497355c138b
   test/test_helper.rb:
     comments:
-    reviewed_by: ollietulloch
-    safe_revision: 94eda331be377f09d48b467d273aecd2ff543a4e
+    reviewed_by: brian.shand
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   test/universal_importer_helper_test.rb:
     comments:
     reviewed_by: brian.shand
@@ -737,11 +777,19 @@ file safety:
     comments:
     reviewed_by: ollietulloch
     safe_revision: cf5e762a442088e87e295f80cc8478c285501c3a
+  test/xml/column_mapping_test.rb:
+    comments:
+    reviewed_by: brian.shand
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   test/xml/control_char_escaper_test.rb:
     comments:
     reviewed_by: josh.pencheon
     safe_revision: 9a6cc769abce5f9bfa5b4f8bd5cda52dfe18b12b
+  test/xml/masked_mappings_test.rb:
+    comments:
+    reviewed_by: brian.shand
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   test/xml/table_test.rb:
     comments:
-    reviewed_by: ollietulloch
-    safe_revision: 66cff59af2f078152f7459c436d51b57cb93f28e
+    reviewed_by: brian.shand
+    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
