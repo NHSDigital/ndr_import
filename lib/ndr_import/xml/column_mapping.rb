@@ -57,8 +57,8 @@ module NdrImport
         end
       end
 
-      # Append "_1", "_2" etc to repeating rawtext and optionally mapped field names within a
-      # single record, so data is not overwritten
+      # Append "_1.1", "_2.1", "_1" etc to repeating rawtext and optionally mapped field names
+      # within a single record, so data is not overwritten
       def apply_new_rawtext_and_mapped_names_to(new_column)
         existing_rawtext        = existing_column['rawtext_name'] || existing_column['column']
         column_name_increment   = new_column['column'].scan(/\[(\d+)\]/)
