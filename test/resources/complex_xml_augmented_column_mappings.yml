@@ -3604,7 +3604,7 @@
 - column: MetastaticType
   klass:
   - ECosdXmlProgression#2
-  rawtext_name: metastatictype_3
+  rawtext_name: metastatictype_2.1
   xml_cell:
     id: CR6960
     relative_path: PrimaryPathway/Diagnosis/Progression[2]/MetastaticTypeAndSite[1]
@@ -3614,11 +3614,11 @@
     increment_field_name: true
     klass_section: PrimaryPathway/Diagnosis/Progression
   mappings:
-  - field: metastatictype_3
+  - field: metastatictype_2.1
 - column: MetastaticSite
   klass:
   - ECosdXmlProgression#2
-  rawtext_name: metastaticsite_3
+  rawtext_name: metastaticsite_2.1
   xml_cell:
     id: CR6970
     relative_path: PrimaryPathway/Diagnosis/Progression[2]/MetastaticTypeAndSite[1]
@@ -3628,11 +3628,11 @@
     increment_field_name: true
     klass_section: PrimaryPathway/Diagnosis/Progression
   mappings:
-  - field: metastaticsite_3
+  - field: metastaticsite_2.1
 - column: MetastaticType
   klass:
   - ECosdXmlProgression#2
-  rawtext_name: metastatictype_4
+  rawtext_name: metastatictype_2.2
   xml_cell:
     id: CR6960
     relative_path: PrimaryPathway/Diagnosis/Progression[2]/MetastaticTypeAndSite[2]
@@ -3642,11 +3642,11 @@
     increment_field_name: true
     klass_section: PrimaryPathway/Diagnosis/Progression
   mappings:
-  - field: metastatictype_4
+  - field: metastatictype_2.2
 - column: MetastaticSite
   klass:
   - ECosdXmlProgression#2
-  rawtext_name: metastaticsite_4
+  rawtext_name: metastaticsite_2.2
   xml_cell:
     id: CR6970
     relative_path: PrimaryPathway/Diagnosis/Progression[2]/MetastaticTypeAndSite[2]
@@ -3656,7 +3656,7 @@
     increment_field_name: true
     klass_section: PrimaryPathway/Diagnosis/Progression
   mappings:
-  - field: metastaticsite_4
+  - field: metastaticsite_2.2
 - column: ProgressionDatePrimaryPathway
   klass:
   - ECosdXmlProgression#2
@@ -4024,7 +4024,7 @@
   - field: surgicaladmissiontype
 - column: ProfessionalRegistrationIssuerCode-ConsultantSurgeon
   klass: ECosdXmlSurgery#1
-  rawtext_name: professionalregistrationissuercode_consultantsurgeon_2
+  rawtext_name: professionalregistrationissuercode_consultantsurgeon_1.1
   xml_cell:
     id: CR8510
     relative_path: Treatment[1]/Surgery/ConsultantSurgeon[1]
@@ -4034,10 +4034,10 @@
     increment_field_name: true
     klass_section: Treatment
   mappings:
-  - field: professionalregistrationissuercode_consultantsurgeon_2
+  - field: professionalregistrationissuercode_consultantsurgeon_1.1
 - column: ProfessionalRegistrationEntryIdentifier-ConsultantSurgeon
   klass: ECosdXmlSurgery#1
-  rawtext_name: professionalregistrationentryidentifier_consultantsurgeon_2
+  rawtext_name: professionalregistrationentryidentifier_consultantsurgeon_1.1
   xml_cell:
     id: CR8520
     relative_path: Treatment[1]/Surgery/ConsultantSurgeon[1]
@@ -4047,10 +4047,10 @@
     increment_field_name: true
     klass_section: Treatment
   mappings:
-  - field: professionalregistrationentryidentifier_consultantsurgeon_2
+  - field: professionalregistrationentryidentifier_consultantsurgeon_1.1
 - column: ProfessionalRegistrationIssuerCode-ConsultantSurgeon
   klass: ECosdXmlSurgery#1
-  rawtext_name: professionalregistrationissuercode_consultantsurgeon_3
+  rawtext_name: professionalregistrationissuercode_consultantsurgeon_1.2
   xml_cell:
     id: CR8510
     relative_path: Treatment[1]/Surgery/ConsultantSurgeon[2]
@@ -4060,10 +4060,10 @@
     increment_field_name: true
     klass_section: Treatment
   mappings:
-  - field: professionalregistrationissuercode_consultantsurgeon_3
+  - field: professionalregistrationissuercode_consultantsurgeon_1.2
 - column: ProfessionalRegistrationEntryIdentifier-ConsultantSurgeon
   klass: ECosdXmlSurgery#1
-  rawtext_name: professionalregistrationentryidentifier_consultantsurgeon_3
+  rawtext_name: professionalregistrationentryidentifier_consultantsurgeon_1.2
   xml_cell:
     id: CR8520
     relative_path: Treatment[1]/Surgery/ConsultantSurgeon[2]
@@ -4073,7 +4073,7 @@
     increment_field_name: true
     klass_section: Treatment
   mappings:
-  - field: professionalregistrationentryidentifier_consultantsurgeon_3
+  - field: professionalregistrationentryidentifier_consultantsurgeon_1.2
 - column: PrimaryProcedureOpcs
   klass:
   - ECosdXmlSurgery#1
@@ -4295,7 +4295,7 @@
   - field: surgicaladmissiontype
 - column: ProfessionalRegistrationIssuerCode-ConsultantSurgeon
   klass: ECosdXmlSurgery#2
-  rawtext_name: professionalregistrationissuercode_consultantsurgeon_3
+  rawtext_name: professionalregistrationissuercode_consultantsurgeon_2.1
   xml_cell:
     id: CR8510
     relative_path: Treatment[2]/Surgery/ConsultantSurgeon[1]
@@ -4305,10 +4305,10 @@
     increment_field_name: true
     klass_section: Treatment
   mappings:
-  - field: professionalregistrationissuercode_consultantsurgeon_3
+  - field: professionalregistrationissuercode_consultantsurgeon_2.1
 - column: ProfessionalRegistrationEntryIdentifier-ConsultantSurgeon
   klass: ECosdXmlSurgery#2
-  rawtext_name: professionalregistrationentryidentifier_consultantsurgeon_3
+  rawtext_name: professionalregistrationentryidentifier_consultantsurgeon_2.1
   xml_cell:
     id: CR8520
     relative_path: Treatment[2]/Surgery/ConsultantSurgeon[1]
@@ -4318,10 +4318,10 @@
     increment_field_name: true
     klass_section: Treatment
   mappings:
-  - field: professionalregistrationentryidentifier_consultantsurgeon_3
+  - field: professionalregistrationentryidentifier_consultantsurgeon_2.1
 - column: ProfessionalRegistrationIssuerCode-ConsultantSurgeon
   klass: ECosdXmlSurgery#2
-  rawtext_name: professionalregistrationissuercode_consultantsurgeon_4
+  rawtext_name: professionalregistrationissuercode_consultantsurgeon_2.2
   xml_cell:
     id: CR8510
     relative_path: Treatment[2]/Surgery/ConsultantSurgeon[2]
@@ -4331,10 +4331,10 @@
     increment_field_name: true
     klass_section: Treatment
   mappings:
-  - field: professionalregistrationissuercode_consultantsurgeon_4
+  - field: professionalregistrationissuercode_consultantsurgeon_2.2
 - column: ProfessionalRegistrationEntryIdentifier-ConsultantSurgeon
   klass: ECosdXmlSurgery#2
-  rawtext_name: professionalregistrationentryidentifier_consultantsurgeon_4
+  rawtext_name: professionalregistrationentryidentifier_consultantsurgeon_2.2
   xml_cell:
     id: CR8520
     relative_path: Treatment[2]/Surgery/ConsultantSurgeon[2]
@@ -4344,7 +4344,7 @@
     increment_field_name: true
     klass_section: Treatment
   mappings:
-  - field: professionalregistrationentryidentifier_consultantsurgeon_4
+  - field: professionalregistrationentryidentifier_consultantsurgeon_2.2
 - column: PrimaryProcedureOpcs
   klass:
   - ECosdXmlSurgery#2
@@ -4422,6 +4422,586 @@
     version: ">= 10.0.1"
   mappings:
   - field: surgicalaccess
+- column: AdjunctiveTherapy
+  klass:
+  - ECosdXmlTreatment#3
+  - ECosdXmlSurgery#3
+  rawtext_name: adjunctivetherapy
+  xml_cell:
+    id: CR6540
+    relative_path: Treatment[3]
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: adjunctive_therapy_type
+- column: CancerTreatmentIntent
+  klass:
+  - ECosdXmlTreatment#3
+  - ECosdXmlSurgery#3
+  rawtext_name: cancertreatmentintent
+  xml_cell:
+    id: CR0680
+    relative_path: Treatment[3]
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: treatmentintent
+- column: TreatmentStartDateCancer
+  klass:
+  - ECosdXmlTreatment#3
+  - ECosdXmlSurgery#3
+  rawtext_name: treatmentstartdatecancer
+  xml_cell:
+    id: CR1370
+    relative_path: Treatment[3]
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: startoradmissiondate
+- column: CancerTreatmentModalityRegistration
+  klass:
+  - ECosdXmlTreatment#3
+  - ECosdXmlSurgery#3
+  rawtext_name: cancertreatmentmodalityregistration
+  xml_cell:
+    id: CR2040
+    relative_path: Treatment[3]
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: cancertreatmentmodality
+- column: OrganisationSiteIdentifierOfProviderCancerTreatmentStartDate
+  klass:
+  - ECosdXmlTreatment#3
+  - ECosdXmlSurgery#3
+  rawtext_name: organisationsiteidentifierofprovidercancertreatmentstartdate
+  xml_cell:
+    id: CR1450
+    relative_path: Treatment[3]
+    attribute: extension
+    version: ">= 10.0.1"
+  mappings:
+  - field: providercode
+- column: ProfessionalRegistrationIssuerCode-ConsultantTreatment
+  klass:
+  - ECosdXmlTreatment#3
+  - ECosdXmlSurgery#3
+  rawtext_name: professionalregistrationissuercode-consultanttreatment
+  xml_cell:
+    id: CR8400
+    relative_path: Treatment[3]/ConsultantTreatment
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: pric_treatment
+- column: ProfessionalRegistrationEntryIdentifier-ConsultantTreatment
+  klass:
+  - ECosdXmlTreatment#3
+  - ECosdXmlSurgery#3
+  rawtext_name: professionalregistrationentryidentifier-consultanttreatment
+  xml_cell:
+    id: CR8410
+    relative_path: Treatment[3]/ConsultantTreatment
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: prei_treatment
+- column: EndOfTreatmentSummaryDate
+  klass:
+  - ECosdXmlTreatment#3
+  - ECosdXmlSurgery#3
+  rawtext_name: endoftreatmentsummarydates
+  xml_cell:
+    id: CR8420
+    relative_path: Treatment[3]
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: endoftreatmentsummarydates
+- column: DischargeDateHospitalProviderSpell
+  klass:
+  - ECosdXmlTreatment#3
+  - ECosdXmlSurgery#3
+  rawtext_name: dischargedatehospitalproviderspell
+  xml_cell:
+    id: CR0740
+    relative_path: Treatment[3]
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: dischargedatehospprovspell
+- column: DestinationOfDischargeHospitalProviderSpell
+  klass:
+  - ECosdXmlTreatment#3
+  - ECosdXmlSurgery#3
+  rawtext_name: destination_of_discharge_hospital_provider_spell
+  xml_cell:
+    id: CR9080
+    relative_path: Treatment[3]
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: desofdishosprospe
+- column: ProcedureDate
+  klass:
+  - ECosdXmlSurgery#3
+  rawtext_name: proceduredate
+  xml_cell:
+    id: CR0710
+    relative_path: Treatment[3]/Surgery
+    attribute:
+    version: ">= 10.0.1"
+  mappings:
+  - field: proceduredate
+- column: SurgicalAdmissionType
+  klass:
+  - ECosdXmlSurgery#3
+  rawtext_name: surgicaladmissiontype
+  xml_cell:
+    id: CR8500
+    relative_path: Treatment[3]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: surgicaladmissiontype
+- column: ProfessionalRegistrationIssuerCode-ConsultantSurgeon
+  klass: ECosdXmlSurgery#3
+  rawtext_name: professionalregistrationissuercode_consultantsurgeon_3.1
+  xml_cell:
+    id: CR8510
+    relative_path: Treatment[3]/Surgery/ConsultantSurgeon[1]
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: professionalregistrationissuercode_consultantsurgeon_3.1
+- column: ProfessionalRegistrationEntryIdentifier-ConsultantSurgeon
+  klass: ECosdXmlSurgery#3
+  rawtext_name: professionalregistrationentryidentifier_consultantsurgeon_3.1
+  xml_cell:
+    id: CR8520
+    relative_path: Treatment[3]/Surgery/ConsultantSurgeon[1]
+    attribute:
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: professionalregistrationentryidentifier_consultantsurgeon_3.1
+- column: ProfessionalRegistrationIssuerCode-ConsultantSurgeon
+  klass: ECosdXmlSurgery#3
+  rawtext_name: professionalregistrationissuercode_consultantsurgeon_3.2
+  xml_cell:
+    id: CR8510
+    relative_path: Treatment[3]/Surgery/ConsultantSurgeon[2]
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: professionalregistrationissuercode_consultantsurgeon_3.2
+- column: ProfessionalRegistrationEntryIdentifier-ConsultantSurgeon
+  klass: ECosdXmlSurgery#3
+  rawtext_name: professionalregistrationentryidentifier_consultantsurgeon_3.2
+  xml_cell:
+    id: CR8520
+    relative_path: Treatment[3]/Surgery/ConsultantSurgeon[2]
+    attribute:
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: professionalregistrationentryidentifier_consultantsurgeon_3.2
+- column: PrimaryProcedureOpcs
+  klass:
+  - ECosdXmlSurgery#3
+  rawtext_name: primaryprocedures1
+  xml_cell:
+    id: CR0720
+    relative_path: Treatment[3]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: primaryprocedure_opcs
+- column: PrimaryProcedureSnomedCt
+  klass:
+  - ECosdXmlSurgery#3
+  rawtext_name: primaryprocedure_snomedct
+  xml_cell:
+    id: CR3040
+    relative_path: Treatment[3]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: primaryprocedure_snomedct
+- column: ProcedureOpcs
+  klass:
+  - ECosdXmlSurgery#3
+  rawtext_name: otherprocedures
+  xml_cell:
+    id: CR0730
+    relative_path: Treatment[3]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: procedure_opcs
+- column: ProcedureSnomedCt
+  klass:
+  - ECosdXmlSurgery#3
+  rawtext_name: procedure_snomedct
+  xml_cell:
+    id: CR3050
+    relative_path: Treatment[3]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: procedure_snomedct
+- column: UnplannedReturnToTheatreIndicator
+  klass:
+  - ECosdXmlSurgery#3
+  rawtext_name: unplannedreturntotheatreindicator
+  xml_cell:
+    id: CR6480
+    relative_path: Treatment[3]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: uplannedoperationind
+- column: AsaScore
+  klass:
+  - ECosdXmlSurgery#3
+  rawtext_name: asascore
+  xml_cell:
+    id: CR6010
+    relative_path: Treatment[3]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: asascore
+- column: SurgicalAccessType
+  klass:
+  - ECosdXmlSurgery#3
+  rawtext_name: surgicalaccesstype
+  xml_cell:
+    id: CR6310
+    relative_path: Treatment[3]/Surgery
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: surgicalaccess
+- column: NonCurativeIntentReasonUpperGi
+  klass:
+  - ECosdXmlSurgery#3
+  rawtext_name: palliativetreatmentreason_uppergi
+  xml_cell:
+    id: UG13810
+    relative_path: Treatment[3]/Surgery/General
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: palliativetreatmentreason
+- column: PostOperativeTumourSiteUpperGi
+  klass:
+  - ECosdXmlSurgery#3
+  rawtext_name: postoperativetumoursite_uppergi
+  xml_cell:
+    id: UG14230
+    relative_path: Treatment[3]/Surgery/OG
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: postoptumoursite
+- column: SurgicalComplications-InternationalEsophagealDatabaseEsodata
+  klass: ECosdXmlSurgery#3
+  rawtext_name: surgicalcomplications-internationalesophagealdatabaseesodata_3
+  xml_cell:
+    id: UG15010
+    relative_path: Treatment[3]/Surgery/Esodata
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: surgicalcomplicationsieded_3
+- column: SurgicalComplications-InternationalEsophagealDatabaseEsodata
+  klass: ECosdXmlSurgery#3
+  rawtext_name: surgicalcomplications-internationalesophagealdatabaseesodata_leakseverity
+  xml_cell:
+    id: UG15010
+    relative_path: Treatment[3]/Surgery/Esodata/SurgicalComplicationsLeakSeverityType
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: surgicalcomplicationsieded_leakseverity
+- column: LeakSeverityType
+  klass: ECosdXmlSurgery#3
+  rawtext_name: leakseveritytype
+  xml_cell:
+    id: UG15020
+    relative_path: Treatment[3]/Surgery/Esodata/SurgicalComplicationsLeakSeverityType
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: leakseveritytype
+- column: SurgicalComplications-InternationalEsophagealDatabaseEsodata
+  klass: ECosdXmlSurgery#3
+  rawtext_name: surgicalcomplications-internationalesophagealdatabaseesodata_conduitnecrosisfailure
+  xml_cell:
+    id: UG15010
+    relative_path: Treatment[3]/Surgery/Esodata/SurgicalComplicationsConduitNecrosisFailureType
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: surgicalcomplicationsieded_conduitnecrosisfailure
+- column: ConduitNecrosisFailureType
+  klass: ECosdXmlSurgery#3
+  rawtext_name: conduitnecrosisfailuretype
+  xml_cell:
+    id: UG15030
+    relative_path: Treatment[3]/Surgery/Esodata/SurgicalComplicationsConduitNecrosisFailureType
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: conduitnecrosisfailuretype
+- column: SurgicalComplications-InternationalEsophagealDatabaseEsodata
+  klass: ECosdXmlSurgery#3
+  rawtext_name: surgicalcomplications-internationalesophagealdatabaseesodata_nerveinjuryinvolvement
+  xml_cell:
+    id: UG15010
+    relative_path: Treatment[3]/Surgery/Esodata/SurgicalComplicationsRecurrentLaryngealNerveInjuryInvolvementType
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: surgicalcomplicationsieded_nerveinjuryinvolvement
+- column: RecurrentLaryngealNerveInjuryInvolvementType
+  klass: ECosdXmlSurgery#3
+  rawtext_name: recurrentlaryngealnerveinjuryinvolvementtype
+  xml_cell:
+    id: UG15040
+    relative_path: Treatment[3]/Surgery/Esodata/SurgicalComplicationsRecurrentLaryngealNerveInjuryInvolvementType
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: laryngealnerveinjuryinvtype
+- column: SurgicalComplications-InternationalEsophagealDatabaseEsodata
+  klass: ECosdXmlSurgery#3
+  rawtext_name: surgicalcomplications-internationalesophagealdatabaseesodata_chyleleak
+  xml_cell:
+    id: UG15010
+    relative_path: Treatment[3]/Surgery/Esodata/SurgicalComplicationsChyleLeakSeverityType
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: surgicalcomplicationsieded_chyleleak
+- column: ChyleLeakSeverityType
+  klass: ECosdXmlSurgery#3
+  rawtext_name: chyleleakseveritytype
+  xml_cell:
+    id: UG15050
+    relative_path: Treatment[3]/Surgery/Esodata/SurgicalComplicationsChyleLeakSeverityType
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: chyleleakseveritytype
+- column: SurgicalComplications-InternationalEsophagealDatabaseEsodata
+  klass: ECosdXmlSurgery#3
+  rawtext_name: surgicalcomplications-internationalesophagealdatabaseesodata_additional_3.1
+  xml_cell:
+    id: UG15010
+    relative_path: Treatment[3]/Surgery/Esodata/SurgicalComplicationsAdditionalComplications[1]
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: surgicalcomplicationsieded_additional_3.1
+- column: AdditionalComplications
+  klass: ECosdXmlSurgery#3
+  rawtext_name: additionalcomplication_3.1
+  xml_cell:
+    id: UG15070
+    relative_path: Treatment[3]/Surgery/Esodata/SurgicalComplicationsAdditionalComplications[1]
+    attribute:
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: additionalcomplication_3.1
+- column: SurgicalComplications-InternationalEsophagealDatabaseEsodata
+  klass: ECosdXmlSurgery#3
+  rawtext_name: surgicalcomplications-internationalesophagealdatabaseesodata_additional_3.2
+  xml_cell:
+    id: UG15010
+    relative_path: Treatment[3]/Surgery/Esodata/SurgicalComplicationsAdditionalComplications[2]
+    attribute: code
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: surgicalcomplicationsieded_additional_3.2
+- column: AdditionalComplications
+  klass: ECosdXmlSurgery#3
+  rawtext_name: additionalcomplication_3.2
+  xml_cell:
+    id: UG15070
+    relative_path: Treatment[3]/Surgery/Esodata/SurgicalComplicationsAdditionalComplications[2]
+    attribute:
+    version: ">= 10.0.1"
+    multiple: true
+    increment_field_name: true
+    klass_section: Treatment
+  mappings:
+  - field: additionalcomplication_3.2
+- column: Clavien-dindoClassificationOfSurgicalClassifications
+  klass: ECosdXmlSurgery#3
+  rawtext_name: calvien-dindoclassificationofsurgicalclassifications
+  xml_cell:
+    id: UG15060
+    relative_path: Treatment[3]/Surgery/Esodata
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: calviendindoclassification
+- column: ChangeInLevelOfCare
+  klass:
+  - ECosdXmlSurgery#3
+  rawtext_name: changeinlevelofcare
+  xml_cell:
+    id: UG15110
+    relative_path: Treatment[3]/Surgery/OutcomeMeasures
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: changeinlevelofcare
+- column: BloodProductUtilisation
+  klass:
+  - ECosdXmlSurgery#3
+  rawtext_name: bloodproductutilisation
+  xml_cell:
+    id: UG15120
+    relative_path: Treatment[3]/Surgery/OutcomeMeasures
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: bloodproductutilisation
+- column: NumberOfUnitsTransfused
+  klass:
+  - ECosdXmlSurgery#3
+  rawtext_name: numberofunitstransfused
+  xml_cell:
+    id: UG15130
+    relative_path: Treatment[3]/Surgery/OutcomeMeasures
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: numberofunitstransfused
+- column: SurgicalApproachType
+  klass:
+  - ECosdXmlSurgery#3
+  rawtext_name: surgicalapproachtype
+  xml_cell:
+    id: UG15200
+    relative_path: Treatment[3]/Surgery/Oesophagectomy
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: surgicalapproachtype
+- column: OpenApproachType
+  klass:
+  - ECosdXmlSurgery#3
+  rawtext_name: openapproachtype
+  xml_cell:
+    id: UG15210
+    relative_path: Treatment[3]/Surgery/Oesophagectomy
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: openapproachtype
+- column: MinimallyInvasiveApproachType
+  klass:
+  - ECosdXmlSurgery#3
+  rawtext_name: minimallyinvasiveapproachtype
+  xml_cell:
+    id: UG15220
+    relative_path: Treatment[3]/Surgery/Oesophagectomy
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: minimallyinvasiveapproachtype
+- column: AnastomosisType
+  klass:
+  - ECosdXmlSurgery#3
+  rawtext_name: anastomosistype
+  xml_cell:
+    id: UG15230
+    relative_path: Treatment[3]/Surgery/Oesophagectomy
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: anastomosistype
+- column: OesophagealConduitType
+  klass:
+  - ECosdXmlSurgery#3
+  rawtext_name: oesophagealconduittype
+  xml_cell:
+    id: UG15240
+    relative_path: Treatment[3]/Surgery/Oesophagectomy
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: oesophagealconduittype
+- column: NeckDissection
+  klass:
+  - ECosdXmlSurgery#3
+  rawtext_name: neckdissection
+  xml_cell:
+    id: UG15250
+    relative_path: Treatment[3]/Surgery/Oesophagectomy
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: neckdissection
+- column: SurgicalPalliationType
+  klass:
+  - ECosdXmlSurgery#3
+  rawtext_name: surgicalpalliationtype
+  xml_cell:
+    id: UG13240
+    relative_path: Treatment[3]/Surgery/LiverCholangiocarcinomaAndPancreatic
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: surgicalpalliationtype
+- column: EndoscopicProcedureType
+  klass:
+  - ECosdXmlSurgery#3
+  rawtext_name: endoscopicproceduretype
+  xml_cell:
+    id: UG14290
+    relative_path: Treatment[3]/Surgery/PancreaticAndOG
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: endoscopicproceduretype
+- column: EndoscopicOrRadiologicalComplicationType
+  klass:
+  - ECosdXmlSurgery#3
+  rawtext_name: endoscopicorradiologicalcomplicationtype
+  xml_cell:
+    id: UG13090
+    relative_path: Treatment[3]/Surgery/Main
+    attribute: code
+    version: ">= 10.0.1"
+  mappings:
+  - field: endradcomplicationtype
 - column: AcuteOncologyAssessmentDate
   klass:
   - ECosdXmlAcuteOnocology#1

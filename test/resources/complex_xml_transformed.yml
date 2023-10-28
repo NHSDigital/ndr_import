@@ -398,16 +398,16 @@
         dateofnonprimarydiagnosis: '2023-10-26'
     - 0
   - - ECosdXmlProgression#2
-    - metastatictype_3: '01'
-      metastaticsite_3: '09'
-      metastatictype_4: '03'
-      metastaticsite_4: '02'
+    - metastatictype_2.1: '01'
+      metastaticsite_2.1: '09'
+      metastatictype_2.2: '03'
+      metastaticsite_2.2: '02'
       dateofnonprimarydiagnosis: '2023-10-26'
       :rawtext:
-        metastatictype_3: '01'
-        metastaticsite_3: '09'
-        metastatictype_4: '03'
-        metastaticsite_4: '02'
+        metastatictype_2.1: '01'
+        metastaticsite_2.1: '09'
+        metastatictype_2.2: '03'
+        metastaticsite_2.2: '02'
         dateofnonprimarydiagnosis: '2023-10-26'
     - 0
   - - ECosdXmlStaging#SS#1
@@ -490,10 +490,10 @@
       desofdishosprospe: '99'
       proceduredate: '2023-10-26'
       surgicaladmissiontype: '1'
-      professionalregistrationissuercode_consultantsurgeon_2: '03'
-      professionalregistrationentryidentifier_consultantsurgeon_2: y7TbOSKjulFH9xYO1GqaOCNrveyfS5lZ
-      professionalregistrationissuercode_consultantsurgeon_3: '04'
-      professionalregistrationentryidentifier_consultantsurgeon_3: eWirLrEQlN6LdPE0v7qPF8Sc1bty57Bz
+      professionalregistrationissuercode_consultantsurgeon_1.1: '03'
+      professionalregistrationentryidentifier_consultantsurgeon_1.1: y7TbOSKjulFH9xYO1GqaOCNrveyfS5lZ
+      professionalregistrationissuercode_consultantsurgeon_1.2: '04'
+      professionalregistrationentryidentifier_consultantsurgeon_1.2: eWirLrEQlN6LdPE0v7qPF8Sc1bty57Bz
       primaryprocedure_opcs: F283
       primaryprocedure_snomedct: '2195969045173055'
       procedure_opcs: O233
@@ -514,10 +514,10 @@
         destination_of_discharge_hospital_provider_spell: '99'
         proceduredate: '2023-10-26'
         surgicaladmissiontype: '1'
-        professionalregistrationissuercode_consultantsurgeon_2: '03'
-        professionalregistrationentryidentifier_consultantsurgeon_2: y7TbOSKjulFH9xYO1GqaOCNrveyfS5lZ
-        professionalregistrationissuercode_consultantsurgeon_3: '04'
-        professionalregistrationentryidentifier_consultantsurgeon_3: eWirLrEQlN6LdPE0v7qPF8Sc1bty57Bz
+        professionalregistrationissuercode_consultantsurgeon_1.1: '03'
+        professionalregistrationentryidentifier_consultantsurgeon_1.1: y7TbOSKjulFH9xYO1GqaOCNrveyfS5lZ
+        professionalregistrationissuercode_consultantsurgeon_1.2: '04'
+        professionalregistrationentryidentifier_consultantsurgeon_1.2: eWirLrEQlN6LdPE0v7qPF8Sc1bty57Bz
         primaryprocedures1: F283
         primaryprocedure_snomedct: '2195969045173055'
         otherprocedures: O233
@@ -562,10 +562,10 @@
       desofdishosprospe: '52'
       proceduredate: '2023-10-26'
       surgicaladmissiontype: '9'
-      professionalregistrationissuercode_consultantsurgeon_3: '08'
-      professionalregistrationentryidentifier_consultantsurgeon_3: UPtNP9BiYDdy5xtVo9RgHtxBNcqrDrn2
-      professionalregistrationissuercode_consultantsurgeon_4: '02'
-      professionalregistrationentryidentifier_consultantsurgeon_4: LjhgaPwtKjhYkfWLLK4U9Wj3Vyj2TXXk
+      professionalregistrationissuercode_consultantsurgeon_2.1: '08'
+      professionalregistrationentryidentifier_consultantsurgeon_2.1: UPtNP9BiYDdy5xtVo9RgHtxBNcqrDrn2
+      professionalregistrationissuercode_consultantsurgeon_2.2: '02'
+      professionalregistrationentryidentifier_consultantsurgeon_2.2: LjhgaPwtKjhYkfWLLK4U9Wj3Vyj2TXXk
       primaryprocedure_opcs: F574
       primaryprocedure_snomedct: '199159788094901508'
       procedure_opcs: B155
@@ -586,10 +586,10 @@
         destination_of_discharge_hospital_provider_spell: '52'
         proceduredate: '2023-10-26'
         surgicaladmissiontype: '9'
-        professionalregistrationissuercode_consultantsurgeon_3: '08'
-        professionalregistrationentryidentifier_consultantsurgeon_3: UPtNP9BiYDdy5xtVo9RgHtxBNcqrDrn2
-        professionalregistrationissuercode_consultantsurgeon_4: '02'
-        professionalregistrationentryidentifier_consultantsurgeon_4: LjhgaPwtKjhYkfWLLK4U9Wj3Vyj2TXXk
+        professionalregistrationissuercode_consultantsurgeon_2.1: '08'
+        professionalregistrationentryidentifier_consultantsurgeon_2.1: UPtNP9BiYDdy5xtVo9RgHtxBNcqrDrn2
+        professionalregistrationissuercode_consultantsurgeon_2.2: '02'
+        professionalregistrationentryidentifier_consultantsurgeon_2.2: LjhgaPwtKjhYkfWLLK4U9Wj3Vyj2TXXk
         primaryprocedures1: F574
         primaryprocedure_snomedct: '199159788094901508'
         otherprocedures: B155
@@ -597,6 +597,134 @@
         unplannedreturntotheatreindicator: N
         asascore: '4'
         surgicalaccesstype: '2'
+    - 0
+  - - ECosdXmlTreatment#3
+    - adjunctive_therapy_type: '1'
+      treatmentintent: '04'
+      startoradmissiondate: '2023-09-12'
+      cancertreatmentmodality: '98'
+      providercode: 5KPBCJ
+      pric_treatment: '08'
+      prei_treatment: tXcTeQXrXANFtFcqdKqF3aPVHjgWIvXz
+      endoftreatmentsummarydates: '2023-09-12'
+      dischargedatehospprovspell: '2023-09-12'
+      desofdishosprospe: '42'
+      :rawtext:
+        adjunctivetherapy: '1'
+        cancertreatmentintent: '04'
+        treatmentstartdatecancer: '2023-09-12'
+        cancertreatmentmodalityregistration: '98'
+        organisationsiteidentifierofprovidercancertreatmentstartdate: 5KPBCJ
+        professionalregistrationissuercode-consultanttreatment: '08'
+        professionalregistrationentryidentifier-consultanttreatment: tXcTeQXrXANFtFcqdKqF3aPVHjgWIvXz
+        endoftreatmentsummarydates: '2023-09-12'
+        dischargedatehospitalproviderspell: '2023-09-12'
+        destination_of_discharge_hospital_provider_spell: '42'
+    - 0
+  - - ECosdXmlSurgery#3
+    - adjunctive_therapy_type: '1'
+      treatmentintent: '04'
+      startoradmissiondate: '2023-09-12'
+      cancertreatmentmodality: '98'
+      providercode: 5KPBCJ
+      pric_treatment: '08'
+      prei_treatment: tXcTeQXrXANFtFcqdKqF3aPVHjgWIvXz
+      endoftreatmentsummarydates: '2023-09-12'
+      dischargedatehospprovspell: '2023-09-12'
+      desofdishosprospe: '42'
+      proceduredate: '2023-09-12'
+      surgicaladmissiontype: '1'
+      professionalregistrationissuercode_consultantsurgeon_3.1: '02'
+      professionalregistrationentryidentifier_consultantsurgeon_3.1: Oyd2kdA2JFsg97f61OzR1XvjRpB2hNjT
+      professionalregistrationissuercode_consultantsurgeon_3.2: '02'
+      professionalregistrationentryidentifier_consultantsurgeon_3.2: 92bUDOCmn3kBSIC9udvrx8kmXGIez52h
+      primaryprocedure_opcs: C110
+      primaryprocedure_snomedct: '727575788412412270'
+      procedure_opcs: Q071
+      procedure_snomedct: '596660641609154954'
+      uplannedoperationind: N
+      asascore: '5'
+      surgicalaccess: '3'
+      palliativetreatmentreason: '3'
+      postoptumoursite: '03'
+      surgicalcomplicationsieded_3: '0399'
+      surgicalcomplicationsieded_leakseverity: '0102'
+      leakseveritytype: '9'
+      surgicalcomplicationsieded_conduitnecrosisfailure: '0103'
+      conduitnecrosisfailuretype: '3'
+      surgicalcomplicationsieded_nerveinjuryinvolvement: '0701'
+      laryngealnerveinjuryinvtype: '3'
+      surgicalcomplicationsieded_chyleleak: '0902'
+      chyleleakseveritytype: '4'
+      surgicalcomplicationsieded_additional_3.1: '1001'
+      additionalcomplication_3.1: CNOMvabs0V1GLQfOxa6SJxvJ6i3cnKKt6jhYosy4Vb5dGbkpVFuENhIk9oHHS0HiDfWxMXDZpXa4wxFKiXg5H7PO0PMwiv6k3uZt
+      surgicalcomplicationsieded_additional_3.2: '1001'
+      additionalcomplication_3.2: lCgQdBEBqeLrcbU2Vx6SKtS5BrsXZzmEqXgvTsjwQreMNoEsebl8fsxn6VOfYsHidqDGV1etPxs0D0n3APDC9Bf7rsEdAPVMrsUG
+      calviendindoclassification: '2'
+      changeinlevelofcare: '2'
+      bloodproductutilisation: '3'
+      numberofunitstransfused: '2'
+      surgicalapproachtype: '2'
+      openapproachtype: '2'
+      minimallyinvasiveapproachtype: '1'
+      anastomosistype: '9'
+      oesophagealconduittype: '1'
+      neckdissection: N
+      surgicalpalliationtype: '2'
+      endoscopicproceduretype: '8'
+      endradcomplicationtype: '00'
+      :rawtext:
+        adjunctivetherapy: '1'
+        cancertreatmentintent: '04'
+        treatmentstartdatecancer: '2023-09-12'
+        cancertreatmentmodalityregistration: '98'
+        organisationsiteidentifierofprovidercancertreatmentstartdate: 5KPBCJ
+        professionalregistrationissuercode-consultanttreatment: '08'
+        professionalregistrationentryidentifier-consultanttreatment: tXcTeQXrXANFtFcqdKqF3aPVHjgWIvXz
+        endoftreatmentsummarydates: '2023-09-12'
+        dischargedatehospitalproviderspell: '2023-09-12'
+        destination_of_discharge_hospital_provider_spell: '42'
+        proceduredate: '2023-09-12'
+        surgicaladmissiontype: '1'
+        professionalregistrationissuercode_consultantsurgeon_3.1: '02'
+        professionalregistrationentryidentifier_consultantsurgeon_3.1: Oyd2kdA2JFsg97f61OzR1XvjRpB2hNjT
+        professionalregistrationissuercode_consultantsurgeon_3.2: '02'
+        professionalregistrationentryidentifier_consultantsurgeon_3.2: 92bUDOCmn3kBSIC9udvrx8kmXGIez52h
+        primaryprocedures1: C110
+        primaryprocedure_snomedct: '727575788412412270'
+        otherprocedures: Q071
+        procedure_snomedct: '596660641609154954'
+        unplannedreturntotheatreindicator: N
+        asascore: '5'
+        surgicalaccesstype: '3'
+        palliativetreatmentreason_uppergi: '3'
+        postoperativetumoursite_uppergi: '03'
+        surgicalcomplications-internationalesophagealdatabaseesodata_3: '0399'
+        surgicalcomplications-internationalesophagealdatabaseesodata_leakseverity: '0102'
+        leakseveritytype: '9'
+        surgicalcomplications-internationalesophagealdatabaseesodata_conduitnecrosisfailure: '0103'
+        conduitnecrosisfailuretype: '3'
+        surgicalcomplications-internationalesophagealdatabaseesodata_nerveinjuryinvolvement: '0701'
+        recurrentlaryngealnerveinjuryinvolvementtype: '3'
+        surgicalcomplications-internationalesophagealdatabaseesodata_chyleleak: '0902'
+        chyleleakseveritytype: '4'
+        surgicalcomplications-internationalesophagealdatabaseesodata_additional_3.1: '1001'
+        additionalcomplication_3.1: CNOMvabs0V1GLQfOxa6SJxvJ6i3cnKKt6jhYosy4Vb5dGbkpVFuENhIk9oHHS0HiDfWxMXDZpXa4wxFKiXg5H7PO0PMwiv6k3uZt
+        surgicalcomplications-internationalesophagealdatabaseesodata_additional_3.2: '1001'
+        additionalcomplication_3.2: lCgQdBEBqeLrcbU2Vx6SKtS5BrsXZzmEqXgvTsjwQreMNoEsebl8fsxn6VOfYsHidqDGV1etPxs0D0n3APDC9Bf7rsEdAPVMrsUG
+        calvien-dindoclassificationofsurgicalclassifications: '2'
+        changeinlevelofcare: '2'
+        bloodproductutilisation: '3'
+        numberofunitstransfused: '2'
+        surgicalapproachtype: '2'
+        openapproachtype: '2'
+        minimallyinvasiveapproachtype: '1'
+        anastomosistype: '9'
+        oesophagealconduittype: '1'
+        neckdissection: N
+        surgicalpalliationtype: '2'
+        endoscopicproceduretype: '8'
+        endoscopicorradiologicalcomplicationtype: '00'
     - 0
   - - ECosdXmlAcuteOnocology#1
     - acuteoncologyassessmentdate: '2023-10-26'

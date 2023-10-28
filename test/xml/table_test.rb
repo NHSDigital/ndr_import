@@ -59,8 +59,8 @@ module Xml
 
       expected_data = [
         ['SomeTestKlass#1', { rawtext:
-           { 'pathology_date_2' => '2018-01-01', 'pathology_id_2' => 'AAA',
-             'pathology_date_3' => '2019-01-01', 'pathology_id_3' => 'BBB' } },
+           { 'pathology_date_1.1' => '2018-01-01', 'pathology_id_1.1' => 'AAA',
+             'pathology_date_1.2' => '2019-01-01', 'pathology_id_1.2' => 'BBB' } },
          0],
         ['SomeTestKlass#2', { rawtext:
           { 'pathology_date_2' => '2020-01-01', 'pathology_id_2' => 'CCC' } },
@@ -99,6 +99,7 @@ module Xml
 
       expected_mapped_lines = YAML.load_file SafePath.new('permanent_test_files').
                               join('complex_xml_transformed.yml')
+
       assert_equal expected_mapped_lines, table.transform(xml_lines).to_a
 
       expected_xpaths = YAML.load_file SafePath.new('permanent_test_files').

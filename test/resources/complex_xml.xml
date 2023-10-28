@@ -236,6 +236,95 @@
         <SurgicalAccessType code="2"/>
       </Surgery>
     </Treatment>
+    <Treatment>
+      <AdjunctiveTherapy code="1"/>
+      <CancerTreatmentIntent code="04"/>
+      <TreatmentStartDateCancer>2023-09-12</TreatmentStartDateCancer>
+      <CancerTreatmentModalityRegistration code="98"/>
+      <OrganisationSiteIdentifierOfProviderCancerTreatmentStartDate extension="5KPBCJ"/>
+      <ConsultantTreatment>
+        <ProfessionalRegistrationIssuerCode-ConsultantTreatment code="08"/>
+        <ProfessionalRegistrationEntryIdentifier-ConsultantTreatment>tXcTeQXrXANFtFcqdKqF3aPVHjgWIvXz</ProfessionalRegistrationEntryIdentifier-ConsultantTreatment>
+      </ConsultantTreatment>
+      <EndOfTreatmentSummaryDate>2023-09-12</EndOfTreatmentSummaryDate>
+      <DischargeDateHospitalProviderSpell>2023-09-12</DischargeDateHospitalProviderSpell>
+      <DestinationOfDischargeHospitalProviderSpell code="42"/>
+      <Surgery>
+        <ProcedureDate>2023-09-12</ProcedureDate>
+        <SurgicalAdmissionType code="1"/>
+        <ConsultantSurgeon>
+          <ProfessionalRegistrationIssuerCode-ConsultantSurgeon code="02"/>
+          <ProfessionalRegistrationEntryIdentifier-ConsultantSurgeon>Oyd2kdA2JFsg97f61OzR1XvjRpB2hNjT</ProfessionalRegistrationEntryIdentifier-ConsultantSurgeon>
+        </ConsultantSurgeon>
+        <ConsultantSurgeon>
+          <ProfessionalRegistrationIssuerCode-ConsultantSurgeon code="02"/>
+          <ProfessionalRegistrationEntryIdentifier-ConsultantSurgeon>92bUDOCmn3kBSIC9udvrx8kmXGIez52h</ProfessionalRegistrationEntryIdentifier-ConsultantSurgeon>
+        </ConsultantSurgeon>
+        <PrimaryProcedureOpcs code="C110"/>
+        <PrimaryProcedureSnomedCt code="727575788412412270"/>
+        <ProcedureOpcs code="Q071"/>
+        <ProcedureSnomedCt code="596660641609154954"/>
+        <UnplannedReturnToTheatreIndicator code="N"/>
+        <AsaScore code="5"/>
+        <SurgicalAccessType code="3"/>
+        <General>
+          <NonCurativeIntentReasonUpperGi code="3"/>
+        </General>
+        <OG>
+          <PostOperativeTumourSiteUpperGi code="03"/>
+        </OG>
+        <Esodata>
+          <SurgicalComplications-InternationalEsophagealDatabaseEsodata code="0399"/>
+          <SurgicalComplicationsLeakSeverityType>
+            <SurgicalComplications-InternationalEsophagealDatabaseEsodata code="0102"/>
+            <LeakSeverityType code="9"/>
+          </SurgicalComplicationsLeakSeverityType>
+          <SurgicalComplicationsConduitNecrosisFailureType>
+            <SurgicalComplications-InternationalEsophagealDatabaseEsodata code="0103"/>
+            <ConduitNecrosisFailureType code="3"/>
+          </SurgicalComplicationsConduitNecrosisFailureType>
+          <SurgicalComplicationsRecurrentLaryngealNerveInjuryInvolvementType>
+            <SurgicalComplications-InternationalEsophagealDatabaseEsodata code="0701"/>
+            <RecurrentLaryngealNerveInjuryInvolvementType code="3"/>
+          </SurgicalComplicationsRecurrentLaryngealNerveInjuryInvolvementType>
+          <SurgicalComplicationsChyleLeakSeverityType>
+            <SurgicalComplications-InternationalEsophagealDatabaseEsodata code="0902"/>
+            <ChyleLeakSeverityType code="4"/>
+          </SurgicalComplicationsChyleLeakSeverityType>
+          <SurgicalComplicationsAdditionalComplications>
+            <SurgicalComplications-InternationalEsophagealDatabaseEsodata code="1001"/>
+            <AdditionalComplications>CNOMvabs0V1GLQfOxa6SJxvJ6i3cnKKt6jhYosy4Vb5dGbkpVFuENhIk9oHHS0HiDfWxMXDZpXa4wxFKiXg5H7PO0PMwiv6k3uZt</AdditionalComplications>
+          </SurgicalComplicationsAdditionalComplications>
+          <SurgicalComplicationsAdditionalComplications>
+            <SurgicalComplications-InternationalEsophagealDatabaseEsodata code="1001"/>
+            <AdditionalComplications>lCgQdBEBqeLrcbU2Vx6SKtS5BrsXZzmEqXgvTsjwQreMNoEsebl8fsxn6VOfYsHidqDGV1etPxs0D0n3APDC9Bf7rsEdAPVMrsUG</AdditionalComplications>
+          </SurgicalComplicationsAdditionalComplications>
+          <Clavien-dindoClassificationOfSurgicalClassifications code="2"/>
+        </Esodata>
+        <OutcomeMeasures>
+          <ChangeInLevelOfCare code="2"/>
+          <BloodProductUtilisation code="3"/>
+          <NumberOfUnitsTransfused code="2"/>
+        </OutcomeMeasures>
+        <Oesophagectomy>
+          <SurgicalApproachType code="2"/>
+          <OpenApproachType code="2"/>
+          <MinimallyInvasiveApproachType code="1"/>
+          <AnastomosisType code="9"/>
+          <OesophagealConduitType code="1"/>
+          <NeckDissection code="N"/>
+        </Oesophagectomy>
+        <LiverCholangiocarcinomaAndPancreatic>
+          <SurgicalPalliationType code="2"/>
+        </LiverCholangiocarcinomaAndPancreatic>
+        <PancreaticAndOG>
+          <EndoscopicProcedureType code="8"/>
+        </PancreaticAndOG>
+        <Main>
+          <EndoscopicOrRadiologicalComplicationType code="00"/>
+        </Main>
+      </Surgery>
+    </Treatment>
     <AcuteOncology>
       <AcuteOncologyAssessmentDate>2023-10-26</AcuteOncologyAssessmentDate>
       <OrganisationSiteIdentifierAcuteOncology extension="FA38N"/>

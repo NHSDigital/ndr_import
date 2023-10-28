@@ -67,7 +67,7 @@ module Xml
                           'xml_cell' => {
                             'relative_path' => 'pathology[2]/sample[1]', 'multiple' => true
                           },
-                          'rawtext_name' => 'pathology_date_3' }
+                          'rawtext_name' => 'pathology_date_2.1' }
       assert_equal expected_column, new_column
     end
   end
