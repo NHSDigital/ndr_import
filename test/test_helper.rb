@@ -1,6 +1,7 @@
 require 'simplecov'
 SimpleCov.start
 
+require 'active_support'
 require 'active_support/test_case'
 require 'active_support/core_ext/string'
 require 'ndr_support/safe_path'

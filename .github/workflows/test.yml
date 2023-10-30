@@ -21,6 +21,7 @@ jobs:
         gemfile:
           - gemfiles/Gemfile.rails61
           - gemfiles/Gemfile.rails70
+          - gemfiles/Gemfile.rails71
         exclude:
           # rails 7.0 requires ruby >= 2.7
           # https://www.fastruby.io/blog/ruby/rails/versions/compatibility-table.html
