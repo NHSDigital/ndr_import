@@ -27,7 +27,7 @@ file safety:
   CHANGELOG.md:
     comments:
     reviewed_by: brian.shand
-    safe_revision: 931c2fefa236f2f75bebb0c28b999eaa52cbbcab
+    safe_revision: 59dcffd2dd3b9c85f375e78a9b4338f220d0ea5f
   CODE_OF_CONDUCT.md:
     comments:
     reviewed_by: timgentry
@@ -336,7 +336,7 @@ file safety:
   lib/ndr_import/xml/column_mapping.rb:
     comments:
     reviewed_by: brian.shand
-    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
+    safe_revision: 59dcffd2dd3b9c85f375e78a9b4338f220d0ea5f
   lib/ndr_import/xml/control_char_escaper.rb:
     comments:
     reviewed_by: josh.pencheon
@@ -508,15 +508,15 @@ file safety:
   test/resources/complex_xml.xml:
     comments: All field values are clearly made up data.
     reviewed_by: brian.shand
-    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
+    safe_revision: 59dcffd2dd3b9c85f375e78a9b4338f220d0ea5f
   test/resources/complex_xml_augmented_column_mappings.yml:
     comments:
     reviewed_by: brian.shand
-    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
+    safe_revision: 59dcffd2dd3b9c85f375e78a9b4338f220d0ea5f
   test/resources/complex_xml_augmented_xpaths.yml:
     comments:
     reviewed_by: brian.shand
-    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
+    safe_revision: 59dcffd2dd3b9c85f375e78a9b4338f220d0ea5f
   test/resources/complex_xml_mapping.yml:
     comments:
     reviewed_by: brian.shand
@@ -524,7 +524,7 @@ file safety:
   test/resources/complex_xml_transformed.yml:
     comments: All field values are clearly made up data.
     reviewed_by: brian.shand
-    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
+    safe_revision: 59dcffd2dd3b9c85f375e78a9b4338f220d0ea5f
   test/resources/fake_dids.avro:
     comments: Reviewed contents, confirmed fake original data.
     reviewed_by: brian.shand
@@ -713,6 +713,10 @@ file safety:
     comments:
     reviewed_by: timgentry
     safe_revision: c88000b32401b5ae9ef7f5878a9b630506ab5a94
+  test/resources/unique_column_mapping_example.xml:
+    comments:
+    reviewed_by: brian.shand
+    safe_revision: 59dcffd2dd3b9c85f375e78a9b4338f220d0ea5f
   test/resources/utf-16be_xml.xml:
     comments:
     reviewed_by: timgentry
@@ -780,7 +784,7 @@ file safety:
   test/xml/column_mapping_test.rb:
     comments:
     reviewed_by: brian.shand
-    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
+    safe_revision: 59dcffd2dd3b9c85f375e78a9b4338f220d0ea5f
   test/xml/control_char_escaper_test.rb:
     comments:
     reviewed_by: josh.pencheon
@@ -792,4 +796,4 @@ file safety:
   test/xml/table_test.rb:
     comments:
     reviewed_by: brian.shand
-    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
+    safe_revision: 59dcffd2dd3b9c85f375e78a9b4338f220d0ea5f
