@@ -1,0 +1,20 @@
+﻿<root>
+  <record>
+    <Section>
+      <SubSection>
+        <data_item code="01"/>
+      </SubSection>
+      <SubSection>
+        <data_item code="02"/>
+      </SubSection>
+    </Section>
+    <Section>
+      <SubSection>
+        <data_item code="03"/>
+      </SubSection>
+      <SubSection>
+        <data_item code="04"/>
+      </SubSection>
+    </Section>
+  </record>
+</root>
