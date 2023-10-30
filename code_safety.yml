@@ -26,8 +26,8 @@ file safety:
     safe_revision: 6ec135a5dfde54992c6efb4f26c6da8041f3aefd
   CHANGELOG.md:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: 59dcffd2dd3b9c85f375e78a9b4338f220d0ea5f
+    reviewed_by: ollietulloch
+    safe_revision: 5a82122cb039f79d7f5b72e7aba3232de14371c1
   CODE_OF_CONDUCT.md:
     comments:
     reviewed_by: timgentry
@@ -331,8 +331,8 @@ file safety:
     safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   lib/ndr_import/version.rb:
     comments: another check?
-    reviewed_by: brian.shand
-    safe_revision: 931c2fefa236f2f75bebb0c28b999eaa52cbbcab
+    reviewed_by: ollietulloch
+    safe_revision: 5a82122cb039f79d7f5b72e7aba3232de14371c1
   lib/ndr_import/xml/column_mapping.rb:
     comments:
     reviewed_by: brian.shand
