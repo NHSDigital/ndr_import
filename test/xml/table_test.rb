@@ -120,7 +120,7 @@ module Xml
                                            'slurp' => true)
 
       xml_lines = handler.send(:rows)
-      table     = NdrImport::Xml::Table.new(columns: unique_column_mapping_xml)
+      table     = NdrImport::Xml::Table.new(columns: unique_xml_column_mapping)
 
       expected_mapped_lines =
         [['SomeTestKlass',
@@ -282,7 +282,7 @@ module Xml
       ]
     end
 
-    def unique_column_mapping_xml
+    def unique_xml_column_mapping
       [
         { 'column' => 'data_item',
           'klass' => 'SomeTestKlass',
