@@ -57,19 +57,19 @@ module NdrImport
         end
       end
 
-      # Append "_1", "_2" etc to repeating rawtext and optionally mapped field names within a
-      # single record, so data is not overwritten
+      # Append "_1.1", "_2.1", "_1" etc to repeating rawtext and optionally mapped field names
+      # within a single record, so data is not overwritten
       def apply_new_rawtext_and_mapped_names_to(new_column)
         existing_rawtext        = existing_column['rawtext_name'] || existing_column['column']
         column_name_increment   = new_column['column'].scan(/\[(\d+)\]/)
         relative_path_increment = new_column.dig('xml_cell', 'relative_path').scan(/\[(\d+)\]/)
 
-        # Find all the increments (e.g. [1], [2]) from the new column and use their sum
-        # as the rawtext and column name increment
-        increment = (column_name_increment + relative_path_increment).flatten.map(&:to_i).sum
-        new_column['rawtext_name'] = existing_rawtext + "_#{increment}" unless increment.zero?
+        # Find all the increments (e.g. [1], [2]) from the new column and concatenate them to
+        # use as the rawtext and column name increment
+        increment = (column_name_increment + relative_path_increment).flatten.compact.join('.')
+        new_column['rawtext_name'] = existing_rawtext + "_#{increment}" if increment.present?
 
-        return unless !increment.zero? && increment_field_name
+        return unless increment.present? && increment_field_name
 
         new_column['mappings'] = incremented_mappings_for(new_column, increment)
       end

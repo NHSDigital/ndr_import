@@ -1,7 +1,7 @@
 require 'test_helper'
 
-# This tests the NdrImport::Xml::Table mapping class
 module Xml
+  # This tests the NdrImport::Xml::Table mapping class
   class TableTest < ActiveSupport::TestCase
     def setup
       file_path = SafePath.new('permanent_test_files').join('sample.xml')
@@ -10,7 +10,7 @@ module Xml
       @element_lines = handler.send(:rows)
     end
 
-    def test_should_transform_xml_element_lines
+    test 'test should transform xml element lines' do
       table = NdrImport::Xml::Table.new(klass: 'SomeTestKlass', columns: xml_column_mapping)
 
       expected_data = ['SomeTestKlass', { rawtext: {
@@ -36,7 +36,7 @@ module Xml
       end
     end
 
-    def test_should_fail_with_unmappped_nodes
+    test 'test should fail with unmappped nodes' do
       table = NdrImport::Xml::Table.new(klass: 'SomeTestKlass', columns: partial_xml_column_mapping)
 
       exception = assert_raises NdrImport::Xml::UnmappedXpathError do
@@ -47,11 +47,11 @@ module Xml
       assert_equal expected_error, exception.message
     end
 
-    def test_should_not_raise_exception_on_forced_slurp
+    test 'test should not raise exception on forced slurp' do
       NdrImport::Xml::Table.new(klass: 'SomeTestKlass', slurp: true, columns: xml_column_mapping)
     end
 
-    def test_should_augment_columns_for_repeating_sections
+    test 'test should augment columns for repeating sections' do
       file_path     = SafePath.new('permanent_test_files').join('repeating_section_sample.xml')
       handler       = NdrImport::File::Xml.new(file_path, nil, 'xml_record_xpath' => 'record')
       element_lines = handler.send(:rows)
@@ -59,8 +59,8 @@ module Xml
 
       expected_data = [
         ['SomeTestKlass#1', { rawtext:
-           { 'pathology_date_2' => '2018-01-01', 'pathology_id_2' => 'AAA',
-             'pathology_date_3' => '2019-01-01', 'pathology_id_3' => 'BBB' } },
+           { 'pathology_date_1.1' => '2018-01-01', 'pathology_id_1.1' => 'AAA',
+             'pathology_date_1.2' => '2019-01-01', 'pathology_id_1.2' => 'BBB' } },
          0],
         ['SomeTestKlass#2', { rawtext:
           { 'pathology_date_2' => '2020-01-01', 'pathology_id_2' => 'CCC' } },
@@ -99,6 +99,7 @@ module Xml
 
       expected_mapped_lines = YAML.load_file SafePath.new('permanent_test_files').
                               join('complex_xml_transformed.yml')
+
       assert_equal expected_mapped_lines, table.transform(xml_lines).to_a
 
       expected_xpaths = YAML.load_file SafePath.new('permanent_test_files').
@@ -110,6 +111,95 @@ module Xml
       expected_column_mappings = load_esourcemapping_yaml(File.read(expected_columns_filepath,
                                                                     mode: 'r:bom|utf-8'))
       assert_equal expected_column_mappings, table.instance_variable_get('@augmented_columns')
+    end
+
+    test 'should create unique column mappings' do
+      file_path = SafePath.new('permanent_test_files').join('unique_column_mapping_example.xml')
+      handler   = NdrImport::File::Xml.new(file_path, nil,
+                                           'xml_record_xpath' => 'record',
+                                           'slurp' => true)
+
+      xml_lines = handler.send(:rows)
+      table     = NdrImport::Xml::Table.new(columns: unique_xml_column_mapping)
+
+      expected_mapped_lines =
+        [['SomeTestKlass',
+          { 'data_item_1.1' => '01',
+            'data_item_1.2' => '02',
+            'data_item_2.1' => '03',
+            'data_item_2.2' => '04',
+            :rawtext =>
+            { 'data_item' => '',
+              'data_item_1.1' => '01',
+              'data_item_1.2' => '02',
+              'data_item_2.1' => '03',
+              'data_item_2.2' => '04' } },
+          0]]
+      assert_equal expected_mapped_lines, table.transform(xml_lines).to_a
+
+      expected_column_xpaths = [
+        'Section/SubSection/data_item/@code',
+        'Section[1]/SubSection[1]/data_item/@code',
+        'Section[1]/SubSection[2]/data_item/@code',
+        'Section[2]/SubSection[1]/data_item/@code',
+        'Section[2]/SubSection[2]/data_item/@code'
+      ]
+      assert_equal expected_column_xpaths, table.instance_variable_get('@augmented_column_xpaths')
+
+      expected_augmented_columns = [
+        { 'column' => 'data_item',
+          'klass' => 'SomeTestKlass',
+          'xml_cell' => {
+            'relative_path' => 'Section/SubSection',
+            'attribute' => 'code',
+            'multiple' => true,
+            'increment_field_name' => true,
+            'build_new_record' => false
+          },
+          'mappings' => [{ 'field' => 'data_item' }] },
+        { 'column' => 'data_item',
+          'klass' => 'SomeTestKlass',
+          'xml_cell' =>
+          { 'relative_path' => 'Section[1]/SubSection[1]',
+            'attribute' => 'code',
+            'multiple' => true,
+            'increment_field_name' => true,
+            'build_new_record' => false },
+          'mappings' => [{ 'field' => 'data_item_1.1' }],
+          'rawtext_name' => 'data_item_1.1' },
+        { 'column' => 'data_item',
+          'klass' => 'SomeTestKlass',
+          'xml_cell' =>
+          { 'relative_path' => 'Section[1]/SubSection[2]',
+            'attribute' => 'code',
+            'multiple' => true,
+            'increment_field_name' => true,
+            'build_new_record' => false },
+          'mappings' => [{ 'field' => 'data_item_1.2' }],
+          'rawtext_name' => 'data_item_1.2' },
+        { 'column' => 'data_item',
+          'klass' => 'SomeTestKlass',
+          'xml_cell' =>
+          { 'relative_path' => 'Section[2]/SubSection[1]',
+            'attribute' => 'code',
+            'multiple' => true,
+            'increment_field_name' => true,
+            'build_new_record' => false },
+          'mappings' => [{ 'field' => 'data_item_2.1' }],
+          'rawtext_name' => 'data_item_2.1' },
+        { 'column' => 'data_item',
+          'klass' => 'SomeTestKlass',
+          'xml_cell' =>
+          { 'relative_path' => 'Section[2]/SubSection[2]',
+            'attribute' => 'code',
+            'multiple' => true,
+            'increment_field_name' => true,
+            'build_new_record' => false },
+          'mappings' => [{ 'field' => 'data_item_2.2' }],
+          'rawtext_name' => 'data_item_2.2' }
+      ]
+
+      assert_equal expected_augmented_columns, table.instance_variable_get('@augmented_columns')
     end
 
     private
@@ -189,6 +279,17 @@ module Xml
           'xml_cell' => { 'relative_path' => 'demographics', 'attribute' => 'code' } },
         { 'column' => 'address_line1',
           'xml_cell' => { 'relative_path' => 'demographics/address' } }
+      ]
+    end
+
+    def unique_xml_column_mapping
+      [
+        { 'column' => 'data_item',
+          'klass' => 'SomeTestKlass',
+          'xml_cell' => { 'relative_path' => 'Section/SubSection', 'attribute' => 'code',
+                          'multiple' => true, 'increment_field_name' => true,
+                          'build_new_record' => false },
+          'mappings' => ['field' => 'data_item'] }
       ]
     end
   end
