@@ -1,7 +1,6 @@
 ## [Unreleased]
 =======
-### Added
-* Support Rails 7.1
+*no unreleased changes*
 
 ## 11.0.1 / 2023-10-30
 ### Fixed
