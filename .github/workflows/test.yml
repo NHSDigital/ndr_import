@@ -21,7 +21,8 @@ jobs:
         gemfile:
           - gemfiles/Gemfile.rails61
           - gemfiles/Gemfile.rails70
-          - gemfiles/Gemfile.rails71
+          # Rails 7.1.2 conflicts with latest ndr_support 5.10.0 default to_s handling.
+          #- gemfiles/Gemfile.rails71
         exclude:
           # rails 7.0 requires ruby >= 2.7
           # https://www.fastruby.io/blog/ruby/rails/versions/compatibility-table.html

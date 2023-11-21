@@ -9,13 +9,13 @@ Extensible Markup Language (XML) is a markup language that provides rules to def
 
 XML can contain repeating data items/sections, which the column mappings would need to verbosely define. XML allows for unlimited repetition, so it would be very hard to have all columns accounted for.
 
-`NdrImport::XML::Table` only requires each column to appear in the mapping once. It will identify any repeating data item/section xpaths that haven't been accounted for and create appropriate column mappings in memory.
+`NdrImport::Xml::Table` only requires each column to appear in the mapping once. It will identify any repeating data item/section xpaths that haven't been accounted for and create appropriate column mappings in memory.
 
 The logic covers all current use cases; additional features may be needed if more use cases are identified.
 
 
 ### `NdrImport::Xml::Table`
-`NdrImport::XML::Table` requires some additional configuration so that the "records" are correctly identified.
+`NdrImport::Xml::Table` requires some additional configuration so that the "records" are correctly identified.
 
 * `format` - this should always be `xml_table` so that ndr_import knows which handler to use
 * `xml_record_xpath` - this is the xpath - relative to the root - that indicates the start of a new record
