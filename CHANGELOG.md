@@ -1,6 +1,7 @@
 ## [Unreleased]
 =======
-*no unreleased changes*
+### Fixed
+* Resolve Rails 7 deprecation warnings
 
 ## 11.0.1 / 2023-10-30
 ### Fixed
