@@ -32,7 +32,7 @@ module NdrImport
         end
 
         def cast_excel_datetime_as_date(raw_value)
-          raw_value.to_s(:db)
+          raw_value.to_formatted_s(:db)
         end
 
         # Iterate through the file table by table, yielding each one in turn.

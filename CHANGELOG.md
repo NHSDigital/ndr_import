@@ -1,6 +1,8 @@
 ## [Unreleased]
 =======
-*no unreleased changes*
+### Fixed
+* Resolve Rails 7 deprecation warnings
+* Fix XML parsing with latest `nokogiri` 1.16.0
 
 ## 11.0.1 / 2023-10-30
 ### Fixed
