@@ -22,6 +22,11 @@ module NdrImport
           doc = nil
 
           escaping_control_chars_if_necessary(preserve_control_chars, file_data) do
+            if Nokogiri::XML('<?xml version="1.0" encoding="UTF-16"?><body/>').
+               errors.first.message.match?(/Blank needed here\z/)
+              # Nokogiri 1.16.0 workaround for UTF-16 data.
+              file_data.sub!('UTF-16', 'UTF-8')
+            end
             doc = Nokogiri::XML(file_data, &:huge)
             doc.encoding = 'UTF-8'
             emulate_strict_mode_fatal_check!(doc)
