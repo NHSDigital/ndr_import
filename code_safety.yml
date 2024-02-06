@@ -10,8 +10,8 @@ file safety:
     safe_revision: b64ff21375dcde2b8fefe622ee9861f0fea21487
   ".github/workflows/test.yml":
     comments:
-    reviewed_by: ollietulloch
-    safe_revision: 94eda331be377f09d48b467d273aecd2ff543a4e
+    reviewed_by: brian.shand
+    safe_revision: 921f2ac49ef89d41920fd510db0c2c9c44d773bb
   ".gitignore":
     comments: whole file re-reviewed
     reviewed_by: brian.shand
@@ -26,8 +26,8 @@ file safety:
     safe_revision: 6ec135a5dfde54992c6efb4f26c6da8041f3aefd
   CHANGELOG.md:
     comments:
-    reviewed_by: ollietulloch
-    safe_revision: 5a82122cb039f79d7f5b72e7aba3232de14371c1
+    reviewed_by: brian.shand
+    safe_revision: afd63ec406b7a244192f894fdaa871e1305a117e
   CODE_OF_CONDUCT.md:
     comments:
     reviewed_by: timgentry
@@ -123,7 +123,7 @@ file safety:
   docs/xml-mappings.md:
     comments:
     reviewed_by: brian.shand
-    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
+    safe_revision: 921f2ac49ef89d41920fd510db0c2c9c44d773bb
   docs/yaml-mapping-user-guide.md:
     comments:
     reviewed_by: brian.shand
@@ -148,6 +148,10 @@ file safety:
     comments:
     reviewed_by: brian.shand
     safe_revision: f30a3db592512ba1f1b8de999a573b97dac5abea
+  gemfiles/Gemfile.rails71:
+    comments:
+    reviewed_by: brian.shand
+    safe_revision: 396a450173aee6d5802c7e8f13183f5fda8d73ce
   lib/ndr_import.rb:
     comments:
     reviewed_by: brian.shand
@@ -190,8 +194,8 @@ file safety:
     safe_revision: 897f8b648d633368cf2001d17ab89c06a12d445b
   lib/ndr_import/file/excel.rb:
     comments:
-    reviewed_by: ollietulloch
-    safe_revision: 37482c79448bea80033f6f69d97584df330c9861
+    reviewed_by: brian.shand
+    safe_revision: afd63ec406b7a244192f894fdaa871e1305a117e
   lib/ndr_import/file/json_lines.rb:
     comments:
     reviewed_by: brian.shand
@@ -246,8 +250,8 @@ file safety:
     safe_revision: 4a5cc1d362c632fc1f9242c69982fbce33557e17
   lib/ndr_import/helpers/file/excel.rb:
     comments:
-    reviewed_by: joshpencheon
-    safe_revision: 06fd16643d02957ce856728e4911143c8e0178dc
+    reviewed_by: brian.shand
+    safe_revision: afd63ec406b7a244192f894fdaa871e1305a117e
   lib/ndr_import/helpers/file/pdf.rb:
     comments:
     reviewed_by: timgentry
@@ -258,8 +262,8 @@ file safety:
     safe_revision: 45da71ebd3acbc0fe53755bcd75483ba17cb6924
   lib/ndr_import/helpers/file/xml.rb:
     comments:
-    reviewed_by: josh.pencheon
-    safe_revision: 9a6cc769abce5f9bfa5b4f8bd5cda52dfe18b12b
+    reviewed_by: brian.shand
+    safe_revision: afd63ec406b7a244192f894fdaa871e1305a117e
   lib/ndr_import/helpers/file/xml_streaming.rb:
     comments: uses SafePath and Shellwords when accessing filesystem, or making system
       calls
@@ -356,7 +360,7 @@ file safety:
   ndr_import.gemspec:
     comments:
     reviewed_by: brian.shand
-    safe_revision: eaa8fe221598f7b47fa6496bdd396539b3e0c456
+    safe_revision: 921f2ac49ef89d41920fd510db0c2c9c44d773bb
   test/avro/table_test.rb:
     comments:
     reviewed_by: brian.shand
@@ -772,7 +776,7 @@ file safety:
   test/test_helper.rb:
     comments:
     reviewed_by: brian.shand
-    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
+    safe_revision: 396a450173aee6d5802c7e8f13183f5fda8d73ce
   test/universal_importer_helper_test.rb:
     comments:
     reviewed_by: brian.shand
