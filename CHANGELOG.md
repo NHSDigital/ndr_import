@@ -1,5 +1,8 @@
 ## [Unreleased]
 =======
+* no unreleased changes*
+
+## 11.0.2 / 2024-02-06
 ### Fixed
 * Resolve Rails 7 deprecation warnings
 * Fix XML parsing with latest `nokogiri` 1.16.0
@@ -12,7 +15,7 @@
 ### Changed
 * XML enhancements. Breaking change, the enhancements are not backward compatible
 ### Fixed
-* Replace unsupported seven_zip_ruby gem with seven-zip fork
+* Replace unsupported `seven_zip_ruby` gem with seven-zip fork
 
 ## 10.3.0 / 2023-09-07
 ### Added
