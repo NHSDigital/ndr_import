@@ -42,9 +42,32 @@ module Xml
       exception = assert_raises NdrImport::Xml::UnmappedXpathError do
         table.transform(@element_lines).to_a
       end
-      expected_error = 'Unmapped xpath(s): pathology/pathology_date_1 ' \
-                       'and pathology/pathology_date_2'
+      expected_error = 'Unmapped xpath(s): pathology/pathology_date_1'
       assert_equal expected_error, exception.message
+    end
+
+    test 'should not require column mappings for empty nodes' do
+      file_path     = SafePath.new('permanent_test_files').join('sample_with_empty_nodes.xml')
+      handler       = NdrImport::File::Xml.new(file_path, nil, 'xml_record_xpath' => 'record')
+      element_lines = handler.send(:rows)
+      table         = NdrImport::Xml::Table.new(klass: 'SomeTestKlass', columns: xml_column_mapping)
+      assert element_lines.one?
+
+      expected_xpaths = %w[no_relative_path/@value no_path_or_att
+                           demographics/demographics_1 demographics/demographics_2/@code]
+
+      assert_equal expected_xpaths, table.send(:mappable_xpaths_from, element_lines.first)
+
+      expected_data = [
+        ['SomeTestKlass', { rawtext:
+          { 'no_relative_path' => 'A value', 'no_relative_path_inner_text' => '',
+            'no_path_or_att' => 'Another value', 'demographics_1' => 'AAA', 'demographics_2' => '03',
+            'demographics_2_inner_text' => 'Inner text', 'address1' => '', 'address2' => '',
+            'pathology_date_1' => '', 'pathology_date_2' => '', 'should_be_blank' => '' } },
+         0]
+      ]
+
+      assert_equal expected_data, table.transform(element_lines).to_a
     end
 
     test 'test should not raise exception on forced slurp' do
