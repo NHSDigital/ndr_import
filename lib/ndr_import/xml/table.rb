@@ -169,6 +169,8 @@ module NdrImport
         xpaths = []
 
         line.xpath('.//*[not(child::*)]').each do |node|
+          next unless populated?(node)
+
           xpath = node.path.sub("#{line.path}/", '')
           if node.attributes.any?
             node.attributes.each_key { |key| xpaths << "#{xpath}/@#{key}" }
@@ -177,6 +179,12 @@ module NdrImport
           end
         end
         xpaths
+      end
+
+      def populated?(node)
+        node.element_children.empty? &&
+          !node.is_a?(Nokogiri::XML::Comment) && !node.text? && !node.cdata? &&
+          !(node.attributes.empty? && node.content.strip.blank?)
       end
 
       def build_xpath_from(column)

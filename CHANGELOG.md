@@ -1,6 +1,6 @@
 ## [Unreleased]
 =======
-* no unreleased changes*
+* XML table should not expect column mappings for empty nodes/elements
 
 ## 11.0.2 / 2024-02-06
 ### Fixed
