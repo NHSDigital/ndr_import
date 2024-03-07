@@ -26,8 +26,8 @@ file safety:
     safe_revision: 6ec135a5dfde54992c6efb4f26c6da8041f3aefd
   CHANGELOG.md:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: afd63ec406b7a244192f894fdaa871e1305a117e
+    reviewed_by: ollietulloch
+    safe_revision: 68f2820ac380b60b6123a641339e4952060533fe
   CODE_OF_CONDUCT.md:
     comments:
     reviewed_by: timgentry
@@ -336,7 +336,7 @@ file safety:
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: ollietulloch
-    safe_revision: 5a82122cb039f79d7f5b72e7aba3232de14371c1
+    safe_revision: 68f2820ac380b60b6123a641339e4952060533fe
   lib/ndr_import/xml/column_mapping.rb:
     comments:
     reviewed_by: brian.shand
@@ -351,8 +351,8 @@ file safety:
     safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   lib/ndr_import/xml/table.rb:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
+    reviewed_by: ollietulloch
+    safe_revision: 2bc8c3b3f949a2c99016f47a545528a4d2956227
   lib/ndr_import/xml/unmapped_xpath_error.rb:
     comments:
     reviewed_by: brian.shand
@@ -681,6 +681,10 @@ file safety:
     comments:
     reviewed_by: ollietulloch
     safe_revision: cf5e762a442088e87e295f80cc8478c285501c3a
+  test/resources/sample_with_empty_nodes.xml:
+    comments:
+    reviewed_by: ollietulloch
+    safe_revision: 2bc8c3b3f949a2c99016f47a545528a4d2956227
   test/resources/sample_xls.xls:
     comments:
     reviewed_by: timgentry
@@ -799,5 +803,5 @@ file safety:
     safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   test/xml/table_test.rb:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: 59dcffd2dd3b9c85f375e78a9b4338f220d0ea5f
+    reviewed_by: ollietulloch
+    safe_revision: 2bc8c3b3f949a2c99016f47a545528a4d2956227

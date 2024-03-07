@@ -1,5 +1,9 @@
 ## [Unreleased]
 =======
+* no unreleased changes *
+
+## 11.1.0 / 2024-03-07
+### Added
 * XML table should not expect column mappings for empty nodes/elements
 
 ## 11.0.2 / 2024-02-06
