@@ -53,6 +53,8 @@ module NdrImport
 
               cursor.enter(node)
               return cursor.inner_text if cursor.send(:current_stack_match?)
+            when Nokogiri::XML::Reader::TYPE_END_ELEMENT # "closing tag"
+              cursor.leave(node)
             end
           end
         end
