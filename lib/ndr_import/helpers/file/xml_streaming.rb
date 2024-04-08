@@ -78,6 +78,10 @@ module NdrImport
             match
           end
 
+          def inner_text
+            dom_stubs[@stack].xpath(@xpath)&.inner_text
+          end
+
           private
 
           def in_empty_element?

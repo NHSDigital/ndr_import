@@ -9,6 +9,8 @@ module NdrImport
   module File
     # All common base file handler logic is defined here.
     class Base
+      attr_accessor :file_metadata
+
       def initialize(filename, format, options = {})
         @filename = filename
         @format = format
@@ -45,7 +47,7 @@ module NdrImport
       def tables
         return enum_for(:tables) unless block_given?
 
-        yield nil, rows
+        yield nil, rows, file_metadata
       end
 
       private

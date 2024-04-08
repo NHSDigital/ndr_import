@@ -59,7 +59,8 @@ module NdrImport
                     'xml_record_xpath'           => table_mapping.try(:xml_record_xpath),
                     'slurp'                      => table_mapping.try(:slurp),
                     'yield_xml_record'           => table_mapping.try(:yield_xml_record),
-                    'pattern_match_record_xpath' => table_mapping.try(:pattern_match_record_xpath) }
+                    'pattern_match_record_xpath' => table_mapping.try(:pattern_match_record_xpath),
+                    'xml_file_metadata'          => table_mapping.try(:xml_file_metadata) }
 
         tables = NdrImport::File::Registry.tables(filename, table_mapping.try(:format), options)
         yield_tables_and_their_content(filename, tables, &block)
@@ -71,12 +72,12 @@ module NdrImport
     def yield_tables_and_their_content(filename, tables, &block)
       return enum_for(:yield_tables_and_their_content, filename, tables) unless block_given?
 
-      tables.each do |tablename, table_content|
+      tables.each do |tablename, table_content, file_metadata|
         mapping = get_table_mapping(filename, tablename)
         next if mapping.nil?
 
         mapping.notifier = get_notifier(record_total(filename, table_content))
-
+        mapping.table_metadata = file_metadata || {}
         yield(mapping, table_content)
       end
     end
