@@ -10,8 +10,6 @@ module NdrImport
   class Table
     include NdrImport::Mapper
 
-    attr_accessor :table_metadata
-
     def self.all_valid_options
       %w[canonical_name delimiter liberal_parsing filename_pattern file_password last_data_column
          tablename_pattern header_lines footer_lines format klass columns slurp row_identifier
@@ -23,7 +21,7 @@ module NdrImport
     end
 
     attr_reader(*all_valid_options)
-    attr_accessor :notifier
+    attr_accessor :notifier, :table_metadata
 
     def initialize(options = {})
       options.stringify_keys! if options.is_a?(Hash)
