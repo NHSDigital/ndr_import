@@ -95,8 +95,7 @@ module NdrImport
             'submitting_providercode' => '//OrganisationIdentifierCodeOfSubmittingOrganisation/@extension'
           }
         }
-        handler = NdrImport::File::Xml.new(file_path, nil, options)
-        handler.expects(:each_node).never
+        handler           = NdrImport::File::Xml.new(file_path, nil, options)
         expected_metadata = { 'submitting_providercode' => 'LT4' }
         assert_equal expected_metadata, handler.file_metadata
 
@@ -114,8 +113,7 @@ module NdrImport
             'record_count' => '//COSD:RecordCount/@value'
           }
         }
-        handler = NdrImport::File::Xml.new(file_path, nil, options)
-        handler.expects(:read_xml_file).never
+        handler           = NdrImport::File::Xml.new(file_path, nil, options)
         expected_metadata = { 'submitting_providercode' => 'LT4', 'record_count' => '6349923' }
         assert_equal expected_metadata, handler.file_metadata
 

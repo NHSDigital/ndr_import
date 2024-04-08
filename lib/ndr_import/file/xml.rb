@@ -35,27 +35,32 @@ module NdrImport
       def stream_metadata_values
         return unless @xml_file_metadata.is_a?(Hash)
 
-        self.file_metadata = @xml_file_metadata.transform_values { |xpath| metadata_at(xpath) }
+        with_encoding_check(@filename) do |stream, encoding|
+          self.file_metadata = @xml_file_metadata.transform_values.with_index do |xpath, index|
+            # Ensure we're at the start of the stream each time
+            stream.rewind unless index.zero?
+
+            metadata_from_stream(xpath, stream, encoding)
+          end
+        end
       end
 
-      def metadata_at(xpath)
-        with_encoding_check(@filename) do |stream, encoding|
-          cursor = Cursor.new(xpath, false)
+      def metadata_from_stream(xpath, stream, encoding)
+        cursor = Cursor.new(xpath, false)
 
-          # If markup isn't well-formed, try to work around it:
-          options = Nokogiri::XML::ParseOptions::RECOVER
-          reader  = Nokogiri::XML::Reader(stream, nil, encoding, options)
+        # If markup isn't well-formed, try to work around it:
+        options = Nokogiri::XML::ParseOptions::RECOVER
+        reader  = Nokogiri::XML::Reader(stream, nil, encoding, options)
 
-          reader.each do |node|
-            case node.node_type
-            when Nokogiri::XML::Reader::TYPE_ELEMENT # "opening tag"
-              raise NestingError, node if cursor.in?(node)
+        reader.each do |node|
+          case node.node_type
+          when Nokogiri::XML::Reader::TYPE_ELEMENT # "opening tag"
+            raise NestingError, node if cursor.in?(node)
 
-              cursor.enter(node)
-              return cursor.inner_text if cursor.send(:current_stack_match?)
-            when Nokogiri::XML::Reader::TYPE_END_ELEMENT # "closing tag"
-              cursor.leave(node)
-            end
+            cursor.enter(node)
+            return cursor.inner_text if cursor.send(:current_stack_match?)
+          when Nokogiri::XML::Reader::TYPE_END_ELEMENT # "closing tag"
+            cursor.leave(node)
           end
         end
       end
