@@ -16,13 +16,24 @@ module NdrImport
         super
 
         @pattern_match_xpath = @options['pattern_match_record_xpath']
-        @xml_file_metadata = @options['xml_file_metadata']
-        @doc = read_xml_file(@filename) if @options['slurp']
-
-        @options['slurp'] ? slurp_metadata_values : stream_metadata_values
+        @xml_file_metadata   = @options['xml_file_metadata']
+        @options['slurp'] ? prepare_slurped_file : prepare_streamed_file
       end
 
       private
+
+      def prepare_slurped_file
+        @doc = read_xml_file(@filename)
+        slurp_metadata_values
+      end
+
+      def prepare_streamed_file
+        with_encoding_check(@filename) do |stream, encoding|
+          @stream   = stream
+          @encosing = encoding
+        end
+        stream_metadata_values
+      end
 
       def slurp_metadata_values
         return unless @xml_file_metadata.is_a?(Hash)
@@ -35,22 +46,20 @@ module NdrImport
       def stream_metadata_values
         return unless @xml_file_metadata.is_a?(Hash)
 
-        with_encoding_check(@filename) do |stream, encoding|
-          self.file_metadata = @xml_file_metadata.transform_values.with_index do |xpath, index|
-            # Ensure we're at the start of the stream each time
-            stream.rewind unless index.zero?
+        self.file_metadata = @xml_file_metadata.transform_values.with_index do |xpath, index|
+          # Ensure we're at the start of the stream each time
+          @stream.rewind unless index.zero?
 
-            metadata_from_stream(xpath, stream, encoding)
-          end
+          metadata_from_stream(xpath)
         end
       end
 
-      def metadata_from_stream(xpath, stream, encoding)
+      def metadata_from_stream(xpath)
         cursor = Cursor.new(xpath, false)
 
         # If markup isn't well-formed, try to work around it:
         options = Nokogiri::XML::ParseOptions::RECOVER
-        reader  = Nokogiri::XML::Reader(stream, nil, encoding, options)
+        reader  = Nokogiri::XML::Reader(@stream, nil, @encoding, options)
 
         reader.each do |node|
           case node.node_type
@@ -72,7 +81,8 @@ module NdrImport
         if @options['slurp']
           record_elements.each(&block)
         else
-          each_node(@filename, xml_record_xpath, @pattern_match_xpath, &block)
+          @stream.rewind
+          each_node(@stream, @encoding, xml_record_xpath, @pattern_match_xpath, &block)
         end
       end
 

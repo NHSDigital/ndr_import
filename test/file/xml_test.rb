@@ -116,7 +116,6 @@ module NdrImport
         handler           = NdrImport::File::Xml.new(file_path, nil, options)
         expected_metadata = { 'submitting_providercode' => 'LT4', 'record_count' => '6349923' }
         assert_equal expected_metadata, handler.file_metadata
-
         tables = handler.send(:tables).to_a
         assert_equal expected_metadata, tables.first.last
       end
