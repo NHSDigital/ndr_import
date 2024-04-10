@@ -119,6 +119,24 @@ module NdrImport
         tables = handler.send(:tables).to_a
         assert_equal expected_metadata, tables.first.last
       end
+
+      test 'should identify forced encoding when preparing file stream' do
+        handler = NdrImport::File::Xml.new(@file_path, nil, { slurp: false })
+        assert_nil handler.instance_variable_get('@encoding')
+
+        file_path = SafePath.new('permanent_test_files').join('utf-16be_xml_with_declaration.xml')
+        handler   = NdrImport::File::Xml.new(file_path, nil, { slurp: false })
+        assert_equal 'UTF8', handler.instance_variable_get('@encoding')
+      end
+
+      test 'should not identify forced encoding when slurping file' do
+        handler = NdrImport::File::Xml.new(@file_path, nil, { slurp: true })
+        assert_nil handler.instance_variable_get('@encoding')
+
+        file_path = SafePath.new('permanent_test_files').join('utf-16be_xml_with_declaration.xml')
+        handler   = NdrImport::File::Xml.new(file_path, nil, { slurp: true })
+        assert_nil handler.instance_variable_get('@encoding')
+      end
     end
   end
 end
