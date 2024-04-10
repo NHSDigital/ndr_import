@@ -26,8 +26,8 @@ file safety:
     safe_revision: 6ec135a5dfde54992c6efb4f26c6da8041f3aefd
   CHANGELOG.md:
     comments:
-    reviewed_by: ollietulloch
-    safe_revision: ee11cffdaca97df6a26ef9faf5c67460a732fadd
+    reviewed_by: brian.shand
+    safe_revision: cf88d8ef9908267197a0e8e5f249ff81856875d3
   CODE_OF_CONDUCT.md:
     comments:
     reviewed_by: timgentry
@@ -120,10 +120,14 @@ file safety:
     comments:
     reviewed_by: brian.shand
     safe_revision: 6ec135a5dfde54992c6efb4f26c6da8041f3aefd
+  docs/xml-file-metadata.md:
+    comments:
+    reviewed_by: brian.shand
+    safe_revision: e633e277c5d70cf42d1d5a02a4c03569fb3ba07e
   docs/xml-mappings.md:
     comments:
     reviewed_by: brian.shand
-    safe_revision: 921f2ac49ef89d41920fd510db0c2c9c44d773bb
+    safe_revision: 77afde5dd2a00dfc0a7fd40004050fdbf0f7a553
   docs/yaml-mapping-user-guide.md:
     comments:
     reviewed_by: brian.shand
@@ -182,8 +186,8 @@ file safety:
     safe_revision: 1df501e1b0aa7b093337e421a724a4580c45d83d
   lib/ndr_import/file/base.rb:
     comments:
-    reviewed_by: josh.pencheon
-    safe_revision: c3183e522bce50008df576ceb47fe4761ab8f966
+    reviewed_by: brian.shand
+    safe_revision: 3185887fe496f43b379ee8cc4c23880264af71b1
   lib/ndr_import/file/delimited.rb:
     comments:
     reviewed_by: josh.pencheon
@@ -235,7 +239,7 @@ file safety:
   lib/ndr_import/file/xml.rb:
     comments:
     reviewed_by: brian.shand
-    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
+    safe_revision: 3185887fe496f43b379ee8cc4c23880264af71b1
   lib/ndr_import/file/zip.rb:
     comments:
     reviewed_by: timgentry
@@ -268,7 +272,7 @@ file safety:
     comments: uses SafePath and Shellwords when accessing filesystem, or making system
       calls
     reviewed_by: brian.shand
-    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
+    safe_revision: e37a0d34ca44bf787ee07f00d0a66d5ad25fef84
   lib/ndr_import/helpers/file/zip.rb:
     comments:
     reviewed_by: timgentry
@@ -320,11 +324,11 @@ file safety:
   lib/ndr_import/table.rb:
     comments: uses File.basename
     reviewed_by: brian.shand
-    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
+    safe_revision: 6cc7665dac177ec5181464d5297b8035d202cf63
   lib/ndr_import/universal_importer_helper.rb:
     comments:
     reviewed_by: brian.shand
-    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
+    safe_revision: 601fd363c247d8ab29d219a8ceb962131870427f
   lib/ndr_import/unmapped_data_error.rb:
     comments:
     reviewed_by: josh.pencheon
@@ -335,8 +339,8 @@ file safety:
     safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   lib/ndr_import/version.rb:
     comments: another check?
-    reviewed_by: ollietulloch
-    safe_revision: ee11cffdaca97df6a26ef9faf5c67460a732fadd
+    reviewed_by: brian.shand
+    safe_revision: cf88d8ef9908267197a0e8e5f249ff81856875d3
   lib/ndr_import/xml/column_mapping.rb:
     comments:
     reviewed_by: brian.shand
@@ -351,8 +355,8 @@ file safety:
     safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   lib/ndr_import/xml/table.rb:
     comments:
-    reviewed_by: ollietulloch
-    safe_revision: 2bc8c3b3f949a2c99016f47a545528a4d2956227
+    reviewed_by: brian.shand
+    safe_revision: 601fd363c247d8ab29d219a8ceb962131870427f
   lib/ndr_import/xml/unmapped_xpath_error.rb:
     comments:
     reviewed_by: brian.shand
@@ -424,7 +428,7 @@ file safety:
   test/file/xml_test.rb:
     comments:
     reviewed_by: brian.shand
-    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
+    safe_revision: aaa072cb627c662a1381da254d60b1207068fa33
   test/file/zip_test.rb:
     comments:
     reviewed_by: timgentry
@@ -452,7 +456,7 @@ file safety:
   test/helpers/file/xml_streaming_test.rb:
     comments:
     reviewed_by: brian.shand
-    safe_revision: 5227e095de9bedddda9619720007b497355c138b
+    safe_revision: e37a0d34ca44bf787ee07f00d0a66d5ad25fef84
   test/helpers/file/xml_test.rb:
     comments:
     reviewed_by: josh.pencheon
@@ -512,7 +516,7 @@ file safety:
   test/resources/complex_xml.xml:
     comments: All field values are clearly made up data.
     reviewed_by: brian.shand
-    safe_revision: 59dcffd2dd3b9c85f375e78a9b4338f220d0ea5f
+    safe_revision: 601fd363c247d8ab29d219a8ceb962131870427f
   test/resources/complex_xml_augmented_column_mappings.yml:
     comments:
     reviewed_by: brian.shand
@@ -784,7 +788,7 @@ file safety:
   test/universal_importer_helper_test.rb:
     comments:
     reviewed_by: brian.shand
-    safe_revision: 5227e095de9bedddda9619720007b497355c138b
+    safe_revision: 1441b7201c32b0c6269f1feb29e856ffd9d97c4e
   test/vcf/table_test.rb:
     comments:
     reviewed_by: ollietulloch
