@@ -22,7 +22,7 @@ The logic covers all current use cases; additional features may be needed if mor
 * `pattern_match_record_xpath` - setting this `true` treats the `xml_record_xpath` as a regular expression; the default is to treat it as a string
 * `slurp` - setting this to `true` will ensure the data is slurped; the default is to stream the XML
 * `yield_xml_record` - setting this to true will yield all "klasses" created from a single XML record (identified by `xml_record_xpath`); the default is to yield per klass
-
+* `xml_file_metadata` - [See xml file metadata](xml-file-metadata.md)
 
 ### `NdrImport::Xml::Table` example:
 Given the below example data:
