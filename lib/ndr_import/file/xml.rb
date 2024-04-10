@@ -30,7 +30,7 @@ module NdrImport
       def prepare_streamed_file
         with_encoding_check(@filename) do |stream, encoding|
           @stream   = stream
-          @encosing = encoding
+          @encoding = encoding
         end
         stream_metadata_values
       end

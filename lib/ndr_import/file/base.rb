@@ -35,7 +35,7 @@ module NdrImport
       end
 
       # This method iterates over the tables in the given file and yields with three arguments:
-      # a tablename, a row enumerator (for that table) and any file metdata.
+      # a tablename, a row enumerator (for that table) and any file metadata.
       # For a spreadsheet it may yield for  every worksheet in the file and for a CSV file it
       # will only yield once (the entire file is one table).
       #
