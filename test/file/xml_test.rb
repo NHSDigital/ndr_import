@@ -85,6 +85,58 @@ module NdrImport
         assert rows.is_a? Enumerator
         assert_equal 0, rows.to_a.length
       end
+
+      test 'should read file metadata while slurping xml' do
+        file_path = SafePath.new('permanent_test_files').join('complex_xml.xml')
+        options = {
+          'xml_record_xpath' => 'BreastRecord',
+          'slurp' => true,
+          'xml_file_metadata' => {
+            'submitting_providercode' => '//OrganisationIdentifierCodeOfSubmittingOrganisation/@extension'
+          }
+        }
+        handler           = NdrImport::File::Xml.new(file_path, nil, options)
+        expected_metadata = { 'submitting_providercode' => 'LT4' }
+        assert_equal expected_metadata, handler.file_metadata
+
+        tables = handler.send(:tables).to_a
+        assert_equal expected_metadata, tables.first.last
+      end
+
+      test 'should read file metadata while streaming xml' do
+        file_path = SafePath.new('permanent_test_files').join('complex_xml.xml')
+        options = {
+          'xml_record_xpath' => 'BreastRecord',
+          'slurp' => false,
+          'xml_file_metadata' => {
+            'submitting_providercode' => '//COSD:OrganisationIdentifierCodeOfSubmittingOrganisation/@extension',
+            'record_count' => '//COSD:RecordCount/@value'
+          }
+        }
+        handler           = NdrImport::File::Xml.new(file_path, nil, options)
+        expected_metadata = { 'submitting_providercode' => 'LT4', 'record_count' => '6349923' }
+        assert_equal expected_metadata, handler.file_metadata
+        tables = handler.send(:tables).to_a
+        assert_equal expected_metadata, tables.first.last
+      end
+
+      test 'should identify forced encoding when preparing file stream' do
+        handler = NdrImport::File::Xml.new(@file_path, nil, { slurp: false })
+        assert_nil handler.instance_variable_get('@encoding')
+
+        file_path = SafePath.new('permanent_test_files').join('utf-16be_xml_with_declaration.xml')
+        handler   = NdrImport::File::Xml.new(file_path, nil, { slurp: false })
+        assert_equal 'UTF8', handler.instance_variable_get('@encoding')
+      end
+
+      test 'should not identify forced encoding when slurping file' do
+        handler = NdrImport::File::Xml.new(@file_path, nil, { slurp: true })
+        assert_nil handler.instance_variable_get('@encoding')
+
+        file_path = SafePath.new('permanent_test_files').join('utf-16be_xml_with_declaration.xml')
+        handler   = NdrImport::File::Xml.new(file_path, nil, { slurp: true })
+        assert_nil handler.instance_variable_get('@encoding')
+      end
     end
   end
 end

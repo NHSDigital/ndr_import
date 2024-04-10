@@ -231,4 +231,21 @@ class UniversalImporterHelperTest < ActiveSupport::TestCase
       TestImporterWithoutNotifier.new.get_notifier(10_000)
     end
   end
+
+  test 'should assign metadata to table when extracting' do
+    table_mapping =
+      NdrImport::Xml::Table.new(filename_pattern: /.xml/i,
+                                yield_xml_record: true,
+                                xml_record_xpath: 'BreastRecord',
+                                format: 'xml_table',
+                                xml_file_metadata: { record_count: '//COSD:RecordCount/@value' },
+                                klass: 'SomeTestClass',
+                                columns: {})
+
+    source_file = @permanent_test_files.join('complex_xml.xml')
+    @test_importer.stubs(:get_table_mapping).returns(table_mapping)
+    @test_importer.extract(source_file) { |table, rows| table.transform(rows) }
+
+    assert_equal({ record_count: '6349923' }, table_mapping.table_metadata)
+  end
 end

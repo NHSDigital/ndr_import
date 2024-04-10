@@ -21,7 +21,7 @@ module NdrImport
     end
 
     attr_reader(*all_valid_options)
-    attr_accessor :notifier
+    attr_accessor :notifier, :table_metadata
 
     def initialize(options = {})
       options.stringify_keys! if options.is_a?(Hash)

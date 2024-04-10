@@ -1,4 +1,6 @@
 ﻿<COSD:COSD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:COSD="http://www.datadictionary.nhs.uk/messages/COSD-v10-0-1">
+  <OrganisationIdentifierCodeOfSubmittingOrganisation extension="LT4"/>
+  <RecordCount value="6349923"/>
   <BreastRecord>
     <Id root="AAD0ce33-d168-26c6-A4Df-7A0B4d2a5aeC"/>
     <PatientIdentityDetails>

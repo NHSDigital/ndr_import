@@ -78,6 +78,10 @@ module NdrImport
             match
           end
 
+          def inner_text
+            dom_stubs[@stack].xpath(@xpath)&.inner_text
+          end
+
           private
 
           def in_empty_element?
@@ -134,21 +138,18 @@ module NdrImport
 
         include UTF8Encoding
 
-        # Streams the contents of the given `safe_path`, and yields
-        # each element matching `xpath` as they're found.
+        # Yields each element matching `xpath` from `stream` as they're found.
         #
         # In the case of dodgy encoding, may fall back to slurping the
         # file, but will still use stream parsing for XML.
         #
         # Optionally pattern match the xpath
-        def each_node(safe_path, xpath, pattern_match_xpath = nil, &block)
-          return enum_for(:each_node, safe_path, xpath, pattern_match_xpath) unless block
+        def each_node(stream, encoding, xpath, pattern_match_xpath = nil, &block)
+          return enum_for(:each_node, stream, encoding, xpath, pattern_match_xpath) unless block
 
           require 'nokogiri'
 
-          with_encoding_check(safe_path) do |stream, encoding|
-            stream_xml_nodes(stream, xpath, pattern_match_xpath, encoding, &block)
-          end
+          stream_xml_nodes(stream, xpath, pattern_match_xpath, encoding, &block)
         end
 
         private

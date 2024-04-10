@@ -10,7 +10,8 @@ module NdrImport
       require 'ndr_import/xml/column_mapping'
       require 'ndr_import/xml/masked_mappings'
 
-      XML_OPTIONS = %w[pattern_match_record_xpath xml_record_xpath yield_xml_record].freeze
+      XML_OPTIONS = %w[pattern_match_record_xpath xml_file_metadata xml_record_xpath
+                       yield_xml_record].freeze
 
       def self.all_valid_options
         super - %w[delimiter header_lines footer_lines] + XML_OPTIONS

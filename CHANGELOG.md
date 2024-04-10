@@ -1,6 +1,8 @@
 ## [Unreleased]
 =======
-* no unreleased changes *
+
+### Added
+* XML file/table metadata storage
 
 ## 11.1.0 / 2024-03-07
 ### Added

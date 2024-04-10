@@ -9,6 +9,8 @@ module NdrImport
   module File
     # All common base file handler logic is defined here.
     class Base
+      attr_accessor :file_metadata
+
       def initialize(filename, format, options = {})
         @filename = filename
         @format = format
@@ -32,10 +34,10 @@ module NdrImport
         yield @filename
       end
 
-      # This method iterates over the tables in the given file and yields with two arguments:
-      # a tablename and a row enumerator (for that table). For a spreadsheet it may yield for
-      # every worksheet in the file and for a CSV file it will only yield once (the entire
-      # file is one table).
+      # This method iterates over the tables in the given file and yields with three arguments:
+      # a tablename, a row enumerator (for that table) and any file metadata.
+      # For a spreadsheet it may yield for  every worksheet in the file and for a CSV file it
+      # will only yield once (the entire file is one table).
       #
       # As single table files are in the majority, the Base implementation is defined for
       # single table handlers and you will only need to implement the rows iterator. If your
@@ -45,7 +47,7 @@ module NdrImport
       def tables
         return enum_for(:tables) unless block_given?
 
-        yield nil, rows
+        yield nil, rows, file_metadata
       end
 
       private

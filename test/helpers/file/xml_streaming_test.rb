@@ -27,7 +27,9 @@ class XmlStreamingTest < ActiveSupport::TestCase
     def nodes_from_file(xpath, file_name)
       file_path = safe_path.join(file_name)
       [].tap do |nodes|
-        each_node(file_path, xpath) { |node| nodes << node }
+        with_encoding_check(file_path) do |stream, encoding|
+          each_node(stream, encoding, xpath) { |node| nodes << node }
+        end
       end
     end
   end
@@ -199,10 +201,10 @@ class XmlStreamingTest < ActiveSupport::TestCase
     end
   end
 
-  test 'each_node should reject non safe path arguments' do
+  test 'with_encoding_check should reject non safe path arguments' do
     exception = assert_raises ArgumentError do
       block_called = false
-      @importer.each_node('unsafe.xml', '//note') { block_called = true }
+      @importer.send(:with_encoding_check, 'unsafe.xml') { block_called = true }
 
       refute block_called, 'should not have yielded'
     end
@@ -211,7 +213,11 @@ class XmlStreamingTest < ActiveSupport::TestCase
   end
 
   test 'each_node should return an enumerable' do
-    enum = @importer.each_node(@importer.safe_path.join('utf-8_xml.xml'), '//note')
+    safe_path = @importer.safe_path.join('utf-8_xml.xml')
+    enum = nil
+    @importer.send(:with_encoding_check, safe_path) do |stream, encoding|
+      enum = @importer.each_node(stream, encoding, '//note')
+    end
     assert_kind_of Enumerator, enum
     assert_equal 2, enum.to_a.length
   end
