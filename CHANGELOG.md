@@ -1,6 +1,8 @@
 ## [Unreleased]
 =======
-* no unreleased changes *
+
+### Added
+* Handling excel files with incorrect file extension
 
 ## 11.2.0 / 2024-04-10
 ### Added

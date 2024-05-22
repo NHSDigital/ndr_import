@@ -129,6 +129,37 @@ module NdrImport
 
         SafeFile.delete @permanent_test_files.join('txt_file_xls_extension_amend.xlsx')
       end
+
+      test 'should use format provided to read excel file with incorrect file extension' do
+        file_path = @permanent_test_files.join('sample_xlsx_with_dat_extension.dat')
+        handler = NdrImport::File::Excel.new(file_path, 'xlsx')
+        handler.tables.each do |tablename, sheet|
+          assert_equal 'Sheet1', tablename
+          assert_instance_of Enumerator, sheet
+          assert_equal %w[1A 1B], sheet.first
+        end
+      end
+
+      test 'should read xlsx file when an xls format provided incorrectly' do
+        file_path = @permanent_test_files.join('sample_xlsx_with_dat_extension.dat')
+        handler = NdrImport::File::Excel.new(file_path, 'xls')
+        handler.tables.each do |tablename, sheet|
+          assert_equal 'Sheet1', tablename
+          assert_instance_of Enumerator, sheet
+          assert_equal %w[1A 1B], sheet.first
+        end
+
+        # Existing logic doesn't remove the _amend.xlsx file
+        SafeFile.delete @permanent_test_files.join('sample_xlsx_with_dat_extension_amend.xlsx')
+      end
+
+      test 'should fail to load if format provided is not an excel extension' do
+        file_path = @permanent_test_files.join('sample_xlsx_with_dat_extension.dat')
+        handler   = NdrImport::File::Excel.new(file_path, 'cabbage')
+        exception = assert_raises(RuntimeError) { handler.tables.to_a }
+
+        assert_match(/Received file path with unexpected extension \.cabbage/, exception.message)
+      end
     end
   end
 end

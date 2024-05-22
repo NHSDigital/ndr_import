@@ -20,7 +20,10 @@ module NdrImport
       def tables
         return enum_for(:tables) unless block_given?
 
-        workbook = load_workbook(@filename)
+        # Create a new file using the given format as the extension, if a format is provided
+        path = @format.present? ? create_file_with_correct_extension : @filename
+
+        workbook = load_workbook(path)
         workbook.sheets.each do |sheet_name|
           yield sheet_name, excel_rows(workbook, sheet_name)
         end
@@ -91,11 +94,7 @@ module NdrImport
         when '.xls'
           Roo::Excel.new(SafeFile.safepath_to_string(path))
         when '.xlsm', '.xlsx'
-          if @options['file_password']
-            Roo::Excelx.new(StringIO.new(decrypted_file_string(path, @options['file_password'])))
-          else
-            Roo::Excelx.new(SafeFile.safepath_to_string(path))
-          end
+          load_xlsm_xlsx(path)
         else
           raise "Received file path with unexpected extension #{SafeFile.extname(path)}"
         end
@@ -107,13 +106,42 @@ module NdrImport
         # so we create a duplicate file in xlsx extension
         raise e.message unless /(.*)\.xls$/.match(path)
 
+        load_workbook create_amended_xlsx_from(path)
+      rescue RuntimeError, ::Zip::Error => e
+        raise ["Unable to read the file '#{path}'", e.message].join('; ')
+      ensure
+        SafeFile.delete(path) if @remove_updated_extension_file
+      end
+
+      def load_xlsm_xlsx(path)
+        if @options['file_password']
+          Roo::Excelx.new(StringIO.new(decrypted_file_string(path, @options['file_password'])))
+        else
+          Roo::Excelx.new(SafeFile.safepath_to_string(path))
+        end
+      end
+
+      def create_amended_xlsx_from(path)
         new_file_name = SafeFile.basename(path).gsub(/(.*)\.xls$/, '\1_amend.xlsx')
         new_file_path = SafeFile.dirname(path).join(new_file_name)
         copy_file(path, new_file_path)
 
-        load_workbook(new_file_path)
-      rescue RuntimeError, ::Zip::Error => e
-        raise ["Unable to read the file '#{path}'", e.message].join('; ')
+        new_file_path
+      end
+
+      def create_file_with_correct_extension
+        # We shouldn't attempt to change one excel format to another
+        return @filename if %w[.xls .xlsx .xlsm].include? SafeFile.extname(@filename).downcase
+
+        new_file_name = SafeFile.basename(@filename).sub(/\..+\z/, ".#{@format}")
+        new_file_path = SafeFile.dirname(@filename).join(new_file_name)
+        return @filename if ::File.exist?(new_file_path)
+
+        copy_file(@filename, new_file_path)
+        # Flag the newly made file for deletion once we've finished with it
+        @remove_updated_extension_file = true
+
+        new_file_path
       end
 
       # Note that this method can produce insecure calls. All callers must protect
