@@ -1,6 +1,6 @@
 ## [Unreleased]
 =======
-* no unreleased changes *
+* Column zipping functionality *
 
 ## 11.2.0 / 2024-04-10
 ### Added

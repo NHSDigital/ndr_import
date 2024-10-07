@@ -61,6 +61,22 @@ class MapperTest < ActiveSupport::TestCase
         order: 2
   YML
 
+  zip_mapping = YAML.load <<-YML
+    - column: zip_column1
+      mappings:
+      - field: zipped_field
+        zip_order: 1
+        split_char: ","
+    - column: zip_column2
+      mappings:
+      - field: zipped_field
+        zip_order: 2
+    - column: zip_column3
+      mappings:
+      - field: zipped_field
+        zip_order: 3
+  YML
+
   unused_mapping = [{ 'column' => 'extra', 'rawtext_name' => 'extra' }]
 
   cross_populate_mapping = YAML.load <<-YML
@@ -421,6 +437,20 @@ class MapperTest < ActiveSupport::TestCase
     assert_equal 'Catherine Elizabeth', line_hash['forenames']
     assert_equal 'Catherine', line_hash[:rawtext]['forename1']
     assert_equal 'Elizabeth', line_hash[:rawtext]['forename2']
+  end
+
+  test 'line mapping should create valid hash with zipped fields' do
+    test_line = ['hello1,hello2,hello3', 'world1,world2,world3', 'suffix1,suffix2,suffix3']
+    line_hash = TestMapper.new.mapped_line(test_line, zip_mapping)
+
+    expected_mapped_value = [
+      %w[hello1 world1 suffix1], %w[hello2 world2 suffix2], %w[hello3 world3 suffix3]
+    ]
+
+    assert_equal expected_mapped_value, line_hash['zipped_field']
+    assert_equal 'hello1,hello2,hello3', line_hash[:rawtext]['zip_column1']
+    assert_equal 'world1,world2,world3', line_hash[:rawtext]['zip_column2']
+    assert_equal 'suffix1,suffix2,suffix3', line_hash[:rawtext]['zip_column3']
   end
 
   test 'line mapping should create valid hash with rawtext only' do

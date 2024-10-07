@@ -30,6 +30,8 @@ module NdrImport::Mapper
     STANDARD_MAPPING = 'standard_mapping'.freeze
     UNPACK_PATTERN   = 'unpack_pattern'.freeze
     VALIDATES        = 'validates'.freeze
+    ZIP_ORDER        = 'zip_order'.freeze
+    SPLIT_CHAR       = 'split_char'.freeze
   end
 
   private
@@ -137,7 +139,8 @@ module NdrImport::Mapper
 
         data[field] ||= {}
         data[field][:values] ||= [] # "better" values come earlier
-        data[field][:compact]  = true unless data[field].key?(:compact)
+        data[field][:zipped_values] ||= []
+        data[field][:compact] = true unless data[field].key?(:compact)
 
         if field_mapping[Strings::ORDER]
           data[field][:join] ||= field_mapping[Strings::JOIN]
@@ -148,6 +151,9 @@ module NdrImport::Mapper
           data[field][:values][field_mapping[Strings::ORDER] - 1] = value
         elsif field_mapping[Strings::PRIORITY]
           data[field][:values][field_mapping[Strings::PRIORITY]] = value
+        elsif field_mapping[Strings::ZIP_ORDER]
+          data[field][:split_char] ||= field_mapping[Strings::SPLIT_CHAR]
+          data[field][:zipped_values][field_mapping[Strings::ZIP_ORDER] - 1] = value
         else
           data[field][:values].unshift(value) # new "best" value
         end
@@ -160,6 +166,7 @@ module NdrImport::Mapper
     # and one to many, for cross-populating
     data.each do |field, field_data|
       values = field_data[:values]
+      zipped_values = field_data[:zipped_values]
 
       attributes[field] =
         if field_data.key?(:join)
@@ -167,6 +174,9 @@ module NdrImport::Mapper
           values = values.map(&:presence)
           values.compact! if field_data[:compact]
           values.join(field_data[:join])
+        elsif field_data[:zipped_values].present?
+          values = zipped_values.map { |value| value.split(field_data[:split_char]) }
+          values.first.zip(*values[1..])
         else
           values.detect(&:present?)
         end
