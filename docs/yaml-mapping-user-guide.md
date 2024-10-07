@@ -13,3 +13,4 @@ add_to_nav: true
 6. [Non Tabular Mappings](non-tabular-mappings.md)
 7. [Date Formats](date-formats.md)
 8. [XML mappings](xml-mappings.md)
+9. [Zipped Field Mapping](priority-field-mapping.md)
