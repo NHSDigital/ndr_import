@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'activemodel'
-  spec.add_dependency 'activesupport', '>= 6.1', '< 7.1'
+  spec.add_dependency 'activesupport', '>= 6.1', '< 8.1'
   spec.add_dependency 'ndr_support', '>= 5.3.2', '< 6'
 
   spec.add_dependency 'rubyzip', '~> 2.0'
@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'avro', '~> 1.11.0'
   spec.add_dependency 'bio-vcf', '~> 0.9.5'
+  spec.add_dependency 'csv'
   spec.add_dependency 'docx', '~> 0.3'
   spec.add_dependency 'msworddoc-extractor', '0.2.0'
   spec.add_dependency 'nokogiri', '~> 1.8', '>= 1.8.5'
