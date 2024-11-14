@@ -1,4 +1,3 @@
-# encoding: UTF-8
 require 'test_helper'
 
 # This tests the StandardMappings configuration class
