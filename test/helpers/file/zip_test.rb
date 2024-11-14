@@ -44,7 +44,7 @@ class ZipTest < ActiveSupport::TestCase
       File.open(fname, 'w') { |f| f.write "test #{fname}" }
     end
 
-    ::Zip::File.open(zip_name, Zip::File::CREATE) do |zipfile|
+    ::Zip::File.open(zip_name, create: true) do |zipfile|
       files.each do |fname|
         zipfile.add(File.basename(fname.to_s), fname.to_s)
       end
