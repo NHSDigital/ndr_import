@@ -49,8 +49,12 @@ class << CSVLibrary
 
   private
 
+  def deprecator
+    @deprecator ||= ActiveSupport::Deprecation.new(NdrImport::VERSION, 'NdrImport')
+  end
+
   def deprecate(additional_message = nil)
-    ActiveSupport::Deprecation.warn(<<~MESSAGE)
+    deprecator.warn(<<~MESSAGE)
       CSVLibrary is deprecated, and will be removed in a future version of ndr_import.
       Please use standard functionality provided by Ruby's CSV library (#{additional_message}).
     MESSAGE

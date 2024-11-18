@@ -71,7 +71,9 @@ module Xml
     end
 
     test 'test should not raise exception on forced slurp' do
-      NdrImport::Xml::Table.new(klass: 'SomeTestKlass', slurp: true, columns: xml_column_mapping)
+      assert_nothing_raised do
+        NdrImport::Xml::Table.new(klass: 'SomeTestKlass', slurp: true, columns: xml_column_mapping)
+      end
     end
 
     test 'test should augment columns for repeating sections' do
