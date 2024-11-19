@@ -61,12 +61,27 @@ class MapperTest < ActiveSupport::TestCase
         order: 2
   YML
 
-  zip_mapping = YAML.load <<-YML
+  zip_mapping = YAML.safe_load <<-YML
     - column: zip_column1
       mappings:
       - field: zipped_field
         zip_order: 1
         split_char: ","
+    - column: zip_column2
+      mappings:
+      - field: zipped_field
+        zip_order: 2
+    - column: zip_column3
+      mappings:
+      - field: zipped_field
+        zip_order: 3
+  YML
+
+  zip_mapping_without_split_char = YAML.safe_load <<-YML
+    - column: zip_column1
+      mappings:
+      - field: zipped_field
+        zip_order: 1
     - column: zip_column2
       mappings:
       - field: zipped_field
@@ -448,6 +463,16 @@ class MapperTest < ActiveSupport::TestCase
     ]
 
     assert_equal expected_mapped_value, line_hash['zipped_field']
+    assert_equal 'hello1,hello2,hello3', line_hash[:rawtext]['zip_column1']
+    assert_equal 'world1,world2,world3', line_hash[:rawtext]['zip_column2']
+    assert_equal 'suffix1,suffix2,suffix3', line_hash[:rawtext]['zip_column3']
+  end
+
+  test 'line mapping should not attempt to zip fields without a split_char' do
+    test_line = ['hello1,hello2,hello3', 'world1,world2,world3', 'suffix1,suffix2,suffix3']
+    line_hash = TestMapper.new.mapped_line(test_line, zip_mapping_without_split_char)
+
+    assert_equal 'suffix1,suffix2,suffix3', line_hash['zipped_field']
     assert_equal 'hello1,hello2,hello3', line_hash[:rawtext]['zip_column1']
     assert_equal 'world1,world2,world3', line_hash[:rawtext]['zip_column2']
     assert_equal 'suffix1,suffix2,suffix3', line_hash[:rawtext]['zip_column3']

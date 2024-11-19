@@ -151,7 +151,7 @@ module NdrImport::Mapper
           data[field][:values][field_mapping[Strings::ORDER] - 1] = value
         elsif field_mapping[Strings::PRIORITY]
           data[field][:values][field_mapping[Strings::PRIORITY]] = value
-        elsif field_mapping[Strings::ZIP_ORDER]
+        elsif field_zippable?(field_mapping, data[field])
           data[field][:split_char] ||= field_mapping[Strings::SPLIT_CHAR]
           data[field][:zipped_values][field_mapping[Strings::ZIP_ORDER] - 1] = value
         else
@@ -174,7 +174,7 @@ module NdrImport::Mapper
           values = values.map(&:presence)
           values.compact! if field_data[:compact]
           values.join(field_data[:join])
-        elsif field_data[:zipped_values].present?
+        elsif zipped_values.present?
           values = zipped_values.map { |value| value.split(field_data[:split_char]) }
           values.first.zip(*values[1..])
         else
@@ -184,6 +184,12 @@ module NdrImport::Mapper
 
     attributes[:rawtext] = rawtext # Assign last
     attributes
+  end
+
+  def field_zippable?(field_mapping, data_field)
+    return false if field_mapping[Strings::ZIP_ORDER].blank?
+
+    data_field[:split_char].present? || field_mapping[Strings::SPLIT_CHAR].present?
   end
 
   def mapped_value(original_value, field_mapping)
