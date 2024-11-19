@@ -121,9 +121,10 @@ module NdrImport::Mapper
       rawtext[rawtext_column_name] = raw_value
 
       next unless column_mapping.key?(Strings::MAPPINGS)
+
       column_mapping[Strings::MAPPINGS].each do |field_mapping|
         # create a duplicate of the raw value we can manipulate
-        original_value = raw_value ? raw_value.dup : nil
+        original_value = raw_value&.dup
 
         replace_before_mapping(original_value, field_mapping)
         value = mapped_value(original_value, field_mapping)
