@@ -39,7 +39,7 @@ This would result in:
 
 Reversing the `zip_order` in the mapping would result in:
 ```
-{ "zipped_field"=>[["dog", "species""], ["brown", "colour"], ["4", "legs"]],
+{ "zipped_field"=>[["dog", "species"], ["brown", "colour"], ["4", "legs"]],
    :rawtext=>{"title"=>"species,colour,legs", "value"=>"dog,brown,4"}}
 ```
 
