@@ -11,13 +11,15 @@ class CSVLibraryTest < ActiveSupport::TestCase
   end
 
   test 'raises deprecation warnings' do
-    assert_deprecated(/will be removed in a future version of ndr_import/) do
+    deprecator = CSVLibrary.send(:deprecator)
+    assert_deprecated(/will be removed in a future version of ndr_import/, deprecator) do
       assert CSVLibrary.fastercsv?, '::CSV unexpectedly was the _old_ standard library'
     end
   end
 
   test 'defines functional legacy methods' do
-    assert_deprecated(/write_csv_to_string -> generate/) do
+    deprecator = CSVLibrary.send(:deprecator)
+    assert_deprecated(/write_csv_to_string -> generate/, deprecator) do
       assert_equal "1,2,3\n", CSVLibrary.write_csv_to_string([%w[1 2 3]])
     end
   end

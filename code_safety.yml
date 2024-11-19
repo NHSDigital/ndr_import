@@ -11,7 +11,7 @@ file safety:
   ".github/workflows/test.yml":
     comments:
     reviewed_by: brian.shand
-    safe_revision: 921f2ac49ef89d41920fd510db0c2c9c44d773bb
+    safe_revision: 6fd034c160d5edcbf6466ae442c5c7bf08eb0529
   ".gitignore":
     comments: whole file re-reviewed
     reviewed_by: brian.shand
@@ -27,7 +27,7 @@ file safety:
   CHANGELOG.md:
     comments:
     reviewed_by: brian.shand
-    safe_revision: cf88d8ef9908267197a0e8e5f249ff81856875d3
+    safe_revision: 6fd034c160d5edcbf6466ae442c5c7bf08eb0529
   CODE_OF_CONDUCT.md:
     comments:
     reviewed_by: timgentry
@@ -156,6 +156,14 @@ file safety:
     comments:
     reviewed_by: brian.shand
     safe_revision: 396a450173aee6d5802c7e8f13183f5fda8d73ce
+  gemfiles/Gemfile.rails72:
+    comments:
+    reviewed_by: brian.shand
+    safe_revision: 6fd034c160d5edcbf6466ae442c5c7bf08eb0529
+  gemfiles/Gemfile.rails80:
+    comments:
+    reviewed_by: brian.shand
+    safe_revision: 6fd034c160d5edcbf6466ae442c5c7bf08eb0529
   lib/ndr_import.rb:
     comments:
     reviewed_by: brian.shand
@@ -170,8 +178,8 @@ file safety:
     safe_revision: 9adb6ff1f7ad6883a45548986e709e7bf5205150
   lib/ndr_import/csv_library.rb:
     comments:
-    reviewed_by: ollietulloch
-    safe_revision: 6b8668967dbd42d7893a0fa5f0aa1ec1c11227e1
+    reviewed_by: brian.shand
+    safe_revision: 6fd034c160d5edcbf6466ae442c5c7bf08eb0529
   lib/ndr_import/file/acro_form.rb:
     comments:
     reviewed_by: josh.pencheon
@@ -364,15 +372,15 @@ file safety:
   ndr_import.gemspec:
     comments:
     reviewed_by: brian.shand
-    safe_revision: 921f2ac49ef89d41920fd510db0c2c9c44d773bb
+    safe_revision: 6fd034c160d5edcbf6466ae442c5c7bf08eb0529
   test/avro/table_test.rb:
     comments:
     reviewed_by: brian.shand
     safe_revision: 9adb6ff1f7ad6883a45548986e709e7bf5205150
   test/csv_library_test.rb:
     comments:
-    reviewed_by: ollietulloch
-    safe_revision: 6b8668967dbd42d7893a0fa5f0aa1ec1c11227e1
+    reviewed_by: brian.shand
+    safe_revision: 6fd034c160d5edcbf6466ae442c5c7bf08eb0529
   test/file/acro_form_test.rb:
     comments:
     reviewed_by: josh.pencheon
@@ -463,8 +471,8 @@ file safety:
     safe_revision: 9a6cc769abce5f9bfa5b4f8bd5cda52dfe18b12b
   test/helpers/file/zip_test.rb:
     comments:
-    reviewed_by: josh.pencheon
-    safe_revision: 9abdd6ced1d0c90ce8dd88abee4eb6472c7ff0d6
+    reviewed_by: brian.shand
+    safe_revision: 6fd034c160d5edcbf6466ae442c5c7bf08eb0529
   test/mapper_test.rb:
     comments: exposes Mapper internals to test them
     reviewed_by: brian.shand
@@ -775,8 +783,8 @@ file safety:
     safe_revision: 8c30f89f0562ab120769c166d4e93ff839c055f7
   test/standard_mappings_test.rb:
     comments:
-    reviewed_by: timgentry
-    safe_revision: 3c7f827d17aacbf7b811eea67e27553f3b039070
+    reviewed_by: brian.shand
+    safe_revision: 6fd034c160d5edcbf6466ae442c5c7bf08eb0529
   test/table_test.rb:
     comments:
     reviewed_by: brian.shand
@@ -807,5 +815,5 @@ file safety:
     safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   test/xml/table_test.rb:
     comments:
-    reviewed_by: ollietulloch
-    safe_revision: 2bc8c3b3f949a2c99016f47a545528a4d2956227
+    reviewed_by: brian.shand
+    safe_revision: 6fd034c160d5edcbf6466ae442c5c7bf08eb0529
