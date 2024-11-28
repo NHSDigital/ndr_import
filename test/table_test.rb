@@ -569,6 +569,44 @@ class TableTest < ActiveSupport::TestCase
                  '["one", "three"] unexpected: ["fun", "tree"]', exception.message)
   end
 
+  test 'should mutate regexp column names' do
+    lines = [
+      %w[1234 STRING_HEADING ABC123],
+      %w[NUMRIC_ONLY STRING_VALUE ALPHA_NUMBERIC]
+    ].each
+
+    table = NdrImport::Table.new(
+      header_lines: 1,
+      footer_lines: 0,
+      klass: 'SomeTestKlass',
+      columns: regexp_column_names
+    )
+
+    expected_output = [
+      ['SomeTestKlass',
+       { rawtext: { '1234' => 'NUMRIC_ONLY', 'string_heading' => 'STRING_VALUE', 'abc123' => 'ALPHA_NUMBERIC' } },
+       1]
+    ]
+    assert_equal expected_output, table.transform(lines).to_a
+  end
+
+  test 'should report header errors is regexp column names do not match' do
+    lines = [
+      %w[A1234Z STRING_HEADING ABC123],
+      %w[NUMRIC_ONLY STRING_VALUE ALPHA_NUMBERIC]
+    ].each
+
+    table = NdrImport::Table.new(
+      header_lines: 1,
+      footer_lines: 0,
+      klass: 'SomeTestKlass',
+      columns: regexp_column_names
+    )
+
+    exception = assert_raises(RuntimeError) { table.transform(lines).to_a }
+    assert_equal 'Header is not valid! unexpected: ["a1234z"]', exception.message
+  end
+
   private
 
   def simple_deserialized_table
@@ -618,6 +656,12 @@ class TableTest < ActiveSupport::TestCase
         { 'column' => 'three', 'klass' => 'SomeOtherKlass' }
       ]
     }
+  end
+
+  def regexp_column_names
+    [{ 'column' => /\A\d+\z/ },
+     { 'column' => 'string_heading' },
+     { 'column' => /\A[A-Z]+\d{3}\z/i }]
   end
 
   def get_yaml_mapping_order(yaml_mapping)
