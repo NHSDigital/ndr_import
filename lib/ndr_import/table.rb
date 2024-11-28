@@ -82,10 +82,10 @@ module NdrImport
 
     # Update 'column' values expressed as a regular expression
     def mutate_regexp_columns(line)
-      @columns.each_with_index do |col, index|
-        next unless col['column'].is_a? Regexp
+      @columns.each_with_index do |column, index|
+        next unless column['column'].is_a? Regexp
 
-        @columns[index]['column'] = line[index] if @columns[index]['column'] =~ line[index]
+        column['column'] = line[index] if column['column'] =~ line[index]
       end
     end
 
