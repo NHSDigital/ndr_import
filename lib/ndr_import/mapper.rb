@@ -32,6 +32,7 @@ module NdrImport::Mapper
     VALIDATES        = 'validates'.freeze
     ZIP_ORDER        = 'zip_order'.freeze
     SPLIT_CHAR       = 'split_char'.freeze
+    MAP_COLUMNAME_TO = 'map_columname_to'.freeze
   end
 
   private
@@ -119,6 +120,10 @@ module NdrImport::Mapper
 
       # Store the raw column value
       rawtext[rawtext_column_name] = raw_value
+      if column_mapping['map_columname_to'].present?
+        data[column_mapping[Strings::MAP_COLUMNAME_TO]] ||= {}
+        data[column_mapping[Strings::MAP_COLUMNAME_TO]][:values] = [(column_mapping['column'])]
+      end
 
       next unless column_mapping.key?(Strings::MAPPINGS)
 
