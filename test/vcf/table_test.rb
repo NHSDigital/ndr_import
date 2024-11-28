@@ -20,18 +20,28 @@ module Vcf
     test 'should transform avro lines' do
       table = NdrImport::Vcf::Table.new(klass: 'SomeTestKlass', columns: vcf_column_mapping)
 
-      expected_data = ['SomeTestKlass', { rawtext: {
-        '#chrom'  => '1',
-        'pos'     => '26387783',
-        'id'      => '.',
-        'ref'     => 'G',
-        'alt'     => 'A',
-        'qual'    => '847.77',
-        'filter'  => 'PASS',
-        'info'    => 'AC=1;AF=0.500;AN=2;DP=85;set=Intersection',
-        'format'  => 'GT:AD:DP:GQ:PL:SAC',
-        'sample1' => '0/1:52,32:84:99:876,0,1277:21,31,14,18'
-      } }, 1]
+      expected_data = ['SomeTestKlass',
+                       { 'zipped_field' =>
+                         [%w[GT 0/1],
+                          %w[AD 52,32],
+                          %w[DP 84],
+                          %w[GQ 99],
+                          %w[PL 876,0,1277],
+                          %w[SAC 21,31,14,18]],
+                         'lab_number' => 'Sample1',
+                         rawtext:
+                         { '#chrom'     => '1',
+                           'pos'        => '26387783',
+                           'id'         => '.',
+                           'ref'        => 'G',
+                           'alt'        => 'A',
+                           'qual'       => '847.77',
+                           'filter'     => 'PASS',
+                           'info'       => 'AC=1;AF=0.500;AN=2;DP=85;set=Intersection',
+                           'format'     => 'GT:AD:DP:GQ:PL:SAC',
+                           'sample1'    => '0/1:52,32:84:99:876,0,1277:21,31,14,18',
+                           'lab_number' => 'Sample1' } },
+                       1]
 
       transformed_data = table.transform(@rows)
       assert_equal 6, transformed_data.count
@@ -65,8 +75,8 @@ module Vcf
        { 'column' => 'qual' },
        { 'column' => 'filter' },
        { 'column' => 'info' },
-       { 'column' => 'format' },
-       { 'column' => 'sample1' }]
+       { 'column' => 'format', 'mappings' => ['field' => 'zipped_field', 'zip_order' => 1, 'split_char' => /[:;]/] },
+       { 'column' => /sample\d+/i, 'map_columname_to' => 'lab_number', 'mappings' => ['field' => 'zipped_field', 'zip_order' => 2] }]
     end
 
     def unexpected_columns_mapping
