@@ -66,6 +66,7 @@ module NdrImport
       return enum_for(:process_line, line) unless block
 
       if @row_index < header_lines
+        mutate_regexp_columns(line)
         consume_header_line(line, @columns)
       else
         transform_line(line, @row_index, &block)
@@ -77,6 +78,15 @@ module NdrImport
       fail_unless_header_complete(@columns) if @row_index == header_lines
 
       @notifier.try(:processed, @row_index)
+    end
+
+    # Update 'column' values expressed as a regular expression
+    def mutate_regexp_columns(line)
+      @columns.each_with_index do |col, index|
+        next unless col['column'].is_a? Regexp
+
+        @columns[index]['column'] = line[index] if @columns[index]['column'] =~ line[index]
+      end
     end
 
     # This method transforms an incoming line of data by applying each of the klass masked
@@ -227,7 +237,7 @@ module NdrImport
 
     # returns the column names as we expect to receive them
     def column_names(column_mappings)
-      column_mappings.map { |c| (c['column'] || c['standard_mapping']).downcase }
+      column_mappings.map { |c| (c['column'] || c['standard_mapping']).try(:downcase) }
     end
 
     # If specified in the mapping, stop transforming data at a given index (column)
