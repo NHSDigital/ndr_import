@@ -1,6 +1,8 @@
 ## [Unreleased]
 ### Added
 * Column zipping functionality *
+* Capturing Column name *
+* Regular expression column names *
 
 ## 11.2.1 / 2024-11-18
 ### Fixed
