@@ -120,9 +120,12 @@ module NdrImport::Mapper
 
       # Store the raw column value
       rawtext[rawtext_column_name] = raw_value
-      if column_mapping['map_columname_to'].present?
+
+      # If configured, store the column name in the given field
+      if column_mapping[Strings::MAP_COLUMNAME_TO].present?
         data[column_mapping[Strings::MAP_COLUMNAME_TO]] ||= {}
-        data[column_mapping[Strings::MAP_COLUMNAME_TO]][:values] = [(column_mapping['column'])]
+        data[column_mapping[Strings::MAP_COLUMNAME_TO]][:values] = [column_mapping['column']]
+        rawtext[column_mapping[Strings::MAP_COLUMNAME_TO]] = column_mapping['column']
       end
 
       next unless column_mapping.key?(Strings::MAPPINGS)

@@ -335,6 +335,16 @@ class MapperTest < ActiveSupport::TestCase
       - field: field_two
   YML
 
+  map_colum_name_to_field_mapping = YAML.safe_load <<-YML
+    - column: column_one
+      mappings:
+      - field: field_one
+    - column: abc123
+      map_columname_to: 'columnname_field'
+      mappings:
+      - field: field_two
+  YML
+
   test 'map should return a number' do
     assert_equal '1', TestMapper.new.mapped_value('A', map_mapping)
   end
@@ -727,5 +737,16 @@ class MapperTest < ActiveSupport::TestCase
     assert_raise(RuntimeError) do
       TestMapper.new.mapped_line(['A'], invalid_decode_mapping)
     end
+  end
+
+  test 'should map column name to field' do
+    mapped_line = TestMapper.new.mapped_line(%w[one two], map_colum_name_to_field_mapping)
+    expected_mapped_line = {
+      'field_one' => 'one',
+      'columnname_field' => 'abc123',
+      'field_two' => 'two',
+      rawtext: { 'column_one' => 'one', 'abc123' => 'two', 'columnname_field' => 'abc123' }
+    }
+    assert_equal expected_mapped_line, mapped_line
   end
 end
