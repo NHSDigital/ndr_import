@@ -85,7 +85,7 @@ module NdrImport
       @columns.each_with_index do |column, index|
         next unless column['column'].is_a? Regexp
 
-        column['column'] = line[index] if column['column'] =~ line[index]
+        column['column'] = line[index] if line[index].match? column['column']
       end
     end
 
