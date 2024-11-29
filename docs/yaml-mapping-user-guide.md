@@ -13,4 +13,6 @@ add_to_nav: true
 6. [Non Tabular Mappings](non-tabular-mappings.md)
 7. [Date Formats](date-formats.md)
 8. [XML mappings](xml-mappings.md)
-9. [Zipped Field Mapping](priority-field-mapping.md)
+9. [Zipped Field Mapping](zipped-field-mapping.md)
+10. [Regular Expression Column Names](regexp-column-names.md)
+11. [Capturing Column Names in Mapped Data](capturing-column-names.md)
