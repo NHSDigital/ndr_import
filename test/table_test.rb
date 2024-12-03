@@ -572,7 +572,7 @@ class TableTest < ActiveSupport::TestCase
   test 'should mutate regexp column names' do
     lines = [
       %w[1234 STRING_HEADING ABC123],
-      %w[NUMRIC_ONLY STRING_VALUE ALPHA_NUMBERIC]
+      %w[NUMERIC_ONLY STRING_VALUE ALPHA_NUMERIC]
     ].each
 
     table = NdrImport::Table.new(
@@ -584,7 +584,7 @@ class TableTest < ActiveSupport::TestCase
 
     expected_output = [
       ['SomeTestKlass',
-       { rawtext: { '1234' => 'NUMRIC_ONLY', 'string_heading' => 'STRING_VALUE', 'abc123' => 'ALPHA_NUMBERIC' } },
+       { rawtext: { '1234' => 'NUMERIC_ONLY', 'string_heading' => 'STRING_VALUE', 'abc123' => 'ALPHA_NUMERIC' } },
        1]
     ]
     assert_equal expected_output, table.transform(lines).to_a
@@ -593,7 +593,7 @@ class TableTest < ActiveSupport::TestCase
   test 'should report header errors is regexp column names do not match' do
     lines = [
       %w[A1234Z STRING_HEADING ABC123],
-      %w[NUMRIC_ONLY STRING_VALUE ALPHA_NUMBERIC]
+      %w[NUMERIC_ONLY STRING_VALUE ALPHA_NUMERIC]
     ].each
 
     table = NdrImport::Table.new(
