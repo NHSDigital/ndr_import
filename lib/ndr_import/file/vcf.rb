@@ -25,10 +25,10 @@ module NdrImport
         file_metadata_hash = {}
 
         ::File.read(@filename).each_line do |line|
-          next unless line =~ /^##/
+          next unless line.match?(/^##/)
 
           vcf_file_metadata.each do |attribute, pattern|
-            file_metadata_hash[attribute] = line.match(pattern)[1].presence if line =~ pattern
+            file_metadata_hash[attribute] = line.match(pattern)[1].presence if line.match? pattern
           end
         end
 
@@ -39,7 +39,7 @@ module NdrImport
         return enum_for(:rows) unless block
 
         ::File.read(@filename).each_line do |line|
-          next if line =~ /^##/
+          next if line.match?(/^##/)
 
           yield BioVcf::VcfLine.parse(line)
         end
