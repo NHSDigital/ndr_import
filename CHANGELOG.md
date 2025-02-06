@@ -1,4 +1,7 @@
 ## [Unreleased]
+### Fixed
+* Fix CSV parsing bug
+
 ### Added
 * Column zipping functionality *
 * Capturing Column name *
