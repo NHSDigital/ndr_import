@@ -1,6 +1,6 @@
 ---
 layout: page
-title: VCF File Metdata
+title: VCF File Metadata
 permalink: /vcf-file-metadata/
 ---
 
