@@ -28,7 +28,7 @@ module NdrImport
         end
 
         # Iterate through the file line by line, yielding each one in turn.
-        def delimited_rows(path, col_sep = nil, liberal = false)
+        def delimited_rows(path, col_sep = nil, liberal = false) # rubocop:disable Style/OptionalBooleanParameter
           return enum_for(:delimited_rows, path, col_sep, liberal) unless block_given?
 
           safe_path = SafeFile.safepath_to_string(path)
@@ -36,7 +36,7 @@ module NdrImport
 
           # By now, we know `options` should let us read the whole
           # file succesfully; if there are problems, we should crash.
-          CSV.foreach(safe_path, options.delete(:mode), **options) do |line|
+          CSV.foreach(safe_path, options[:mode], **options.except(:mode)) do |line|
             yield line.map(&:to_s)
           end
         end
