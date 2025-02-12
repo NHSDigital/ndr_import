@@ -27,7 +27,7 @@ file safety:
   CHANGELOG.md:
     comments:
     reviewed_by: ollietulloch
-    safe_revision: c8400997c8f0c2b44ac98e2c2e250fece9b6c6f0
+    safe_revision: 330b73fc14068fe17f3bf7a558031d975287f737
   CODE_OF_CONDUCT.md:
     comments:
     reviewed_by: timgentry
@@ -146,8 +146,8 @@ file safety:
     safe_revision: 1a8c6b99f0988228f8192bfe8c7d461141c32834
   docs/zipped-field-mapping.md:
     comments:
-    reviewed_by:
-    safe_revision:
+    reviewed_by: ollietulloch
+    safe_revision: 8ae9027ff0d36507f0343a2b0c7c9c501c0ccf2a
   exe/pdf_acro_form_to_yaml:
     comments:
     reviewed_by: josh.pencheon
@@ -364,7 +364,7 @@ file safety:
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: ollietulloch
-    safe_revision: c8400997c8f0c2b44ac98e2c2e250fece9b6c6f0
+    safe_revision: 330b73fc14068fe17f3bf7a558031d975287f737
   lib/ndr_import/xml/column_mapping.rb:
     comments:
     reviewed_by: brian.shand
