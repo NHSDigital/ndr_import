@@ -26,8 +26,8 @@ file safety:
     safe_revision: 6ec135a5dfde54992c6efb4f26c6da8041f3aefd
   CHANGELOG.md:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: 6fd034c160d5edcbf6466ae442c5c7bf08eb0529
+    reviewed_by: ollietulloch
+    safe_revision: c8400997c8f0c2b44ac98e2c2e250fece9b6c6f0
   CODE_OF_CONDUCT.md:
     comments:
     reviewed_by: timgentry
@@ -66,8 +66,8 @@ file safety:
     safe_revision: b55df15017761651c7a313fa2cc94497e875bad9
   docs/Gemfile.lock:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: ae92852248ae9279f525a24fb2f3795befcac3d4
+    reviewed_by: ollietulloch
+    safe_revision: 35645d701fc36e054a0c17125fadad8d08293a20
   docs/_config.yml:
     comments:
     reviewed_by: brian.shand
@@ -80,6 +80,10 @@ file safety:
     comments:
     reviewed_by: josh.pencheon
     safe_revision: 02aaf91b116c510a7c16f2b6f2389736b2742f49
+  docs/capturing-column-names.md:
+    comments:
+    reviewed_by: ollietulloch
+    safe_revision: f07c39ee0839d5af2b03c178526a7ed659c7ff9f
   docs/capturing-data.md:
     comments:
     reviewed_by: josh.pencheon
@@ -116,22 +120,34 @@ file safety:
     comments:
     reviewed_by: josh.pencheon
     safe_revision: 02aaf91b116c510a7c16f2b6f2389736b2742f49
+  docs/regexp-column-names.md:
+    comments: y
+    reviewed_by: ollietulloch
+    safe_revision: f07c39ee0839d5af2b03c178526a7ed659c7ff9f
   docs/standard-yaml-mappings.md:
     comments:
     reviewed_by: brian.shand
     safe_revision: 6ec135a5dfde54992c6efb4f26c6da8041f3aefd
+  docs/vcf-file-metadata.md:
+    comments:
+    reviewed_by: ollietulloch
+    safe_revision: 1a8c6b99f0988228f8192bfe8c7d461141c32834
   docs/xml-file-metadata.md:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: e633e277c5d70cf42d1d5a02a4c03569fb3ba07e
+    reviewed_by: ollietulloch
+    safe_revision: 1a8c6b99f0988228f8192bfe8c7d461141c32834
   docs/xml-mappings.md:
     comments:
     reviewed_by: brian.shand
     safe_revision: 77afde5dd2a00dfc0a7fd40004050fdbf0f7a553
   docs/yaml-mapping-user-guide.md:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
+    reviewed_by: ollietulloch
+    safe_revision: 1a8c6b99f0988228f8192bfe8c7d461141c32834
+  docs/zipped-field-mapping.md:
+    comments:
+    reviewed_by:
+    safe_revision:
   exe/pdf_acro_form_to_yaml:
     comments:
     reviewed_by: josh.pencheon
@@ -146,12 +162,12 @@ file safety:
     safe_revision: e1d967c10059e8c635452838c3f3dd2b969d9ae4
   gemfiles/Gemfile.rails61:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: f30a3db592512ba1f1b8de999a573b97dac5abea
+    reviewed_by: ollietulloch
+    safe_revision: 41ac17704fe6d31beca6f021ade4744b70f23574
   gemfiles/Gemfile.rails70:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: f30a3db592512ba1f1b8de999a573b97dac5abea
+    reviewed_by: ollietulloch
+    safe_revision: 41ac17704fe6d31beca6f021ade4744b70f23574
   gemfiles/Gemfile.rails71:
     comments:
     reviewed_by: brian.shand
@@ -239,7 +255,7 @@ file safety:
   lib/ndr_import/file/vcf.rb:
     comments:
     reviewed_by: ollietulloch
-    safe_revision: cf5e762a442088e87e295f80cc8478c285501c3a
+    safe_revision: 1a8c6b99f0988228f8192bfe8c7d461141c32834
   lib/ndr_import/file/word.rb:
     comments:
     reviewed_by: timgentry
@@ -259,7 +275,7 @@ file safety:
   lib/ndr_import/helpers/file/delimited.rb:
     comments:
     reviewed_by: ollietulloch
-    safe_revision: 4a5cc1d362c632fc1f9242c69982fbce33557e17
+    safe_revision: 41ac17704fe6d31beca6f021ade4744b70f23574
   lib/ndr_import/helpers/file/excel.rb:
     comments:
     reviewed_by: brian.shand
@@ -287,8 +303,8 @@ file safety:
     safe_revision: 6c6f204fab2f4232d81cb76aa523c26b0c490ae7
   lib/ndr_import/mapper.rb:
     comments: Writes to a Tempfile, but cleans up. Ruby will respect TMP_DIR
-    reviewed_by: josh.pencheon
-    safe_revision: 897f8b648d633368cf2001d17ab89c06a12d445b
+    reviewed_by: ollietulloch
+    safe_revision: f07c39ee0839d5af2b03c178526a7ed659c7ff9f
   lib/ndr_import/mapping_error.rb:
     comments:
     reviewed_by: timgentry
@@ -331,24 +347,24 @@ file safety:
     safe_revision: 3c7f827d17aacbf7b811eea67e27553f3b039070
   lib/ndr_import/table.rb:
     comments: uses File.basename
-    reviewed_by: brian.shand
-    safe_revision: 6cc7665dac177ec5181464d5297b8035d202cf63
+    reviewed_by: ollietulloch
+    safe_revision: f07c39ee0839d5af2b03c178526a7ed659c7ff9f
   lib/ndr_import/universal_importer_helper.rb:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: 601fd363c247d8ab29d219a8ceb962131870427f
+    reviewed_by: ollietulloch
+    safe_revision: 1a8c6b99f0988228f8192bfe8c7d461141c32834
   lib/ndr_import/unmapped_data_error.rb:
     comments:
     reviewed_by: josh.pencheon
     safe_revision: 5cd2cd0b3a1e254d30d4acc28c6731825a1f84f5
   lib/ndr_import/vcf/table.rb:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
+    reviewed_by: ollietulloch
+    safe_revision: 1a8c6b99f0988228f8192bfe8c7d461141c32834
   lib/ndr_import/version.rb:
     comments: another check?
-    reviewed_by: brian.shand
-    safe_revision: cf88d8ef9908267197a0e8e5f249ff81856875d3
+    reviewed_by: ollietulloch
+    safe_revision: c8400997c8f0c2b44ac98e2c2e250fece9b6c6f0
   lib/ndr_import/xml/column_mapping.rb:
     comments:
     reviewed_by: brian.shand
@@ -428,7 +444,7 @@ file safety:
   test/file/vcf_test.rb:
     comments:
     reviewed_by: ollietulloch
-    safe_revision: cf5e762a442088e87e295f80cc8478c285501c3a
+    safe_revision: 1a8c6b99f0988228f8192bfe8c7d461141c32834
   test/file/word_test.rb:
     comments: ollie
     reviewed_by: ollietulloch
@@ -475,8 +491,8 @@ file safety:
     safe_revision: 6fd034c160d5edcbf6466ae442c5c7bf08eb0529
   test/mapper_test.rb:
     comments: exposes Mapper internals to test them
-    reviewed_by: brian.shand
-    safe_revision: 5227e095de9bedddda9619720007b497355c138b
+    reviewed_by: ollietulloch
+    safe_revision: f07c39ee0839d5af2b03c178526a7ed659c7ff9f
   test/non_tabular/mapping_test.rb:
     comments:
     reviewed_by: timgentry
@@ -787,8 +803,8 @@ file safety:
     safe_revision: 6fd034c160d5edcbf6466ae442c5c7bf08eb0529
   test/table_test.rb:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: 5227e095de9bedddda9619720007b497355c138b
+    reviewed_by: ollietulloch
+    safe_revision: f07c39ee0839d5af2b03c178526a7ed659c7ff9f
   test/test_helper.rb:
     comments:
     reviewed_by: brian.shand
@@ -800,7 +816,7 @@ file safety:
   test/vcf/table_test.rb:
     comments:
     reviewed_by: ollietulloch
-    safe_revision: cf5e762a442088e87e295f80cc8478c285501c3a
+    safe_revision: 1a8c6b99f0988228f8192bfe8c7d461141c32834
   test/xml/column_mapping_test.rb:
     comments:
     reviewed_by: brian.shand

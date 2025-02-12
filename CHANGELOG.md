@@ -1,4 +1,7 @@
 ## [Unreleased]
+* no unreleased changes
+
+## 11.3.0/ 2025-02-11
 ### Fixed
 * Fix CSV parsing bug
 
