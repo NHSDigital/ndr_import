@@ -51,11 +51,20 @@ module NdrImport
       @header_valid = false
       @header_best_guess = nil
       @notifier.try(:started)
-
+      # Keep a copy of the original column mappings for use later if columns are mutated
+      original_columns = @columns.deep_dup
+      @columns_mutated = false
       last_col = last_column_to_transform
       skip_footer_lines(lines, footer_lines).each do |line|
         line.is_a?(Array) ? process_line(line[0..last_col], &block) : process_line(line, &block)
       end
+
+      # @columns may have been mutated where column is a regular expression.
+      # We want to restore `@columns` back to its original state, so the column regexp
+      # will work on the next file
+      @columns = original_columns if @columns_mutated
+      # Also ensure that @masked_mappings are recalculated if @columns has been mutated
+      @masked_mappings = nil if @columns_mutated
 
       @notifier.try(:finished)
     end
@@ -85,7 +94,10 @@ module NdrImport
       @columns.each_with_index do |column, index|
         next unless column['column'].is_a? Regexp
 
-        column['column'] = line[index] if line[index].match? column['column']
+        if line[index].match? column['column']
+          column['column'] = line[index]
+          @columns_mutated = true
+        end
       end
     end
 

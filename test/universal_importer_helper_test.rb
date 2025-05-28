@@ -222,6 +222,30 @@ class UniversalImporterHelperTest < ActiveSupport::TestCase
     assert_equal 4, table_enums.first.last.count
   end
 
+  test 'mutated columns get reset' do
+    table_mappings = [
+      NdrImport::Table.new(filename_pattern: /\.csv\z/i,
+                           canonical_name: 'a_table',
+                           header_lines: 1,
+                           footer_lines: 0,
+                           klass: 'SomeTestClass',
+                           columns: [{ 'column' => 'one' },
+                                     { 'column' => 'two' },
+                                     { 'column' => /\A[AB]\d{3}\z/i }])
+    ]
+    source_file = @permanent_test_files.join('regex_column_names.zip')
+    @test_importer.stubs(:get_table_mapping).returns(table_mappings.first)
+    mapped_rows = []
+    @test_importer.extract(source_file) { |table, rows| mapped_rows << table.transform(rows).to_a }
+
+    expected_mapped_data = [
+      [['SomeTestClass', { rawtext: { 'one' => '2', 'two' => '2', 'b456' => '2' } }, 1]],
+      [['SomeTestClass', { rawtext: { 'one' => '1', 'two' => '1', 'a123' => '1' } }, 1]]
+    ]
+
+    assert_equal expected_mapped_data, mapped_rows
+  end
+
   test 'get_notifier' do
     class TestImporterWithoutNotifier
       include NdrImport::UniversalImporterHelper
