@@ -1,5 +1,8 @@
 ## [Unreleased]
-* no unreleased changes
+
+### Fixed
+* Fix bug in VCF metadata
+* Fix bug where table columns are mutated by a regexp column
 
 ## 11.3.0/ 2025-02-11
 ### Fixed
