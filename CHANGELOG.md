@@ -1,5 +1,6 @@
 ## [Unreleased]
-* no unreleased changes
+### Fixed
+* Drop support for Ruby 3.0, Rails 6.1
 
 ## 11.3.0/ 2025-02-11
 ### Fixed
