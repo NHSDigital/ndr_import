@@ -34,6 +34,8 @@ module NdrImport
       end
 
       @row_index = 0
+      # Keep a copy of the original column mappings for use later if columns are mutated
+      @original_columns = @columns.deep_dup
     end
 
     def match(filename, tablename)
@@ -51,11 +53,17 @@ module NdrImport
       @header_valid = false
       @header_best_guess = nil
       @notifier.try(:started)
-
       last_col = last_column_to_transform
       skip_footer_lines(lines, footer_lines).each do |line|
         line.is_a?(Array) ? process_line(line[0..last_col], &block) : process_line(line, &block)
       end
+
+      # @columns may have been mutated where column is a regular expression.
+      # We want to restore `@columns` back to its original state, so the column regexp
+      # will work on the next file
+      @columns = @original_columns
+      # Also ensure that @masked_mappings are recalculated
+      @masked_mappings = nil
 
       @notifier.try(:finished)
     end
