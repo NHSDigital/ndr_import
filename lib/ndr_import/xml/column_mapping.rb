@@ -4,6 +4,8 @@ module NdrImport
     # identified in the xml.
     # This avoids the need for mappings to verbosly define repeating columns/sections
     class ColumnMapping
+      INCREMENT_REGEX = /\[(\d+)\]/
+
       attr_accessor :existing_column, :unmapped_node_parts, :klass_increment, :xml_line, :klass,
                     :repeating_item, :increment_field_name, :build_new_record, :klass_section_xpath
 
@@ -13,10 +15,16 @@ module NdrImport
         @klass_increment      = klass_increment
         @xml_line             = xml_line
         @klass                = klass
-        @repeating_item       = existing_column.dig('xml_cell', 'multiple')
-        @increment_field_name = existing_column.dig('xml_cell', 'increment_field_name')
-        @build_new_record     = existing_column.dig('xml_cell', 'build_new_record')
-        @klass_section_xpath  = existing_column.dig('xml_cell', 'klass_section')
+
+        xml_cell              = existing_column['xml_cell']
+        @repeating_item       = xml_cell&.dig('multiple')
+        @increment_field_name = xml_cell&.dig('increment_field_name')
+        @build_new_record     = xml_cell&.dig('build_new_record')
+        @klass_section_xpath  = xml_cell&.dig('klass_section')
+        @existing_klass       = existing_column['klass']
+        @klass_is_array       = @existing_klass.is_a?(Array)
+
+        freeze
       end
 
       def call
@@ -48,34 +56,38 @@ module NdrImport
       end
 
       def incremented_klass
-        if existing_column['klass'].is_a?(Array)
-          existing_column['klass'].map do |column_klass|
-            column_klass + "##{klass_increment}"
-          end
+        if @klass_is_array
+          @existing_klass.map { |column_klass| column_klass + "##{klass_increment}" }
         else
-          existing_column['klass'] + "##{klass_increment}"
+          @existing_klass + "##{klass_increment}"
         end
       end
 
       # Append "_1.1", "_2.1", "_1" etc to repeating rawtext and optionally mapped field names
       # within a single record, so data is not overwritten
       def apply_new_rawtext_and_mapped_names_to(new_column)
-        existing_rawtext        = existing_column['rawtext_name'] || existing_column['column']
-        column_name_increment   = new_column['column'].scan(/\[(\d+)\]/)
-        relative_path_increment = new_column.dig('xml_cell', 'relative_path').scan(/\[(\d+)\]/)
+        increment_suffix = extract_increment_from_column(new_column)
+        return unless increment_suffix
 
-        # Find all the increments (e.g. [1], [2]) from the new column and concatenate them to
-        # use as the rawtext and column name increment
-        increment = (column_name_increment + relative_path_increment).flatten.compact.join('.')
-        new_column['rawtext_name'] = existing_rawtext + "_#{increment}" if increment.present?
+        apply_rawtext_increment(new_column, increment_suffix)
+        apply_mappings_increment(new_column, increment_suffix) if increment_field_name
+      end
 
-        return unless increment.present? && increment_field_name
+      def extract_increment_from_column(new_column)
+        column_increments   = new_column['column'].scan(INCREMENT_REGEX)
+        path_increments     = new_column.dig('xml_cell', 'relative_path').scan(INCREMENT_REGEX)
+        combined_increments = (column_increments + path_increments).join('.')
 
-        new_column['mappings'] = incremented_mappings_for(new_column, increment)
+        combined_increments.presence
+      end
+
+      def apply_rawtext_increment(new_column, increment)
+        existing_rawtext = existing_column['rawtext_name'] || existing_column['column']
+        new_column['rawtext_name'] = "#{existing_rawtext}_#{increment}"
       end
 
       # Increment the mapped `field` names
-      def incremented_mappings_for(new_column, increment)
+      def apply_mappings_increment(new_column, increment)
         new_column['mappings'].map do |mapping|
           mapping['field'] = "#{mapping['field']}_#{increment}"
 
