@@ -27,7 +27,7 @@ file safety:
   CHANGELOG.md:
     comments:
     reviewed_by: ollietulloch
-    safe_revision: 330b73fc14068fe17f3bf7a558031d975287f737
+    safe_revision: 5d0b901d555230008cbe6e44de8a1f0f6ca1c011
   CODE_OF_CONDUCT.md:
     comments:
     reviewed_by: timgentry
@@ -67,7 +67,7 @@ file safety:
   docs/Gemfile.lock:
     comments:
     reviewed_by: ollietulloch
-    safe_revision: 35645d701fc36e054a0c17125fadad8d08293a20
+    safe_revision: edd181b99f2f93185d1bc2bbacd48be650e3a3e6
   docs/_config.yml:
     comments:
     reviewed_by: brian.shand
@@ -121,7 +121,7 @@ file safety:
     reviewed_by: josh.pencheon
     safe_revision: 02aaf91b116c510a7c16f2b6f2389736b2742f49
   docs/regexp-column-names.md:
-    comments: y
+    comments: "y"
     reviewed_by: ollietulloch
     safe_revision: f07c39ee0839d5af2b03c178526a7ed659c7ff9f
   docs/standard-yaml-mappings.md:
@@ -364,7 +364,7 @@ file safety:
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: ollietulloch
-    safe_revision: 330b73fc14068fe17f3bf7a558031d975287f737
+    safe_revision: 5d0b901d555230008cbe6e44de8a1f0f6ca1c011
   lib/ndr_import/xml/column_mapping.rb:
     comments:
     reviewed_by: brian.shand
@@ -375,8 +375,8 @@ file safety:
     safe_revision: 9a6cc769abce5f9bfa5b4f8bd5cda52dfe18b12b
   lib/ndr_import/xml/masked_mappings.rb:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
+    reviewed_by: ollietulloch
+    safe_revision: 0521cbb439c4f15507ac497fde9d37ace226563c
   lib/ndr_import/xml/table.rb:
     comments:
     reviewed_by: brian.shand
