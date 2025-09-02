@@ -1,5 +1,6 @@
 ## [Unreleased]
-* no unreleased changes
+### Enhancement
+* Performance improvements for XML mask mappings
 
 ## 11.3.0/ 2025-02-11
 ### Fixed
