@@ -1,12 +1,6 @@
 require 'test_helper'
-# A TEST COMMENT TO REMOVE
-# another change
-# change 3
-#dvdfv
-# sdcdscf
-# sdcdvss
-# sdfvsdc
 # Tests the legacy CSVLibrary class
+# sdcsd
 class CSVLibraryTest < ActiveSupport::TestCase
   test 'is distinct from the standard library CSV' do
     refute_equal CSV, CSVLibrary
