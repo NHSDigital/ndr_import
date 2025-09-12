@@ -2,6 +2,7 @@ require 'pdf-reader'
 
 module NdrImport
   # test
+  # stillsigning?
   # PDF AcroForm reader using the pdf-reader gem
   class AcroFormReader < ::PDF::Reader
     def fields_hash
