@@ -4,70 +4,156 @@ module NdrImport
     # Overriding the NdrImport::Table method to avoid memoizing. This by design, column mappings
     # can change if new mappings are added on the fly where repeating sections are present
     class MaskedMappings
-      attr_accessor :klass, :augmented_columns
+      DO_NOT_CAPTURE_MAPPING = { 'do_not_capture' => true }.freeze
+      KLASS_KEY              = 'klass'.freeze
+      COLUMN_KEY             = 'column'.freeze
+      STANDARD_MAPPING_KEY   = 'standard_mapping'.freeze
+      DO_NOT_CAPTURE_KEY     = 'do_not_capture'.freeze
+      XML_CELL_KEY           = 'xml_cell'.freeze
+      KEEP_KLASS_KEY         = 'keep_klass'.freeze
+
+      # Pre-compiled regex for numbered variants
+      NUMBERED_VARIANT_PATTERN = /#\d+\z/
+
+      attr_reader :klass, :augmented_columns
 
       def initialize(klass, augmented_columns)
         @klass             = klass
         @augmented_columns = augmented_columns
+        @column_count      = augmented_columns.size
+        @has_klass         = !klass.nil?
+
+        freeze
       end
 
       def call
-        return { klass => augmented_columns } if klass.present?
+        return { @klass => @augmented_columns } if @has_klass
 
-        masked_mappings = column_level_klass_masked_mappings
-
-        augmented_masked_mappings = masked_mappings
-        # Remove any masked klasses where additional columns mappings
-        # have been added for repeated sections
-        # e.g. SomeTestKlass column mappings are not needed if SomeTestKlass#1
-        # have been added
-        masked_mappings.each do |masked_key, columns|
-          # There may be occasions where the e.g. SomeTestKlass should be kept,
-          # This can be flagged in the one the klass's column mappings
-          next if columns.any? { |column| column.dig('xml_cell', 'keep_klass') }
-
-          if masked_mappings.keys.any? { |key| key =~ /\A#{masked_key}#\d+\z/ }
-            augmented_masked_mappings.delete(masked_key)
-          end
-        end
-
-        augmented_masked_mappings
+        masked_mappings = build_masked_mappings
+        remove_superseded_base_klasses(masked_mappings)
       end
 
       private
 
-      # This method duplicates the mappings and applies a do_not_capture mask to those that do not
-      # relate to this klass, returning the masked mappings
-      def mask_mappings_by_klass(klass)
-        augmented_columns.deep_dup.map do |mapping|
-          Array(mapping['klass']).flatten.include?(klass) ? mapping : { 'do_not_capture' => true }
+      def build_masked_mappings
+        # Pre-validate and extract all klasses in one pass
+        all_klasses_set, klassless_column_names = extract_klasses_and_validate
+
+        raise "Missing klass for column(s): #{klassless_column_names.join(', ')}" unless klassless_column_names.empty?
+
+        all_klasses_array = all_klasses_set.to_a
+
+        # Pre-allocate result hash with exact size
+        result = Hash.new(all_klasses_array.size)
+
+        all_klasses_array.each do |current_klass|
+          result[current_klass] = mask_mappings_for_klass(current_klass)
+        end
+
+        result
+      end
+
+      def extract_klasses_and_validate
+        klasses_set            = Set.new
+        klassless_column_names = []
+
+        @augmented_columns.each do |mapping|
+          mapping_klass = mapping[KLASS_KEY]
+
+          if mapping_klass.nil?
+            # Only collect klassless mappings that aren't marked as do_not_capture
+            klassless_column_names << column_name_from(mapping) unless mapping[DO_NOT_CAPTURE_KEY]
+          elsif mapping_klass.is_a?(Array)
+            klasses_set.merge(mapping_klass.compact)
+          else
+            klasses_set.add(mapping_klass)
+          end
+        end
+
+        [klasses_set, klassless_column_names]
+      end
+
+      def column_name_from(mapping)
+        mapping[COLUMN_KEY] || mapping[STANDARD_MAPPING_KEY]
+      end
+
+      def mask_mappings_for_klass(target_klass)
+        # Pre-allocate array with exact size
+        result = Array.new(@column_count)
+
+        # Single pass with index tracking
+        @augmented_columns.each_with_index do |mapping, index|
+          result[index] = if mapping_applies_to_klass?(mapping, target_klass)
+                            mapping.deep_dup
+                          else
+                            DO_NOT_CAPTURE_MAPPING
+                          end
+        end
+
+        result
+      end
+
+      def mapping_applies_to_klass?(mapping, target_klass)
+        mapping_klass = mapping[KLASS_KEY]
+        return false unless mapping_klass
+
+        # Optimized type checking and inclusion
+        case mapping_klass
+        when Array
+          mapping_klass.include?(target_klass)
+        when String
+          mapping_klass == target_klass
+        else
+          false
         end
       end
 
-      def column_level_klass_masked_mappings
-        ensure_mappings_define_klass
+      def remove_superseded_base_klasses(masked_mappings)
+        return masked_mappings if masked_mappings.size <= 1
 
-        # Loop through each klass
-        masked_mappings = {}
-        augmented_columns.pluck('klass').flatten.compact.uniq.each do |klass|
-          # Do not capture fields that relate to other klasses
-          masked_mappings[klass] = mask_mappings_by_klass(klass)
+        # Pre-build numbered variants lookup for O(1) access
+        numbered_klasses = build_numbered_klasses_lookup(masked_mappings.keys)
+        return masked_mappings if numbered_klasses.empty?
+
+        klasses_to_keep = compute_klasses_to_keep(masked_mappings)
+
+        masked_mappings.select do |klass, _columns|
+          klasses_to_keep.include?(klass) || numbered_klasses.exclude?(klass)
         end
-        masked_mappings
       end
 
-      # This method ensures that every column mapping defines a klass (unless it is a column that
-      # we do not capture). It is only used where a table level klass is not defined.
-      def ensure_mappings_define_klass
-        klassless_mappings = augmented_columns.
-                             select { |mapping| mapping.nil? || mapping['klass'].nil? }.
-                             reject { |mapping| mapping['do_not_capture'] }.
-                             map { |mapping| mapping['column'] || mapping['standard_mapping'] }
+      def build_numbered_klasses_lookup(klass_keys)
+        numbered_klasses = Set.new
 
-        return if klassless_mappings.empty?
+        klass_keys.each do |key|
+          next unless key.match?(NUMBERED_VARIANT_PATTERN)
 
-        # All column mappings for the single item file require a klass definition.
-        raise "Missing klass for column(s): #{klassless_mappings.to_sentence}"
+          # Extract base klass name (everything before #)
+          base_klass = key.split(NUMBERED_VARIANT_PATTERN, 2).first
+          numbered_klasses.add(base_klass)
+        end
+
+        numbered_klasses
+      end
+
+      def compute_klasses_to_keep(masked_mappings)
+        klasses_to_keep = Set.new
+
+        masked_mappings.each do |klass, columns|
+          klasses_to_keep.add(klass) if should_keep_base_klass?(columns)
+        end
+
+        klasses_to_keep
+      end
+
+      def should_keep_base_klass?(columns)
+        # Fast iteration with early termination
+        columns.each do |column|
+          xml_cell = column[XML_CELL_KEY]
+          return true if xml_cell && xml_cell[KEEP_KLASS_KEY]
+        end
+
+        false
       end
     end
   end

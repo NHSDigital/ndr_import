@@ -2,6 +2,14 @@
 ### Fixed
 * Drop support for Ruby 3.0, Rails 6.1
 
+### Added
+## 11.4.0 / 2025-10-10
+* Adds option to format value to Time
+
+## 11.3.1/ 2025-09-02
+### Enhancement
+* Performance improvements for XML mask mappings
+
 ## 11.3.0/ 2025-02-11
 ### Fixed
 * Fix CSV parsing bug
