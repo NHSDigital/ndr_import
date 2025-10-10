@@ -759,7 +759,7 @@ class MapperTest < ActiveSupport::TestCase
   end
 
   test 'should format time' do
-    expected_value = Time.new(2025, 6, 1, 10, 15, 36)
+    expected_value = Time.new(2025, 6, 1, 10, 15, 36, '+01:00')
     actual_value   = TestMapper.new.mapped_line(['2025-06-01T10:15:36+01:00'], time_format_mapping)['time_field']
     assert_equal expected_value, actual_value
   end
