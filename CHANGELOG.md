@@ -1,5 +1,9 @@
 ## [Unreleased]
-* Adds option to format value to Time *
+*no unreleased changes*
+
+### Added
+## 11.4.0 / 2025-10-10
+* Adds option to format value to Time
 
 ## 11.3.1/ 2025-09-02
 ### Enhancement
