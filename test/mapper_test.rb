@@ -345,6 +345,14 @@ class MapperTest < ActiveSupport::TestCase
       - field: field_two
   YML
 
+  time_format_mapping = YAML.safe_load <<-YML
+  - column: time_field
+    mappings:
+    - field: time_field
+      format: "%Y-%m-%dT%H:%M:%S%:z"
+      time: true
+  YML
+
   test 'map should return a number' do
     assert_equal '1', TestMapper.new.mapped_value('A', map_mapping)
   end
@@ -748,5 +756,19 @@ class MapperTest < ActiveSupport::TestCase
       rawtext: { 'column_one' => 'one', 'abc123' => 'two', 'columnname_field' => 'abc123' }
     }
     assert_equal expected_mapped_line, mapped_line
+  end
+
+  test 'should format time' do
+    expected_value = Time.new(2025, 6, 1, 10, 15, 36)
+    actual_value   = TestMapper.new.mapped_line(['2025-06-01T10:15:36+01:00'], time_format_mapping)['time_field']
+    assert_equal expected_value, actual_value
+  end
+
+  test 'should raise an error with invalid time format' do
+    exception = assert_raise(ArgumentError) do
+      TestMapper.new.mapped_line(['2025-06-01T10:15:36'], time_format_mapping)
+    end
+
+    assert exception.message.starts_with? 'invalid date or strptime format'
   end
 end

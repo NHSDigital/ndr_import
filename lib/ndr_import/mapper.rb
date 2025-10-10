@@ -28,6 +28,7 @@ module NdrImport::Mapper
     RAWTEXT_NAME     = 'rawtext_name'.freeze
     REPLACE          = 'replace'.freeze
     STANDARD_MAPPING = 'standard_mapping'.freeze
+    TIME             = 'time'.freeze
     UNPACK_PATTERN   = 'unpack_pattern'.freeze
     VALIDATES        = 'validates'.freeze
     ZIP_ORDER        = 'zip_order'.freeze
@@ -203,12 +204,17 @@ module NdrImport::Mapper
 
   def mapped_value(original_value, field_mapping)
     if field_mapping.include?(Strings::FORMAT)
+      return nil if original_value.blank?
+
+      expected_format = field_mapping[Strings::FORMAT]
       begin
-        return original_value.blank? ? nil : original_value.to_date(field_mapping[Strings::FORMAT])
+        if field_mapping[Strings::TIME]
+          return Time.strptime(original_value, expected_format)
+        else
+          return original_value.to_date(expected_format)
+        end
       rescue ArgumentError => e
-        e2 = ArgumentError.new("#{e} value #{original_value.inspect}")
-        e2.set_backtrace(e.backtrace)
-        raise e2
+        raise ArgumentError, "#{e.message} value #{original_value.inspect}", e.backtrace
       end
     elsif field_mapping.include?(Strings::CLEAN)
       return nil if original_value.blank?
