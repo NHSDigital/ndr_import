@@ -208,11 +208,9 @@ module NdrImport::Mapper
 
       expected_format = field_mapping[Strings::FORMAT]
       begin
-        if field_mapping[Strings::TIME]
-          return Time.strptime(original_value, expected_format)
-        else
-          return original_value.to_date(expected_format)
-        end
+        return Time.strptime(original_value, expected_format) if field_mapping[Strings::TIME]
+
+        original_value.to_date(expected_format)
       rescue ArgumentError => e
         raise ArgumentError, "#{e.message} value #{original_value.inspect}", e.backtrace
       end
