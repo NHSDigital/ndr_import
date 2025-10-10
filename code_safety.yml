@@ -27,7 +27,7 @@ file safety:
   CHANGELOG.md:
     comments:
     reviewed_by: ollietulloch
-    safe_revision: 01e7ed2c110dae32a5858925fdb1897d5831988c
+    safe_revision: b8e0f55ee4bbfa3b737ac6a5b71cee3fd622f158
   CODE_OF_CONDUCT.md:
     comments:
     reviewed_by: timgentry
@@ -364,7 +364,7 @@ file safety:
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: ollietulloch
-    safe_revision: 01e7ed2c110dae32a5858925fdb1897d5831988c
+    safe_revision: b8e0f55ee4bbfa3b737ac6a5b71cee3fd622f158
   lib/ndr_import/xml/column_mapping.rb:
     comments:
     reviewed_by: brian.shand
