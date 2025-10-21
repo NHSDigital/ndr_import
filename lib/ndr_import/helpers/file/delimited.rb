@@ -62,28 +62,29 @@ module NdrImport
           successful_options
         end
 
-        def try_each_encoding(safe_path, col_sep, liberal, supported_encodings)
+        def try_each_encoding(safe_path, col_sep, liberal, supported_encodings) # rubocop:disable Metrics/MethodLength
           supported_encodings.each do |delimiter_encoding, access_mode|
-            begin
-              options = {
-                col_sep: (col_sep || ',').force_encoding(delimiter_encoding),
-                liberal_parsing: liberal
-              }
+            options = {
+              col_sep: (col_sep || ',').dup.force_encoding(delimiter_encoding),
+              liberal_parsing: liberal
+            }
 
-              row_num = 0
-              # Iterate through the file; if we reach the end, this encoding worked:
-              CSV.foreach(safe_path, access_mode, **options) { |_line| row_num += 1 }
-              return options.merge(mode: access_mode)
-            rescue ArgumentError => e
-              next if e.message =~ /invalid byte sequence/ # This encoding didn't work
-              raise(e)
-            rescue RegexpError => e
-              next if e.message =~ /invalid multibyte character/ # This encoding didn't work
-              raise(e)
-            rescue CSVLibrary::MalformedCSVError => e
-              next if e.message =~ /Invalid byte sequence/ # This encoding didn't work
-              raise malformed_csv_error(e, col_sep, row_num + 1, safe_path)
-            end
+            row_num = 0
+            # Iterate through the file; if we reach the end, this encoding worked:
+            CSV.foreach(safe_path, access_mode, **options) { |_line| row_num += 1 }
+            return options.merge(mode: access_mode)
+          rescue ArgumentError => e
+            next if e.message =~ /invalid byte sequence/ # This encoding didn't work
+
+            raise(e)
+          rescue RegexpError => e
+            next if e.message =~ /invalid multibyte character/ # This encoding didn't work
+
+            raise(e)
+          rescue CSVLibrary::MalformedCSVError => e
+            next if e.message =~ /Invalid byte sequence/ # This encoding didn't work
+
+            raise malformed_csv_error(e, col_sep, row_num + 1, safe_path)
           end
         end
 

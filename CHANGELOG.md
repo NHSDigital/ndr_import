@@ -1,6 +1,6 @@
 ## [Unreleased]
 ### Fixed
-* Drop support for Ruby 3.0, Rails 6.1
+* Support Ruby 3.4. Drop support for Ruby 3.0 and 3.1, Rails 6.1 and 7.0
 
 ### Added
 ## 11.4.0 / 2025-10-10
