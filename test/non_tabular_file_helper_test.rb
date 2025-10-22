@@ -12,7 +12,7 @@ end
 
 # This tests the NonTabularFileHelper class
 class NonTabularFileHelperTest < ActiveSupport::TestCase
-  simple_divider_example = <<-STR
+  simple_divider_example = +<<-STR
 111
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
 ------
@@ -219,7 +219,7 @@ STR
     assert results.last[0].start_with?('444')
   end
 
-  no_divider_example = <<-STR
+  no_divider_example = +<<-STR
 111
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
 STR
@@ -245,7 +245,7 @@ STR
     assert results.first[0].start_with?('111')
   end
 
-  simple_start_and_end_divider_example = <<-STR
+  simple_start_and_end_divider_example = +<<-STR
 ----- START -----
 111
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
@@ -374,7 +374,7 @@ STR
           capture: !ruby/regexp /^(.*)$/i
           join: "\\n"
     YML
-    capture_example = <<-STR
+    capture_example = +<<-STR
 This is never captured
 ------
 1111111111
@@ -498,7 +498,7 @@ STR
   end
 
   test 'should conditionally preserve blank lines when joining non tabular data' do
-    text = <<-STR.strip_heredoc
+    text = +<<~STR
       111
       hello
 

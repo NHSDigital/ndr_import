@@ -377,13 +377,13 @@ class MapperTest < ActiveSupport::TestCase
   end
 
   test 'map should replace value' do
-    value = '2.0'
+    value = +'2.0'
     TestMapper.new.replace_before_mapping(value, replace_mapping)
     assert_equal '2', value
   end
 
   test 'map should not alter value' do
-    value = '2.1'
+    value = +'2.1'
     TestMapper.new.replace_before_mapping(value, replace_mapping)
     assert_equal '2.1', value
   end
@@ -420,7 +420,7 @@ class MapperTest < ActiveSupport::TestCase
   end
 
   test 'map should handle array original value' do
-    original_value = ['C9999998', %w(Addenbrookes RGT01)]
+    original_value = [+'C9999998', [+'Addenbrookes', +'RGT01']]
     mapped_value = TestMapper.new.mapped_line(original_value, replace_array_mapping)
     assert_equal %w(RGT01 RGT01), mapped_value['hospital']
   end
