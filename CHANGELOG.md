@@ -1,9 +1,12 @@
 ## [Unreleased]
+*no unreleased changes*
+
+## 11.4.1 / 2025-11-05
 ### Fixed
 * Support Ruby 3.4. Drop support for Ruby 3.0 and 3.1, Rails 6.1 and 7.0
 
-### Added
 ## 11.4.0 / 2025-10-10
+### Added
 * Adds option to format value to Time
 
 ## 11.3.1/ 2025-09-02
