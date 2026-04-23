@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'activemodel'
-  spec.add_dependency 'activesupport', '>= 7.1', '< 8.1'
+  spec.add_dependency 'activesupport', '>= 7.1', '< 8.2'
   spec.add_dependency 'ndr_support', '>= 5.3.2', '< 6'
 
   spec.add_dependency 'rubyzip', '~> 2.0'
