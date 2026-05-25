@@ -13,7 +13,7 @@ jobs:
       with:
         fetch-depth: 0 # fetch everything
     - name: Set up Ruby
-      uses: ruby/setup-ruby@0cb964fd540e0a24c900370abf38a33466142735 # ruby/setup-ruby@v1 see https://github.com/ruby/setup-ruby/tree/v1
+      uses: ruby/setup-ruby@97ecb7b512899eb71ab1bf2310a624c6f1589ac6 # ruby/setup-ruby@v1 see https://github.com/ruby/setup-ruby/tree/v1
       with:
         ruby-version: 4.0
     - name: Install dependencies
