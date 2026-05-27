@@ -8,6 +8,7 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "cron"
+      cronjob: "0 9 1 1,7 *" # Runs every 6 months at 9am on 1 January and 1 July
     cooldown:
       default-days: 7 # Wait 7 days after publication
