@@ -73,7 +73,7 @@ module NdrImport
 
     # This method does the table row yielding for the extract method, setting the notifier
     # so that we can monitor progress
-    def yield_tables_and_their_content(filename, tables, &block)
+    def yield_tables_and_their_content(filename, tables, &)
       return enum_for(:yield_tables_and_their_content, filename, tables) unless block_given?
 
       tables.each do |tablename, table_content, file_metadata|
