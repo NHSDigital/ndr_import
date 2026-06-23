@@ -66,7 +66,6 @@ module NdrImport
         'slurp'                      => table_mapping.try(:slurp),
         'yield_xml_record'           => table_mapping.try(:yield_xml_record),
         'pattern_match_record_xpath' => table_mapping.try(:pattern_match_record_xpath),
-        'file_metadata'              => table_mapping.try(:file_metadata),
         'xml_file_metadata'          => table_mapping.try(:xml_file_metadata),
         'vcf_file_metadata'          => table_mapping.try(:vcf_file_metadata) }
     end
@@ -81,7 +80,9 @@ module NdrImport
         next if mapping.nil?
 
         mapping.notifier = get_notifier(record_total(filename, table_content))
-        mapping.table_metadata ||= file_metadata || {}
+        # Merge file_metadata (from VCF or XML) with directly assigned table_metadata
+        # to form `table_metadata`
+        mapping.table_metadata = (mapping.table_metadata || {}).merge(file_metadata || {})
         yield(mapping, table_content)
       end
     end
