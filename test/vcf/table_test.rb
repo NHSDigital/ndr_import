@@ -12,8 +12,8 @@ module Vcf
 
     test 'test_all_valid_options' do
       valid_options = %w[canonical_name columns file_password filename_pattern format klass
-                         last_data_column liberal_parsing row_identifier
-                         significant_mapped_fields slurp tablename_pattern vcf_file_metadata]
+                         last_data_column liberal_parsing row_identifier significant_mapped_fields
+                         slurp table_metadata tablename_pattern vcf_file_metadata]
       assert_equal valid_options.sort, NdrImport::Vcf::Table.all_valid_options.sort
     end
 

@@ -248,4 +248,22 @@ class UniversalImporterHelperTest < ActiveSupport::TestCase
 
     assert_equal({ record_count: '6349923' }, table_mapping.table_metadata)
   end
+
+  test 'should allow assigning to table_metadata directly in table definition' do
+    table_mappings = [
+      NdrImport::Table.new(filename_pattern: /\.xls\z/i,
+                           header_lines: 1,
+                           footer_lines: 0,
+                           table_metadata: { 'hello' => 'world' },
+                           klass: 'SomeTestClass',
+                           columns: [{ 'column' => '1a' }])
+    ]
+    source_file = @permanent_test_files.join('sample_xls.xls')
+    @test_importer.stubs(:get_table_mapping).returns(table_mappings.first)
+    @test_importer.extract(source_file) do |table, _rows|
+      assert_instance_of NdrImport::Table, table
+
+      assert_equal({ 'hello' => 'world' }, table.table_metadata)
+    end
+  end
 end
