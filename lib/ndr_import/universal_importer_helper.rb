@@ -72,7 +72,7 @@ module NdrImport
 
     # This method does the table row yielding for the extract method, setting the notifier
     # so that we can monitor progress
-    def yield_tables_and_their_content(filename, tables, &block)
+    def yield_tables_and_their_content(filename, tables, &)
       return enum_for(:yield_tables_and_their_content, filename, tables) unless block_given?
 
       tables.each do |tablename, table_content, file_metadata|
@@ -80,7 +80,9 @@ module NdrImport
         next if mapping.nil?
 
         mapping.notifier = get_notifier(record_total(filename, table_content))
-        mapping.table_metadata = file_metadata || {}
+        # Merge file_metadata (from VCF or XML) with directly assigned table_metadata
+        # to form `table_metadata`
+        mapping.table_metadata = (mapping.table_metadata || {}).merge(file_metadata || {})
         yield(mapping, table_content)
       end
     end

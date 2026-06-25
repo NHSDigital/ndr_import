@@ -248,4 +248,40 @@ class UniversalImporterHelperTest < ActiveSupport::TestCase
 
     assert_equal({ record_count: '6349923' }, table_mapping.table_metadata)
   end
+
+  test 'should allow assigning to table_metadata directly in table definition' do
+    table_mappings = [
+      NdrImport::Table.new(filename_pattern: /\.xls\z/i,
+                           header_lines: 1,
+                           footer_lines: 0,
+                           table_metadata: { 'hello' => 'world' },
+                           klass: 'SomeTestClass',
+                           columns: [{ 'column' => '1a' }])
+    ]
+    source_file = @permanent_test_files.join('sample_xls.xls')
+    @test_importer.stubs(:get_table_mapping).returns(table_mappings.first)
+    @test_importer.extract(source_file) do |table, _rows|
+      assert_instance_of NdrImport::Table, table
+
+      assert_equal({ 'hello' => 'world' }, table.table_metadata)
+    end
+  end
+
+  test 'should merge file metadata with directly assigned metadata' do
+    table_mapping =
+      NdrImport::Xml::Table.new(filename_pattern: /.xml/i,
+                                yield_xml_record: true,
+                                xml_record_xpath: 'BreastRecord',
+                                format: 'xml_table',
+                                xml_file_metadata: { record_count: '//COSD:RecordCount/@value' },
+                                table_metadata: { hello: 'world' },
+                                klass: 'SomeTestClass',
+                                columns: {})
+
+    source_file = @permanent_test_files.join('complex_xml.xml')
+    @test_importer.stubs(:get_table_mapping).returns(table_mapping)
+    @test_importer.extract(source_file) { |table, rows| table.transform(rows) }
+
+    assert_equal({ record_count: '6349923', hello: 'world' }, table_mapping.table_metadata)
+  end
 end

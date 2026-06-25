@@ -11,9 +11,9 @@ module NdrImport
     include NdrImport::Mapper
 
     def self.all_valid_options
-      %w[canonical_name delimiter liberal_parsing filename_pattern file_password last_data_column
-         tablename_pattern header_lines footer_lines format klass columns slurp row_identifier
-         significant_mapped_fields]
+      %w[canonical_name delimiter liberal_parsing filename_pattern file_password
+         last_data_column tablename_pattern header_lines footer_lines
+         format klass columns slurp row_identifier significant_mapped_fields table_metadata]
     end
 
     def all_valid_options
