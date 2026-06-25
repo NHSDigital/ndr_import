@@ -4,14 +4,18 @@ file safety:
     comments:
     reviewed_by: brian.shand
     safe_revision: 79056bda0d76425f3e71b37c1f54978016ca5e0e
+  ".github/dependabot.yml":
+    comments:
+    reviewed_by: ollietulloch
+    safe_revision: 2a382fbe720f914bd5471af320f50d7cb3908218
   ".github/workflows/lint.yml":
     comments:
-    reviewed_by: brian.shand
-    safe_revision: 6ab5df1e7516d4fd3f933c955d275218b2ed3ac4
+    reviewed_by: ollietulloch
+    safe_revision: f16df8d5a79d77746e066fb75e20663743646ab5
   ".github/workflows/test.yml":
     comments:
-    reviewed_by: brian.shand
-    safe_revision: 6740f09e6e9ef66b52345fde8c435d99eb35ac70
+    reviewed_by: ollietulloch
+    safe_revision: f16df8d5a79d77746e066fb75e20663743646ab5
   ".gitignore":
     comments: whole file re-reviewed
     reviewed_by: brian.shand
@@ -26,8 +30,8 @@ file safety:
     safe_revision: 6ec135a5dfde54992c6efb4f26c6da8041f3aefd
   CHANGELOG.md:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: 6740f09e6e9ef66b52345fde8c435d99eb35ac70
+    reviewed_by: ollietulloch
+    safe_revision: 5039f2191911dc4f80e02888074ed8b212da011b
   CODE_OF_CONDUCT.md:
     comments:
     reviewed_by: timgentry
@@ -52,6 +56,10 @@ file safety:
     comments:
     reviewed_by: josh.pencheon
     safe_revision: 5a7f26cecaabab20f4e666776f9166dcc3fa6bfe
+  SECURITY.md:
+    comments:
+    reviewed_by: ollietulloch
+    safe_revision: 2a382fbe720f914bd5471af320f50d7cb3908218
   bin/console:
     comments:
     reviewed_by: josh.pencheon
@@ -66,8 +74,8 @@ file safety:
     safe_revision: b55df15017761651c7a313fa2cc94497e875bad9
   docs/Gemfile.lock:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: f34a4dc119a784e631277ba6ee056f3fed704752
+    reviewed_by: ollietulloch
+    safe_revision: 8c6fa28f97ec03dc3b686b5d7827dfd3dabeff4a
   docs/_config.yml:
     comments:
     reviewed_by: brian.shand
@@ -172,6 +180,10 @@ file safety:
     comments:
     reviewed_by: brian.shand
     safe_revision: 6fd034c160d5edcbf6466ae442c5c7bf08eb0529
+  gemfiles/Gemfile.rails81:
+    comments:
+    reviewed_by: ollietulloch
+    safe_revision: 54d342f59c403df71aada77ee05aa69bb62df002
   lib/ndr_import.rb:
     comments:
     reviewed_by: brian.shand
@@ -340,11 +352,11 @@ file safety:
   lib/ndr_import/table.rb:
     comments: uses File.basename
     reviewed_by: ollietulloch
-    safe_revision: f07c39ee0839d5af2b03c178526a7ed659c7ff9f
+    safe_revision: 46069d392ab998fd66b37a8282f250e024fc42fc
   lib/ndr_import/universal_importer_helper.rb:
     comments:
     reviewed_by: ollietulloch
-    safe_revision: 1a8c6b99f0988228f8192bfe8c7d461141c32834
+    safe_revision: 46069d392ab998fd66b37a8282f250e024fc42fc
   lib/ndr_import/unmapped_data_error.rb:
     comments:
     reviewed_by: josh.pencheon
@@ -356,7 +368,7 @@ file safety:
   lib/ndr_import/version.rb:
     comments: another check?
     reviewed_by: ollietulloch
-    safe_revision: b8e0f55ee4bbfa3b737ac6a5b71cee3fd622f158
+    safe_revision: 5039f2191911dc4f80e02888074ed8b212da011b
   lib/ndr_import/xml/column_mapping.rb:
     comments:
     reviewed_by: brian.shand
@@ -379,8 +391,8 @@ file safety:
     safe_revision: a042c1926b757f1b0cdca080668b2612e80d4d2d
   ndr_import.gemspec:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: 6740f09e6e9ef66b52345fde8c435d99eb35ac70
+    reviewed_by: ollietulloch
+    safe_revision: 2a382fbe720f914bd5471af320f50d7cb3908218
   test/avro/table_test.rb:
     comments:
     reviewed_by: brian.shand
@@ -491,8 +503,8 @@ file safety:
     safe_revision: 63b1e8c275bd63377309d9b124176f39f75576a9
   test/non_tabular/table_test.rb:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: 8caf40bc60ea9977374c6248728a208464e81848
+    reviewed_by: ollietulloch
+    safe_revision: 46069d392ab998fd66b37a8282f250e024fc42fc
   test/non_tabular_file_helper_test.rb:
     comments:
     reviewed_by: brian.shand
@@ -803,12 +815,12 @@ file safety:
     safe_revision: 396a450173aee6d5802c7e8f13183f5fda8d73ce
   test/universal_importer_helper_test.rb:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: 1441b7201c32b0c6269f1feb29e856ffd9d97c4e
+    reviewed_by: ollietulloch
+    safe_revision: 46069d392ab998fd66b37a8282f250e024fc42fc
   test/vcf/table_test.rb:
     comments:
     reviewed_by: ollietulloch
-    safe_revision: 1a8c6b99f0988228f8192bfe8c7d461141c32834
+    safe_revision: 46069d392ab998fd66b37a8282f250e024fc42fc
   test/xml/column_mapping_test.rb:
     comments:
     reviewed_by: brian.shand

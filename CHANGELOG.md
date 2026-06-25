@@ -1,4 +1,8 @@
 ## [Unreleased]
+
+*no unreleased changes*
+
+## 11.5.0 / 2026-06-25
 ### Fixed
 * Support Rails 8.1, Ruby 4.0. Drop support for Ruby 3.2
 * Allow direct assignment of `table.table_metadata`
