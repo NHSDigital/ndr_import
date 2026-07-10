@@ -57,8 +57,9 @@ module NdrImport
       def metadata_from_stream(xpath)
         cursor = Cursor.new(xpath, false)
 
-        # If markup isn't well-formed, try to work around it:
-        options = Nokogiri::XML::ParseOptions::RECOVER
+        # If markup isn't well-formed, try to work around it (but keep NONET,
+        # so external entities/DTDs can't trigger network requests):
+        options = Nokogiri::XML::ParseOptions::RECOVER | Nokogiri::XML::ParseOptions::NONET
         reader  = Nokogiri::XML::Reader(@stream, nil, @encoding, options)
 
         reader.each do |node|
