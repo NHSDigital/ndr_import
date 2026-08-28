@@ -46,7 +46,7 @@ module NdrImport
             next unless entry.file? && basename.match(@pattern)
 
             unzipped_filename = destination.join(basename)
-            szr.extract([entry], unzipped_filename)
+            szr.extract([entry], destination)
 
             unzipped_files(unzipped_filename, &block)
           end
