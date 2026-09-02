@@ -8,12 +8,7 @@ require 'ndr_support/safe_path'
 require 'ndr_import'
 require 'yaml'
 
-begin
-  # Shim for Test::Unit vs. Minitest:
-  require 'active_support/testing/autorun'
-rescue LoadError
-  # Rails 4+ only
-end
+require 'minitest/autorun'
 
 ActiveSupport.test_order = :random if ActiveSupport.respond_to?(:test_order=)
 
