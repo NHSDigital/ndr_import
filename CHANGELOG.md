@@ -1,6 +1,6 @@
 ## [Unreleased]
-
-*no unreleased changes*
+### Fixed
+* `NdrImport::File::SevenZip` was extracting files one directory level too deep
 
 ## 11.5.0 / 2026-06-25
 ### Fixed
