@@ -37,6 +37,8 @@ module NdrImport
         files = handler.files.to_a
         assert_equal 'normal_pipe.csv', ::File.basename(files[0])
         assert_equal 'normal_thorn.csv', ::File.basename(files[1])
+        assert ::File.file?(files[0].to_s), "expected #{files[0]} to be a file, not a directory"
+        assert ::File.file?(files[1].to_s), "expected #{files[1]} to be a file, not a directory"
         assert_equal "A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z\n" \
                      "1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1\n" \
                      "2|2|2|2|2|2|2|2|2|2|2|2|2|2|2|2|2|2|2|2|2|2|2|2|2|2\n",
